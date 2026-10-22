@@ -1,0 +1,30 @@
+{
+  "frozen": {
+    "partition_unchanged_after_update": true,
+    "soft_assignment_unchanged": true,
+    "gradients": {
+      "grouping": 0.0,
+      "content": 0.0021628953982144594,
+      "aggregator": 0.0011814614990726113,
+      "encoder": 0.0018814182840287685,
+      "decoder": 0.002889155177399516
+    }
+  },
+  "spatial": {
+    "partition_unchanged_after_update": true,
+    "soft_assignment_unchanged": true,
+    "gradients": {
+      "grouping": 0.0,
+      "content": 0.004427273757755756,
+      "aggregator": 0.0022181561216712,
+      "encoder": 0.0033775491174310446,
+      "decoder": 0.0056789470836520195
+    }
+  },
+  "shared": {
+    "layer_head_id_invariant": true
+  },
+  "independent": {
+    "other_blocks_unchanged_when_one_block_changes": true
+  }
+}

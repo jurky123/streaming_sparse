@@ -1,0 +1,7 @@
+{
+  "stage": "calibration",
+  "updates": 2000,
+  "max_updates": 2000,
+  "best_step": 2000,
+  "best": 1.67709678375236
+}

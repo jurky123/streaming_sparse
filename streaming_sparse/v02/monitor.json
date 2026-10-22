@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-10-16 03:01:51",
+  "monitor_pid": 770038,
+  "workflow_pid": 776274,
+  "workflow_alive": false,
+  "status": {
+    "phase": "parallel interrupted",
+    "detail": "Supervisor stop marker requested",
+    "state": "paused",
+    "updated_utc": "2026-10-16 03:01:42"
+  },
+  "processes": [],
+  "progress": [],
+  "storage_free_bytes": 57274799640576,
+  "alerts": [],
+  "idle_seconds": 0.0,
+  "overall": {
+    "full_training_done": 15,
+    "full_training_total": 15,
+    "full_evaluation_done": 30,
+    "full_evaluation_total": 45
+  }
+}

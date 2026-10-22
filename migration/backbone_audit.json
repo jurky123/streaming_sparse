@@ -1,0 +1,14 @@
+{
+  "repository": "gdhe17/Self-Forcing",
+  "revision": "2f8b779212da279d212c22a509b66ad6552f350e",
+  "filename": "checkpoints/self_forcing_dmd.pt",
+  "local_path": "/home/iflab/models/Self-Forcing/checkpoints/self_forcing_dmd.pt",
+  "size_bytes": 5676252553,
+  "sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+  "sha256_matches_original": true,
+  "verified_utc": "2026-10-16T08:25:25.992132+00:00",
+  "network": "direct; proxy environment variables removed",
+  "endpoint": "https://hf-mirror.com",
+  "checkpoint_loaded": false,
+  "experiment_started": false
+}

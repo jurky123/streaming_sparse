@@ -1,0 +1,132 @@
+{
+  "version": "0.5",
+  "title": "Per-query Signed Block Interaction Routing",
+  "splits": {
+    "train": [
+      "d0bf2d0fa5fd5f0a08da",
+      "4efd68f46660ee454bee",
+      "e1acf652465d7a89a34c",
+      "f13bf1e16fd7c149c5ff",
+      "faf6f4c65c9a2bf06624",
+      "f91b57c35827e49c7344",
+      "e72bab9193ec39cadb01",
+      "351ac8d95605183e137f",
+      "26cca919c2adab85f2dc",
+      "16343b0f88b7ff9d3faa",
+      "36f96596015052a396b6",
+      "16e2ad71b42a732ad763",
+      "d45c532a77b0db19c4e4",
+      "2bfa9bb7274345a5d84a",
+      "39cd601b633b998325c3",
+      "b0659d3fc27d7225fa9d"
+    ],
+    "val": [
+      "355ec425a607c309c237",
+      "6893aa3a639dfdeb015d",
+      "a59c8b64f8849b3dfdb0",
+      "b2addbd1cf442c90b9a6"
+    ],
+    "test": [
+      "cff9026e614121910390",
+      "0ab0bfc44c441bdcf974",
+      "fccd8a449f6ba5956347",
+      "5ae7f2c117398e0cd161"
+    ]
+  },
+  "data_root": "/home/iflab/models/Self-Forcing/streaming_sparse/v04/data/full",
+  "data_reuse": "All existing captured raw per-query QKV; no recapture",
+  "precision": "FP32 historical features/clustering/aggregation,norm-sensitive statistics,signed relations/messages,scores,budget,attention loss; BF16 fusion/ordinary/pre-Q interaction and FFN with FP32 master weights",
+  "historical_policy": "One shared F/partition/aggregation/one-layer Pre-Q H, equal arm mean pooled attention loss in phase2; frozen and cached once per snapshot in phase1",
+  "decoder_policy": "Exactly one shared trainable per-query Projection/LayerNorm/log-norm/residual Fusion tensor for all arms. R2/R3 relevance/correction/interaction modules independently train from matching compatible initial tensors.",
+  "initialization": "Fresh router initialization for each Router seed; no trained v0.4 backbone/router weights. Compatible decoder parameters copied from the R2 template.",
+  "objective": "Per-update pooled SSE / pooled dense output energy, then mean across arms; separately record tile mean relative error and pooled global error",
+  "correction": "F_delta([LN(updated_y), LN(mean projected message)-LN(0)]) - F_delta([LN(updated_y),0]); Wm has no effective bias; zero signed message implies exactly zero correction",
+  "query_norm_feature": "log(norm(q)+epsilon) projected to128 and added after Query Projection LayerNorm; no query mean pooling",
+  "relation": "Learned centered unit-vector Gram relation, FP32, diagonal/empty masked; absolute-sum normalized signed messages; two blocks, FFN512; negative and abs frozen interventions",
+  "keep_train": 0.2,
+  "eval_keeps": [
+    0.3,
+    0.2,
+    0.1
+  ],
+  "pressure_tests": "30% and10% are cross-budget generalization tests, not separately trained budgets",
+  "phase1": {
+    "max_updates": 1000,
+    "min_updates": 1000,
+    "validate_every": 100,
+    "warmup": 50,
+    "snapshots_per_update": 1,
+    "patience": 100,
+    "min_relative_improvement": 0.001,
+    "train_prompts": [
+      "d0bf2d0fa5fd5f0a08da",
+      "4efd68f46660ee454bee"
+    ],
+    "val_prompts": [
+      "355ec425a607c309c237",
+      "6893aa3a639dfdeb015d"
+    ],
+    "generation_seeds": [
+      0
+    ],
+    "heads": [
+      0,
+      5,
+      11
+    ],
+    "layers": [
+      4,
+      14,
+      24
+    ],
+    "train_histories": [
+      4680,
+      9360,
+      14040
+    ],
+    "val_histories": [
+      9360
+    ],
+    "router_seeds": [
+      0,
+      1
+    ],
+    "arms": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "all_tiles": "Without-replacement snapshot sweeps with8-tile rotation;1000 draws over54 snapshots visits every snapshot/tile at least twice"
+  },
+  "phase2": {
+    "max_updates": 20000,
+    "min_updates": 8000,
+    "validate_every": 1000,
+    "warmup": 500,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002,
+    "router_seeds": [
+      0,
+      1,
+      2
+    ],
+    "arms": [
+      "R2",
+      "R3"
+    ],
+    "validation": "Fixed36 metadata-balanced Val snapshots, all4steps/8tiles; joint mean Global checkpoint selection; fullVal/Test after selection",
+    "full_training_coverage": "At min8000 x4 draws every3456 train snapshot has>=9 visits, covers all8tiles; report selected-checkpoint exposure separately",
+    "convergence": "Stop on four validation checks without>=0.2% relative joint improvement after min8000, or max20000. Neither limit proves convergence"
+  },
+  "phase1_gate": "Both seeds finite and all8tile coverage, and at least1% joint validation improvement; failures prevent launching phase2",
+  "final_evaluation": "All Train/Val/Test snapshots for each selected shared R2/R3 checkpoint, all8tiles/4steps,3 budgets; same-partition per-query Mass and SpatialMass; hard/soft, relevance-only and signed interventions",
+  "control_limits": [
+    "R0 remains historical v0.4 reference with different frontend and normalization, not a clean query-granularity-only ablation",
+    "Report parameter counts and signed vs ordinary capacity difference; no performance or video-quality claim",
+    "Three Router seeds, not generation seeds, determine mean and sample std",
+    "Normalization benefits are monitored but cannot be causally isolated without a separate norm ablation",
+    "No selected-set refinement,oracle labels,diffusion loss,backbone training,or auxiliary Mass loss",
+    "F/partition/aggregation/Pre-Q H and Q Projection/Fusion are exactly shared; independent branch parameters differ only after matched initialization."
+  ]
+}

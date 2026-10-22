@@ -1,0 +1,12 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "inputs": 960,
+  "parameterization": "x0",
+  "native_steps": [
+    1000.0,
+    937.5,
+    833.3333129882812,
+    625.0
+  ],
+  "teacher": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3"
+}

@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-10-16 03:01:42",
+  "supervisor_pid": 776194,
+  "event": "exited",
+  "attempt": 0,
+  "returncode": -2,
+  "status": {
+    "phase": "parallel interrupted",
+    "detail": "Explicit supervisor stop marker",
+    "state": "failed",
+    "updated_utc": "2026-10-16 03:01:38"
+  },
+  "signal_log": "/home/jiangzhikun/Self-Forcing/streaming_sparse/v02/logs/signals_20261016T023747Z_attempt0.log",
+  "stopping": true
+}

@@ -1,0 +1,514 @@
+{
+  "checkpoint_updates": 620,
+  "checkpoint_group": "F-K",
+  "router_seed": 0,
+  "checkpoint_sha256": "a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d",
+  "hardware": "physical GPU0 NVIDIA A100-SXM4-80GB; driver595.71.05; GPU1 unused",
+  "chunk_quality": {
+    "checkpoint_sha256": "a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d",
+    "videos": [
+      {
+        "video_index": 1,
+        "prompt_id": "355ec425a607c309c237",
+        "chunks": [
+          {
+            "chunk_zero_based": 0,
+            "video_frames_one_based": [
+              1,
+              9
+            ],
+            "mse_rgb01": 0.0,
+            "psnr_db": null,
+            "identical": true,
+            "lpips": 0.0
+          },
+          {
+            "chunk_zero_based": 1,
+            "video_frames_one_based": [
+              10,
+              21
+            ],
+            "mse_rgb01": 0.005255723773915117,
+            "psnr_db": 22.79367468147065,
+            "identical": false,
+            "lpips": 0.0537373263699313
+          },
+          {
+            "chunk_zero_based": 2,
+            "video_frames_one_based": [
+              22,
+              33
+            ],
+            "mse_rgb01": 0.018770318808855907,
+            "psnr_db": 17.26528350940131,
+            "identical": false,
+            "lpips": 0.1502649678538243
+          },
+          {
+            "chunk_zero_based": 3,
+            "video_frames_one_based": [
+              34,
+              45
+            ],
+            "mse_rgb01": 0.03218357172320236,
+            "psnr_db": 14.923657596900732,
+            "identical": false,
+            "lpips": 0.2397049143910408
+          }
+        ]
+      },
+      {
+        "video_index": 2,
+        "prompt_id": "6893aa3a639dfdeb015d",
+        "chunks": [
+          {
+            "chunk_zero_based": 0,
+            "video_frames_one_based": [
+              1,
+              9
+            ],
+            "mse_rgb01": 0.0,
+            "psnr_db": null,
+            "identical": true,
+            "lpips": 0.0
+          },
+          {
+            "chunk_zero_based": 1,
+            "video_frames_one_based": [
+              10,
+              21
+            ],
+            "mse_rgb01": 0.0015852293725456392,
+            "psnr_db": 27.999078892672514,
+            "identical": false,
+            "lpips": 0.0282327252595375
+          },
+          {
+            "chunk_zero_based": 2,
+            "video_frames_one_based": [
+              22,
+              33
+            ],
+            "mse_rgb01": 0.004720774923435088,
+            "psnr_db": 23.259867053176023,
+            "identical": false,
+            "lpips": 0.06359389238059521
+          },
+          {
+            "chunk_zero_based": 3,
+            "video_frames_one_based": [
+              34,
+              45
+            ],
+            "mse_rgb01": 0.01589236491860301,
+            "psnr_db": 17.988114712836712,
+            "identical": false,
+            "lpips": 0.1658559882392486
+          }
+        ]
+      }
+    ],
+    "definition": "causal VAE: first3 latent frames decode to RGB frames1..9; each subsequent3 adds12 RGB frames; PSNR from pooled RGB MSE, LPIPS frame mean"
+  },
+  "step_sparsity": {
+    "diffusion_steps_skipped": 0,
+    "steps": [
+      {
+        "video_index": 1,
+        "step": 0,
+        "timestep": 1000.0,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 1,
+        "step": 1,
+        "timestep": 937.5,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 1,
+        "step": 2,
+        "timestep": 833.3333129882812,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 1,
+        "step": 3,
+        "timestep": 625.0,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 2,
+        "step": 0,
+        "timestep": 1000.0,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 2,
+        "step": 1,
+        "timestep": 937.5,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 2,
+        "step": 2,
+        "timestep": 833.3333129882812,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      },
+      {
+        "video_index": 2,
+        "step": 3,
+        "timestep": 625.0,
+        "history_sparsity": 0.8022792022792022,
+        "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+        "chunks": [
+          {
+            "chunk": 0,
+            "history_tokens": 0,
+            "history_sparsity": null
+          },
+          {
+            "chunk": 1,
+            "history_tokens": 4680,
+            "history_sparsity": 0.8068376068376069
+          },
+          {
+            "chunk": 2,
+            "history_tokens": 9360,
+            "history_sparsity": 0.8
+          },
+          {
+            "chunk": 3,
+            "history_tokens": 14040,
+            "history_sparsity": 0.8022792022792022
+          }
+        ]
+      }
+    ],
+    "sparse_layers": [
+      4,
+      14,
+      24
+    ],
+    "total_layers": 30,
+    "heads": "all12 in each sparse layer",
+    "context_write": "Dense in every layer",
+    "current_segment": "all visible KV kept",
+    "all_four_native_steps_execute": true
+  },
+  "timing_cases": [
+    {
+      "video_index": 1,
+      "prompt_id": "355ec425a607c309c237",
+      "unprofiled": {
+        "dense": {
+          "generation_wall_seconds": 4.7411508723162115,
+          "vae_decode_wall_seconds": 1.9574665860272944,
+          "noise_to_rgb_wall_seconds": 6.698616817127913,
+          "latent_max_abs_vs_original_video": 0.0,
+          "shape": [
+            1,
+            45,
+            3,
+            480,
+            832
+          ]
+        },
+        "sparse": {
+          "generation_wall_seconds": 53.549113743938506,
+          "vae_decode_wall_seconds": 1.9561626529321074,
+          "noise_to_rgb_wall_seconds": 55.50527592515573,
+          "latent_max_abs_vs_original_video": 0.0,
+          "shape": [
+            1,
+            45,
+            3,
+            480,
+            832
+          ]
+        }
+      },
+      "components_ms": {
+        "dense": {
+          "sdpa_self_attention/denoise": 995.8768638372421,
+          "selected3layer_denoise_sdpa_ms": 99.40787190198898,
+          "sdpa_self_attention/context": 249.21599966287613
+        },
+        "sparse": {
+          "sdpa_self_attention/denoise": 1189.8429429531097,
+          "selected3layer_denoise_sdpa_ms": 323.9219211935997,
+          "sdpa_self_attention/context": 248.0988159775734,
+          "historical_sketch/denoise": 61.59769603610039,
+          "routing_score_and_budget/denoise": 39581.94076538086,
+          "masked_execution_including_mask_materialization/denoise": 538.807297706604
+        }
+      },
+      "component_counts": {
+        "dense": {
+          "sdpa_self_attention/denoise": 480,
+          "selected3layer_denoise_sdpa_ms": 48,
+          "sdpa_self_attention/context": 180
+        },
+        "sparse": {
+          "sdpa_self_attention/denoise": 480,
+          "selected3layer_denoise_sdpa_ms": 48,
+          "sdpa_self_attention/context": 180,
+          "historical_sketch/denoise": 108,
+          "routing_score_and_budget/denoise": 432,
+          "masked_execution_including_mask_materialization/denoise": 36
+        }
+      }
+    },
+    {
+      "video_index": 2,
+      "prompt_id": "6893aa3a639dfdeb015d",
+      "unprofiled": {
+        "sparse": {
+          "generation_wall_seconds": 50.944204970262945,
+          "vae_decode_wall_seconds": 1.958878993988037,
+          "noise_to_rgb_wall_seconds": 52.903083224315196,
+          "latent_max_abs_vs_original_video": 0.0,
+          "shape": [
+            1,
+            45,
+            3,
+            480,
+            832
+          ]
+        },
+        "dense": {
+          "generation_wall_seconds": 4.730562965851277,
+          "vae_decode_wall_seconds": 1.9721899242140353,
+          "noise_to_rgb_wall_seconds": 6.702752040233463,
+          "latent_max_abs_vs_original_video": 0.0,
+          "shape": [
+            1,
+            45,
+            3,
+            480,
+            832
+          ]
+        }
+      },
+      "components_ms": {
+        "dense": {
+          "sdpa_self_attention/denoise": 999.419907271862,
+          "selected3layer_denoise_sdpa_ms": 99.81747210025787,
+          "sdpa_self_attention/context": 250.72025614976883
+        },
+        "sparse": {
+          "sdpa_self_attention/denoise": 1201.2144632935524,
+          "selected3layer_denoise_sdpa_ms": 328.77261078357697,
+          "sdpa_self_attention/context": 248.16537582874298,
+          "historical_sketch/denoise": 69.9392001926899,
+          "routing_score_and_budget/denoise": 44707.68028259277,
+          "masked_execution_including_mask_materialization/denoise": 547.0351362228394
+        }
+      },
+      "component_counts": {
+        "dense": {
+          "sdpa_self_attention/denoise": 480,
+          "selected3layer_denoise_sdpa_ms": 48,
+          "sdpa_self_attention/context": 180
+        },
+        "sparse": {
+          "sdpa_self_attention/denoise": 480,
+          "selected3layer_denoise_sdpa_ms": 48,
+          "sdpa_self_attention/context": 180,
+          "historical_sketch/denoise": 108,
+          "routing_score_and_budget/denoise": 432,
+          "masked_execution_including_mask_materialization/denoise": 36
+        }
+      }
+    }
+  ],
+  "timing_means": {
+    "dense": {
+      "generation_wall_seconds": 4.735856919083744,
+      "vae_decode_wall_seconds": 1.9648282551206648,
+      "noise_to_rgb_wall_seconds": 6.700684428680688,
+      "denoise_self_sdpa_ms": 997.6483855545521,
+      "selected3layer_denoise_self_sdpa_ms": 99.61267200112343,
+      "routing_score_and_budget_ms": 0.0
+    },
+    "sparse": {
+      "generation_wall_seconds": 52.246659357100725,
+      "vae_decode_wall_seconds": 1.9575208234600723,
+      "noise_to_rgb_wall_seconds": 54.20417957473546,
+      "denoise_self_sdpa_ms": 1195.528703123331,
+      "selected3layer_denoise_self_sdpa_ms": 326.34726598858833,
+      "routing_score_and_budget_ms": 42144.81052398682
+    }
+  },
+  "sparse_over_dense_wall_ratio": 8.089349700267535,
+  "timing_scope": "Warm loaded models and cached text embeddings; all4 denoising steps/chunk, history reencoding, router and VAE decode to GPU RGB. Excludes model loading, text encoding, LPIPS, pixel transfer, video encoding/write. E2E timings use no component hooks; component timings come from separate repeats of the same2 cases, caches cleared between videos/repeats.",
+  "component_scope": "Separate profiled repetitions. Self-SDPA CUDA-event spans exclude QKV/O projections, Router and mask construction. Router spans can include CPU launch gaps. Nested component spans overlap; do not sum all categories.",
+  "implementation": "current v08 functional offline implementation; standard SDPA with hard mask, no sparse kernel; not original inference pipeline production throughput",
+  "repeats_per_case": "one unprofiled end-to-end pass and one separately profiled pass per mode; warmed; descriptive two-case measurement, no statistical speed claim",
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "training_restored_pids": [
+    1005149,
+    1004913
+  ]
+}

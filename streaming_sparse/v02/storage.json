@@ -1,0 +1,13 @@
+{
+  "scratch": "/tmp/jiangzhikun_self_forcing_sparse_v02",
+  "raw_qkv": "/home/jiangzhikun/Self-Forcing/streaming_sparse/v02/data/shared",
+  "pilot_runs": "/home/jiangzhikun/Self-Forcing/streaming_sparse/v02/runs/pilot",
+  "full_runs": "/home/jiangzhikun/Self-Forcing/streaming_sparse/v02/runs/full",
+  "created_utc": "2026-10-15 13:10:26",
+  "note": "Runtime metadata/logs/reports, legacy experiment data, QKV, checkpoints and review archives live on local /tmp. Original paths remain compatible links; preserve the entire scratch directory when migrating.",
+  "control": "/tmp/jiangzhikun_self_forcing_sparse_v02/control/v02",
+  "legacy_v01": "/tmp/jiangzhikun_self_forcing_sparse_v02/legacy_v01",
+  "autoregressive_checkpoint": "/tmp/jiangzhikun_self_forcing_sparse_v02/models/self_forcing_dmd.pt",
+  "artifacts": "/tmp/jiangzhikun_self_forcing_sparse_v02/artifacts",
+  "updated_utc": "2026-10-15 15:34:11"
+}

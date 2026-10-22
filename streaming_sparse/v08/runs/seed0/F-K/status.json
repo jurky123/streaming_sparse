@@ -1,0 +1,24 @@
+{
+  "status": "running",
+  "stage": "main",
+  "group": "F-K",
+  "updates": 600,
+  "total": 2000,
+  "best": 0.0013842122169326406,
+  "best_step": 400,
+  "pilot": false,
+  "lora_update_to_base_norm": {
+    "blocks.4.self_attn.q": 0.0,
+    "blocks.4.self_attn.k": 0.0,
+    "blocks.4.self_attn.v": 0.0,
+    "blocks.4.self_attn.o": 0.0,
+    "blocks.14.self_attn.q": 0.0,
+    "blocks.14.self_attn.k": 0.0,
+    "blocks.14.self_attn.v": 0.0,
+    "blocks.14.self_attn.o": 0.0,
+    "blocks.24.self_attn.q": 0.0,
+    "blocks.24.self_attn.k": 0.0,
+    "blocks.24.self_attn.v": 0.0,
+    "blocks.24.self_attn.o": 0.0
+  }
+}

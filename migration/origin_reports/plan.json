@@ -1,0 +1,3563 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "stages": [
+    "prepare",
+    "pilot",
+    "matrix",
+    "final",
+    "test"
+  ],
+  "jobs": [
+    {
+      "name": "unit_and_tiny_wan_audit",
+      "stage": "prepare",
+      "module": "streaming_sparse.v08.audit",
+      "args": [
+        "--tiny-network"
+      ],
+      "dependencies": [],
+      "gpu": true
+    },
+    {
+      "name": "capture_train",
+      "stage": "prepare",
+      "module": "streaming_sparse.v08.collect",
+      "args": [
+        "--split",
+        "train"
+      ],
+      "dependencies": [
+        "unit_and_tiny_wan_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "capture_val",
+      "stage": "prepare",
+      "module": "streaming_sparse.v08.collect",
+      "args": [
+        "--split",
+        "val"
+      ],
+      "dependencies": [
+        "unit_and_tiny_wan_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "real_network_and_raw_QKV_audit",
+      "stage": "prepare",
+      "module": "streaming_sparse.v08.audit",
+      "args": [
+        "--real"
+      ],
+      "dependencies": [
+        "capture_train",
+        "unit_and_tiny_wan_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "calibration_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.warmstart",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "real_network_and_raw_QKV_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_K_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "K",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "calibration_seed0",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_V_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "V",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "calibration_seed0",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "pilot_F-K_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-K",
+        "--seed",
+        "0",
+        "--pilot"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "pilot_F-V_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-V",
+        "--seed",
+        "0",
+        "--pilot"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "pilot_J-K_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-K",
+        "--seed",
+        "0",
+        "--pilot"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "pilot_J-V_seed0",
+      "stage": "pilot",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-V",
+        "--seed",
+        "0",
+        "--pilot"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-K_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-K",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "pilot_F-K_seed0",
+        "pilot_F-V_seed0",
+        "pilot_J-K_seed0",
+        "pilot_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-V_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-V",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "pilot_F-K_seed0",
+        "pilot_F-V_seed0",
+        "pilot_J-K_seed0",
+        "pilot_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-K_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-K",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "pilot_F-K_seed0",
+        "pilot_F-V_seed0",
+        "pilot_J-K_seed0",
+        "pilot_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-V_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-V",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "pilot_F-K_seed0",
+        "pilot_F-V_seed0",
+        "pilot_J-K_seed0",
+        "pilot_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-K_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-K",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-V_seed0",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-V",
+        "--seed",
+        "0"
+      ],
+      "dependencies": [
+        "heads_K_seed0",
+        "heads_V_seed0",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "calibration_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.warmstart",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "real_network_and_raw_QKV_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_K_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "K",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "calibration_seed1",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_V_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "V",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "calibration_seed1",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-K_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-K",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-V_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-V",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-K_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-K",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-V_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-V",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-K_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-K",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed1",
+        "main_F-V_seed1",
+        "main_J-K_seed1",
+        "main_J-V_seed1"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-V_seed1",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-V",
+        "--seed",
+        "1"
+      ],
+      "dependencies": [
+        "heads_K_seed1",
+        "heads_V_seed1",
+        "main_F-K_seed1",
+        "main_F-V_seed1",
+        "main_J-K_seed1",
+        "main_J-V_seed1"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "calibration_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.warmstart",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "real_network_and_raw_QKV_audit"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_K_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "K",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "calibration_seed2",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "heads_V_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "heads",
+        "--kind",
+        "V",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "calibration_seed2",
+        "capture_train",
+        "capture_val"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-K_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-K",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_F-V_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "F-V",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-K_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-K",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_J-V_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "J-V",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-K_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-K",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed2",
+        "main_F-V_seed2",
+        "main_J-K_seed2",
+        "main_J-V_seed2"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "main_A-V_seed2",
+      "stage": "matrix",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.train",
+        "--stage",
+        "main",
+        "--group",
+        "A-V",
+        "--seed",
+        "2"
+      ],
+      "dependencies": [
+        "heads_K_seed2",
+        "heads_V_seed2",
+        "main_F-K_seed2",
+        "main_F-V_seed2",
+        "main_J-K_seed2",
+        "main_J-V_seed2"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "lock_all_checkpoints",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--make-lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json"
+      ],
+      "dependencies": [
+        "main_F-K_seed0",
+        "main_F-V_seed0",
+        "main_J-K_seed0",
+        "main_J-V_seed0",
+        "main_A-K_seed0",
+        "main_A-V_seed0",
+        "main_F-K_seed1",
+        "main_F-V_seed1",
+        "main_J-K_seed1",
+        "main_J-V_seed1",
+        "main_A-K_seed1",
+        "main_A-V_seed1",
+        "main_F-K_seed2",
+        "main_F-V_seed2",
+        "main_J-K_seed2",
+        "main_J-V_seed2",
+        "main_A-K_seed2",
+        "main_A-V_seed2"
+      ],
+      "gpu": false
+    },
+    {
+      "name": "val_F-K_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed0_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed0_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed0_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed0/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed1_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed1_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed1_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed1/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-K_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_F-V_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-K_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_A-V_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-K_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed2_initial",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/initial.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed2_best",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/best.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "val_J-V_seed2_last",
+      "stage": "final",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/last.pt",
+        "--split",
+        "val",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/val/seed2/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "capture_new_sealed_test",
+      "stage": "test",
+      "module": "streaming_sparse.v08.collect",
+      "args": [
+        "--split",
+        "test"
+      ],
+      "dependencies": [
+        "lock_all_checkpoints"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-K_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/F-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-V_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/F-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-K_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/A-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-V_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/A-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-K_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/J-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed0_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed0_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed0_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed0/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-V_seed0",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed0/J-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-K_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/F-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-V_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/F-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-K_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/A-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-V_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/A-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-K_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/J-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed1_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed1_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed1_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed1/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-V_seed1",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed1/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed1/J-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-K_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-K_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/F-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_F-V_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/F-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_F-V_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/F-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/F-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-K_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-K_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/A-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_A-V_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/A-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_A-V_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/A-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/A-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-K/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-K/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-K_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-K/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-K_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-K/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/J-K",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed2_initial",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/initial.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-V/initial",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed2_best",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-V/best",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "test_J-V_seed2_last",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.evaluate",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/last.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/test/seed2/J-V/last",
+        "--mass-reference",
+        "--mechanisms"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "rollout_J-V_seed2",
+      "stage": "test",
+      "module": "streaming_sparse.v08.launcher.worker",
+      "args": [
+        "streaming_sparse.v08.rollout",
+        "--checkpoint",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed2/J-V/best.pt",
+        "--split",
+        "test",
+        "--lock",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/final_lock.json",
+        "--output",
+        "/home/iflab/models/Self-Forcing/streaming_sparse/v08/rollout/seed2/J-V",
+        "--teacher-on-student"
+      ],
+      "dependencies": [
+        "capture_new_sealed_test"
+      ],
+      "gpu": true
+    },
+    {
+      "name": "paired_factorial_report_val",
+      "stage": "final",
+      "module": "streaming_sparse.v08.report",
+      "args": [
+        "--split",
+        "val"
+      ],
+      "dependencies": [
+        "val_F-K_seed0_initial",
+        "val_F-K_seed0_best",
+        "val_F-K_seed0_last",
+        "val_F-V_seed0_initial",
+        "val_F-V_seed0_best",
+        "val_F-V_seed0_last",
+        "val_A-K_seed0_initial",
+        "val_A-K_seed0_best",
+        "val_A-K_seed0_last",
+        "val_A-V_seed0_initial",
+        "val_A-V_seed0_best",
+        "val_A-V_seed0_last",
+        "val_J-K_seed0_initial",
+        "val_J-K_seed0_best",
+        "val_J-K_seed0_last",
+        "val_J-V_seed0_initial",
+        "val_J-V_seed0_best",
+        "val_J-V_seed0_last",
+        "val_F-K_seed1_initial",
+        "val_F-K_seed1_best",
+        "val_F-K_seed1_last",
+        "val_F-V_seed1_initial",
+        "val_F-V_seed1_best",
+        "val_F-V_seed1_last",
+        "val_A-K_seed1_initial",
+        "val_A-K_seed1_best",
+        "val_A-K_seed1_last",
+        "val_A-V_seed1_initial",
+        "val_A-V_seed1_best",
+        "val_A-V_seed1_last",
+        "val_J-K_seed1_initial",
+        "val_J-K_seed1_best",
+        "val_J-K_seed1_last",
+        "val_J-V_seed1_initial",
+        "val_J-V_seed1_best",
+        "val_J-V_seed1_last",
+        "val_F-K_seed2_initial",
+        "val_F-K_seed2_best",
+        "val_F-K_seed2_last",
+        "val_F-V_seed2_initial",
+        "val_F-V_seed2_best",
+        "val_F-V_seed2_last",
+        "val_A-K_seed2_initial",
+        "val_A-K_seed2_best",
+        "val_A-K_seed2_last",
+        "val_A-V_seed2_initial",
+        "val_A-V_seed2_best",
+        "val_A-V_seed2_last",
+        "val_J-K_seed2_initial",
+        "val_J-K_seed2_best",
+        "val_J-K_seed2_last",
+        "val_J-V_seed2_initial",
+        "val_J-V_seed2_best",
+        "val_J-V_seed2_last"
+      ],
+      "gpu": false
+    },
+    {
+      "name": "paired_factorial_report_test",
+      "stage": "test",
+      "module": "streaming_sparse.v08.report",
+      "args": [
+        "--split",
+        "test"
+      ],
+      "dependencies": [
+        "test_F-K_seed0_initial",
+        "test_F-K_seed0_best",
+        "test_F-K_seed0_last",
+        "test_F-V_seed0_initial",
+        "test_F-V_seed0_best",
+        "test_F-V_seed0_last",
+        "test_A-K_seed0_initial",
+        "test_A-K_seed0_best",
+        "test_A-K_seed0_last",
+        "test_A-V_seed0_initial",
+        "test_A-V_seed0_best",
+        "test_A-V_seed0_last",
+        "test_J-K_seed0_initial",
+        "test_J-K_seed0_best",
+        "test_J-K_seed0_last",
+        "test_J-V_seed0_initial",
+        "test_J-V_seed0_best",
+        "test_J-V_seed0_last",
+        "test_F-K_seed1_initial",
+        "test_F-K_seed1_best",
+        "test_F-K_seed1_last",
+        "test_F-V_seed1_initial",
+        "test_F-V_seed1_best",
+        "test_F-V_seed1_last",
+        "test_A-K_seed1_initial",
+        "test_A-K_seed1_best",
+        "test_A-K_seed1_last",
+        "test_A-V_seed1_initial",
+        "test_A-V_seed1_best",
+        "test_A-V_seed1_last",
+        "test_J-K_seed1_initial",
+        "test_J-K_seed1_best",
+        "test_J-K_seed1_last",
+        "test_J-V_seed1_initial",
+        "test_J-V_seed1_best",
+        "test_J-V_seed1_last",
+        "test_F-K_seed2_initial",
+        "test_F-K_seed2_best",
+        "test_F-K_seed2_last",
+        "test_F-V_seed2_initial",
+        "test_F-V_seed2_best",
+        "test_F-V_seed2_last",
+        "test_A-K_seed2_initial",
+        "test_A-K_seed2_best",
+        "test_A-K_seed2_last",
+        "test_A-V_seed2_initial",
+        "test_A-V_seed2_best",
+        "test_A-V_seed2_last",
+        "test_J-K_seed2_initial",
+        "test_J-K_seed2_best",
+        "test_J-K_seed2_last",
+        "test_J-V_seed2_initial",
+        "test_J-V_seed2_best",
+        "test_J-V_seed2_last"
+      ],
+      "gpu": false
+    }
+  ],
+  "no_automatic_H0_R1_set_extensions": true,
+  "test_only_after_explicit_through_test": true,
+  "execution_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+  "launcher_sha256": "7bf9166e5dd85d82068805e503097d2ebc7a54559becec615a45e3466db5cf16",
+  "allowed_gpus": [
+    0
+  ],
+  "gpu_worker_limit": 1
+}

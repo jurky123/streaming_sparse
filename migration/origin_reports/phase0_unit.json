@@ -1,0 +1,3401 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "passed": true,
+  "checks": {
+    "unit": {
+      "raw_attention": {
+        "max_output_abs": 2.220446049250313e-16,
+        "max_qkv_gradient_abs": 1.1102230246251565e-16,
+        "all5budgets": true,
+        "history_tokens": 137,
+        "current_tokens": 11,
+        "queries": 3
+      },
+      "native_BF16_hard_output_and_QKV_gradients_vs_raw_gather": {
+        "max_output_abs": 0.0,
+        "max_gradient_abs": 0.0,
+        "tolerance": "torch.testing default BF16; FP32 checks unchanged"
+      },
+      "continuous_mask_and_raw_qkv_gradcheck": true,
+      "implicit_cost_budget_derivative_and_score_shift_invariance": true,
+      "all_query_batched_budget_equals_independent_microbatches": true,
+      "RK_V_replacement_with_sketch_rebuild_exact_invariance": true,
+      "RV_nonzero_residual_responds_to_V": 0.16239690780639648,
+      "parameter_capacity_equal": 2819,
+      "independent_final_head_initialization": true,
+      "stale_model_cache_rejected": true,
+      "prompt_cluster_bootstrap_and_difference_in_differences": true
+    },
+    "tiny_network": {
+      "functional_vs_original": {
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "zero_lora_vs_original": {
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "all_keep_vs_original": {
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "Lout_router_and_raw_attention_LoRA_gradient": {
+        "router": 5.185463315463072e-07,
+        "lora": 2.6905812695578393e-05
+      },
+      "cal_and_att_auxiliary_LoRA_gradient_zero": true,
+      "future_to_recent_KV_and_write_LoRA": {
+        "recent_kv": [
+          1.2847676771343686e-06,
+          2.1452676719491137e-06,
+          1.3643547163155745e-06,
+          2.230709469586145e-06,
+          1.0178055163123645e-06,
+          2.215279664596892e-06
+        ],
+        "write_lora": 6.045950674186194e-06
+      },
+      "H0_history_branch_has_no_autograd_edge": true,
+      "after_nondegenerate_update_LoRA_A_B_gradients_finite_nonzero": true,
+      "checkpoint_recompute_no_cache_mutation": true,
+      "RK_public_output_loss_has_router_gradient": true,
+      "optimizer_step_rebuilds_KV_and_Sketch": true,
+      "freeze_manifests": {
+        "F-V": {
+          "group": "F-V",
+          "backbone": [],
+          "router": [
+            {
+              "name": "scale",
+              "shape": [
+                6
+              ],
+              "count": 6
+            },
+            {
+              "name": "sketch.assignment.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "content.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "head.networks.0.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.0.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.1.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.1.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.2.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.2.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.3.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.3.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.4.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.4.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.5.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.5.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            }
+          ]
+        },
+        "A-V": {
+          "group": "A-V",
+          "backbone": [
+            {
+              "name": "blocks.0.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            }
+          ],
+          "router": []
+        },
+        "J-V": {
+          "group": "J-V",
+          "backbone": [
+            {
+              "name": "blocks.0.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            }
+          ],
+          "router": [
+            {
+              "name": "scale",
+              "shape": [
+                6
+              ],
+              "count": 6
+            },
+            {
+              "name": "sketch.assignment.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "content.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "head.networks.0.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.0.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.1.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.1.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.2.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.2.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.3.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.3.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.4.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.4.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.5.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.5.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            }
+          ]
+        },
+        "F-K": {
+          "group": "F-K",
+          "backbone": [],
+          "router": [
+            {
+              "name": "scale",
+              "shape": [
+                6
+              ],
+              "count": 6
+            },
+            {
+              "name": "sketch.assignment.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "content.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "head.networks.0.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.0.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.1.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.1.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.2.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.2.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.3.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.3.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.4.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.4.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.5.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.5.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            }
+          ]
+        },
+        "A-K": {
+          "group": "A-K",
+          "backbone": [
+            {
+              "name": "blocks.0.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            }
+          ],
+          "router": []
+        },
+        "J-K": {
+          "group": "J-K",
+          "backbone": [
+            {
+              "name": "blocks.0.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.0.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.1.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.q.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.k.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.v.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_A",
+              "shape": [
+                8,
+                256
+              ],
+              "count": 2048
+            },
+            {
+              "name": "blocks.2.self_attn.o.lora_B",
+              "shape": [
+                256,
+                8
+              ],
+              "count": 2048
+            }
+          ],
+          "router": [
+            {
+              "name": "scale",
+              "shape": [
+                6
+              ],
+              "count": 6
+            },
+            {
+              "name": "sketch.assignment.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.assignment.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "sketch.assignment.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.0.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.1.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.2.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.3.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.4.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.weight",
+              "shape": [
+                16,
+                6
+              ],
+              "count": 96
+            },
+            {
+              "name": "sketch.calibrator.networks.5.0.bias",
+              "shape": [
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.weight",
+              "shape": [
+                1,
+                16
+              ],
+              "count": 16
+            },
+            {
+              "name": "sketch.calibrator.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "content.0.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.1.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.2.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.3.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.4.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "content.5.weight",
+              "shape": [
+                8,
+                128
+              ],
+              "count": 1024
+            },
+            {
+              "name": "content.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.0.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.1.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.2.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.3.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.4.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.weight",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "norm.5.bias",
+              "shape": [
+                8
+              ],
+              "count": 8
+            },
+            {
+              "name": "head.networks.0.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.0.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.0.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.1.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.1.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.1.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.2.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.2.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.2.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.3.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.3.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.3.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.4.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.4.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.4.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            },
+            {
+              "name": "head.networks.5.0.weight",
+              "shape": [
+                32,
+                17
+              ],
+              "count": 544
+            },
+            {
+              "name": "head.networks.5.0.bias",
+              "shape": [
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.weight",
+              "shape": [
+                1,
+                32
+              ],
+              "count": 32
+            },
+            {
+              "name": "head.networks.5.2.bias",
+              "shape": [
+                1
+              ],
+              "count": 1
+            }
+          ]
+        }
+      },
+      "frozen_base_digest_unchanged": true,
+      "production_model": false
+    }
+  },
+  "teacher_sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+  "protocol_sha256": "7e96326d29473aa219ca4653f6e090212de4c5b64a4105669476187572a94be7"
+}

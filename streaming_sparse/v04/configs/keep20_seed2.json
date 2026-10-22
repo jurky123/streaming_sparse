@@ -1,0 +1,17 @@
+{
+  "steps": 6000,
+  "snapshots_per_update": 4,
+  "tiles_per_event": 1,
+  "diffusion_steps_per_snapshot": 4,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "checkpoint_every": 1000,
+  "precision": "bf16 fusion/interaction; fp32 frontend,score,stats,gate,loss",
+  "train_keep": 0.2,
+  "router_seed": 2,
+  "frontend_training": "shared trainable, equal mean of A/B attention losses",
+  "checkpoint_selection": "fixed paired final update6000",
+  "loss": "normalized attention SSE only",
+  "sampler": "without-replacement snapshots; rotated eight tiles; shared A/B samples"
+}

@@ -1,0 +1,17 @@
+{
+  "updates": 640,
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "execution": {
+    "kernel_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+    "launcher_sha256": "7bf9166e5dd85d82068805e503097d2ebc7a54559becec615a45e3466db5cf16",
+    "benchmark_sha256": "5e6770df12e56a24bbef3629ecfaa1307efb6712cf2f797ebb09eb0e2e92834e",
+    "score_query_batch": 128,
+    "gate_vjp_query_batch": 128,
+    "auxiliary_query_batch": 16,
+    "ranking_guard_absolute": 0.0001,
+    "ranking_guard_relative": 1e-06,
+    "native_attention_layout": "unchanged full-query twelve-head BF16",
+    "recovery_every_updates": 10
+  },
+  "saved_at": "2026-10-22T07:21:49.355424+00:00"
+}

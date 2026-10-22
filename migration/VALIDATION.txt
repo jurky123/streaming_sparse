@@ -1,0 +1,9 @@
+来源机器验证，2026-10-22
+- migration/verify.py：425个迁移文件SHA256通过；科学/执行/launcher源码hash与原运行一致。
+- F-K seed0 recovery.pt：CPU weights_only读取成功，update640；包括Router/LoRA/optimizer/sampler/coverage/provenance。
+- compileall：streaming_sparse/model/pipeline/utils/wan/migration语法检查通过。
+- bash -n：bootstrap.sh、recollect.sh通过。
+- download_models.py、continue_training.py：CLI --help成功。
+- 未发现数据目录；未包含公共骨干模型、VAE/T5、.venv或用户凭证。
+- 原机器训练未暂停；此仓库是静态快照，不自动追随原机器后续更新。
+尚未执行：另一台机器全新安装、实际重新下载、重采集、GPU数值/梯度审计与恢复训练。

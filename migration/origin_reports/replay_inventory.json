@@ -1,0 +1,16 @@
+{
+  "source_sha256": "7244d9533aa6c93ae64cbb9c4b4f6893a157265cfaab4a27d92006894f8f1bd1",
+  "final_latent_files": 48,
+  "final_latent_example": "/home/iflab/models/Self-Forcing/streaming_sparse/v04/data/supplemental_generation_seed0/351ac8d95605183e137f.seed0.latents.pt",
+  "legacy_capture_saves": "final latents only; intermediate noisy states are not persisted by legacy capture_runner",
+  "reusable_qkv": "warm-start and attention diagnostics only; cannot update backbone from fixed QKV",
+  "replay_manifest_exists": false,
+  "action": "Replay original sampler and record actual intermediate noisy states; never infer them from final latents",
+  "final_latent_shape": [
+    1,
+    12,
+    16,
+    60,
+    104
+  ]
+}

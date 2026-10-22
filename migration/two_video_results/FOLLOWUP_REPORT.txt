@@ -1,0 +1,46 @@
+CAVIR v0.8 两视频逐 Chunk 质量、稀疏覆盖与 Dense/Sparse 计时补充
+Checkpoint: F-K / router seed0 / update620; SHA256 a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d
+GPU: NVIDIA A100-SXM4-80GB physical GPU0; BF16 backbone; driver595.71.05; GPU1未使用。
+
+一、逐 Chunk 质量（Dense 同噪声闭环轨迹为参考；两个分支各自生成历史）
+PSNR使用[0,1] RGB的Chunk合并MSE；LPIPS AlexNet v0.1，逐帧均值；832×480，45帧，16fps。
+Chunk1=RGB帧1–9；Chunk2=10–21；Chunk3=22–33；Chunk4=34–45。
+视频1 / 355ec425a607c309c237
+  Chunk1: PSNR=∞（逐像素完全一致）, LPIPS=0.000000
+  Chunk2: PSNR=22.7937 dB, LPIPS=0.053737
+  Chunk3: PSNR=17.2653 dB, LPIPS=0.150265
+  Chunk4: PSNR=14.9237 dB, LPIPS=0.239705
+视频2 / 6893aa3a639dfdeb015d
+  Chunk1: PSNR=∞（逐像素完全一致）, LPIPS=0.000000
+  Chunk2: PSNR=27.9991 dB, LPIPS=0.028233
+  Chunk3: PSNR=23.2599 dB, LPIPS=0.063594
+  Chunk4: PSNR=17.9881 dB, LPIPS=0.165856
+首Chunk无历史，因此完全Dense；后续Chunk误差增长明显。仅两个视频、训练中间checkpoint，不能作为最终泛化结论。
+
+二、实际稀疏覆盖
+只有原编号层4/14/24的全部12Heads进行历史稀疏，共36Pair；其余27层Dense。
+四个原生diffusion steps全部执行：1000、937.5、833.3333129882812、625；每步均使用keep20%的历史预算，没有跳过step。
+当前段原本可见KV始终全保留，chunk-causal规则不变。历史重编码/cache-write前向全部Dense。
+Chunk2/3/4历史Token分别4680/9360/14040，实际每Query保留904/1872/2776，历史删除率80.6838%/80.0000%/80.2279%。
+全视频加权历史删除率80.2279%；选中3层计入当前段后逻辑QK连接删除率48.1368%；计入30层后的去噪逻辑QK连接删除率4.8137%。
+逻辑连接删除率不是执行FLOPs或加速比；4.8137%不计额外Dense历史重编码。
+
+三、Dense/Sparse计时
+Warm loaded models and cached text embeddings; all4 denoising steps/chunk, history reencoding, router and VAE decode to GPU RGB. Excludes model loading, text encoding, LPIPS, pixel transfer, video encoding/write. E2E timings use no component hooks; component timings come from separate repeats of the same2 cases, caches cleared between videos/repeats.
+Separate profiled repetitions. Self-SDPA CUDA-event spans exclude QKV/O projections, Router and mask construction. Router spans can include CPU launch gaps. Nested component spans overlap; do not sum all categories.
+one unprofiled end-to-end pass and one separately profiled pass per mode; warmed; descriptive two-case measurement, no statistical speed claim
+视频1
+  dense: 生成=4.7412s; VAE=1.9575s; 噪声至GPU RGB合计=6.6986s; 去噪30层self-SDPA=995.877ms; 其中3个选中层=99.408ms; Router评分+预算=0.000ms
+  sparse: 生成=53.5491s; VAE=1.9562s; 噪声至GPU RGB合计=55.5053s; 去噪30层self-SDPA=1189.843ms; 其中3个选中层=323.922ms; Router评分+预算=39581.941ms
+视频2
+  dense: 生成=4.7306s; VAE=1.9722s; 噪声至GPU RGB合计=6.7028s; 去噪30层self-SDPA=999.420ms; 其中3个选中层=99.817ms; Router评分+预算=0.000ms
+  sparse: 生成=50.9442s; VAE=1.9589s; 噪声至GPU RGB合计=52.9031s; 去噪30层self-SDPA=1201.214ms; 其中3个选中层=328.773ms; Router评分+预算=44707.680ms
+两视频均值 dense: 生成=4.7359s; VAE=1.9648s; 合计=6.7007s; 去噪self-SDPA=997.648ms; 选中3层self-SDPA=99.613ms; Router=0.000ms
+两视频均值 sparse: 生成=52.2467s; VAE=1.9575s; 合计=54.2042s; 去噪self-SDPA=1195.529ms; 选中3层self-SDPA=326.347ms; Router=42144.811ms
+当前Sparse噪声至RGB耗时是Dense的8.089倍。
+当前为离线算法实现：常规SDPA携带Hard Mask，没有稀疏Kernel；路由评分与逐Query预算选择是主要额外开销。
+之前实现优化前后的加速数字，不代表Sparse相对Dense的加速。
+两视频、Dense/Sparse四次无计时钩子的生成latent均与原质量测量文件最大绝对差0。
+训练已恢复，PID1005149在GPU0继续F-K seed0；调度器PID1004913。
+
+原始证据：chunk_quality.json、step_sparsity.json、timing_20261022_145052/summary.json；精简汇总：followup_summary.json。

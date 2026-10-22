@@ -1,0 +1,5 @@
+{
+  "stage": "actual optimizer update invalidates KV and Sketch versions",
+  "production": true,
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d"
+}

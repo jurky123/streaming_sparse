@@ -1,0 +1,14 @@
+{
+  "shared": {
+    "finite": true,
+    "first100": 0.1824116857720969,
+    "last100": 0.0786281728431135,
+    "loss_decreased": true
+  },
+  "conditioned": {
+    "finite": true,
+    "first100": 0.1784452896965968,
+    "last100": 0.05734562065528653,
+    "loss_decreased": true
+  }
+}

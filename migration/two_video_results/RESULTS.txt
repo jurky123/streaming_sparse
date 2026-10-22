@@ -1,0 +1,8 @@
+Two-video end-to-end check | F-K seed0 update620
+Dense Teacher vs Sparse, same prompts/seed0/noise, four chunks = 12 latent frames = 45 RGB frames, 832x480, 16fps.
+PSNR: uncompressed decoded RGB [0,1], peak1. LPIPS: AlexNet v0.1, per-frame mean, no resize.
+Video | PSNR dB | LPIPS | history sparsity | all-layer denoising logical-connection sparsity
+1 | 18.242207 | 0.118322 | 80.227920% | 4.813675%
+2 | 22.277102 | 0.068715 | 80.227920% | 4.813675%
+Logical connection sparsity is not measured kernel FLOP/speed reduction; current KV kept, other27layers dense.
+Two fixed Val videos only; similarity to paired Dense Teacher, not ground truth video quality. Scores use uncompressed decoded pixels; previews are compressed. Full video includes initial dense chunk.

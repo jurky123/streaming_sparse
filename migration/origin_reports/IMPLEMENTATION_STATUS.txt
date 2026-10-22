@@ -1,0 +1,29 @@
+CAVIR v0.8 实现状态
+
+实现完成；v07未覆盖。正式训练和独立Test尚未启动。
+源码身份：7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d
+
+已完成
+- 18个独立v08模块，冻结协议、Prompt分割、双GPU分阶段任务图。
+- 32Train/8Val/16全新Test已锁定；规范化文本重复0，Test与旧24Prompt文本重叠0。
+- 1条真实4Chunk训练轨迹已采集，产生12个完整Replay输入；与旧同种子最终latent误差0。
+- 数学/信息泄漏/预算/微批等价性/小型双Head Wan审计通过。
+- 36pairs×4steps×5budgets真实QKV输出与梯度检查通过。
+- 完整1.3B、最长14040历史、全部4680当前queries审计通过。
+- Dense函数式、zero-LoRA及all-keep对原实现：NMSE=0、max_abs=0。
+- Lout对Router及LoRA有效；Lcal/Latt辅助对LoRA为0。
+- 未来Loss对recent KV及写入LoRA分支非零；H0历史分支无梯度边。
+- checkpoint重算一致；实际optimizer更新后KV/Sketch版本失效并重建。
+- 六组冻结清单、基础参数hash通过。每Router101484参数；每骨干LoRA294912参数。
+- 本次真实审计峰值allocated=40.003 GiB（A10080GB；不是正式训练显存保证）。
+
+待实际执行
+- 补齐Train768/Val192个完整Replay输入；新Test384个输入仅在checkpoint锁定后处理。
+- 每seed共同K-only校准2000updates、K/V Head warm-start。
+- 四个seed0临时小样本完整输入pilot，随后六组×三seed正式2000updates。
+- init/best/last三预算评估、Prompt bootstrap与四Chunk闭环。
+
+运行说明：streaming_sparse/v08/README.txt
+可启动到pilot：streaming_sparse/.venv/bin/python -m streaming_sparse.v08.workflow --run --through pilot
+最大18组主训练请用 --through matrix；完整Val后锁定 --through final；新封存Test --through test。
+默认计划不会自动展开H0/R1/Set后续研究。

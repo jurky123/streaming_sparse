@@ -1,0 +1,29 @@
+{
+  "checkpoint_original_path": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/F-K/recovery.pt",
+  "checkpoint_sha256": "a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d",
+  "checkpoint_updates": 620,
+  "group": "F-K",
+  "router_seed": 0,
+  "generation_seed": 0,
+  "prompts": [
+    {
+      "prompt_id": "355ec425a607c309c237",
+      "text": "A 3D animation of a small, round, fluffy creature with big, expressive eyes exploring a vibrant, enchanted forest. The creature, a whimsical blend of a rabbit and a squirrel, has soft blue fur and a bushy, striped tail. It hops along a sparkling stream, its eyes wide with wonder. The forest is alive with magical elements: flowers that glow and change colors, trees with leaves in shades of purple and silver, and small floating lights that resemble fireflies. The creature stops to interact playfully with a group of tiny, fairy-like beings dancing around a mushroom ring. The creature looks up in awe at a large, glowing tree that seems to be the heart of the forest. The scene is rendered in a detailed, fantasy style, with a soft, ethereal lighting that enhances the enchantment. The camera follows the creature as it moves, capturing its playful interactions and the magical ambiance of the forest. A medium shot with a dynamic angle that highlights the creature's expressions and the enchanting environment."
+    },
+    {
+      "prompt_id": "6893aa3a639dfdeb015d",
+      "text": "A dynamic shot from behind a white vintage SUV with a black roof rack as it speeds up a steep dirt road surrounded by towering redwood trees on a rugged mountain slope. Dust kicks up from its tires, and the sunlight shines on the SUV, casting a warm glow over the scene. The dirt road curves gently into the distance, with no other vehicles in sight. The trees on either side are dense redwoods, with patches of greenery scattered throughout. The car navigates the curve with ease, making it seem as if it is on a thrilling drive through the rugged terrain. The dirt road is framed by steep hills and mountains, with a clear blue sky above and wispy clouds drifting by. The camera captures the vehicle from the rear, emphasizing its powerful and adventurous journey."
+    }
+  ],
+  "history_keep_target": 0.2,
+  "latent_chunks": 4,
+  "latent_frames_per_chunk": 3,
+  "psnr": "RGB float [0,1], peak=1, global frame/pixel MSE, before MP4 compression",
+  "lpips": "lpips0.1.4 AlexNet v0.1 pretrained, full-resolution frames in [-1,1], frame arithmetic mean",
+  "vae_dtype": "BF16 as original inference pipeline",
+  "lpips_calibration_sha256": "df73285e35b22355a2df87cdb6b70b343713b667eddbda73e1977e0c860835c0",
+  "alexnet_backbone_sha256": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+  "test_used": false,
+  "keep_current_kv": true,
+  "single_physical_gpu": 0
+}

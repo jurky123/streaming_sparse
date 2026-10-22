@@ -1,0 +1,14 @@
+{
+  "seed": 0,
+  "steps": 10000,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "events_per_step": 4,
+  "keep_ratios": [0.3, 0.2],
+  "collapse_weight": 0.001,
+  "grad_clip": 1.0,
+  "log_every": 10,
+  "save_every": 500,
+  "require_gradients": true,
+  "router": {"query_tile": 16, "target_size": 64, "tau_cluster": 0.1, "tau_mask": 0.2, "alpha": 0.0}
+}

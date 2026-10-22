@@ -1,0 +1,48 @@
+CAVIR v0.8 执行速度优化记录
+
+原因
+1. 每个完整当前段包含4680 Queries、36个稀疏Layer/Head Pair。旧版按16个Query逐批评分，单输入仅评分前向就有10548次Python调用；反向checkpoint还需重算。
+2. 旧选页将每个Query的排序结果复制回CPU，再用Python逐页扫描。GPU等待CPU；不能用GPU利用率低推断模型没有计算。
+3. 连续Mask VJP同样按16个Query执行大量小算子；冻结Router的A组仍计算不需要的Mask梯度。
+4. 完整网络输出训练还需要重建历史，穿过30层骨干，并执行原始Attention。两卡当前分别运行K/V两个实验，不是把单个实验分布到两卡。
+5. 旧训练只在验证边界保存latest.pt，warm-start的0与200之间没有可恢复的中间权重。
+
+执行优化
+- GPU向量化Page64选择：相同稳定排序、相同真实尾页成本、相同预算与Block ID，非Page64成本布局回退原算法。
+- 独立评分Query合批；临界排名的原16-query分组重新计算，避免批次形状引起的浮点误差改变离散Mask。
+- FP64连续Gate VJP合批；原始QKV仅保留一条原生Attention梯度路径；冻结Mask不计算不需要的Gate梯度。
+- 辅助样本仍按原8x16分组；没有Query Mean Pooling、Query抽样、历史截短、精度下降或Loss/预算变更。
+- 每10步增加原optimizer状态与原sampler状态的恢复checkpoint，不增加验证次数，不更改优化器数学。
+
+证据与边界
+benchmark.json为当前候选结果，passed=true且完整输入审计通过后才可启动。attempts/保留每次尝试的结果和代码，包括第一版大批次改变临界排名、因原max-abs门槛未通过而废弃的版本。门槛没有放宽。
+速度是单个固定完整输入的实测，不代表整轮训练平均吞吐。需要另看启用后真实训练进度。
+
+最终启用结果
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "execution_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+  "measured_configuration": {
+    "group": "J-V",
+    "history": 14040,
+    "current_queries": 4680,
+    "pairs": 36,
+    "auxiliary_queries": "same original seeded 8x16"
+  },
+  "single_input_forward_backward_seconds": {
+    "original": 179.38292916771024,
+    "optimized": 42.86332243587822
+  },
+  "speedup": 4.184998244969456,
+  "output_nmse": 0.0,
+  "max_parameter_gradient_abs": 5.643159965984523e-07,
+  "checkpoint_recovery_every_updates": 10,
+  "partial_attempts_archived": true,
+  "old_partial_updates": {
+    "K": 67,
+    "V": 62
+  },
+  "resumed_from_update": 0,
+  "formal_training_scope": "K/V warm-start then four seed0 pilots; Test sealed",
+  "note": "Single fixed full-input measurement; not a promise of whole-run speedup. Data and calibration reused. Old warm-start only had update0 serialized checkpoints."
+}

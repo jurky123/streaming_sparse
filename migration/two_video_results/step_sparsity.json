@@ -1,0 +1,247 @@
+{
+  "diffusion_steps_skipped": 0,
+  "steps": [
+    {
+      "video_index": 1,
+      "step": 0,
+      "timestep": 1000.0,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 1,
+      "step": 1,
+      "timestep": 937.5,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 1,
+      "step": 2,
+      "timestep": 833.3333129882812,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 1,
+      "step": 3,
+      "timestep": 625.0,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 2,
+      "step": 0,
+      "timestep": 1000.0,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 2,
+      "step": 1,
+      "timestep": 937.5,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 2,
+      "step": 2,
+      "timestep": 833.3333129882812,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    },
+    {
+      "video_index": 2,
+      "step": 3,
+      "timestep": 625.0,
+      "history_sparsity": 0.8022792022792022,
+      "all_layer_denoising_connection_sparsity": 0.048136752136752135,
+      "chunks": [
+        {
+          "chunk": 0,
+          "history_tokens": 0,
+          "history_sparsity": null
+        },
+        {
+          "chunk": 1,
+          "history_tokens": 4680,
+          "history_sparsity": 0.8068376068376069
+        },
+        {
+          "chunk": 2,
+          "history_tokens": 9360,
+          "history_sparsity": 0.8
+        },
+        {
+          "chunk": 3,
+          "history_tokens": 14040,
+          "history_sparsity": 0.8022792022792022
+        }
+      ]
+    }
+  ],
+  "sparse_layers": [
+    4,
+    14,
+    24
+  ],
+  "total_layers": 30,
+  "heads": "all12 in each sparse layer",
+  "context_write": "Dense in every layer",
+  "current_segment": "all visible KV kept",
+  "all_four_native_steps_execute": true
+}

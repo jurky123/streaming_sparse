@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "reason": "Equal-head normalization before prompt aggregation",
+  "validation_curve": [
+    {
+      "step": 500,
+      "score": 0.09599642041316316
+    }
+  ],
+  "changed_training_objective": false,
+  "original_summaries_retained": true
+}

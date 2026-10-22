@@ -1,0 +1,2177 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "teacher_sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+  "base_digest": "8e4be689e2425d456b10348ba99a0ecb2ba17fdd06f2bb8f53cc40f6a9a7ecb4",
+  "stage": "heads",
+  "group": "F-K",
+  "information": "K",
+  "seed": 0,
+  "pilot": false,
+  "updates": 200,
+  "settings": {
+    "updates": 2000,
+    "microbatch": 1,
+    "accumulation": 4,
+    "router_lr": 3e-05,
+    "lora_lr": 1e-05,
+    "wd": 0.01,
+    "clip_router": 1.0,
+    "clip_lora": 1.0,
+    "warmup": 100,
+    "validate_every": 200,
+    "lr_final_ratio": 0.05
+  },
+  "initialization_checkpoint": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/runs/seed0/calibration/best.pt",
+  "initialization_sha256": "6487b780b6f010020388697a1a1c37d86df09d3f1b78013c3da3ba80bca1c2d2",
+  "initial_router_digest": "e2d56cf83de7652e3c4a081b7253a6706b708f2e00103628b585c38d151dd3bc",
+  "initial_lora_digest": "5dc4e0b2e513098e27c7b4139109ab36251e47aa3f0667abd96f024bf5adb65f",
+  "normalizer_digest": "81da510c7f6add3f738e76c050f9311c2ce382452e616805ee4418f29c39baa2",
+  "train_fingerprint": "dec12561a93e22aebedfdedbaf50559aae7099523e16339221c47e5f01c446f6",
+  "val_fingerprint": "38448cebe66b1e1eeb5f789691391c0f9e1ddd38b923b6cb3b07e18394e3f590",
+  "trainable_manifest": {
+    "group": "F-K",
+    "backbone": [],
+    "router": [
+      {
+        "name": "scale",
+        "shape": [
+          36
+        ],
+        "count": 36
+      },
+      {
+        "name": "content.0.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.0.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.1.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.1.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.2.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.2.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.3.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.3.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.4.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.4.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.5.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.5.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.6.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.6.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.7.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.7.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.8.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.8.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.9.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.9.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.10.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.10.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.11.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.11.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.12.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.12.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.13.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.13.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.14.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.14.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.15.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.15.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.16.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.16.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.17.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.17.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.18.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.18.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.19.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.19.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.20.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.20.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.21.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.21.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.22.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.22.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.23.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.23.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.24.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.24.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.25.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.25.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.26.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.26.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.27.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.27.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.28.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.28.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.29.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.29.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.30.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.30.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.31.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.31.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.32.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.32.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.33.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.33.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.34.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.34.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "content.35.weight",
+        "shape": [
+          8,
+          128
+        ],
+        "count": 1024
+      },
+      {
+        "name": "content.35.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.0.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.0.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.1.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.1.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.2.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.2.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.3.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.3.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.4.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.4.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.5.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.5.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.6.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.6.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.7.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.7.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.8.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.8.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.9.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.9.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.10.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.10.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.11.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.11.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.12.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.12.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.13.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.13.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.14.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.14.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.15.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.15.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.16.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.16.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.17.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.17.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.18.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.18.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.19.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.19.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.20.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.20.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.21.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.21.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.22.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.22.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.23.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.23.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.24.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.24.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.25.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.25.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.26.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.26.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.27.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.27.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.28.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.28.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.29.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.29.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.30.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.30.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.31.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.31.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.32.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.32.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.33.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.33.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.34.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.34.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.35.weight",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "norm.35.bias",
+        "shape": [
+          8
+        ],
+        "count": 8
+      },
+      {
+        "name": "head.networks.0.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.0.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.0.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.0.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.1.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.1.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.1.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.1.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.2.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.2.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.2.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.2.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.3.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.3.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.3.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.3.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.4.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.4.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.4.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.4.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.5.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.5.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.5.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.5.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.6.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.6.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.6.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.6.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.7.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.7.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.7.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.7.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.8.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.8.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.8.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.8.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.9.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.9.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.9.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.9.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.10.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.10.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.10.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.10.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.11.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.11.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.11.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.11.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.12.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.12.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.12.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.12.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.13.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.13.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.13.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.13.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.14.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.14.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.14.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.14.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.15.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.15.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.15.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.15.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.16.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.16.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.16.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.16.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.17.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.17.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.17.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.17.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.18.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.18.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.18.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.18.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.19.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.19.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.19.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.19.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.20.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.20.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.20.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.20.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.21.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.21.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.21.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.21.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.22.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.22.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.22.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.22.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.23.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.23.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.23.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.23.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.24.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.24.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.24.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.24.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.25.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.25.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.25.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.25.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.26.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.26.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.26.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.26.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.27.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.27.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.27.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.27.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.28.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.28.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.28.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.28.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.29.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.29.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.29.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.29.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.30.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.30.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.30.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.30.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.31.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.31.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.31.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.31.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.32.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.32.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.32.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.32.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.33.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.33.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.33.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.33.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.34.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.34.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.34.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.34.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      },
+      {
+        "name": "head.networks.35.0.weight",
+        "shape": [
+          32,
+          17
+        ],
+        "count": 544
+      },
+      {
+        "name": "head.networks.35.0.bias",
+        "shape": [
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.35.2.weight",
+        "shape": [
+          1,
+          32
+        ],
+        "count": 32
+      },
+      {
+        "name": "head.networks.35.2.bias",
+        "shape": [
+          1
+        ],
+        "count": 1
+      }
+    ]
+  },
+  "recent_history_gradient": true,
+  "router_input_stop_gradient": true,
+  "diagnostic": null,
+  "objective_parameterization": "x0",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "protocol_sha256": "7e96326d29473aa219ca4653f6e090212de4c5b64a4105669476187572a94be7",
+  "allocator_conf": "expandable_segments:True"
+}

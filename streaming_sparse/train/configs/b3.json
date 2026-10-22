@@ -1,0 +1,12 @@
+{
+  "seed": 0,
+  "steps": 10000,
+  "lr": 0.0001,
+  "events_per_step": 4,
+  "keep_ratios": [0.3, 0.2],
+  "collapse_weight": 0.0,
+  "log_every": 10,
+  "save_every": 500,
+  "require_gradients": true,
+  "router": {"grouping": "spatial", "query_tile": 16, "target_size": 64}
+}

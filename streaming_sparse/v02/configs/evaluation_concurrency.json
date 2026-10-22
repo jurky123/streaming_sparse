@@ -1,0 +1,6 @@
+{
+  "slots_per_gpu": 2,
+  "maximum_evaluator_memory_mib": 8192,
+  "changed_utc": "2026-10-16 02:37:45",
+  "training_slots_per_gpu": 1
+}

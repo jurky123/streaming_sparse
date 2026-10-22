@@ -1,0 +1,136 @@
+{
+  "version": "0.6",
+  "title": "Independent relevance and controlled local / cross-block corrections",
+  "splits": {
+    "train": [
+      "d0bf2d0fa5fd5f0a08da",
+      "4efd68f46660ee454bee",
+      "e1acf652465d7a89a34c",
+      "f13bf1e16fd7c149c5ff",
+      "faf6f4c65c9a2bf06624",
+      "f91b57c35827e49c7344",
+      "e72bab9193ec39cadb01",
+      "351ac8d95605183e137f",
+      "26cca919c2adab85f2dc",
+      "16343b0f88b7ff9d3faa",
+      "36f96596015052a396b6",
+      "16e2ad71b42a732ad763",
+      "d45c532a77b0db19c4e4",
+      "2bfa9bb7274345a5d84a",
+      "39cd601b633b998325c3",
+      "b0659d3fc27d7225fa9d"
+    ],
+    "val": [
+      "355ec425a607c309c237",
+      "6893aa3a639dfdeb015d",
+      "a59c8b64f8849b3dfdb0",
+      "b2addbd1cf442c90b9a6"
+    ],
+    "test": [
+      "cff9026e614121910390",
+      "0ab0bfc44c441bdcf974",
+      "fccd8a449f6ba5956347",
+      "5ae7f2c117398e0cd161"
+    ]
+  },
+  "data_root": "/home/iflab/models/Self-Forcing/streaming_sparse/v04/data/full",
+  "router_seeds": [
+    0,
+    1,
+    2
+  ],
+  "keep_train": 0.2,
+  "eval_keeps": [
+    0.3,
+    0.2,
+    0.1
+  ],
+  "pressure_tests": "30% and10% are budget generalization, trained at20% only",
+  "precision": "FP32 historical features/clustering/aggregation,norm-sensitive statistics,signed relations/messages,scores,budget,attention loss; BF16 fusion/ordinary/pre-Q interaction and FFN with FP32 master weights",
+  "optimizer": "AdamW weight_decay=.01, clip1.0, warmup+cosine to5% of initial LR",
+  "stage1": {
+    "max_updates": 20000,
+    "min_updates": 8000,
+    "lr": 0.0001,
+    "warmup": 500,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "stage2": {
+    "max_updates": 12000,
+    "min_updates": 8000,
+    "lr": 0.0001,
+    "warmup": 300,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "stage3": {
+    "max_updates": 8000,
+    "min_updates": 4000,
+    "lr": 1e-05,
+    "warmup": 200,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "scratch": {
+    "lr": 0.0001,
+    "warmup": 500,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002,
+    "budget": "per seed/kind maximum equals actual StageI updates + StageII updates + StageIII updates; no early stop before this matched total; Val best checkpoint; report selected and total exposures"
+  },
+  "stage1_policy": "Fresh C0 initialization, no correction module exists. All router modules train; no v0.5 learned weights.",
+  "stage2_policy": "Every correction uses the exact same selected C0 per seed. All base parameters frozen, eval mode, no dropout; base digest checked at every validation. C1/C2/C3 have no shared trainable parameters. Sum independent losses, clip each correction separately, independent Adam moments; equivalent to separate optimizers on the same batches.",
+  "base": "Unchanged v0.5 F, Euclidean soft K-means/repair/STE, Mean/Max/Min, aggregation LayerNorm, one-layer Pre-Q Transformer, per-query projection/log-norm/residual fusion, relevance MLP and size projection; all pair-specific rank1 residuals retained.",
+  "C1": "Two blockwise gated MLP blocks: split W(x) into a,b,v and sigmoid(a*b/sqrt32)*v; no cross-block read or block-axis normalization. Same projection, FFN, norms, correction head and parameter count as C2.",
+  "C2": "Two unchanged v0.5 ordinary post-Q self-attention blocks with the same correction head as C1/C3.",
+  "C3": "Two unchanged centered cosine signed blocks with the same correction head as C1/C2; alpha initialized0.1 nonzero.",
+  "initialization": "Dedicated deterministic correction seed100000+router_seed; compatible parameters copied from C2 into C1/C3 and signed variants. C0 base reset/load never depends on arms. Scratch starts from the saved fresh C0 base and the exact same initial correction tensors as StageII.",
+  "validation": "Fixed36 Val snapshots, all4steps and8tiles, at every1000 updates. Each arm independently saves the actual minimum Global Error; plateau uses a separate0.2% significant-improvement reference. Full864-snapshot Val determines stage gates; Test never gates anything.",
+  "stage3_gate": {
+    "min_mean_relative_gain": 0.01,
+    "min_seeds_improved": 2,
+    "require_last3_monitor_wins": 2,
+    "stable": "Full-Val mean relative improvement over C0>=1%, at least2/3 seeds improved; at least2/3 seeds have >=2 of their last3 monitor checks below their C0 monitor. C1 is eligible too; cross-block value additionally requires superiority to C1 and C0, reported separately."
+  },
+  "signed_retraining_trigger": "If original C3 does not pass the same stability criterion, retrain StageII no_center, amplitude, positive_only corrections on the same frozen C0 for all3 seeds. These are diagnostic models; no Test-based selection or promotion.",
+  "signed_variants": {
+    "C3_nocenter": "Remove centering, keep L2 cosine.",
+    "C3_amplitude": "Keep centering, use unnormalized dot/sqrt64 instead of cosine; preserve relative vector magnitudes. Same absolute-row-sum message normalization. Not claimed to preserve globally scaled amplitude after row normalization.",
+    "C3_positive": "Centered cosine, clamp negative relations to zero during training."
+  },
+  "offline_diagnostic": "36 metadata-fixed Val queries per seed, all36 pairs. ApproxGreedy sequentially adds the affordable block minimizing exact attention SSE, stops if no strict improvement; same learned partition and budget, record underfill and candidate evaluations. No training labels and no router selected-set refinement.",
+  "true_interaction": "For each query a_b = u_b-z_b*o_dense. Off-diagonal a_b dot a_c is the exact omitted-block numerator interaction, not the full normalized mask error. Mask error also divides by retained partition function squared. Verify the identity numerically. Compare signed relation to Gram and cosine via Pearson/Spearman/sign agreement.",
+  "final_metrics": [
+    "pooled query hard-mask global relative error",
+    "tile/query Mean Median P90 P99",
+    "paired wins ties deltas",
+    "mask-change-conditioned improvements/regressions",
+    "relevance/correction scale ratio",
+    "actual tokens and budget violations",
+    "all prompt layer/head step history generation-seed slices",
+    "hard/soft and same-partition Mass,SpatialMass",
+    "relation signs and true error interaction"
+  ],
+  "final_eval": "Full Val and old development Test, three seeds, three budgets; exact same frozen base for C0/C1/C2/C3. StageIII/scratch get own same-partition Mass and reported partition differences. Formal full-Train evaluation is not required; use monitor/training-loss exposure, do not label it full-Train.",
+  "test_caveat": "Old Test prompts informed v0.6 design through v0.5 and are development Test only. Publication-level generalization requires new independently reserved Test prompts; no new capture in this round.",
+  "exclusions": [
+    "Mass/Oracle labels",
+    "diffusion loss",
+    "backbone training",
+    "selected-set refinement in learned router",
+    "new clustering/repair",
+    "aggregation/depth changes",
+    "kernel/video performance claims"
+  ],
+  "convergence": "Min8000*4 draws guarantees every3456 training snapshot sees every8 tiles. Fixed maximum is not evidence of convergence; retain trends and stopping reasons.",
+  "execution": "Two GPUs, one worker per card. Clear all proxy variables; local assets only. Fail closed on correctness or training failure; future conditional jobs remain explicitly skipped or queued."
+}

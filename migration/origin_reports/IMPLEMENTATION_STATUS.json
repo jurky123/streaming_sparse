@@ -1,0 +1,33 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "implementation_complete": true,
+  "unit_audit_passed": true,
+  "real_audit_passed": true,
+  "formal_training_started": false,
+  "formal_warmstart_started": false,
+  "new_test_evaluated": false,
+  "prompt_counts": {
+    "train": 32,
+    "val": 8,
+    "test": 16
+  },
+  "replay_inputs_current": 12,
+  "replay_inputs_required": {
+    "train": 768,
+    "val": 192,
+    "test": 384
+  },
+  "real_audit_history": 14040,
+  "real_audit_current_queries": 4680,
+  "real_audit_pairs": 36,
+  "real_qkv_audit_events": 144,
+  "phase0_peak_allocated_GiB": 40.003002643585205,
+  "router_parameters_each": 101484,
+  "lora_parameters_each": 294912,
+  "native_dense_zero_lora_all_keep_exact": true,
+  "teacher_replay_matches_legacy_final_latent": true,
+  "frozen_source_directory": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/frozen_implementation",
+  "unit_report": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/phase0_unit.json",
+  "real_report": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/phase0_real.json",
+  "next_command": "streaming_sparse/.venv/bin/python -m streaming_sparse.v08.workflow --run --through pilot"
+}

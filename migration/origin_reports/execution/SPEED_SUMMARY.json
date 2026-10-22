@@ -1,0 +1,27 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "execution_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+  "measured_configuration": {
+    "group": "J-V",
+    "history": 14040,
+    "current_queries": 4680,
+    "pairs": 36,
+    "auxiliary_queries": "same original seeded 8x16"
+  },
+  "single_input_forward_backward_seconds": {
+    "original": 179.38292916771024,
+    "optimized": 42.86332243587822
+  },
+  "speedup": 4.184998244969456,
+  "output_nmse": 0.0,
+  "max_parameter_gradient_abs": 5.643159965984523e-07,
+  "checkpoint_recovery_every_updates": 10,
+  "partial_attempts_archived": true,
+  "old_partial_updates": {
+    "K": 67,
+    "V": 62
+  },
+  "resumed_from_update": 0,
+  "formal_training_scope": "K/V warm-start then four seed0 pilots; Test sealed",
+  "note": "Single fixed full-input measurement; not a promise of whole-run speedup. Data and calibration reused. Old warm-start only had update0 serialized checkpoints."
+}

@@ -1,0 +1,224 @@
+{
+  "version": "cavir-v0.7-offline",
+  "design_input": {
+    "source": "/home/iflab/models/Self-Forcing/review_packages/CAVIR_v0.7_研究设计与离线实验方案 (7).zip",
+    "sha256": "5a189fd13da1e464ecc41a7c9ce06efed3fdc4352e9a8f54df94ff5495197489"
+  },
+  "scope": "本轮只验证算法正确性、Attention Output 近似质量、交互建模的可辨识收益及 held-out 泛化。不要求高效 Sparse Kernel、GPU 延迟、端到端吞吐／加速、完整视频生成质量或 Backbone 共训练。所有最终误差均对选中原始历史 KV + 全部可见当前段 KV所得到的真实 Hard Mask Attention Output评估。真实 Dense/Block Statistics只能用于离线监督或上界诊断，不能进入可部署 Router 的评分。",
+  "train_prompts": [
+    "d0bf2d0fa5fd5f0a08da",
+    "4efd68f46660ee454bee",
+    "e1acf652465d7a89a34c",
+    "f13bf1e16fd7c149c5ff",
+    "faf6f4c65c9a2bf06624",
+    "f91b57c35827e49c7344",
+    "e72bab9193ec39cadb01",
+    "351ac8d95605183e137f",
+    "26cca919c2adab85f2dc",
+    "16343b0f88b7ff9d3faa",
+    "36f96596015052a396b6",
+    "16e2ad71b42a732ad763",
+    "d45c532a77b0db19c4e4",
+    "2bfa9bb7274345a5d84a",
+    "39cd601b633b998325c3",
+    "b0659d3fc27d7225fa9d"
+  ],
+  "val_prompts": [
+    "355ec425a607c309c237",
+    "6893aa3a639dfdeb015d",
+    "a59c8b64f8849b3dfdb0",
+    "b2addbd1cf442c90b9a6"
+  ],
+  "excluded_old_test": [
+    "cff9026e614121910390",
+    "0ab0bfc44c441bdcf974",
+    "fccd8a449f6ba5956347",
+    "5ae7f2c117398e0cd161"
+  ],
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "generation_seeds": [
+    0,
+    1
+  ],
+  "layers": [
+    4,
+    14,
+    24
+  ],
+  "heads": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "histories": [
+    4680,
+    9360,
+    14040
+  ],
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "tiles": 8,
+  "queries_per_tile": 16,
+  "data_root": "/home/iflab/models/Self-Forcing/streaming_sparse/v04/data/full",
+  "keep_train": 0.2,
+  "eval_keeps": [
+    0.2,
+    0.1,
+    0.3
+  ],
+  "page_size": 64,
+  "partition": "raw historical tensor row order, contiguous64, fixed original token row IDs; final partial page retained",
+  "precision": "FP32 raw QK/prototype matching/exact mask output/scorer/loss, TF32 disabled. FP64 normalized mass/residual geometry and O(QBd) retained/exclusive sums and finite-gain intermediates; exported scorer features and masks FP32. This targeted numerical correction prevents cancellation divided by tiny retained mass.",
+  "hook": {
+    "backbone_checkpoint": "checkpoints/self_forcing_dmd.pt",
+    "backbone_sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+    "post_rope": true,
+    "extra_logit_bias": false,
+    "logit_scale": 0.08838834764831845,
+    "visibility": "Captured streaming attention call has no options: all passed historical and entire current chunk are visible; block-causal, not token-causal. Explicit all-true masks reconstructed after audited hook/source checks."
+  },
+  "phase0": {
+    "real_pairs": 36,
+    "all_steps": true,
+    "query_examples": [
+      0,
+      15
+    ],
+    "budgets": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      1.0
+    ],
+    "atol": 5e-05,
+    "rtol": 5e-05,
+    "all_checks_required": true,
+    "mask_gradient_guard": "Exact logspace forward; mask derivative exp(Lb-Lselected) capped at exp30 ONLY for unrepresentable extreme derivative, counts reported; normal-range gradcheck and direct-gather tests required."
+  },
+  "teacher": {
+    "coefficients": [
+      0,
+      0.1,
+      0.3,
+      1,
+      3
+    ],
+    "selection": "Full Val group-macro E, tie lower coefficient; never Test",
+    "T2": "log(single-block deletion error+1e-12)-log(real block size)",
+    "T3": "T2+beta*tanh(asinh(finite add/remove gain/(initial set error+1e-12))); exactly one repack",
+    "train_evaluation": "Fixed metadata monitor training cells; full Val for selection; independent Test only after all architecture/checkpoint locks",
+    "headroom_gate": "T3 full-Val group-macro relative improvement>=0.5%, positive paired improvements in>=half groups; otherwise stop full R4 correction branch after exact fixed-query local-swap diagnosis, continue sketch/base/local controls and report a negative result"
+  },
+  "sketch": {
+    "max_updates": 12000,
+    "min_updates": 8000,
+    "lr": 0.0001,
+    "warmup": 300,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "base": {
+    "max_updates": 20000,
+    "min_updates": 8000,
+    "lr": 0.0001,
+    "warmup": 300,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "correction": {
+    "max_updates": 12000,
+    "min_updates": 8000,
+    "lr": 0.0001,
+    "warmup": 300,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "joint": {
+    "max_updates": 8000,
+    "min_updates": 4000,
+    "lr": 1e-05,
+    "warmup": 300,
+    "validate_every": 1000,
+    "snapshots_per_update": 4,
+    "patience": 4,
+    "min_relative_improvement": 0.002
+  },
+  "sketches": [
+    "S1",
+    "S4",
+    "S8"
+  ],
+  "secondary_sketches": [
+    "S2",
+    "S4-var",
+    "S4-K"
+  ],
+  "sketch_loss": "Train-initial measured inverse scales for Z(mean logZ squared),V(mean mass*valueL2 squared),O(mean query relative dense error); one fixed normalization scheme for all variants/seeds; Val checkpoint by estimated dense global error, no Test tuning.",
+  "sketch_initial_scaling": "Per seed S4 on36 metadata-fixed Train snapshot tiles, all4steps; save all raw initial scales and weights. Weights reciprocal max(scale,1e-8), normalize to sum3, clip individual normalized weights at100; reuse exactly across variants.",
+  "sufficient_gate": "S4 full-Val dense estimate global error lower than S1 in>=2/3 seeds AND macro logZ RMSE lower AND majority36 pairs dense error improved. If fail, train S2/S4-var/S4-K plus already-S8; do not enlarge downstream network.",
+  "model": {
+    "assignment": "Independent per-pair linear256->P (S4-K reads128 K only); same soft assignment aggregates K and V. S1 exact uniform mean, zero learned assignment parameters.",
+    "scorer": "8 scalar features ->32->1 PairMLP(shared base+rank1 pair residual), gamma36 independent initialized1; small nonzero residual calibration.",
+    "scalar_features": [
+      "log m",
+      "log norm d",
+      "log real block cost",
+      "rho",
+      "current log-mass (0 for history-only R2)",
+      "log query norm",
+      "log singleton error",
+      "log norm predicted mu"
+    ],
+    "local_and_set": "Exactly identical4->16->1 PairMLP plus nonnegative softplus alpha per pair(initial0.1). Local first feature log singleton error; set first feature asinh(g/(E0+eps)); same remaining log m/log cost/rho. Local receives no M0,D,z,g.",
+    "set_passes": 1,
+    "variance_clip": 20.0,
+    "initial_gate": "Frozen staged base: detach M0. Joint/scratch: M0 hard+budget STE, final gate same STE. tau=.2,64-step threshold bisection and exact implicit cost-aware derivative."
+  },
+  "main_models": [
+    "R1",
+    "R2",
+    "R3",
+    "R3-local",
+    "R4"
+  ],
+  "mass_caveat": "R1 uses only predicted mass from SAME Joint-KV S4; its assignment still reads V, so not strictly V-free. S4-K R1-K is a separate strict K-only routing diagnostic when secondary sketch is trained.",
+  "comparisons": "R3/R3-local/R4 exact same selected S4 AND exact same trained R3 base; frozen digests checked. Independently select correction checkpoints. R4-shuffle frozen intervention mismatches initial masks across query rows within a tile, final budget unchanged.",
+  "exposure": "Every train snapshot visits8 tiles by min8000x4 draws. Save selected and final exposure separately; maximum does not prove convergence.",
+  "optimizer": "AdamW lr1e-4,wd.01,warmup+cosine to5%,clip1; corrections independent loss sum and separate clipping, no shared trainable base; full3 seeds.",
+  "selection": "Fixed36 balanced Val snapshots x4 steps x8 tiles for checkpoint selection; Full864 Val for structure gates. 3-seed independent Test evaluated once only after final model registry locked.",
+  "test_policy": "User permits reuse if raw data feasible. Reuse existing Train/Val; exposed old Test is excluded from new independent-Test claims. Final independent Test remains disabled without new reserved prompts; main Train/Val experiments proceed.",
+  "group_statistics": "Micro SSE/energy AND macro mean of within(prompt,generation seed) pooled ratios; group median,P25,P75; fixed-seed paired group bootstrap2000 repetitions; query/tile tails; layer/head prompt seed step history slices; query masks not independent significance units.",
+  "extensions": "Secondary configs: S2/S4-var/S4-K when S4 insufficient; page-size128, R6 joint and scratch have separate explicit training modes and are not automatically pooled with main controls. R0-P0 and chunk-local Feature Packing are deferred until core results; not claimed completed by the main run.",
+  "execution": "Prioritizev0.7; v0.6 dispatcher paused by user request, current children finish. Two GPUs exclusive, wait if busy; no proxy variables, HF offline. Phase0 fail stops downstream; immutable source plan and fail-closed jobs.",
+  "correction_gate": "Train R4 only if both teacher one-pass headroom and S4 sufficiency gates pass; otherwise train equal-capacity R3-local control and report why the interaction branch stopped.",
+  "numeric_fix": {
+    "reason": "Phase0 pair L4H1 failed original FP32 omitted-residual accumulation when current/retained mass is small; no model training had begun.",
+    "implementation": "D=z*estimatedDense-retainedNumerator; exclusive prefix/suffix sums avoid z-m_b cancellation; FP64 geometry/reductions, FP32 main matrices/features/output. Removal retains (M_b-1) term to preserve original initial-mask STE derivative.",
+    "threshold": "Original atol=rtol=5e-5 unchanged; stable complement AND independently summed FP64 omitted residual both checked against raw KV output.",
+    "original_attempt_source": "9c3b7281d8fa11f9ae56503ed7d7e7b5fba76eb1ad58f0ee089f4a5110b72faa"
+  }
+}

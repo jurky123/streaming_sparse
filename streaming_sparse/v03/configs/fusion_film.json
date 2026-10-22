@@ -1,0 +1,42 @@
+{
+  "version": "0.3",
+  "stage": "pilot",
+  "seed": 0,
+  "steps": 1500,
+  "heads": [
+    0,
+    3,
+    6,
+    9
+  ],
+  "layers": [
+    4,
+    14,
+    24
+  ],
+  "router": {
+    "fusion": "film",
+    "conditioned": true,
+    "residual_rank": 1
+  },
+  "snapshots_per_update": 4,
+  "tiles_per_event": 1,
+  "keep_ratios": [
+    0.3,
+    0.2
+  ],
+  "evaluation_keeps": [
+    0.3,
+    0.2,
+    0.1
+  ],
+  "selection_keep": 0.2,
+  "validate_every": 500,
+  "save_every": 250,
+  "log_every": 50,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "require_complete": true,
+  "loss": "attention_output_only"
+}

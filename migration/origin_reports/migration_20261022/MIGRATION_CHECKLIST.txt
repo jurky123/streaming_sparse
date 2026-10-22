@@ -1,0 +1,26 @@
+CAVIR v0.8 跨机器续跑迁移清单（2026-10-22）
+单位GiB，未压缩文件逻辑大小；训练运行中，因此checkpoint实际切换时以最终快照为准。
+
+必须保留：
+1. Self-Forcing基础源码及streaming_sparse各版本源码/配置：v08仍导入v02/v03/v04/v05/v06/capture等模块，不能只复制v08。
+2. streaming_sparse/v08整体：源码、协议、prompt_registry、Replay/embedding、所有seed0 calibration/warmstart_K/warmstart_V、F-K recovery/initial/best/latest、验证曲线、训练日志、审计和execution/launcher身份。
+3. checkpoints/self_forcing_dmd.pt：5.286GiB；Wan diffusion_pytorch_model.safetensors：5.286GiB；config.json必须一并保留。当前加载接口先读Wan基础模型，再加载Self-Forcing EMA，因此两个权重文件都需要。
+4. 若继续后续seed1/2的校准预训练：streaming_sparse/v04/data/full整体，76.047GiB（完整manifest引用25920个tensor文件，当前0缺失）；包括events.jsonl和splits.json。仅续跑已warm-start的seed0主训练不读取这些tensor。
+5. 新Prompt采集/新Test：T5模型10.582GiB与tokenizer目录；解码视频：VAE0.473GiB；复现LPIPS：安装lpips0.1.4并保留AlexNet预训练权重约233MiB（原位于用户torch缓存，仓库外）。
+6. 环境记录：本目录environment.freeze.txt；Python3.10/PyTorch2.6.0+cu124，按本机现有依赖锁定记录重建环境。不要直接搬.venv。
+
+容量方案：
+仅继续当前seed0主训练约12.78GiB（另加小量源码/config；不含VAE/T5）。
+全部v08状态+当前公共模型资产约23.98GiB（尚不含后续seed校准所需旧QKV）。
+继续当前完整三seed流程约100.03GiB（含76.047GiB旧QKV），建议目标盘至少预留150GiB。
+以上为未压缩数据，尚未制作迁移压缩包，不能承诺压缩后体积。
+
+恢复要求：
+迁移前在optimizer更新边界固化一致快照，不能只复制best.pt；当前最新观测到recovery=F-K seed0 update640，约2.91MiB，内含Router/LoRA/optimizer/sampler/覆盖率和provenance。
+当前机器仍在运行，本清单没有暂停或停止训练。正式切换时需最后同步一致状态，再校验文件SHA256。
+尽量沿用/home/iflab/models/Self-Forcing目录。protocol内的旧QKV根目录为绝对路径，且protocol参与checkpoint源码身份；不能随手改路径后直接resume，换根目录应保留兼容路径并审计旧provenance的绝对引用。
+旧reports中的PID、scheduler.pid、running标记仅是来源记录；在新机器重建调度运行状态，不复用旧PID或旧GPU索引假定。
+新机器先做环境/原始Attention/优化执行等价检查，保留原始审计并另外记录新硬件审计，再从recovery通过--resume继续。
+新的独立Test当前尚未采集，不能认为现有Replay已包含Test。旧Test不可重命名。
+
+可省：.venv、旧版本runs、旧版补充QKV目录、原review zip等；但必须保留依赖的历史源码/config。

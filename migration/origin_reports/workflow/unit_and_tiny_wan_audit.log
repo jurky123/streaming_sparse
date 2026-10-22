@@ -1,0 +1,6 @@
+audit: native replay and full-keep equivalence
+audit: public x0, auxiliary isolation and recent history branch gradients
+audit: nonzero adapter paths and checkpoint recomputation
+audit: six freeze manifests and genuine K-only output gradient
+audit: actual optimizer update invalidates KV and Sketch versions
+{"passed": true, "report": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/phase0_unit.json", "error": null}

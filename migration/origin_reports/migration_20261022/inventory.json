@@ -1,0 +1,73 @@
+{
+  "measured_at": "2026-10-22T15:35:39.497804+08:00",
+  "unit": "GiB=2**30 bytes; logical uncompressed file sizes; running checkpoints may change",
+  "items": [
+    {
+      "path": "streaming_sparse/v08",
+      "bytes": 2365473501,
+      "GiB": 2.2030188711360097
+    },
+    {
+      "path": "streaming_sparse/v08/data/replay",
+      "bytes": 2061887216,
+      "GiB": 1.9202821105718613
+    },
+    {
+      "path": "streaming_sparse/v08/data/embeddings",
+      "bytes": 167856864,
+      "GiB": 0.15632888674736023
+    },
+    {
+      "path": "streaming_sparse/v08/runs",
+      "bytes": 41365047,
+      "GiB": 0.038524202071130276
+    },
+    {
+      "path": "streaming_sparse/v08/reports",
+      "bytes": 12729581,
+      "GiB": 0.011855346150696278
+    },
+    {
+      "path": "streaming_sparse/v04/data/full",
+      "bytes": 81654707334,
+      "GiB": 76.04687226377428
+    },
+    {
+      "path": "checkpoints/self_forcing_dmd.pt",
+      "bytes": 5676252553,
+      "GiB": 5.286422141827643
+    },
+    {
+      "path": "wan_models/Wan2.1-T2V-1.3B",
+      "bytes": 17710159931,
+      "GiB": 16.493871743790805
+    },
+    {
+      "path": "wan_models/Wan2.1-T2V-1.3B/diffusion_pytorch_model.safetensors",
+      "bytes": 5676070424,
+      "GiB": 5.286252520978451
+    },
+    {
+      "path": "wan_models/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth",
+      "bytes": 11361920418,
+      "GiB": 10.581612976267934
+    },
+    {
+      "path": "wan_models/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth",
+      "bytes": 507609880,
+      "GiB": 0.4727485403418541
+    }
+  ],
+  "plans": {
+    "current_seed_training_approx_GiB": 12.775693533942103,
+    "all_v08_and_public_assets_approx_GiB": 23.983312756754458,
+    "complete_three_seed_workflow_approx_GiB": 100.03018502052873
+  },
+  "latest_recovery_seen": {
+    "group": "F-K",
+    "seed": 0,
+    "updates": 640,
+    "path": "streaming_sparse/v08/runs/seed0/F-K/recovery.pt"
+  },
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d"
+}

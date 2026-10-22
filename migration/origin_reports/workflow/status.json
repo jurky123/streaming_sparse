@@ -1,0 +1,179 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "jobs": {
+    "unit_and_tiny_wan_audit": {
+      "status": "completed",
+      "pid": 3237622,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/unit_and_tiny_wan_audit.log",
+      "exit_code": 0
+    },
+    "capture_train": {
+      "status": "completed",
+      "pid": 3238346,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/capture_train.log",
+      "exit_code": 0
+    },
+    "capture_val": {
+      "status": "completed",
+      "pid": 3238347,
+      "gpu": 1,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/capture_val.log",
+      "exit_code": 0
+    },
+    "real_network_and_raw_QKV_audit": {
+      "status": "completed",
+      "pid": 3256406,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/real_network_and_raw_QKV_audit.log",
+      "exit_code": 0
+    },
+    "calibration_seed0": {
+      "status": "completed",
+      "pid": 3305505,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/calibration_seed0.log",
+      "exit_code": 0
+    },
+    "heads_K_seed0": {
+      "status": "completed",
+      "pid": 714413,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/heads_K_seed0.log",
+      "exit_code": 0
+    },
+    "heads_V_seed0": {
+      "status": "completed",
+      "pid": 714414,
+      "gpu": 1,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/heads_V_seed0.log",
+      "exit_code": 0
+    },
+    "pilot_F-K_seed0": {
+      "status": "completed",
+      "pid": 2497455,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/pilot_F-K_seed0.log",
+      "exit_code": 0
+    },
+    "pilot_F-V_seed0": {
+      "status": "completed",
+      "pid": 2497456,
+      "gpu": 1,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/pilot_F-V_seed0.log",
+      "exit_code": 0
+    },
+    "pilot_J-K_seed0": {
+      "status": "completed",
+      "pid": 2525412,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/pilot_J-K_seed0.log",
+      "exit_code": 0
+    },
+    "pilot_J-V_seed0": {
+      "status": "completed",
+      "pid": 2525907,
+      "gpu": 1,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/pilot_J-V_seed0.log",
+      "exit_code": 0
+    },
+    "main_F-K_seed0": {
+      "status": "running",
+      "pid": 1005149,
+      "gpu": 0,
+      "log": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/main_F-K_seed0.log"
+    },
+    "main_F-V_seed0": {
+      "status": "pending"
+    },
+    "main_J-K_seed0": {
+      "status": "pending"
+    },
+    "main_J-V_seed0": {
+      "status": "pending"
+    },
+    "main_A-K_seed0": {
+      "status": "pending"
+    },
+    "main_A-V_seed0": {
+      "status": "pending"
+    },
+    "calibration_seed1": {
+      "status": "pending"
+    },
+    "heads_K_seed1": {
+      "status": "pending"
+    },
+    "heads_V_seed1": {
+      "status": "pending"
+    },
+    "main_F-K_seed1": {
+      "status": "pending"
+    },
+    "main_F-V_seed1": {
+      "status": "pending"
+    },
+    "main_J-K_seed1": {
+      "status": "pending"
+    },
+    "main_J-V_seed1": {
+      "status": "pending"
+    },
+    "main_A-K_seed1": {
+      "status": "pending"
+    },
+    "main_A-V_seed1": {
+      "status": "pending"
+    },
+    "calibration_seed2": {
+      "status": "pending"
+    },
+    "heads_K_seed2": {
+      "status": "pending"
+    },
+    "heads_V_seed2": {
+      "status": "pending"
+    },
+    "main_F-K_seed2": {
+      "status": "pending"
+    },
+    "main_F-V_seed2": {
+      "status": "pending"
+    },
+    "main_J-K_seed2": {
+      "status": "pending"
+    },
+    "main_J-V_seed2": {
+      "status": "pending"
+    },
+    "main_A-K_seed2": {
+      "status": "pending"
+    },
+    "main_A-V_seed2": {
+      "status": "pending"
+    }
+  },
+  "through": "matrix",
+  "paused": false,
+  "paused_at": "2026-10-19T13:59:53.681635+00:00",
+  "stopped_processes": [
+    {
+      "pid": 3237575,
+      "role": "scheduler"
+    }
+  ],
+  "resumed_at": "2026-10-21T05:45:38.726406+00:00",
+  "execution_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+  "launcher_sha256": "7bf9166e5dd85d82068805e503097d2ebc7a54559becec615a45e3466db5cf16",
+  "execution_note": "正式六组×三seed矩阵：仅GPU0串行运行；复用已完成的数据、审计与seed0 warm-start。",
+  "execution_switch_at": "2026-10-20T13:04:19.566971+00:00",
+  "previous_partial_updates": {
+    "K": 67,
+    "V": 62
+  },
+  "allowed_gpus": [
+    0
+  ],
+  "gpu_worker_limit": 1
+}

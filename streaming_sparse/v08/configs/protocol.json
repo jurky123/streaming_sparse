@@ -1,0 +1,271 @@
+{
+  "version": "CAVIR-v0.8-coadapt-offline",
+  "status": "implementation; not trained or validated",
+  "teacher_checkpoint": "checkpoints/self_forcing_dmd.pt",
+  "teacher_sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+  "model_name": "Wan2.1-T2V-1.3B",
+  "config": "configs/self_forcing_dmd.yaml",
+  "default_config": "configs/default_config.yaml",
+  "output_parameterization": "x0: second returned value of WanDiffusionWrapper; raw network predicts flow; x0=xt-sigma*flow; do not relabel as epsilon",
+  "native_timesteps": [
+    1000.0,
+    937.5,
+    833.3333129882812,
+    625.0
+  ],
+  "timestep_policy": "derive from original scheduler/config; compare to recorded native list; no integer truncation",
+  "frames_per_chunk": 3,
+  "frame_tokens": 1560,
+  "latent_shape": [
+    16,
+    60,
+    104
+  ],
+  "trajectory_chunks": 4,
+  "layers": [
+    4,
+    14,
+    24
+  ],
+  "layer_indexing": "zero-based original model.blocks enumerate, unchanged from v07",
+  "heads": 12,
+  "head_dim": 128,
+  "page_size": 64,
+  "prototypes": 8,
+  "keep_train": 0.2,
+  "eval_keeps": [
+    0.2,
+    0.1,
+    0.3
+  ],
+  "histories": [
+    4680,
+    9360,
+    14040
+  ],
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "query_microbatch": 16,
+  "query_policy": "all4680 raw queries per current chunk, no mean pooling, no subsampling in network output loss",
+  "visibility": "all passed history and whole current chunk; no triangular token-causal mask",
+  "context_noise": 0.0,
+  "cfg": {
+    "configured_guidance_scale": 3.0,
+    "effective_conditional_only": true,
+    "effective_scale": 1.0,
+    "reason": "original CausalInferencePipeline uses one conditional forward, no unconditional/CFG mixing"
+  },
+  "lora": {
+    "rank": 8,
+    "alpha": 8,
+    "dropout": 0.0,
+    "projections": [
+      "q",
+      "k",
+      "v",
+      "o"
+    ],
+    "layers": [
+      4,
+      14,
+      24
+    ]
+  },
+  "router": {
+    "assignment": "36 independent128->8 K-only, same assignments aggregate K and V, never migrate Joint-KV S8 as K-only",
+    "calibrator": [
+      6,
+      16,
+      1
+    ],
+    "calibrator_features": [
+      "log_q_norm",
+      "log_page_cost",
+      "prototype_logit_std",
+      "prototype_max_minus_mean",
+      "prototype_entropy",
+      "mean_directional_key_variance"
+    ],
+    "normalization": "train-only initial fixed cells; freeze per-pair feature means/std and initial Huber scale",
+    "residual": [
+      17,
+      32,
+      1
+    ],
+    "content_projection": [
+      128,
+      8
+    ],
+    "pair_layernorm": 8,
+    "initial_residual_scale": 0.1,
+    "initial_final_layer_zero": true,
+    "mass_base": "calibrated historical LogZ",
+    "no_set_correction": true,
+    "input_stop_gradient": true
+  },
+  "history_gradient": "all history reencoded with current student parameters; older no_grad; recent3 latent frames fixed and KV writes differentiable; no trajectory backprop",
+  "context_encoding": "dense context/cache-write rerun as original; only denoising current forward sparsifies specified layers",
+  "groups": [
+    "F-K",
+    "F-V",
+    "A-K",
+    "A-V",
+    "J-K",
+    "J-V"
+  ],
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "core_pilot": [
+    "F-K",
+    "F-V",
+    "J-K",
+    "J-V"
+  ],
+  "pilot_then_controls": [
+    "A-K",
+    "A-V"
+  ],
+  "split_counts": {
+    "train": 32,
+    "val": 8,
+    "test": 16
+  },
+  "generation_seeds": [
+    0,
+    1
+  ],
+  "legacy_train_prompts": [
+    "d0bf2d0fa5fd5f0a08da",
+    "4efd68f46660ee454bee",
+    "e1acf652465d7a89a34c",
+    "f13bf1e16fd7c149c5ff",
+    "faf6f4c65c9a2bf06624",
+    "f91b57c35827e49c7344",
+    "e72bab9193ec39cadb01",
+    "351ac8d95605183e137f",
+    "26cca919c2adab85f2dc",
+    "16343b0f88b7ff9d3faa",
+    "36f96596015052a396b6",
+    "16e2ad71b42a732ad763",
+    "d45c532a77b0db19c4e4",
+    "2bfa9bb7274345a5d84a",
+    "39cd601b633b998325c3",
+    "b0659d3fc27d7225fa9d"
+  ],
+  "legacy_val_prompts": [
+    "355ec425a607c309c237",
+    "6893aa3a639dfdeb015d",
+    "a59c8b64f8849b3dfdb0",
+    "b2addbd1cf442c90b9a6"
+  ],
+  "excluded_old_test": [
+    "cff9026e614121910390",
+    "0ab0bfc44c441bdcf974",
+    "fccd8a449f6ba5956347",
+    "5ae7f2c117398e0cd161"
+  ],
+  "new_prompt_source": "prompts/MovieGenVideoBench_extended.txt",
+  "registry_seed": 20261019,
+  "test_policy": "new prompt-held-out Test only; old exposed Test excluded; architecture/checkpoint registry must lock before evaluator can read Test",
+  "main": {
+    "updates": 2000,
+    "microbatch": 1,
+    "accumulation": 4,
+    "router_lr": 3e-05,
+    "lora_lr": 1e-05,
+    "wd": 0.01,
+    "clip_router": 1.0,
+    "clip_lora": 1.0,
+    "warmup": 100,
+    "validate_every": 200,
+    "lr_final_ratio": 0.05
+  },
+  "warmstart": {
+    "sketch_updates": 2000,
+    "sketch_lr": 0.0001,
+    "validate_every": 200,
+    "residual_updates": 200,
+    "residual_lr": 3e-05,
+    "legacy_qkv_root": "/home/iflab/models/Self-Forcing/streaming_sparse/v04/data/full",
+    "selection": "normalized initial-scale cal_Huber + hard Attention NMSE on fixed balanced legacy Val cells; then head warm-start on full replay with x0 output NMSE; initialize branches with identical calibrated K-only weights",
+    "calibration_loss": "Huber((Lhat-Lcurrent_detached)-(Ltrue_current_student_detached-Lcurrent_detached)); no history-only centering",
+    "sketch_objective": "cal_Huber/train_initial_scale +0.1*hard_attention_nmse; V only in supervision, never K routing forward"
+  },
+  "loss": {
+    "output": "input NMSE then prompt-equal evaluation",
+    "anchor_weight": 0.1,
+    "anchor_every": 4,
+    "anchor_multiplier": 4,
+    "att_initial_weight": 0.1,
+    "att_decay_updates": 500,
+    "cal_weight": 0.01,
+    "aux_tiles": 8,
+    "aux_query_tile": 16,
+    "cal_att_to_lora": false
+  },
+  "precision": "Backbone and executing hard attention use native BF16 SDPA at full current-query length; Router/calibration rawQK/lossFP32; stable continuous gate VJP/reductionsFP64; TF32 disabled. No double QKV gradient.",
+  "audit_tolerances": {
+    "raw_fp32_atol": 5e-05,
+    "raw_fp32_rtol": 5e-05,
+    "full_bf16_nmse": 0.0001,
+    "full_bf16_max_abs": 0.125,
+    "gradcheck_atol": 2e-05,
+    "gradcheck_rtol": 0.0002,
+    "policy": "fixed before real run; failure stops; no post-hoc relaxation"
+  },
+  "validation": "all8 prompts x2 generation seeds x3 histories x4 steps; each input whole current chunk; prompt-equal main endpoint; best and fixedlast and init all retained",
+  "endpoint": {
+    "G_F": "E_FK-E_FV",
+    "G_J": "E_JK-E_JV",
+    "I": "G_J-G_F",
+    "bootstrap_unit": "prompt; same resample allmodels and training seeds",
+    "bootstrap_repeats": 5000,
+    "bootstrap_seed": 20261019,
+    "investment_relative_gain": 0.05,
+    "same_direction_seeds_min": 2
+  },
+  "cache_key_fields": [
+    "model_version",
+    "router_version",
+    "trajectory_id",
+    "sample_id",
+    "layer",
+    "head",
+    "history_position_range",
+    "context_noise",
+    "partition"
+  ],
+  "default_diagnostics": [
+    "mass_only_same_student",
+    "actual_keep",
+    "gate_saturation",
+    "logz_bias",
+    "current_mass_bias",
+    "head_aux_nmse",
+    "lora_relative_update",
+    "finite_exchange_direction"
+  ],
+  "not_default": [
+    "H0 retraining",
+    "router_input_gradient_R1",
+    "Signed/Set correction",
+    "all-layer sparsity",
+    "full backbone unfreeze",
+    "DMD",
+    "kernel performance",
+    "VAE decoding"
+  ],
+  "scope": "network-output offline algorithm verification only; not original DMD training or video quality verification",
+  "references": {
+    "R1": "local v07 review evidence",
+    "R2": "https://arxiv.org/html/2506.08009v1",
+    "R3": "https://arxiv.org/html/2605.30325v1"
+  }
+}

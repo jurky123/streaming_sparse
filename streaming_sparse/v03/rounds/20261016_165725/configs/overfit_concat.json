@@ -1,0 +1,40 @@
+{
+  "version": "0.3",
+  "stage": "overfit",
+  "seed": 0,
+  "steps": 200,
+  "heads": [
+    0
+  ],
+  "layers": [
+    4
+  ],
+  "router": {
+    "fusion": "concat",
+    "conditioned": true,
+    "residual_rank": 1
+  },
+  "snapshots_per_update": 4,
+  "tiles_per_event": 1,
+  "keep_ratios": [
+    0.3,
+    0.2
+  ],
+  "evaluation_keeps": [
+    0.3,
+    0.2,
+    0.1
+  ],
+  "selection_keep": 0.2,
+  "validate_every": 500,
+  "save_every": 50,
+  "log_every": 10,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "require_complete": false,
+  "loss": "attention_output_only",
+  "gate_reports": "/home/iflab/models/Self-Forcing/streaming_sparse/v03/rounds/20261016_165725/reports",
+  "overfit_runs": "/home/iflab/models/Self-Forcing/streaming_sparse/v03/rounds/20261016_165725/runs/overfit",
+  "data_kind": "real_capture"
+}

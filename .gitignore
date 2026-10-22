@@ -1,0 +1,23 @@
+# Never commit regenerated data, public model weights or local environments.
+**/__pycache__/
+*.pyc
+*.egg-info/
+streaming_sparse/.venv/
+.cache/
+**/data/
+**/reports/
+**/evaluations/
+**/diagnostics/
+**/runs/
+!streaming_sparse/v08/runs/
+!streaming_sparse/v08/runs/**
+checkpoints/
+wan_models/**
+!wan_models/Wan2.1-T2V-1.3B/
+!wan_models/Wan2.1-T2V-1.3B/config.json
+migration/continuations/
+migration/validation/
+*.tmp
+# Origin reports are provenance, not live worker state.
+!migration/origin_reports/
+!migration/origin_reports/**

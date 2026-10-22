@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "pid": 2521643,
+  "output": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/evaluations/two_video/20261022_143357/timing_20261022_145052",
+  "videos": 2,
+  "completed": 2,
+  "checkpoint_updates": 620,
+  "checkpoint_sha256": "a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d",
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "script_sha256": "9dd2caca57c6df495a291a1d04734e81d39563739608481ad23dcb6408c794f3",
+  "training_temporarily_suspended": false,
+  "paused_pids": [
+    1004913,
+    1005149
+  ],
+  "updated_at": "2026-10-22T06:55:13.899460+00:00",
+  "phase": "profiled_components",
+  "video_index": 2,
+  "mode": "dense",
+  "resumed_pids": [
+    1005149,
+    1004913
+  ]
+}

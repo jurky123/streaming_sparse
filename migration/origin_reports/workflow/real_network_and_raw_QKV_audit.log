@@ -1,0 +1,42 @@
+audit: raw pair (4, 0) passed
+audit: raw pair (4, 1) passed
+audit: raw pair (4, 2) passed
+audit: raw pair (4, 3) passed
+audit: raw pair (4, 4) passed
+audit: raw pair (4, 5) passed
+audit: raw pair (4, 6) passed
+audit: raw pair (4, 7) passed
+audit: raw pair (4, 8) passed
+audit: raw pair (4, 9) passed
+audit: raw pair (4, 10) passed
+audit: raw pair (4, 11) passed
+audit: raw pair (14, 0) passed
+audit: raw pair (14, 1) passed
+audit: raw pair (14, 2) passed
+audit: raw pair (14, 3) passed
+audit: raw pair (14, 4) passed
+audit: raw pair (14, 5) passed
+audit: raw pair (14, 6) passed
+audit: raw pair (14, 7) passed
+audit: raw pair (14, 8) passed
+audit: raw pair (14, 9) passed
+audit: raw pair (14, 10) passed
+audit: raw pair (14, 11) passed
+audit: raw pair (24, 0) passed
+audit: raw pair (24, 1) passed
+audit: raw pair (24, 2) passed
+audit: raw pair (24, 3) passed
+audit: raw pair (24, 4) passed
+audit: raw pair (24, 5) passed
+audit: raw pair (24, 6) passed
+audit: raw pair (24, 7) passed
+audit: raw pair (24, 8) passed
+audit: raw pair (24, 9) passed
+audit: raw pair (24, 10) passed
+audit: raw pair (24, 11) passed
+audit: native replay and full-keep equivalence
+audit: public x0, auxiliary isolation and recent history branch gradients
+audit: nonzero adapter paths and checkpoint recomputation
+audit: six freeze manifests and genuine K-only output gradient
+audit: actual optimizer update invalidates KV and Sketch versions
+{"passed": true, "report": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/phase0_real.json", "error": null}

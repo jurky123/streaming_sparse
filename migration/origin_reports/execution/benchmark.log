@@ -1,0 +1,8 @@
+checking selection
+checking multi_attention_gradient
+checking real_router
+checking existing unit audit
+checking full input
+{"phase": "full_input", "implementation": "original", "seconds": 179.38292916771024, "forward_seconds": 46.554818633943796, "loss": 0.013492454774677753}
+{"phase": "full_input", "implementation": "optimized", "seconds": 42.86332243587822, "forward_seconds": 11.607142237946391, "loss": 0.013492454774677753}
+{"passed": true, "report": "/home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/execution/benchmark.json", "error": null}

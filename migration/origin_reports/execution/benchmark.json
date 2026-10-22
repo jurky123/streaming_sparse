@@ -1,0 +1,95 @@
+{
+  "source_sha256": "7bfccf6c84704425c0a79ecc513f8efe14d451343e3f7e13ebe040aefa37214d",
+  "execution_sha256": "172d1951903cb157e6c66d70dd397c1fa62ad9b3782f6b7658c67559f1585c49",
+  "passed": true,
+  "tolerances": {
+    "hard_mask": "exact",
+    "raw_native_output": "exact",
+    "raw_QKV_gradients": "exact",
+    "parameter_gradient_atol": 5e-05,
+    "parameter_gradient_rtol": 0.0002,
+    "full_output_nmse": 0.0001,
+    "full_output_max_abs": 0.125
+  },
+  "checks": {
+    "selection": {
+      "exact_cases": 517,
+      "full_query_page_selection_seconds": {
+        "original": 0.11906545407449205,
+        "optimized": 0.000998775629947583
+      }
+    },
+    "multi_attention_gradient": {
+      "native_output_exact": true,
+      "raw_QKV_gradients_exact": true,
+      "gate_max_gradient_abs": 9.5367431640625e-07
+    },
+    "real_router": {
+      "K": {
+        "real_queries": 128,
+        "history": 4680,
+        "hard_mask_exact": true,
+        "auxiliary_sample_count": 4,
+        "maximum_parameter_gradient_abs": 9.5367431640625e-07
+      },
+      "V": {
+        "real_queries": 128,
+        "history": 4680,
+        "hard_mask_exact": true,
+        "auxiliary_sample_count": 4,
+        "maximum_parameter_gradient_abs": 1.1920928955078125e-06
+      }
+    },
+    "original_unit_audit": {
+      "raw_attention": {
+        "max_output_abs": 2.220446049250313e-16,
+        "max_qkv_gradient_abs": 1.1102230246251565e-16,
+        "all5budgets": true,
+        "history_tokens": 137,
+        "current_tokens": 11,
+        "queries": 3
+      },
+      "native_BF16_hard_output_and_QKV_gradients_vs_raw_gather": {
+        "max_output_abs": 0.0,
+        "max_gradient_abs": 0.0,
+        "tolerance": "torch.testing default BF16; FP32 checks unchanged"
+      },
+      "continuous_mask_and_raw_qkv_gradcheck": true,
+      "implicit_cost_budget_derivative_and_score_shift_invariance": true,
+      "all_query_batched_budget_equals_independent_microbatches": true,
+      "RK_V_replacement_with_sketch_rebuild_exact_invariance": true,
+      "RV_nonzero_residual_responds_to_V": 0.16239690780639648,
+      "parameter_capacity_equal": 2819,
+      "independent_final_head_initialization": true,
+      "stale_model_cache_rejected": true,
+      "prompt_cluster_bootstrap_and_difference_in_differences": true
+    },
+    "full_input": {
+      "sample_id": "03289de18cdd85f5e7f3.seed0.chunk3.step0",
+      "history_tokens": 14040,
+      "current_queries": 4680,
+      "all_pairs": 36,
+      "output_nmse": 0.0,
+      "max_parameter_gradient_abs": 5.643159965984523e-07,
+      "relative_gradient_l2": {
+        "lora": 0.0032693176320001066,
+        "router": 0.00017775822033749115
+      },
+      "measurements": {
+        "original": {
+          "forward_seconds": 46.554818633943796,
+          "forward_backward_seconds": 179.38292916771024,
+          "loss": 0.013492454774677753,
+          "peak_GiB": 19.013522624969482
+        },
+        "optimized": {
+          "forward_seconds": 11.607142237946391,
+          "forward_backward_seconds": 42.86332243587822,
+          "loss": 0.013492454774677753,
+          "peak_GiB": 19.017032146453857
+        }
+      },
+      "speedup": 4.184998244969456
+    }
+  }
+}

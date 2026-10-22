@@ -1,0 +1,4 @@
+CAVIR v0.8：可重放网络输出蒸馏 / 局部 LoRA 共适应
+范围截至 matrix；完成11 / 运行1 / 等待23 / 失败0
+main为正式2000 updates；pilot为临时完整输入小样本接口检查；Test默认封存。
+main_F-K_seed0 | GPU 0 | PID 1005149 | 日志 /home/iflab/models/Self-Forcing/streaming_sparse/v08/reports/workflow/main_F-K_seed0.log

@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-10-22T05:14:49.964167+00:00",
+  "allowed_gpus": [
+    0
+  ],
+  "processes": [
+    {
+      "job": "main_F-K_seed0",
+      "pid": 1005149,
+      "gpu": 0,
+      "alive_verified": true,
+      "command": "/home/iflab/models/Self-Forcing/streaming_sparse/.venv/bin/python -u -m streaming_sparse.v08.launcher.worker streaming_sparse.v08.train --stage main --group F-K --seed 0 "
+    }
+  ],
+  "gpu": "0, NVIDIA A100-SXM4-80GB, 18377 MiB, 67 %\n1, NVIDIA A100 80GB PCIe, 4 MiB, 0 %",
+  "gpu_processes": "GPU-da1193ff-b914-8634-a66f-436638b0a318, 1005149, 18248 MiB"
+}

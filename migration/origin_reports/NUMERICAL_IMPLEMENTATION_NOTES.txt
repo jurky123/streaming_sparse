@@ -1,0 +1,17 @@
+v0.8 开发审计记录（不是正式实验结果）
+
+1. 原整层checkpoint在重新构造完整Query的路由表示时显存不足。
+   修复：评分表示采用16-query级嵌套checkpoint；所有当前Queries仍完整执行，未修改分辨率、历史长度、预算、层/Head或网络容量。
+   逐Query预算在完整矩阵上并行求解；每一行仍是独立约束，微批/整批的Mask和预算梯度已做等价检查。
+   CUDA allocator使用expandable_segments仅属执行设置。
+
+2. 原FP32统计Attention与BF16原backend混用时，最长历史的all-keep网络误差超过固定max_abs=0.125。
+   又经原生BF16单Head执行检查，差异仍为max_abs0.140625。
+   逐层Dense函数式对照30/30层完全相同，zero-LoRA Dense NMSE=0；因此不放宽阈值。
+   修复：执行Attention保持原生BF16、完整12head及原当前Query长度；显式提供稳定连续Mask VJP，同时只有一次原始QKV梯度路径。
+   QKV的执行梯度由同一原生hard attention重算获得；gate梯度独立采用FP32 QK/FP64归约。不是把bool Mask的不可微性当作Router梯度，也不叠加两条QKV梯度。
+   FP32/FP64数学检查继续使用原5e-5范围；BF16 raw gather额外使用PyTorch标准BF16 dtype比较。
+
+3. 固定网络容差始终为NMSE<=1e-4、max_abs<=0.125，未事后放宽。
+   旧失败报告在attempts/；最终有效性只看与当前source身份一致的phase0_unit.json和phase0_real.json。
+   微调的临时LoRA只在梯度审计内使用，不作为warm-start或主实验checkpoint。

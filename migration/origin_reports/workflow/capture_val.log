@@ -1,0 +1,16 @@
+{"trajectory": "355ec425a607c309c237.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "355ec425a607c309c237.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "6893aa3a639dfdeb015d.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "6893aa3a639dfdeb015d.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "a59c8b64f8849b3dfdb0.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "a59c8b64f8849b3dfdb0.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "b2addbd1cf442c90b9a6.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "b2addbd1cf442c90b9a6.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "f3a5354ea20e45c4addc.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "f3a5354ea20e45c4addc.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "90a0231d6254ab8a44c3.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "90a0231d6254ab8a44c3.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "850996de8afbaae18489.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "850996de8afbaae18489.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "d30af62303a5d0933b8b.seed0", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}
+{"trajectory": "d30af62303a5d0933b8b.seed1", "split": "val", "inputs": 12, "native_steps": [1000.0, 937.5, 833.3333129882812, 625.0]}

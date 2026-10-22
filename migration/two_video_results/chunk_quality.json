@@ -1,0 +1,106 @@
+{
+  "checkpoint_sha256": "a37b42d0048571f7f666eca93e2e86c434a5d9a05d62551ae68ad4adebac984d",
+  "videos": [
+    {
+      "video_index": 1,
+      "prompt_id": "355ec425a607c309c237",
+      "chunks": [
+        {
+          "chunk_zero_based": 0,
+          "video_frames_one_based": [
+            1,
+            9
+          ],
+          "mse_rgb01": 0.0,
+          "psnr_db": null,
+          "identical": true,
+          "lpips": 0.0
+        },
+        {
+          "chunk_zero_based": 1,
+          "video_frames_one_based": [
+            10,
+            21
+          ],
+          "mse_rgb01": 0.005255723773915117,
+          "psnr_db": 22.79367468147065,
+          "identical": false,
+          "lpips": 0.0537373263699313
+        },
+        {
+          "chunk_zero_based": 2,
+          "video_frames_one_based": [
+            22,
+            33
+          ],
+          "mse_rgb01": 0.018770318808855907,
+          "psnr_db": 17.26528350940131,
+          "identical": false,
+          "lpips": 0.1502649678538243
+        },
+        {
+          "chunk_zero_based": 3,
+          "video_frames_one_based": [
+            34,
+            45
+          ],
+          "mse_rgb01": 0.03218357172320236,
+          "psnr_db": 14.923657596900732,
+          "identical": false,
+          "lpips": 0.2397049143910408
+        }
+      ]
+    },
+    {
+      "video_index": 2,
+      "prompt_id": "6893aa3a639dfdeb015d",
+      "chunks": [
+        {
+          "chunk_zero_based": 0,
+          "video_frames_one_based": [
+            1,
+            9
+          ],
+          "mse_rgb01": 0.0,
+          "psnr_db": null,
+          "identical": true,
+          "lpips": 0.0
+        },
+        {
+          "chunk_zero_based": 1,
+          "video_frames_one_based": [
+            10,
+            21
+          ],
+          "mse_rgb01": 0.0015852293725456392,
+          "psnr_db": 27.999078892672514,
+          "identical": false,
+          "lpips": 0.0282327252595375
+        },
+        {
+          "chunk_zero_based": 2,
+          "video_frames_one_based": [
+            22,
+            33
+          ],
+          "mse_rgb01": 0.004720774923435088,
+          "psnr_db": 23.259867053176023,
+          "identical": false,
+          "lpips": 0.06359389238059521
+        },
+        {
+          "chunk_zero_based": 3,
+          "video_frames_one_based": [
+            34,
+            45
+          ],
+          "mse_rgb01": 0.01589236491860301,
+          "psnr_db": 17.988114712836712,
+          "identical": false,
+          "lpips": 0.1658559882392486
+        }
+      ]
+    }
+  ],
+  "definition": "causal VAE: first3 latent frames decode to RGB frames1..9; each subsequent3 adds12 RGB frames; PSNR from pooled RGB MSE, LPIPS frame mean"
+}
