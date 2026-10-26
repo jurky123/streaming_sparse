@@ -1,0 +1,9 @@
+The SM80 attention adaptations in opt24/ and opt28/ derive from SpargeAttn:
+https://github.com/thu-ml/SpargeAttn
+Pinned revision: ae5b629ebb41e41f86b3ea2ab5a3283f13ac151a
+License: Apache-2.0 (full text in LICENSE.SpargeAttn.txt).
+Original notices are retained in the adapted sparge_kernel.cuh files.
+Local adaptations include tile dimensions, packed page selection and tail handling.
+Obtain the matching upstream source headers using:
+  bash migration/fetch_sparse_backend.sh
+The upstream checkout, compiler output and all experiment assets remain ignored.

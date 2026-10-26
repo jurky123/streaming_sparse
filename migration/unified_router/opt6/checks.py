@@ -1,0 +1,57 @@
+"""Real multilayer/age/head checks, including partial query and page tails."""
+import argparse
+import torch
+from ..common import config,load_raw,atomic_json
+from ..network import OnlineRouter
+from ..fast_route import prepare
+from ..opt2.attention import attention
+from ..opt5.select import fused_select
+from .debug import scores as head_scores
+from .network import OPTIONS
+from .route import HeadRoute
+from ..opt5.network import OptimizedRoute,OPTIONS as BASE_OPTIONS
+
+
+@torch.no_grad()
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--directory',required=True);a=p.parse_args();root,m=config(a.directory)
+    torch.set_num_threads(4);torch._dynamo.config.cache_size_limit=128;torch.backends.cuda.matmul.allow_tf32=False
+    router=OnlineRouter(root,m).cuda()
+    routes={'Opt6':HeadRoute(**OPTIONS)}
+    ref=OptimizedRoute(**BASE_OPTIONS)
+    rows=[]
+    for layer in [1,24,29]:
+        for hist,n in [(4680,17),(9360,72),(14040,128)]:
+            meta=next(r for r in m['rows']if r['split']=='val'and r['history_tokens']==hist and r['step']==3)
+            d=load_raw(root,meta,layer);q=d['q'][:,:n];step=q.new_tensor(3.,dtype=torch.float32)
+            k=torch.cat((d['kh'],d['kc']),1);v=torch.cat((d['vh'],d['vc']),1)
+            for kind in ['K32-Set','V32-Set']:
+                router.kind=kind;sketch=router.sketch(layer,d['kh'],d['vh'],d['kc'],d['vc']);prepared=prepare(sketch,kind)
+                reference=ref(layer,q,sketch,prepared,step,router);yr=attention(q,k,v,reference)
+                yd=torch.nn.functional.scaled_dot_product_attention(q[None],k[None],v[None])[0]
+                for name,route in routes.items():
+                    state=route.begin(prepared,sketch);actual=route.run(layer,q,sketch,state,step,router)
+                    assert actual.any(-1).all()
+                    y=attention(q,k,v,actual);assert torch.isfinite(y).all()
+                    score,raw=route.score(q,state);mask=route.mask(score,router.beta)
+                    r,ad=route.candidates(score,mask,sketch.origins,router.beta,128,1,n)
+                    st,cv=route.stats(q,sketch,score,mask,r,ad,raw,state)
+                    assert torch.isfinite(st[:,:73]).all()and torch.isfinite(cv).all()
+                    amask,ar,aa=fused_select(score,sketch.origins,router.beta)
+                    ast,acv=route.stats(q,sketch,score,amask,ar,aa,raw,state)
+                    args=(route,q,sketch,score,amask,ar,aa,router.beta,step,ast,acv,router.heads[f'{layer}_{kind}'])
+                    pred,debug_mask=head_scores(*args);rp,ref_debug_mask=head_scores(*args,reference=True)
+                    assert torch.isfinite(pred).all() and torch.equal(debug_mask,actual) and torch.equal(ref_debug_mask,reference)
+                    row=dict(head_prediction_nmse=float((pred-rp).square().sum()/rp.square().sum()),head_prediction_max_abs=float((pred-rp).abs().max()),variant=name,layer=layer,history=hist,kind=kind,queries=q.shape[0]*n,
+                        changed_queries=int((actual!=reference).any(-1).sum()),
+                        attention_delta_sse=float((y.float()-yr.float()).square().sum()),reference_energy=float(yr.float().square().sum()),
+                        attention_sse_to_dense=float((y.float()-yd.float()).square().sum()),
+                        reference_sse_to_dense=float((yr.float()-yd.float()).square().sum()),dense_energy=float(yd.float().square().sum()),
+                        keep=float((actual*sketch.costs).sum()/(q.shape[0]*n*sketch.costs.sum())),
+                        reference_keep=float((reference*sketch.costs).sum()/(q.shape[0]*n*sketch.costs.sum())))
+                    rows.append(row);print(row,flush=True)
+                    atomic_json(root/'optimization6/checks.json',dict(status='running',rows=rows))
+    atomic_json(root/'optimization6/checks.json',dict(status='completed',rows=rows,finite_nonempty=True))
+
+
+if __name__=='__main__':main()

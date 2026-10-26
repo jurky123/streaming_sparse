@@ -1,0 +1,91 @@
+"""Experimental INT8 QK and per-page/channel INT8 PV sparse attention experiment. Independent per-query masks.
+Inspired by SageAttention quantized QK; no third-party kernel is vendored.
+"""
+import torch
+import triton as tr
+import triton.language as tl
+from ..fast_kernels import _union
+from triton.language.extra.cuda.libdevice import nearbyint
+@tr.jit
+def _split(QP,KP,VP,KS,VS,M,IDS,COUNTS,OUT,LSE,
+               Q:tl.constexpr,K:tl.constexpr,B:tl.constexpr,
+               QH:tl.constexpr,QQ:tl.constexpr,KH:tl.constexpr,KK:tl.constexpr,
+               VH:tl.constexpr,VK:tl.constexpr,G:tl.constexpr,SPLITS:tl.constexpr,PVFP16:tl.constexpr):
+    g=tl.program_id(0);h=tl.program_id(1);split=tl.program_id(2)
+    qi=g*G+tl.arange(0,G);d=tl.arange(0,128);t=tl.arange(0,64)
+    q=tl.load(QP+h*QH+qi[:,None]*QQ+d[None,:],qi[:,None]<Q,0)
+    qs=tl.maximum(tl.max(tl.max(tl.abs(q.to(tl.float32)),1),0)/127.,1.e-10)
+    q=nearbyint(q.to(tl.float32)/qs).to(tl.int8)
+    maximum=tl.full((G,),float('-inf'),tl.float32)
+    denom=tl.zeros((G,),tl.float32);acc=tl.zeros((G,128),tl.float32)
+    count=tl.load(COUNTS+h*tr.cdiv(Q,G)+g)
+    part=tl.cdiv(count,SPLITS)
+    for j in range(split*part,tl.minimum((split+1)*part,count)):
+        page=tl.load(IDS+(h*tr.cdiv(Q,G)+g)*B+j)
+        # 4680-token segments have 73 full pages and one 8-token tail.
+        segment=page//74;local=page%74;ki=segment*4680+local*64+t
+        valid=(ki<K)&(local*64+t<4680)
+        k=tl.load(KP+h*KH+ki[None,:]*KK+d[:,None],valid[None,:],0)
+        ks=tl.load(KS+h*B+page)
+        logits=tl.dot(q,k).to(tl.float32)*(qs*ks)*0.12751743082459617
+        visible=tl.load(M+(h*Q+qi)*B+page,qi<Q,False)
+        logits=tl.where(visible[:,None]&valid[None,:],logits,float('-inf'))
+        newmax=tl.maximum(maximum,tl.max(logits,1))
+        safe=tl.where(newmax==float('-inf'),0.,newmax)
+        alpha=tl.exp2(maximum-safe)
+        prob=tl.exp2(logits-safe[:,None])
+        v=tl.load(VP+h*VH+ki[:,None]*VK+d[None,:],valid[:,None],0)
+        vs=tl.load(VS+(h*B+page)*128+d)
+        ps=tl.maximum(tl.max(prob,1)/127.,1.e-10)
+        pi=nearbyint(prob/ps[:,None]).to(tl.int8)
+        av=tl.dot(pi,v).to(tl.float32)*ps[:,None]*vs[None,:]
+        acc=acc*alpha[:,None]+av
+        denom=denom*alpha+tl.sum(pi.to(tl.float32),1)*ps;maximum=newmax
+    normal=tl.where(denom>0,denom,1.)
+    tl.store(OUT+((h*Q+qi[:,None])*SPLITS+split)*128+d[None,:],acc/normal[:,None],qi[:,None]<Q)
+    tl.store(LSE+(h*Q+qi)*SPLITS+split,maximum+tl.log2(normal),qi<Q)
+
+
+@tr.jit
+def _merge(P,L,O,Q:tl.constexpr,S:tl.constexpr):
+    row=tl.program_id(0);s=tl.arange(0,S);d=tl.arange(0,128)
+    lse=tl.load(L+row*S+s);maximum=tl.max(lse,0)
+    weight=tl.exp2(lse-maximum);denom=tl.sum(weight,0)
+    y=tl.load(P+(row*S+s[:,None])*128+d[None,:])
+    out=tl.sum(y*weight[:,None],0)/denom
+    tl.store(O+row*128+d,out)
+
+@tr.jit
+def _quantize(K,O,S,V,OV,VS,VH:tl.constexpr,VN:tl.constexpr,N:tl.constexpr,B:tl.constexpr,HS:tl.constexpr,NS:tl.constexpr):
+    h=tl.program_id(1);page=tl.program_id(0);t=tl.arange(0,64);d=tl.arange(0,128)
+    ki=page//74*4680+page%74*64+t;valid=(page%74*64+t<4680)&(ki<N)
+    k=tl.load(K+h*HS+ki[:,None]*NS+d[None,:],valid[:,None],0.).to(tl.float32)
+    scale=tl.maximum(tl.max(tl.max(tl.abs(k),1),0)/127.,1.e-10)
+    quant=nearbyint(k/scale).to(tl.int8)
+    tl.store(O+(h*N+ki[:,None])*128+d[None,:],quant,valid[:,None])
+    tl.store(S+h*B+page,scale)
+    v=tl.load(V+h*VH+ki[:,None]*VN+d[None,:],valid[:,None],0.).to(tl.float32)
+    vs=tl.maximum(tl.max(tl.abs(v),0)/127.,1.e-10)
+    vi=nearbyint(v/vs[None,:]).to(tl.int8)
+    tl.store(OV+(h*N+ki[:,None])*128+d[None,:],vi,valid[:,None])
+    tl.store(VS+(h*B+page)*128+d,vs)
+
+def attention(q,k,v,mask,group=32,splits=2,warps=4,stages=2,pvfp16=False,precast=False,return_union=False):
+    h,n,d=q.shape;b=mask.shape[-1]
+    assert not precast and not pvfp16
+    ki=torch.empty_like(k,dtype=torch.int8,memory_format=torch.contiguous_format)
+    ks=torch.empty((h,b),device=k.device,dtype=torch.float32)
+    vi=torch.empty_like(v,dtype=torch.int8,memory_format=torch.contiguous_format)
+    vs=torch.empty((h,b,128),device=v.device,dtype=torch.float32)
+    _quantize[(b,h)](k,ki,ks,v,vi,vs,v.stride(0),v.stride(1),k.shape[1],b,k.stride(0),k.stride(1),num_warps=4)
+    ids=torch.empty((h,tr.cdiv(n,group),b),device=q.device,dtype=torch.int32)
+    counts=torch.empty(ids.shape[:2],device=q.device,dtype=torch.int32)
+    _union[(tr.cdiv(n,group),h)](mask,ids,counts,n,b,group,tr.next_power_of_2(b),num_warps=4)
+    out=torch.empty_like(q,memory_format=torch.contiguous_format)
+    partial=torch.empty((h,n,splits,128),device=q.device,dtype=torch.float32)
+    lse=torch.empty((h,n,splits),device=q.device,dtype=torch.float32)
+    _split[(tr.cdiv(n,group),h,splits)](q,ki,vi,ks,vs,mask,ids,counts,partial,lse,n,k.shape[1],b,
+        q.stride(0),q.stride(1),ki.stride(0),ki.stride(1),vi.stride(0),vi.stride(1),group,splits,pvfp16,
+        num_warps=warps,num_stages=stages)
+    _merge[(h*n,)](partial,lse,out,n,splits,num_warps=4)
+    return (out,counts)if return_union else out

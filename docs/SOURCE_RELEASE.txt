@@ -1,0 +1,35 @@
+SlimAV / streaming_sparse — source-only update, 2026-10-26
+
+This update adds research source through Opt32 and aggregate experiment notes.
+No new datasets, replay/QKV tensors, model weights, checkpoints, videos, runtime
+logs, per-sample metrics, active queue state or compiled binaries are included.
+Earlier Git history already contains a v0.8 migration snapshot and its weights;
+this update does not rewrite that history or publish newer local checkpoints.
+
+Main code:
+  migration/unified_router/opt1...opt29: routing/attention optimization history
+  migration/unified_router/opt30: behavior grouping and query pooling training
+  migration/unified_router/opt31: bounded-history video speed/quality evaluation
+  migration/unified_router/opt32: action selection and V-aware paired pilot
+  migration/runtime/: environment/bootstrap and worker execution support
+  profiling/: cost models and profiling tools
+  opt*_status.sh, v10_*_progress.sh: local status entry points
+
+Read docs/EXPERIMENT_SUMMARY.txt for key results, protocols and limitations.
+The scripts reference experiment directories intentionally excluded from Git.
+A fresh clone does NOT contain the captured inputs, foundation/teacher weights,
+checkpoint hashes or trained models required to reproduce the reported results.
+Do not treat missing data as permission to bypass identity/integrity checks.
+Historical REBUILD.md describes v0.8 data/model recovery; later experiment setup
+and collection scripts build on those assets and on prior Opt configurations.
+Machine-specific paths in existing launch/status scripts may need adjustment.
+
+Additional CUDA backend source dependency:
+  bash migration/fetch_sparse_backend.sh
+This downloads the pinned public SpargeAttn source into the ignored vendor path.
+CUDA compilation remains on demand. Upstream license and attribution accompany
+local adaptations. Model/data downloads and GPU training are separate actions.
+
+The main empirical environment is 8 x NVIDIA A100 40GB. This source upload is
+validated for Python/shell syntax and upload content; it does not certify that
+a data-free fresh clone can immediately launch the trained experiments.

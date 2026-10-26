@@ -1,4 +1,21 @@
-# Streaming KV Sparse Routing — v0.8 迁移快照
+# Streaming KV Sparse Routing / SlimAV
+
+## 最新源码与实验（Opt30–Opt32，2026-10-26）
+
+本次更新包含至 Opt32 的路由、稀疏 attention、分组/聚合训练、动作选择与视频评测源码。
+**本次不上传原始实验数据、视频、checkpoint 或运行日志。** 关键汇总数字见
+[实验总结](docs/EXPERIMENT_SUMMARY.txt)，源码范围及外部依赖见
+[源码发布说明](docs/SOURCE_RELEASE.txt)。
+
+主要入口位于 `migration/unified_router/opt30`、`opt31`、`opt32`；本地状态通过
+`opt30_status.sh`、`opt31_status.sh`、`opt32_status.sh` 查看。实验资产不在 Git 中，
+新克隆不能直接恢复本机已经完成的训练。CUDA 后端依赖可通过
+`bash migration/fetch_sparse_backend.sh` 获取。
+
+以下内容描述仓库已有的 **v0.8 历史迁移快照**；其中已追踪的旧权重不是本次新上传的训练权重。
+最新全层稀疏方法、实际速度与质量限制以以上实验总结为准。
+
+## v0.8 历史快照
 
 基于 Self-Forcing 1.3B 的离线路由与骨干局部 LoRA 共适应实验。
 
