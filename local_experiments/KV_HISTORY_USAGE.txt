@@ -1,0 +1,54 @@
+三组等 KV 预算的 30 秒视频实验
+
+默认输出：artifacts/kv_history_30s_20261029_seed0/
+提示词：此前使用的红色帆船/湖面场景，原文保存在输出目录 prompt.txt。
+模型：Self-Forcing 1.3B generator_ema，BF16，30 层、12 heads，保留 KV 上运行原生 SDPA。
+视频：480x832，16fps，480 帧，准确 30 秒。
+生成 41 个 chunk（123 latent 帧，原生解码 489 视频帧），统一裁掉末尾 9 视频帧。
+
+策略（chunk 从 1 开始描述，审计中的 latent ID 从 0 开始）：
+  A_first_chunk：最初的完整 chunk + 最近 4 个完整 chunk。
+  B_latest_five：最近 5 个完整 chunk。
+  C_first_three_starts：最初 3 个 chunk 各自的首个 latent 帧 + 最近 4 个完整 chunk。
+
+统一预算：
+  每 chunk 3 个 latent 帧，每 latent 帧 1560 个空间 token。
+  每层最多 15 个历史 latent 帧，即 23400 对 K/V token；当前 chunk 另有 4680 对。
+  K 和 V 均计数，全 30 层/12 heads 使用相同选择，空间 token 不下采样。
+  固定分配 18 帧容量（15 帧历史 + 3 帧当前工作区）；每次 attention 的实际序列
+  长度是 min(已有历史帧, 15) + 3，不通过填充 token 或重复帧补齐预算。
+  跨层稳态历史 K+V 为 4313088000 字节；含当前工作区的固定 K+V buffer 为
+  5175705600 字节。模型权重、临时激活及文本条件不计入历史 KV 预算。
+
+启动阶段：
+  历史不足 5 个 chunk 时，三组都保留所有可用历史。
+  锚点与最近 4 个 chunk 重叠时先去重，再从其他历史帧中按从近到远补足预算。
+  C 组在已有 6 个 chunk 时存在一个重叠首帧，补入最近的一个未选历史帧。
+  从已有 7 个 chunk 起，C 组稳定为首帧 ID [0,3,6] + 最近 12 帧。
+
+公平性与实现：
+  共享提示词、embedding、初始噪声及四步采样之间的三次补噪。
+  shared_inputs.pt 保存全部共享输入；manifest.json 保存模型与输入 SHA256。
+  使用原模型 forward，原绝对时间 RoPE 保持不变，保留帧按原时间顺序排列。
+  四次 denoise 后执行 timestep=0 的 clean-context 前向；随后才压缩缓存。
+  不重新计算历史 KV，不恢复已被淘汰的 KV，不把 noisy KV 当作 clean history。
+  逐次检查实际 attention 的 K/V 长度，记录所有层、所有 timestep 的实际预算。
+  三组前 6 个生成 chunk（18 latent / 69 视频帧）应完全相同，之后策略开始分化。
+  “首帧”指 KV 中的首个 latent 帧，不是解码后的一张 RGB 图片。
+
+输出：
+  A_first_chunk.mp4、B_latest_five.mp4、C_first_three_starts.mp4：三组独立视频。
+  comparison.mp4：左 A、中 B、右 C 的同步并排对比。
+  *.latents.pt：完整 123 帧生成 latent；*.kv_trace.json：每 chunk 的 KV 位置与计数。
+  kv_budget_audit.json：逐次等预算与共同前缀检查。
+  preflight.json：8-chunk 小网络与独立完整历史档案逐元素一致的预检。
+  manifest.json、result.json、status.json：配置、最终结果与进度。
+
+运行（仓库根目录，指定有足够空闲显存的 GPU；每次使用新输出目录）：
+  CUDA_VISIBLE_DEVICES=1 bash local_setup/run.sh -u -m local_experiments.test_kv_history \
+    --output local_setup/results/kv_history_preflight.json
+  CUDA_VISIBLE_DEVICES=1 bash local_setup/run.sh -u -m local_experiments.run_kv_history \
+    --output artifacts/kv_history_new_run --prompt-file local_setup/prompt.txt --seed 0
+
+本次是单个提示词、单个 seed 的受控对照，可用于观察这组样本的长期一致性。
+耗时来自共享服务器的一次运行，未按独占设备基准测试协议测量。

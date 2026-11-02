@@ -1,0 +1,187 @@
+diff --git a/DASA/frameworks/self_forcing/wan/modules/causal_model.py b/DASA/frameworks/self_forcing/wan/modules/causal_model.py
+index d2aafbe..b7b5cc4 100644
+--- a/DASA/frameworks/self_forcing/wan/modules/causal_model.py
++++ b/DASA/frameworks/self_forcing/wan/modules/causal_model.py
+@@ -569,108 +569,104 @@ class CausalWanSelfAttention(nn.Module):
+ 
+             current_end = current_start + roped_query.shape[1]
+             sink_tokens = self.sink_size * frame_seqlen
+-            # Evict old tokens when the local attention window is full.
++            # The compressed local pointer counts retained tokens, not global
++            # frame positions. Reserve a full chunk even when Q is sparse:
++            # inactive regions are filled from last_chunk_clean_k/v below.
++            # Eviction must not skip the normal clean-KV compression branch.
+             kv_cache_size = kv_cache["k"].shape[1]
+-            num_new_tokens = roped_query.shape[1] # Sparse queries may change sequence length.
+-            if self.local_attn_size != -1 and (current_end > kv_cache["global_end_index"].item()) and (
+-                    num_new_tokens + kv_cache["local_end_index"].item() > kv_cache_size):
+-                # Clone the source slice to avoid overlapping memory error
+-                num_evicted_tokens = num_new_tokens + kv_cache["local_end_index"].item() - kv_cache_size
++            chunk_seqlen = math.prod(grid_sizes[0][:]).item()
++            num_evicted_tokens = max(
++                0, kv_cache["local_end_index"].item() + chunk_seqlen - kv_cache_size)
++            if self.local_attn_size != -1 and num_evicted_tokens:
+                 num_rolled_tokens = kv_cache["local_end_index"].item() - num_evicted_tokens - sink_tokens
++                assert num_rolled_tokens >= 0
+                 kv_cache["k"][:, sink_tokens:sink_tokens + num_rolled_tokens] = \
+                     kv_cache["k"][:, sink_tokens + num_evicted_tokens:sink_tokens + num_evicted_tokens + num_rolled_tokens].clone()
+                 kv_cache["v"][:, sink_tokens:sink_tokens + num_rolled_tokens] = \
+                     kv_cache["v"][:, sink_tokens + num_evicted_tokens:sink_tokens + num_evicted_tokens + num_rolled_tokens].clone()
+-                # Insert the new keys/values at the end
+-                local_end_index = kv_cache["local_end_index"].item() + current_end - \
+-                    kv_cache["global_end_index"].item() - num_evicted_tokens
+-                local_start_index = local_end_index - num_new_tokens
+-                kv_cache["k"][:, local_start_index:local_end_index] = roped_key
+-                kv_cache["v"][:, local_start_index:local_end_index] = v
+-            else:
++                kv_cache["local_end_index"].sub_(num_evicted_tokens)
+ 
+-                if kvcache_reduction: # timestep4
+-                    bsz, seq_len, num_head, head_dim = roped_key.shape
+-                    num_frame = seq_len // frame_seqlen
++            if kvcache_reduction: # timestep4
++                bsz, seq_len, num_head, head_dim = roped_key.shape
++                num_frame = seq_len // frame_seqlen
+ 
+-                    latents_view = x.reshape(bsz, num_frame, frame_seqlen, -1)
+-                    k_view = roped_key.reshape(bsz, num_frame, frame_seqlen, num_head, head_dim)
+-                    v_view = v.reshape(bsz, num_frame, frame_seqlen, num_head, head_dim)
++                latents_view = x.reshape(bsz, num_frame, frame_seqlen, -1)
++                k_view = roped_key.reshape(bsz, num_frame, frame_seqlen, num_head, head_dim)
++                v_view = v.reshape(bsz, num_frame, frame_seqlen, num_head, head_dim)
+ 
+-                    self.last_chunk_clean_k = k_view.flatten(1, 2)
+-                    self.last_chunk_clean_v = v_view.flatten(1, 2)
++                self.last_chunk_clean_k = k_view.flatten(1, 2)
++                self.last_chunk_clean_v = v_view.flatten(1, 2)
+ 
+-                    if self.last_update_step is None:
+-                        self.last_update_step = torch.zeros((bsz, frame_seqlen), dtype=torch.long, device=latents_view.device)
++                if self.last_update_step is None:
++                    self.last_update_step = torch.zeros((bsz, frame_seqlen), dtype=torch.long, device=latents_view.device)
+ 
+-                    if self.last_reference_frame is not None:
+-                        latents_combined = torch.cat([self.last_reference_frame, latents_view], dim=1)
++                if self.last_reference_frame is not None:
++                    latents_combined = torch.cat([self.last_reference_frame, latents_view], dim=1)
+ 
+-                        num_last_frame = self.last_reference_frame.shape[1]
+-                        kv_cache["local_end_index"] -= frame_seqlen * num_last_frame
++                    num_last_frame = self.last_reference_frame.shape[1]
++                    kv_cache["local_end_index"] -= frame_seqlen * num_last_frame
+ 
+-                        local_start = kv_cache["local_end_index"].item()
+-                        local_end = local_start + frame_seqlen * num_last_frame
++                    local_start = kv_cache["local_end_index"].item()
++                    local_end = local_start + frame_seqlen * num_last_frame
+ 
+-                        last_k = kv_cache["k"][:, local_start:local_end].reshape(bsz, num_last_frame, frame_seqlen, num_head, head_dim)
+-                        last_v = kv_cache["v"][:, local_start:local_end].reshape(bsz, num_last_frame, frame_seqlen, num_head, head_dim)
++                    last_k = kv_cache["k"][:, local_start:local_end].reshape(bsz, num_last_frame, frame_seqlen, num_head, head_dim)
++                    last_v = kv_cache["v"][:, local_start:local_end].reshape(bsz, num_last_frame, frame_seqlen, num_head, head_dim)
+ 
+-                        # Combine historical and current K/V.
+-                        k_combined = torch.cat([last_k, k_view], dim=1)
+-                        v_combined = torch.cat([last_v, v_view], dim=1)
+-                    else:
+-                        latents_combined = latents_view
+-                        k_combined = k_view
+-                        v_combined = v_view
+-                        num_last_frame = 1 # Default bounds for cache slicing.
+-
+-                    similarity_ratio = layer_similarity_threshold(
+-                        self.max_similarity_ratio, self.min_similarity_ratio,
+-                        self.layer_index, self.num_layers,
+-                    )
+-                    final_mask, self.last_update_step, self.current_frame_num = compute_retention_mask(
+-                        latents_combined, tail_frames=num_last_frame, threshold=similarity_ratio,
+-                        last_update_step=self.last_update_step, current_frame_num=self.current_frame_num,
+-                        max_token_age=self.max_token_age, training=self.training,
+-                    )
+-
+-                    k_flat = k_combined.flatten(0, 2) # [bsz*total_frames*seq, head, dim]
+-                    v_flat = v_combined.flatten(0, 2)
+-                    mask_flat = final_mask.flatten()  # [bsz*total_frames*seq]
++                    # Combine historical and current K/V.
++                    k_combined = torch.cat([last_k, k_view], dim=1)
++                    v_combined = torch.cat([last_v, v_view], dim=1)
++                else:
++                    latents_combined = latents_view
++                    k_combined = k_view
++                    v_combined = v_view
++                    num_last_frame = 1 # Default bounds for cache slicing.
++
++                similarity_ratio = layer_similarity_threshold(
++                    self.max_similarity_ratio, self.min_similarity_ratio,
++                    self.layer_index, self.num_layers,
++                )
++                final_mask, self.last_update_step, self.current_frame_num = compute_retention_mask(
++                    latents_combined, tail_frames=num_last_frame, threshold=similarity_ratio,
++                    last_update_step=self.last_update_step, current_frame_num=self.current_frame_num,
++                    max_token_age=self.max_token_age, training=self.training,
++                )
+ 
+-                    k_to_save = k_flat[mask_flat]
+-                    v_to_save = v_flat[mask_flat]
++                k_flat = k_combined.flatten(0, 2) # [bsz*total_frames*seq, head, dim]
++                v_flat = v_combined.flatten(0, 2)
++                mask_flat = final_mask.flatten()  # [bsz*total_frames*seq]
+ 
+-                    total_new_tokens = k_to_save.shape[0]
++                k_to_save = k_flat[mask_flat]
++                v_to_save = v_flat[mask_flat]
+ 
+-                    # Write retained tokens into the cache.
+-                    local_start_index = kv_cache["local_end_index"].item()
+-                    local_end_index = local_start_index + total_new_tokens
++                total_new_tokens = k_to_save.shape[0]
+ 
+-                    kv_cache["k"][:, local_start_index:local_end_index] = k_to_save.view(bsz, -1, num_head, head_dim)
+-                    kv_cache["v"][:, local_start_index:local_end_index] = v_to_save.view(bsz, -1, num_head, head_dim)
++                # Write retained tokens into the cache.
++                local_start_index = kv_cache["local_end_index"].item()
++                local_end_index = local_start_index + total_new_tokens
+ 
+-                    kv_cache["local_end_index"].fill_(local_end_index)
+-                    kv_cache["global_end_index"].fill_(current_end)
++                kv_cache["k"][:, local_start_index:local_end_index] = k_to_save.view(bsz, -1, num_head, head_dim)
++                kv_cache["v"][:, local_start_index:local_end_index] = v_to_save.view(bsz, -1, num_head, head_dim)
+ 
+-                    self.last_reference_frame = latents_view[:, -num_last_frame:, ...].clone() # Clone before later cache writes overwrite the source.
+-                else:
+-                    chunk_seqlen = math.prod(grid_sizes[0][:]).item()
++                kv_cache["local_end_index"].fill_(local_end_index)
++                kv_cache["global_end_index"].fill_(current_end)
+ 
+-                    local_start_index = kv_cache["local_end_index"].item()
+-                    local_end_index = local_start_index + chunk_seqlen
++                self.last_reference_frame = latents_view[:, -num_last_frame:, ...].clone() # Clone before later cache writes overwrite the source.
++            else:
++                chunk_seqlen = math.prod(grid_sizes[0][:]).item()
+ 
+-                    temp_k = kv_cache["k"]
+-                    temp_v = kv_cache["v"]
+-                    if selected_indices is not None and current_denoising_step > 0: # timestep1 and timestep2
+-                        temp_k[:, local_start_index:local_end_index] = self.last_chunk_clean_k
+-                        temp_v[:, local_start_index:local_end_index] = self.last_chunk_clean_v
+-                        temp_k[:, local_start_index:local_end_index][:, selected_indices] = roped_key
+-                        temp_v[:, local_start_index:local_end_index][:, selected_indices] = v
+-                    else: # timestep0 and timestep3
+-                        kv_cache["k"][:, local_start_index:local_end_index] = roped_key
+-                        kv_cache["v"][:, local_start_index:local_end_index] = v
++                local_start_index = kv_cache["local_end_index"].item()
++                local_end_index = local_start_index + chunk_seqlen
+ 
++                temp_k = kv_cache["k"]
++                temp_v = kv_cache["v"]
++                if selected_indices is not None and current_denoising_step > 0: # timestep1 and timestep2
++                    temp_k[:, local_start_index:local_end_index] = self.last_chunk_clean_k
++                    temp_v[:, local_start_index:local_end_index] = self.last_chunk_clean_v
++                    temp_k[:, local_start_index:local_end_index][:, selected_indices] = roped_key
++                    temp_v[:, local_start_index:local_end_index][:, selected_indices] = v
++                else: # timestep0 and timestep3
++                    kv_cache["k"][:, local_start_index:local_end_index] = roped_key
++                    kv_cache["v"][:, local_start_index:local_end_index] = v
+             x = attention(
+                 roped_query,
+                 kv_cache["k"][:, max(0, local_end_index - self.max_attention_size):local_end_index],

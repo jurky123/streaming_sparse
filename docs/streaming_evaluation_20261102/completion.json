@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "generation_units": 15,
+  "timed_runs": 30,
+  "early_quality_units": 12,
+  "independent_descriptor_units": 15,
+  "comparison_videos": 3,
+  "all_monitors_clean": true,
+  "all_videos_checked": true,
+  "report": "artifacts/stream_methods_20261102/report.zh.md",
+  "code": {
+    "stream_eval_common.py": "de6b00e5985191a26895588f5625857b3327e945ac1cef761545077615e813c9",
+    "stream_eval_official.py": "509d090594695a2c5e45a960ca65a73508bcff4969f60204e0cc106d65abd1fe",
+    "stream_eval_ours.py": "3de8349c5e34a92a7e62652424de0117083ec216e4c603deffa5b6a5e5045765",
+    "gap_stream_eval_suite.py": "be9a95f492282cd6696c82f511a4424019d1760b7e7e8a16ac875b8230ce6bdb",
+    "gap_stream_eval_quality.py": "8ba917f9265e2453df130adf9faaa1ee0c4a06a49de358801340250e631d847b",
+    "stream_eval_report.py": "b8d9ca2720a02441c152831f34c4f97af346ba54e64f708daa15e3562bfa80e9",
+    "gap_gain_vector64_runtime.py": "a1791dc5be0513c5742d926e66efd6ab4d84df5ad3f4381f133f3694cebebb2a",
+    "gap_gain_project_vector.py": "a87cc4c7fa066ff777328f055026d88d48dd3749c7889a6535992f07a14404ff",
+    "gap_gain_project_ops.py": "8c5e1434e509be0977cdc624d3f93711eb8aaf076a02551432ac47d37c08cd53"
+  }
+}

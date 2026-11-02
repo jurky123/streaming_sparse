@@ -1,6 +1,18 @@
 # Streaming KV Sparse Routing / SlimAV
 
-## 最新源码与实验（Opt30–Opt32，2026-10-26）
+## 当前实现与流式方法评测（2026-11-02）
+
+已加入 `local_experiments/` 的稀疏路由、KV分组/学习聚合、未选中页补偿、Triton优化及流式评测代码。
+当前通过端到端验收的版本为 `GapGainVector64Runtime`；历史重排候选未获得端到端收益，未接入。
+
+- [三场景流式方法比较（Markdown）](docs/streaming_evaluation_20261102/report.zh.md)：同骨干、512×768、30秒、最多5个历史chunk；比较Dense、当前实现、LightForcing、Forcing-KV和DASA。
+- [本次源码发布与复现说明](docs/SOURCE_RELEASE_20261102.md)：依赖、检查点需求和测量限制。
+- [外部基线固定版本与兼容补丁](external_baselines/README.md)。
+
+只上传代码、文本报告和精简结果；模型权重、视频、原始输入和GPU trace未上传。
+三场景平均当前实现30.657秒、Dense38.897秒，逐场景几何平均加速1.269×；质量存在取舍，详见报告。
+
+## 历史源码与实验（Opt30–Opt32，2026-10-26）
 
 本次更新包含至 Opt32 的路由、稀疏 attention、分组/聚合训练、动作选择与视频评测源码。
 **本次不上传原始实验数据、视频、checkpoint 或运行日志。** 关键汇总数字见

@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "same_backbone_and_inputs_per_case": true,
+  "rows": [
+    {
+      "case": "sailboat",
+      "method": "dense",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "sailboat",
+      "method": "ours",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "sailboat",
+      "method": "lightforcing",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.0023278396110981703
+    },
+    {
+      "case": "sailboat",
+      "method": "forcingkv",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.0010389909148216248
+    },
+    {
+      "case": "sailboat",
+      "method": "dasa",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "skateboard",
+      "method": "dense",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "skateboard",
+      "method": "ours",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "skateboard",
+      "method": "lightforcing",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.024800937622785568
+    },
+    {
+      "case": "skateboard",
+      "method": "forcingkv",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.013057749718427658
+    },
+    {
+      "case": "skateboard",
+      "method": "dasa",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "dog",
+      "method": "dense",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "dog",
+      "method": "ours",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    },
+    {
+      "case": "dog",
+      "method": "lightforcing",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.03955714777112007
+    },
+    {
+      "case": "dog",
+      "method": "forcingkv",
+      "first_chunk_exact": false,
+      "first_chunk_latent_nmse": 0.012671967968344688
+    },
+    {
+      "case": "dog",
+      "method": "dasa",
+      "first_chunk_exact": true,
+      "first_chunk_latent_nmse": 0.0
+    }
+  ]
+}

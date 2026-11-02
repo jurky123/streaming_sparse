@@ -1,0 +1,14 @@
+{
+  "LightForcing": {
+    "url": "https://github.com/chengtao-lv/LightForcing.git",
+    "commit": "d1e633337fff7e8a0ebf9f643dc37cd481fb299d"
+  },
+  "Forcing-KV": {
+    "url": "https://github.com/zju-jiyicheng/Forcing-KV.git",
+    "commit": "50ac1f454348e7f0a2e54bde71e1652b20c09fe6"
+  },
+  "DASA": {
+    "url": "https://github.com/Yuanyu0/DASA.git",
+    "commit": "4c9210d9a3eb864ac84859d0d43673a72d98ebd0"
+  }
+}

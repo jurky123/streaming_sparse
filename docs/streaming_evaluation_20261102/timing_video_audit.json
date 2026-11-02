@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "timing_monitors": 30,
+  "videos": 15,
+  "video_shape": [
+    512,
+    768
+  ],
+  "frames": 480,
+  "fps": 16,
+  "notes": "All completed timing monitors clean; per-worker replay equality asserted before storing both repetitions."
+}

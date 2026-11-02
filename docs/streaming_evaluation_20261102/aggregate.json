@@ -1,0 +1,48 @@
+[
+  {
+    "method": "dense",
+    "total_seconds": 38.897480073695384,
+    "geomean_speedup": 1.0,
+    "quality_mean": {}
+  },
+  {
+    "method": "ours",
+    "total_seconds": 30.65714956757923,
+    "geomean_speedup": 1.2688052729126211,
+    "quality_mean": {
+      "lpips": 0.30755032264472293,
+      "ssim": 0.49685486828287445,
+      "psnr": 14.408314707448195
+    }
+  },
+  {
+    "method": "lightforcing",
+    "total_seconds": 31.78594593765835,
+    "geomean_speedup": 1.2237496351389654,
+    "quality_mean": {
+      "lpips": 0.2639256267187496,
+      "ssim": 0.4877638398359219,
+      "psnr": 15.086249567129345
+    }
+  },
+  {
+    "method": "forcingkv",
+    "total_seconds": 28.769282290712,
+    "geomean_speedup": 1.3520689606030711,
+    "quality_mean": {
+      "lpips": 0.3220830696479728,
+      "ssim": 0.45129466280341146,
+      "psnr": 13.787153400316182
+    }
+  },
+  {
+    "method": "dasa",
+    "total_seconds": 34.33041513028244,
+    "geomean_speedup": 1.1339322361181483,
+    "quality_mean": {
+      "lpips": 0.25207937283751863,
+      "ssim": 0.5255826887985071,
+      "psnr": 15.294848727040323
+    }
+  }
+]

@@ -64,3 +64,11 @@ migration/validation/
 *.trace.json.gz
 .env
 .env.*
+
+# Local baseline clones, downloaded papers and setup run outputs.
+/external_baselines/LightForcing/
+/external_baselines/Forcing-KV/
+/external_baselines/DASA/
+/external_baselines/DeepForcing/
+/local_experiments/baseline_survey/sources/
+/local_setup/results/

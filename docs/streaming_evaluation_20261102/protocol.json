@@ -1,0 +1,39 @@
+{
+  "methods": [
+    "dense",
+    "ours",
+    "lightforcing",
+    "forcingkv",
+    "dasa"
+  ],
+  "cases": [
+    "sailboat",
+    "skateboard",
+    "dog"
+  ],
+  "height": 512,
+  "width": 768,
+  "frames": 480,
+  "fps": 16,
+  "chunks": 41,
+  "latent_frames_per_chunk": 3,
+  "history_chunk_cap": 5,
+  "checkpoint_sha256": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+  "own_model_sha256": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+  "quality_window": [
+    21,
+    101
+  ],
+  "repeats": 2,
+  "full_warmup": true,
+  "physical_gpu": "7",
+  "exceptions": [
+    "Forcing-KV native smaller per-head context retained and reported, not padded to 5 chunks.",
+    "DASA 15 main-cache frames plus 3 hidden clean KV frames within common self-KV cap; auxiliary feature reuse reported separately.",
+    "Our summary metadata allows 16MiB above original raw KV allocation; raw history338 pages vs dense360 pages.",
+    "LightForcing same-backbone weight transfer excludes its paper-specific fine-tuning; native relative position policy remains.",
+    "Dense uses common PyTorch SDPA; official LightForcing sparse Triton path.",
+    "Official bounded-buffer compatibility patches retained and archived; no user rebase modification."
+  ],
+  "scope": "Small three-scene same-weight controlled comparison; not a published-paper quality reproduction or comprehensive VBench evaluation."
+}
