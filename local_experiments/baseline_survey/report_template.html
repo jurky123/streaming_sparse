@@ -1,0 +1,68 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自回归视频稀疏注意力：调研与官方基线对比</title>
+<style>body{font-family:system-ui,"Noto Sans CJK SC",sans-serif;line-height:1.7;color:#19202b;max-width:1200px;margin:32px auto;padding:0 24px;background:#fafbfc}h1{font-size:30px}h2{border-bottom:1px solid #cdd3da;padding-top:24px}h3{margin-top:26px}a{color:#075ea0}table{border-collapse:collapse;width:100%;font-size:14px;margin:20px 0;background:white}th,td{border:1px solid #cdd3da;text-align:left;padding:9px;vertical-align:top}th{background:#edf1f5}img,video{width:100%;height:auto}video{max-width:1000px;background:#111}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#edf1f5;padding:16px;font-size:13px}.note{border-left:4px solid #176b97;background:#eaf3f8;padding:12px 18px}.scroll{overflow-x:auto}.small{font-size:13px;color:#46515d}code{overflow-wrap:anywhere}</style>
+<h1>自回归视频稀疏注意力：调研与官方基线对比</h1>
+<p>资料核查日期：2026-10-29。实验目录：<code>artifacts/ar_official_baselines_20261029</code>。</p>
+<p class="note">本次选择 Light Forcing、DASA、Forcing-KV 三种官方完整推理流程，以 Self-Forcing dense 滑动窗口为参考。使用同一个 Self-Forcing EMA checkpoint 和同一输入噪声，设置共同 self-KV 存储上限。没有额外的 rebase 对比组；方法本身的位置处理照原实现执行。这里的“官方”指模型和生成算法来源，后端与配置差异见下文。</p>
+<p><a href="#results">实测结果</a> · <a href="#videos">四宫格视频</a> · <a href="#survey">方法调研</a> · <a href="#protocol">实验口径</a> · <a href="#reproduce">复现</a></p>
+<p>补充核查：<a href="streaming_sparse_comparability.zh.md">本仓库 SlimAV 的已有结果及与本轮的可比性</a>。旧结果作为历史参照，未混入下面的同协议实测表。</p>
+<h2 id="results">实测结果</h2>
+{{FINDINGS}}
+<p>下面是三个场景的均值，完整逐场景结果见 <a href="analysis/metrics.csv">CSV</a> 和 <a href="analysis/summary.json">指标定义与原始汇总</a>。只有三个 prompt、每个一个 seed，不作统计显著性或综合质量排名。各指标受内容、光照和相机运动影响。</p>
+<div class="scroll">{{METRIC_TABLE}}</div>
+<p class="small">亮度变化和短暗降单位为百分点（pp）；光流单位为缩小至 192×128 后的像素/秒。DINO 是全图特征余弦相似度，非正式 VBench 分数。更高相似度可能来自静止，必须与视频和运动量一起看。耗时来自共享 H200，不是独占 GPU 加速比。</p>
+<img src="analysis/comparison.png" alt="六个面板逐场景显示 KV 存储、共享 GPU 耗时、亮度变化、短暗降、光流和 DINO；每个符号是一个场景，具体数据可由 CSV 读取。">
+<p><a href="analysis/comparison.svg">可编辑矢量图</a> · <a href="analysis/time_series.png">逐时刻亮度与光流曲线</a> · <a href="analysis/provenance.json">视频和评估权重哈希</a> · <a href="audit.json">实验完整性审计</a></p>
+<h2 id="videos">逐场景视频</h2>
+<p>四宫格顺序固定：左上 dense，右上 Light Forcing，左下 DASA，右下 Forcing-KV。原视频为 768×512、16 fps、480 帧；四宫格仅为显示缩小，不改变原视频。联系图取 0、5、10、15、20、25、29.94 秒，不作色彩增强。</p>
+{{VIDEO_GALLERY}}
+<h2 id="survey">方法调研与选择依据</h2>
+<p>需要区分三个优化对象：删掉历史 token 会降低 KV 存储；保留完整 KV 但少算 QK 块主要降低注意力计算；复用静态区域还会减少后续层的 query/MLP 计算。这三类方法不能仅用一个“稀疏率”直接比较。下表列出本次核查到的代表性路线，并非穷尽所有论文。</p>
+<div class="scroll"><table><thead><tr><th>方法及一手来源</th><th>核心机制</th><th>同模型可比性与本次状态</th></tr></thead><tbody>
+<tr><td><a href="https://arxiv.org/abs/2602.04789">Light Forcing</a><br><a href="https://github.com/chengtao-lv/LightForcing">官方代码</a></td><td>Chunk-Aware Growth 随生成进度分配稀疏率；Hierarchical Sparse Attention 先挑帧，再挑块。减少计算块，不直接压缩 KV 数组。</td><td><strong>已运行。</strong>同一 Self-Forcing 权重，完整官方长视频流程。论文包含微调；本次同权重移植不能代替其微调模型质量。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2605.09681">Forcing-KV</a><br><a href="https://github.com/zju-jiyicheng/Forcing-KV">官方代码</a></td><td>离线 attention head 分类；空间头与时间头使用不同缓存；时间信息通过相似度进行动态选择。以 head 分组压缩缓存。</td><td><strong>已运行。</strong>官方 Self-Forcing head 分类文件和完整 grouped-KV 流程。保留官方较小的 1/1/1 context 配置，实际 KV 少于共同上限，单独列出。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2610.26262">DASA</a><br><a href="https://github.com/Yuanyu0/DASA">官方代码</a></td><td>按层的相似度阈值和 token age 做历史 KV 筛选；保留最近参考帧；局部匹配后让静态区域复用特征、提前退出。</td><td><strong>已运行。</strong>启用两个免训练推理组件，非 DASA-KV 单独消融。没有加载可选 dynamics-guided distillation 微调权重，以满足同模型要求。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2512.05081">Deep Forcing</a><br><a href="https://github.com/cvlab-kaist/DeepForcing">官方代码</a></td><td>Deep Sink 使用较大的前缀缓存（约一半），结合 temporal RoPE adjustment；Participative Compression 按近期帧关注度筛选历史 token。</td><td>代码已下载并审阅，未计入本次实测。其长视频锚点和时间位置处理与此前讨论高度相关。源码存在 1560 token/帧、21 帧预算等固定假设，需要独立适配和核验。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2509.22622">LongLive 1.0</a><br><a href="https://github.com/NVlabs/LongLive/tree/main/LongLive1.0">官方代码</a></td><td>Streaming sink + local window，面向长视频和交互式 prompt；官方在 2026-01-11 更新了 KV-cache relative RoPE。</td><td>重要的流式基线，但使用自己的训练权重/LoRA。为保持相同 checkpoint，本次没有把原模型结果混入同权重表。dense 参考也不冒充 LongLive。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2604.04921">TriAttention</a><br><a href="https://github.com/WeianMao/triattention/tree/main/longlive">官方 AR 视频集成</a></td><td>基于 pre-RoPE Q/K 中心及范数的三角级数评分，压缩 LongLive 窗口内 KV；提供校准统计文件。</td><td>有明确视频推理实现。默认针对 LongLive 权重和校准状态，移至当前 Self-Forcing 需另行验证/校准；本次仅调研。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2602.12271">MonarchRT</a><br><a href="https://github.com/Infini-AI-Lab/MonarchRT">官方代码</a></td><td>用 Monarch 结构参数化稀疏注意力，配套 Triton kernel 和训练流程。</td><td>官方也提供 training-free Self-Forcing 配置，不能说“必须训练才可用”。论文主要质量/吞吐结果与训练和 kernel 配置有关；本轮优先覆盖前三条互补路线，未运行此项。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2602.01801">FAST-AR</a><br><a href="https://dvirsamuel.github.io/fast-auto-regressive-video/">项目页</a></td><td>TempCache 利用跨帧对应关系压缩 KV；AnnSA/AnnCA 用 ANN 选择自注意力 key 和文本 token。</td><td>论文可访问；本次检索未定位到可执行官方仓库，不将论文自报加速比写成当地实测。</td></tr>
+<tr><td><a href="https://github.com/brucexu09/SparseForcing">Sparse Forcing</a></td><td>面向 AR 视频的原生可训练稀疏注意力与 persistent block sparse kernel。</td><td>核查时仓库为项目展示页，README 写明 checkpoints/code coming soon；没有可部署的推理代码。</td></tr>
+<tr><td><a href="https://github.com/sjlgaga/HeadCast">HeadCast</a></td><td>把 attention heads 分为 sink / dummy / global / spatial 等组，分配不同的上下文预算；提供 Self-Forcing 和 LongLive 推理入口。</td><td>相关且可运行的候选。核查 README 的论文链接与作者列表尚为 TODO，当前仅按仓库说明介绍；本轮由 Forcing-KV 代表 head 分组缓存路线。</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2411.16375">Ca2-VDM / CausalCache</a><br><a href="https://github.com/Dawn-LX/CausalCache-VDM">官方代码</a></td><td>因果 temporal attention、跨去噪步 KV 共享、缓存队列与 cyclic temporal position embeddings。</td><td>较早的 AR 缓存设计参照，基于 Open-Sora 体系。不是当前 Wan/Self-Forcing 同权重的直接替换，故不放入实测表。</td></tr>
+<tr><td><a href="https://github.com/svg-project/Sparse-VideoGen">SVG / SVG2 路线</a>、<a href="https://github.com/mit-han-lab/radial-attention">Radial Attention</a>、STA、<a href="https://github.com/thu-ml/SpargeAttn">SpargeAttention</a></td><td>视频注意力的时空模式、局部窗口或内容感知块筛选。</td><td>是重要的通用稀疏注意力参照，但原始任务主要包含双向视频扩散；接入 AR 缓存需要检查因果掩码、跨 chunk 上下文及长期误差，不能默认与原生 AR 方法等价。</td></tr>
+</tbody></table></div>
+<p>本轮三项分别覆盖“按块少算”“按 head 压 KV”“按动态区域少算并压 KV”，因此比只选择几个相似的滑动窗口更能定位性能来源。Deep Forcing 与 LongLive 的位置策略是此前锚点设想的重要相关工作；这里仅说明关系，不加入新的 rebase 实验。</p>
+<h2 id="protocol">实验口径与原始实现差异</h2>
+<table><tr><th>项目</th><th>固定条件</th></tr>
+<tr><td>模型</td><td>Wan2.1-T2V-1.3B 结构；<code>checkpoints/self_forcing_dmd.pt</code> 的 <code>generator_ema</code>，所有方法 strict load。同权重 SHA256：<code>a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3</code>。</td></tr>
+<tr><td>输入和生成</td><td>三个场景 sailboat / skateboard / dog，seed=0；保存并注入相同初始噪声、每步 transition noise 和文本 embedding。四步去噪，[1000,750,500,250] 经官方 scheduler warp；context_noise=0。41 chunks × 3 latent frames=123，VAE 得到 489 RGB 帧，统一保留前 480 帧。</td></tr>
+<tr><td>分辨率</td><td>512×768，每 latent 帧 1536 个 token，兼容 Light Forcing 的 64-token block 与 Forcing-KV 的 6 个 patch 分组。此前 480×832 对应 1560 tokens，不能直接满足该 Light Forcing 核的分块要求。所有组一起改分辨率。</td></tr>
+<tr><td>共同 KV 上限</td><td>15 个历史 latent 帧（5 chunks）加 3 帧当前工作区，共 18 帧等价 self-KV 持久存储：<strong>5,096,079,360 bytes = 4.746 GiB</strong>。计算为 18×1536×12 heads×128 dim×K/V 两份×BF16 2 bytes×30 layers。</td></tr>
+<tr><td>预算解释</td><td>dense/LF 主 buffer 为 18 帧；DASA 主 buffer 为 15 帧，另外为官方 last_chunk_clean_k/v 留出最多 3 帧。Forcing-KV 保留原始较小配置，连未释放的 warmup 副本一起计数。它满足同一上限，但实际保留量不等；本次没有把其缓存扩大或人为填满。</td></tr>
+<tr><td>存储统计范围</td><td>逐次 generator forward 后按底层 storage 指针去重，计入当前工作区及额外长期 self-KV。上限不覆盖算子内部的临时 concat/clone、attention scratch、cross-attention 文本 KV；辅助特征状态和生成阶段 peak allocated CUDA memory（不含 VAE decode） 另外报告。因此这是持久 self-KV 预算，不是全程总显存硬上限。</td></tr>
+<tr><td>环境与后端</td><td>Python 3.10 / PyTorch 2.6.0+cu124 / Triton 3.2 / H200。环境没有 FA2/FA4，dense attention 统一替换为同数学语义的 PyTorch SDPA；LF 强制选用其官方 Triton 分支，防止缺 FA4 时悄悄 dense fallback。没有启用 FP8、LightVAE 或 TeaCache。</td></tr>
+<tr><td>原始算法</td><td>每个方法独立子进程，直接导入上游完整 causal model 与完整 inference pipeline。保留 head 分类、region reuse、cache update、native RoPE。除路径、token 尺寸、预算、兼容 backend 和固定输入外，DASA 需要下面说明的受限缓存管理修复。LF 的一个 Triton <code>tl.sum(...,dtype=...)</code> 改成先 cast FP32 再 sum，补丁单独归档。</td></tr>
+<tr><td>方法参数</td><td>LF：sparsity=.85、base=.95、keep_frames=3、keep_sink=1、keep_near=1、sink_size=1、long_video_gen=true；DASA：similarity=.95、search=3、dilation=3、KV shallow=.85/deep=.3、age=4；Forcing-KV：spatial/temporal/dynamic context=1/1/1、ar_start=1、num_frame_patch=6、sim_retention_ratio=.33，使用官方 Self-Forcing head 文件。</td></tr>
+<tr><td>DASA 实现限制</td><td>未修改官方代码在本次受限缓存条件下于第 11 个 chunk 越界：滚动分支混用全局帧位置和压缩后的局部 token 指针，且跳过正常 clean-KV 更新。补丁按完整 chunk 预留空间、FIFO 淘汰最旧保留 token、同步局部指针，然后继续原来的 KV 筛选/特征复用流程。保留阈值、token age、位置策略不变。这是带显式缓存管理修复的官方流程，不能称逐行零修改复现。失败日志保存在 sailboat/dasa.log.upstream_overflow；无溢出前缀与未修改版本核对见审计文件。</td></tr><tr><td>Forcing-KV 限制</td><td>启用 dynamic temporal 时，当前代码把 <code>temporal_context_length</code> 限定为 1–3 帧，候选来自 3 帧。原始 1/1/1 配置的 KV 占用更小。不能把它解释为“实际 KV 量严格相等的消融”。</td></tr>
+<tr><td>计时</td><td>每个方法顺序运行，跨场景轮换次序；仍与其他任务共享 GPU。生成计时不含 checkpoint loading 和 VAE decode，含首次 shape 编译；另报第 7–41 chunk 的中位耗时。算法不同且后端非论文配置，不从本次数字推断论文级 kernel speedup。</td></tr></table>
+<h3>评估定义与可解释边界</h3>
+<p>统一评估 RGB 帧 69–479，即 4.3125–29.9375 秒，减少初始缓存填充阶段影响。空间平均非线性 RGB 加权 (.2126,.7152,.0722) 得到全局亮度；相邻帧绝对差衡量全局亮度变化。短暗降为亮度低于中心 9 帧中值滤波的正差，固定统计超过 2pp 的帧数。它不等同于感知闪烁或物理亮度，正常光照和构图变化也会影响它。</p>
+<p>色度为平均 RGB 除以通道和，分别记录相对自身开头和 dense 开头的漂移。DINO ViT-B/16 在 1fps 下计算全图特征，比较相邻秒与首帧的 cosine；Farneback 光流在 192×128、4fps 下计算并换算成像素/秒。这些描述量不替代主体追踪、人评或完整 VBench。原始逐帧序列、DINO 特征和脚本都保留。</p>
+<p>相同输入不要求不同官方代码的首 chunk 输出逐位相同：RoPE 实现、低精度运算和 sparse kernel 都可能产生数值差异。报告记录首 chunk latent 相对 dense 的最大差值。每个方法的 checkpoint/input SHA、缓存上限和视频帧数则作硬断言检查。</p>
+<h3>版本与补丁</h3>
+{{VERSION_TABLE}}
+<p><a href="manifest.json">完整 manifest</a> · <a href="environment.freeze.txt">Python 依赖</a> · <a href="hardware.csv">GPU 信息</a> · <a href="LightForcing.compatibility.patch">Light Forcing 兼容补丁</a>。DASA 使用 <a href="DASA.compatibility.patch">受限缓存滚动修复补丁</a>；Forcing-KV 的 tracked 源码未修改。runtime 配置和 SDPA 替换见脚本。</p>
+<h2 id="reproduce">复现与目录</h2>
+<pre>cd /data/chenjiayu/zhikun/streaming_sparse
+CUDA_VISIBLE_DEVICES=1 bash local_setup/run.sh -m local_experiments.run_official_suite \
+  --output artifacts/ar_official_baselines_20261029
+CUDA_VISIBLE_DEVICES=1 bash local_setup/run.sh -m local_experiments.analyze_official_baselines \
+  artifacts/ar_official_baselines_20261029 --device cuda
+bash local_setup/run.sh -m local_experiments.audit_official_baselines \
+  artifacts/ar_official_baselines_20261029
+bash local_setup/run.sh -m local_experiments.build_official_report \
+  artifacts/ar_official_baselines_20261029</pre>
+<p>suite 支持跳过已完成输出。每个场景目录保存 <code>shared_inputs.pt</code>、prompt、每方法的配置/运行日志/cache trace/attention trace/latents/MP4。固定输入生成脚本在 <code>local_experiments/run_sparse_baselines.py</code>；正式 suite 仅复用它生成的输入文件，不读取其视频结果。旧的自定义适配器试跑目录带 <code>SUPERSEDED.txt</code>，不属于本报告的数据。</p>
+<p class="small">调研一手资料快照保存在 <code>local_experiments/baseline_survey/sources</code>。图表制作参考 scientific-visualization skill 的数据保真与审计流程，工具文献：Kassis, T., Agarwal, V., He, Y., Patel, D., &amp; Brueckner, A. M. (2026). <a href="https://doi.org/10.48550/arXiv.2609.00065">Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents</a>。该工具引用不作为视频方法性能证据。</p>
+</html>

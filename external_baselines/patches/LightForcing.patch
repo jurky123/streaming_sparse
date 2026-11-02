@@ -1,0 +1,13 @@
+diff --git a/wan/modules/kernel.py b/wan/modules/kernel.py
+index a3d3cfe..40156f7 100644
+--- a/wan/modules/kernel.py
++++ b/wan/modules/kernel.py
+@@ -44,7 +44,7 @@ def block_mean_kernel(
+     xm_offset = idx_b * L_BLOCKS * H * D + idx_l * H * D + idx_h * D
+ 
+     nx = min(BLOCK_L, L - idx_l * BLOCK_L)
+-    x_mean = tl.sum(x, axis=0, dtype=tl.float32) / nx
++    x_mean = tl.sum(x.to(tl.float32), axis=0) / nx
+     tl.store(XM + xm_offset + offs_d, x_mean.to(XM.dtype.element_ty))
+ 
+ 

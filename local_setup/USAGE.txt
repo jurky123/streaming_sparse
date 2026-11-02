@@ -1,0 +1,61 @@
+本机配置：/data/chenjiayu/zhikun/streaming_sparse
+
+Python 3.10.19；PyTorch 2.6.0+cu124；torchvision 0.21.0+cu124。
+依赖按 migration/requirements.lock.txt 安装；额外安装 ninja、lmdb、Flask、
+Flask-SocketIO、OpenCV headless，补齐推理与演示辅助模块的依赖。
+实际版本见 installed.freeze.txt。
+Python 环境位于 streaming_sparse/.venv，不修改已有 conda 环境。
+
+运行方式（先进入仓库根目录）：
+  cd /data/chenjiayu/zhikun/streaming_sparse
+  source streaming_sparse/.venv/bin/activate
+
+推荐使用本机入口，自动切换工作目录、设置 CUDA 编译器并选择空闲显存最多的 GPU：
+  bash local_setup/run.sh local_setup/check_environment.py
+  bash local_setup/run.sh -m streaming_sparse.v08.audit --tiny-network
+  bash local_setup/run.sh local_setup/check_cuda_backend.py
+
+指定 GPU 时，在命令前设置 CUDA_VISIBLE_DEVICES，例如：
+  CUDA_VISIBLE_DEVICES=4 bash local_setup/demo.sh
+
+单 prompt 短视频推理（480x832，3 个 latent 帧，解码后 9 帧，16fps）：
+  bash local_setup/demo.sh
+  输出位于 local_setup/results/demo/。
+  修改 local_setup/prompt.txt 即可使用自己的提示词。
+  例如生成 12 个 latent 帧：bash local_setup/demo.sh --frames 12
+  此演示采用原 Self-Forcing 模型和仓库提供的 SDPA fallback。
+
+模型：
+  Wan-AI/Wan2.1-T2V-1.3B@37ec512624d61f7aa208f7ea8140a131f93afc9a
+  gdhe17/Self-Forcing@2f8b779212da279d212c22a509b66ad6552f350e
+  Wan 基础权重和 Self-Forcing checkpoint 存放在项目原生要求的路径。
+  T5、VAE 和 tokenizer 通过符号链接复用 /data/chenjiayu/models/LiveAct/ 下
+  SHA256 完全一致的文件；移动共享目录后需重新下载或恢复链接。
+  验证记录见 local_setup/results/models.json。
+
+本机网络下载入口：
+  bash local_setup/run.sh local_setup/download_models.py
+  此入口保留系统代理配置，以匿名方式下载公开模型，并检查原 revision/SHA256。
+  原 migration/download_models.py 会清除代理，本机直连官方端点超时。
+  本机已有 Hugging Face 令牌过期，公开资产使用 token=False 避免 401。
+
+CUDA 后端：
+  SpargeAttn 源码固定至 ae5b629ebb41e41f86b3ea2ab5a3283f13ac151a。
+  Opt30/Opt32 使用的 opt28_tiles_v2 已针对 H200 的 sm_90 编译。
+  local_setup/run.sh 默认使用 CUDA 12.8、MAX_JOBS=2、TORCH_CUDA_ARCH_LIST=9.0。
+
+上游迁移清单：
+  migration/verify.py 在上游原样克隆上就会失败：README.md、REBUILD.md、
+  .gitignore 已更新，migration/inventory.json 中的旧 SHA256 没有更新。
+  没有修改上游清单或科学源码来掩盖这一问题。
+  check_environment.py 核验其余 422 个文件、完整锁定依赖、科学/执行/launcher
+  源码身份及 update640 checkpoint。差异详情保存在 results/inventory_audit.json。
+
+实验边界：
+  本次完成依赖、模型、CUDA 后端和运行验证。没有启动长时间训练。
+  仓库不含原 Replay/QKV、最新 Opt30-32 实验资产或最新训练 checkpoint。
+  如需复现训练，需要按 REBUILD.md 重采集数据并完成真实数据审计。
+  v08/configs/protocol.json 的 legacy_qkv_root 仍保留原机绝对路径
+  /home/iflab/models/Self-Forcing/streaming_sparse/v04/data/full。
+  原样 legacy-qkv/--real 审计需要先建立兼容路径或另立实验协议。
+  未改写协议、伪造数据身份或将历史 running 状态当作本机训练任务。

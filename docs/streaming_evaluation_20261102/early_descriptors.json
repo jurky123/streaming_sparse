@@ -1,0 +1,242 @@
+[
+  {
+    "case": "sailboat",
+    "method": "dense",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9702431559562683,
+    "dino_first_cosine": 0.9301692247390747,
+    "brightness_step_pp": 0.1370593388095679,
+    "dark_dip_max_pp": 0.8845843380689611,
+    "motion_l1": 0.02308491743169725,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "sailboat",
+    "method": "ours",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9588037133216858,
+    "dino_first_cosine": 0.8638253808021545,
+    "brightness_step_pp": 0.1588621534048757,
+    "dark_dip_max_pp": 0.24433940351009098,
+    "motion_l1": 0.023303399118594824,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "sailboat",
+    "method": "lightforcing",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.975952684879303,
+    "dino_first_cosine": 0.9037816524505615,
+    "brightness_step_pp": 0.11968707824055191,
+    "dark_dip_max_pp": 0.21153220176696186,
+    "motion_l1": 0.026036400184966623,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "sailboat",
+    "method": "forcingkv",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9736539125442505,
+    "dino_first_cosine": 0.8810779452323914,
+    "brightness_step_pp": 0.10793381951277846,
+    "dark_dip_max_pp": 0.14882768273353775,
+    "motion_l1": 0.026092857704497874,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "sailboat",
+    "method": "dasa",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9827647805213928,
+    "dino_first_cosine": 0.9457514882087708,
+    "brightness_step_pp": 0.1163065894721438,
+    "dark_dip_max_pp": 0.18328938424587715,
+    "motion_l1": 0.021205452946014704,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "skateboard",
+    "method": "dense",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9616952538490295,
+    "dino_first_cosine": 0.9210944771766663,
+    "brightness_step_pp": 0.10781500891039605,
+    "dark_dip_max_pp": 0.17541912317275976,
+    "motion_l1": 0.031763706589117646,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "skateboard",
+    "method": "ours",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9286444187164307,
+    "dino_first_cosine": 0.8673170208930969,
+    "brightness_step_pp": 0.2646811692322355,
+    "dark_dip_max_pp": 0.9295036822557445,
+    "motion_l1": 0.03223103266209364,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "skateboard",
+    "method": "lightforcing",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.949418306350708,
+    "dino_first_cosine": 0.9055398106575012,
+    "brightness_step_pp": 0.14671672607524477,
+    "dark_dip_max_pp": 0.23203978776932255,
+    "motion_l1": 0.034279427584260704,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "skateboard",
+    "method": "forcingkv",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9433562755584717,
+    "dino_first_cosine": 0.88973069190979,
+    "brightness_step_pp": 0.1507725567229188,
+    "dark_dip_max_pp": 0.343606371879579,
+    "motion_l1": 0.032917439052835104,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "skateboard",
+    "method": "dasa",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9547910690307617,
+    "dino_first_cosine": 0.8872411251068115,
+    "brightness_step_pp": 0.10705394224275568,
+    "dark_dip_max_pp": 0.24986009240150486,
+    "motion_l1": 0.030273381853476167,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "dog",
+    "method": "dense",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.915141761302948,
+    "dino_first_cosine": 0.7365098595619202,
+    "brightness_step_pp": 0.5348762183702439,
+    "dark_dip_max_pp": 0.9967216211557273,
+    "motion_l1": 0.08874271400272846,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "dog",
+    "method": "ours",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.8999971747398376,
+    "dino_first_cosine": 0.674397885799408,
+    "brightness_step_pp": 0.49662027474822906,
+    "dark_dip_max_pp": 0.757442233562472,
+    "motion_l1": 0.07719533960334957,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "dog",
+    "method": "lightforcing",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9164641499519348,
+    "dino_first_cosine": 0.7942609786987305,
+    "brightness_step_pp": 0.6223018042988413,
+    "dark_dip_max_pp": 2.1847508668899507,
+    "motion_l1": 0.09637371636927128,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "dog",
+    "method": "forcingkv",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.924667477607727,
+    "dino_first_cosine": 0.8334754705429077,
+    "brightness_step_pp": 0.5517458808007119,
+    "dark_dip_max_pp": 1.5442200887203161,
+    "motion_l1": 0.08607202009297907,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  },
+  {
+    "case": "dog",
+    "method": "dasa",
+    "window": [
+      21,
+      101
+    ],
+    "sample_step": 8,
+    "dino_adjacent_cosine": 0.9133073091506958,
+    "dino_first_cosine": 0.7912675738334656,
+    "brightness_step_pp": 0.5055513265766676,
+    "dark_dip_max_pp": 0.7938043546676599,
+    "motion_l1": 0.08656511926092207,
+    "weights_sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+    "scope": "DINO image-feature consistency and temporal proxies on encoded early video; not official VBench scores, no text-alignment claim, frozen video can score highly."
+  }
+]
