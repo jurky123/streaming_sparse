@@ -1,0 +1,53 @@
+{
+  "source": "662b86f45bffde659b6a743629bfb69038c231f7a0164671f70bcbaa7d1e14ef",
+  "runner": "baa4e85d43c08f7a564f96730023cb0dcfb40a0158e54f668d5bafc6aeff7c2c",
+  "checkpoint": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+  "summary_checkpoint": "5c008889003c8f3ad6deca395aeaffaee4bc776e3da3f0c2d448d76565820add",
+  "case": "traffic_crossing",
+  "chunks": [
+    2,
+    5,
+    8
+  ],
+  "layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "tiles": "(17*layer+13*chunk+7*step)%72",
+  "save_labels": false,
+  "probes": 16,
+  "seed": 202
+}

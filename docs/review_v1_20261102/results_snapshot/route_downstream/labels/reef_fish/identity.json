@@ -1,0 +1,25 @@
+{
+  "source": "5c008889003c8f3ad6deca395aeaffaee4bc776e3da3f0c2d448d76565820add",
+  "code": "ae6c8a947e29c468fd3916f4ecf05c8fe1a632b159afafb4ea0e74c2a29d2575",
+  "runtime": "68b2fe24475001e7c7375a3120bc5015a560feadd87f921ccb27005e4668d5cc",
+  "case": "reef_fish",
+  "seed": 1,
+  "layers": [
+    1,
+    8,
+    15,
+    22,
+    28,
+    29
+  ],
+  "heads": [
+    0,
+    5,
+    11
+  ],
+  "chunks": [
+    2,
+    5
+  ],
+  "objective": "two-step x0 NMSE, hard one-page-per-tile swap in one head; frozen student history"
+}

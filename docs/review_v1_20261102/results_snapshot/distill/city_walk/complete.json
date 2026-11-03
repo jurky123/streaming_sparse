@@ -1,0 +1,16 @@
+{
+  "status": "two_step_training_complete_pending_fresh_calibration_and_video",
+  "identity": {
+    "initial_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+    "code": "d6fc10da1a7c6fb97d013a0afc044d15c8e11b6ef4a1951ec5863fd4d7a77660",
+    "runtime": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+    "case": "city_walk",
+    "seed": 1,
+    "events": [
+      2,
+      5
+    ],
+    "step": 0,
+    "objective": "full-token two-step x0 NMSE on student history, all29 layers, backbone frozen; no new route STE"
+  }
+}

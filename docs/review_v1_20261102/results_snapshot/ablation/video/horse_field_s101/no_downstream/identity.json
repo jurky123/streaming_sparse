@@ -1,0 +1,20 @@
+{
+  "case": "horse_field",
+  "seed": 101,
+  "method": "no_downstream",
+  "source": "9ab7a0e0f73f180efeecf2321f15e4eb59984af5b96c82961f8ac43dbf584d5b",
+  "runtime": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+  "ablation": "ce479f7a12a90ea5312b0e6931f977c4788345612efc7b39c2083e3b69d48bf4",
+  "control": "frozen-weight removal; mean/detail changes applied after full routing; storage/budget unchanged",
+  "checkpoint": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+  "resolution": [
+    512,
+    768
+  ],
+  "history_pages": 338,
+  "layer0_history_pages": 360,
+  "page_tokens": 64,
+  "probes": 16,
+  "clean": "dense",
+  "speed_valid": false
+}

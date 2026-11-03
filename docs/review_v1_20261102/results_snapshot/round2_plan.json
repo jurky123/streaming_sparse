@@ -1,0 +1,644 @@
+[
+  {
+    "id": "route_downstream_labels_city_walk",
+    "module": "gap_review_v1_route_downstream",
+    "args": [
+      "--case",
+      "city_walk"
+    ]
+  },
+  {
+    "id": "route_downstream_labels_reef_fish",
+    "module": "gap_review_v1_route_downstream",
+    "args": [
+      "--case",
+      "reef_fish"
+    ]
+  },
+  {
+    "id": "route_downstream_fit",
+    "module": "gap_review_v1_route_downstream",
+    "args": [
+      "--fit"
+    ],
+    "cpu_only": true
+  },
+  {
+    "id": "route_downstream_video_horse_field",
+    "module": "gap_review_v1_route_downstream_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "full",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "route_downstream_video_traffic_crossing",
+    "module": "gap_review_v1_route_downstream_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "full",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_traffic_crossing_mass_route",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "mass_route",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "route_downstream_report",
+    "module": "gap_review_v1_route_downstream_report",
+    "cpu_only": true
+  },
+  {
+    "id": "ablation_smoke",
+    "module": "gap_review_v1_ablation_smoke"
+  },
+  {
+    "id": "ablation_local_horse_field",
+    "module": "gap_review_v1_ablation_local",
+    "args": [
+      "--case",
+      "horse_field"
+    ]
+  },
+  {
+    "id": "ablation_local_traffic_crossing",
+    "module": "gap_review_v1_ablation_local",
+    "args": [
+      "--case",
+      "traffic_crossing"
+    ]
+  },
+  {
+    "id": "ablation_local_report",
+    "module": "gap_review_v1_ablation_report",
+    "cpu_only": true
+  },
+  {
+    "id": "ablation_video_horse_field_projected_mean",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "projected_mean",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_horse_field_no_detail",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "no_detail",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_horse_field_mass_route",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "mass_route",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_horse_field_no_grouping",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "no_grouping",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_horse_field_no_new_training",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "no_new_training",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_horse_field_no_downstream",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--variant",
+      "no_downstream",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_report_horse_field",
+    "module": "gap_review_v1_ablation_report",
+    "cpu_only": true
+  },
+  {
+    "id": "ablation_video_traffic_crossing_projected_mean",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "projected_mean",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_traffic_crossing_no_detail",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "no_detail",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_traffic_crossing_no_grouping",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "no_grouping",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_traffic_crossing_no_new_training",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "no_new_training",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_video_traffic_crossing_no_downstream",
+    "module": "gap_review_v1_ablation_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--variant",
+      "no_downstream",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "ablation_report_traffic_crossing",
+    "module": "gap_review_v1_ablation_report",
+    "cpu_only": true
+  },
+  {
+    "id": "summary_city_all29",
+    "module": "gap_review_v1_expand_train",
+    "args": [
+      "--case",
+      "city_walk",
+      "--initial",
+      "artifacts/review_v1_20261102/summary_train/pilot/latest.pt"
+    ]
+  },
+  {
+    "id": "summary_reef_all29",
+    "module": "gap_review_v1_expand_train",
+    "args": [
+      "--case",
+      "reef_fish",
+      "--initial",
+      "artifacts/review_v1_20261102/summary_expand/city_walk/latest.pt"
+    ]
+  },
+  {
+    "id": "batched_gpu_preflight",
+    "module": "gap_review_v1_preflight"
+  },
+  {
+    "id": "two_step_all29_city",
+    "module": "gap_review_v1_distill",
+    "args": [
+      "--initial",
+      "artifacts/review_v1_20261102/summary_expand/reef_fish/latest.pt",
+      "--case",
+      "city_walk"
+    ]
+  },
+  {
+    "id": "calibration_all29_city_walk",
+    "module": "gap_review_v1_student_labels",
+    "args": [
+      "--case",
+      "city_walk",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/distill/city_walk/latest.pt"
+    ]
+  },
+  {
+    "id": "calibration_all29_reef_fish",
+    "module": "gap_review_v1_student_labels",
+    "args": [
+      "--case",
+      "reef_fish",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/distill/city_walk/latest.pt"
+    ]
+  },
+  {
+    "id": "repair_labels_city_walk",
+    "module": "gap_review_v1_repair_labels",
+    "args": [
+      "--case",
+      "city_walk"
+    ]
+  },
+  {
+    "id": "repair_labels_reef_fish",
+    "module": "gap_review_v1_repair_labels",
+    "args": [
+      "--case",
+      "reef_fish"
+    ]
+  },
+  {
+    "id": "scale_all29",
+    "module": "gap_review_v1_scale_calibrate",
+    "args": [
+      "--expanded",
+      "--source",
+      "artifacts/review_v1_20261102/distill/city_walk/latest.pt"
+    ],
+    "cpu_only": true
+  },
+  {
+    "id": "validation_all29_horse_field",
+    "module": "gap_review_v1_expand_probe",
+    "args": [
+      "--case",
+      "horse_field",
+      "--tag",
+      "validation",
+      "--summary-checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "validation_all29_traffic_crossing",
+    "module": "gap_review_v1_expand_probe",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--tag",
+      "validation",
+      "--summary-checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "video_9_horse_field_101_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "dense",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "video_9_horse_field_101_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "accepted",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "video_9_horse_field_101_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "candidate",
+      "--chunks",
+      "9",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "video_9_traffic_crossing_101_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "dense",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "video_9_traffic_crossing_101_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "accepted",
+      "--chunks",
+      "9"
+    ]
+  },
+  {
+    "id": "video_9_traffic_crossing_101_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "candidate",
+      "--chunks",
+      "9",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "early_acceptance_report",
+    "module": "gap_review_v1_acceptance",
+    "args": [
+      "--chunks",
+      "9"
+    ],
+    "cpu_only": true
+  },
+  {
+    "id": "video_41_horse_field_101_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "dense",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_horse_field_101_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "accepted",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_horse_field_101_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "101",
+      "--method",
+      "candidate",
+      "--chunks",
+      "41",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "video_41_horse_field_303_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "303",
+      "--method",
+      "dense",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_horse_field_303_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "303",
+      "--method",
+      "accepted",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_horse_field_303_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "horse_field",
+      "--seed",
+      "303",
+      "--method",
+      "candidate",
+      "--chunks",
+      "41",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_101_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "dense",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_101_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "accepted",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_101_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "101",
+      "--method",
+      "candidate",
+      "--chunks",
+      "41",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_303_dense",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "303",
+      "--method",
+      "dense",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_303_accepted",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "303",
+      "--method",
+      "accepted",
+      "--chunks",
+      "41"
+    ]
+  },
+  {
+    "id": "video_41_traffic_crossing_303_candidate",
+    "module": "gap_review_v1_video",
+    "args": [
+      "--case",
+      "traffic_crossing",
+      "--seed",
+      "303",
+      "--method",
+      "candidate",
+      "--chunks",
+      "41",
+      "--checkpoint",
+      "artifacts/review_v1_20261102/route_expanded/model.pt"
+    ]
+  },
+  {
+    "id": "acceptance_report",
+    "module": "gap_review_v1_acceptance",
+    "cpu_only": true
+  }
+]
