@@ -1,0 +1,18 @@
+{
+  "case": "horse_field",
+  "seed": 303,
+  "method": "candidate",
+  "source": "d8ebb33b6f9396d6dcd3cab0db0a5ae1f709df4d1264f7249ff26c63b4ab8cee",
+  "runtime": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+  "checkpoint": "5c008889003c8f3ad6deca395aeaffaee4bc776e3da3f0c2d448d76565820add",
+  "resolution": [
+    512,
+    768
+  ],
+  "history_pages": 338,
+  "layer0_history_pages": 360,
+  "page_tokens": 64,
+  "probes": 16,
+  "clean": "dense",
+  "speed_valid": false
+}

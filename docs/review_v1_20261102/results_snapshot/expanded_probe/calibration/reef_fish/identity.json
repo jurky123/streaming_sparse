@@ -1,0 +1,51 @@
+{
+  "summary_checkpoint": "e31bd8213357a40dea3c6ec841e33a199b10ab49f398b3e1e3daa4b021f825bc",
+  "source": "5c6a5a4e99faffce7fb7437d02b215de81df3995b52c8e052a399ab9132bc785",
+  "runtime": "7ff138d9c8bb68a05082dbcb590e138700b58bc04bf43c1559e4289018329112",
+  "case": "reef_fish",
+  "seed": 202,
+  "chunks": [
+    2,
+    5,
+    8
+  ],
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "trajectory": "student closed loop; dense teacher uses same student raw KV",
+  "probes": 16
+}

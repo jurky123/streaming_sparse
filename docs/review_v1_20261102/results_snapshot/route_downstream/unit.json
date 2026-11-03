@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "fixed budget",
+    "protected page",
+    "no source mutation",
+    "only target head",
+    "no-op control"
+  ]
+}

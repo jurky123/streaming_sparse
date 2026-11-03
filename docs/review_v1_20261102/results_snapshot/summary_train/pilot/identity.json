@@ -1,0 +1,21 @@
+{
+  "ops": "664b019723c56987cb4c62c73b627a4d9028803b49437ffeaea221b65c861b0f",
+  "runner": "06f78d644d19c5c650505d07631e8d55603a3b3f4f3c667e30171f28cc2f5c69",
+  "checkpoint": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+  "layers": [
+    1,
+    15,
+    29
+  ],
+  "case": "city_walk",
+  "seed": 0,
+  "chunks": [
+    2,
+    5
+  ],
+  "steps": [
+    0
+  ],
+  "updates_per_event": 4,
+  "objective": "fixed old masks, sampled same-state dense attention output; stage1 only"
+}

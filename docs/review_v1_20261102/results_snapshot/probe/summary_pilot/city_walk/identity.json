@@ -1,0 +1,23 @@
+{
+  "source": "664b019723c56987cb4c62c73b627a4d9028803b49437ffeaea221b65c861b0f",
+  "runner": "7707b80277cbcdd4b6e024ff1a7a447fa899544b26caff7207b96d4ec41e72b8",
+  "checkpoint": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+  "summary_checkpoint": "e526006987ada529fc02363fe3a29435cc758ec16d91a6b5be76fdab0a9608a1",
+  "case": "city_walk",
+  "chunks": [
+    2,
+    5
+  ],
+  "layers": [
+    1,
+    15,
+    29
+  ],
+  "step": 0,
+  "tiles": [
+    0,
+    36
+  ],
+  "probes": 16,
+  "seed": 202
+}

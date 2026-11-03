@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "chunk": 0,
+      "bitwise_equal": true
+    },
+    {
+      "chunk": 1,
+      "bitwise_equal": true
+    },
+    {
+      "chunk": 2,
+      "bitwise_equal": true
+    }
+  ],
+  "code": "ce479f7a12a90ea5312b0e6931f977c4788345612efc7b39c2083e3b69d48bf4"
+}
