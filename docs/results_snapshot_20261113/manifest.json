@@ -1,0 +1,353 @@
+{
+  "captured_utc": "2026-11-13T02:15:55.096530+00:00",
+  "files": [
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c2_s0.json",
+      "path": "flow_single_20261104/train/city_walk/c2_s0.json",
+      "bytes": 216,
+      "sha256": "2627ca7ef848c68fe508cc26ff128ae34d6c639552b1f1320ab176d441ef0ff9"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c2_s1.json",
+      "path": "flow_single_20261104/train/city_walk/c2_s1.json",
+      "bytes": 215,
+      "sha256": "e1b263774db9e0de114f88e04784f6f836e4fe3c4ef29301c68d5fd1f5d7c328"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c2_s2.json",
+      "path": "flow_single_20261104/train/city_walk/c2_s2.json",
+      "bytes": 216,
+      "sha256": "369f9f14e193bcded76e42b304b0d7d0fb8d13c82271b2403b73e2b91bda6b85"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c2_s3.json",
+      "path": "flow_single_20261104/train/city_walk/c2_s3.json",
+      "bytes": 217,
+      "sha256": "e98bc7c6968bf6a4af444fc707f6a9ac7a9e57861dd781e6f5cf496b95b768e0"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c5_s0.json",
+      "path": "flow_single_20261104/train/city_walk/c5_s0.json",
+      "bytes": 217,
+      "sha256": "d03f72f3ef075f034d60b00b4423be64dc265f4d25177aba5134eda145dc642e"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c5_s1.json",
+      "path": "flow_single_20261104/train/city_walk/c5_s1.json",
+      "bytes": 219,
+      "sha256": "9689e3e628ddcfe7e257d542ea36f215933c2b81394d1aa231bf144ac2eac986"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c5_s2.json",
+      "path": "flow_single_20261104/train/city_walk/c5_s2.json",
+      "bytes": 219,
+      "sha256": "03a7fab0d5f576a7429f755adc618c3d80f18201eb4c24a211e6af450dfdafce"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/c5_s3.json",
+      "path": "flow_single_20261104/train/city_walk/c5_s3.json",
+      "bytes": 217,
+      "sha256": "d9748a83a3fb2b56da5e02bce0984959d9f97cca3bd54c4cb2c802448d5103a5"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/complete.json",
+      "path": "flow_single_20261104/train/city_walk/complete.json",
+      "bytes": 547,
+      "sha256": "308638981ff78e11b1bccc290e32b086f27af0c27c9715d895ce0cb3bc870706"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/city_walk/identity.json",
+      "path": "flow_single_20261104/train/city_walk/identity.json",
+      "bytes": 456,
+      "sha256": "e493939a55283caaad8069bf0323d4235d4888ce8d186ebafe2ba6ba310d7ce6"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c2_s0.json",
+      "path": "flow_single_20261104/train/reef_fish/c2_s0.json",
+      "bytes": 214,
+      "sha256": "c2ac80ac0189a954cf504f03bce4cd0c0708c35875e6cfc89b10ebda06a8c33a"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c2_s1.json",
+      "path": "flow_single_20261104/train/reef_fish/c2_s1.json",
+      "bytes": 218,
+      "sha256": "69946238f3ca26f9d06d25d42f7d672446f68c5c5151620a1cefe067fcb30f97"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c2_s2.json",
+      "path": "flow_single_20261104/train/reef_fish/c2_s2.json",
+      "bytes": 216,
+      "sha256": "156a793f80a9c6af50300e93d19d4b8adde32718c2e78942bec64b9b18459420"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c2_s3.json",
+      "path": "flow_single_20261104/train/reef_fish/c2_s3.json",
+      "bytes": 215,
+      "sha256": "5044a4948a397bef600e7a3a9caba1a922a49fc0743adb1663ca41d8a43d34c1"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c5_s0.json",
+      "path": "flow_single_20261104/train/reef_fish/c5_s0.json",
+      "bytes": 218,
+      "sha256": "a06b2be6531b5c3ae0af96b27dae14b0f6d7895388b8eeea62d47fd4e4b17989"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c5_s1.json",
+      "path": "flow_single_20261104/train/reef_fish/c5_s1.json",
+      "bytes": 216,
+      "sha256": "d3aad0a1bf0ab9f96eb550d3147ac3c91ed7680520fdf63974911eed0aacfbe8"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c5_s2.json",
+      "path": "flow_single_20261104/train/reef_fish/c5_s2.json",
+      "bytes": 218,
+      "sha256": "20af373b448bfd6c6f4863efbc1fb97dba00e90d798a22c987b2f26b3ef3815e"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/c5_s3.json",
+      "path": "flow_single_20261104/train/reef_fish/c5_s3.json",
+      "bytes": 218,
+      "sha256": "dde81b63f32aaad2f386e625c3a5bc7eb087ff394fa5054917c0ae3541d1b117"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/complete.json",
+      "path": "flow_single_20261104/train/reef_fish/complete.json",
+      "bytes": 547,
+      "sha256": "0211cadf84f543e52257c063067283b32ee451ba72fa08bfef0444903d2f724a"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/train/reef_fish/identity.json",
+      "path": "flow_single_20261104/train/reef_fish/identity.json",
+      "bytes": 456,
+      "sha256": "2363f73c14b86853904dece5c518f6214c94481e14d8cc468177a83a8e239d4f"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/video/horse_field_s101/full/identity.json",
+      "path": "flow_single_20261104/video/horse_field_s101/full/identity.json",
+      "bytes": 677,
+      "sha256": "d8b8835da5d3bcbc4b7b654073a9895316ef88dfe63728b5d11e4c76d3f4fb2c"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/video/horse_field_s101/full/result_9.json",
+      "path": "flow_single_20261104/video/horse_field_s101/full/result_9.json",
+      "bytes": 9011,
+      "sha256": "3f5f04d10dc0688340a5c2f5dc1b8dc9f82148f56a5541baa38b1dbb1880086d"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/video/traffic_crossing_s101/full/identity.json",
+      "path": "flow_single_20261104/video/traffic_crossing_s101/full/identity.json",
+      "bytes": 682,
+      "sha256": "4dacd303b73cfbabb5a31b03e1acf0f3970a66f59c5286dee21df9a3d513627a"
+    },
+    {
+      "source": "artifacts/flow_single_20261104/video/traffic_crossing_s101/full/result_9.json",
+      "path": "flow_single_20261104/video/traffic_crossing_s101/full/result_9.json",
+      "bytes": 9028,
+      "sha256": "8c9482757c41317724e910d0c4d6ed44965ceaaea462d9dbfcf22e39676c5c52"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/summary.json",
+      "path": "review_v1_20261102/ablation/summary.json",
+      "bytes": 136810,
+      "sha256": "ec0813cb7b8bdbe89ec78ea40a3595abf9f9ba189f4f430f948461e22a513d4b"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/mass_route/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/mass_route/result_9.json",
+      "bytes": 9007,
+      "sha256": "62004f70c8c50dc285ee488642c7e0769f68d7b0619476dc06e58135b6e1960c"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/no_detail/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/no_detail/result_9.json",
+      "bytes": 9007,
+      "sha256": "fd750f397a1ae8a270a5f39e72df45cc2295c354ed7e62af6ac877446105aeb8"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/no_downstream/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/no_downstream/result_9.json",
+      "bytes": 9026,
+      "sha256": "f6b868b2bcc003931d14d3685e7778417def81592ce82bfdcf1873251e09609a"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/no_grouping/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/no_grouping/result_9.json",
+      "bytes": 8993,
+      "sha256": "25686e8b10d456e8044ed9822194cf8469c452f01fbeabdbfe53604e628da04c"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/no_new_training/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/no_new_training/result_9.json",
+      "bytes": 9018,
+      "sha256": "2fc1e0a86d8d8d08d54793a62c60c4586356d9a9fc0a43b62e1346fde00d20b8"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/horse_field_s101/projected_mean/result_9.json",
+      "path": "review_v1_20261102/ablation/video/horse_field_s101/projected_mean/result_9.json",
+      "bytes": 9008,
+      "sha256": "99ea5eced57342de664ffc421767305502b68cd04e00d7cec7b540d91c8e2fd4"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/mass_route/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/mass_route/result_9.json",
+      "bytes": 9039,
+      "sha256": "bac0e1f3d9f615626530e97034b799702ba661eb900126b46d7a67b26d4297d6"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/no_detail/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/no_detail/result_9.json",
+      "bytes": 9062,
+      "sha256": "30f0665dc73b56bf93ac293bb2c088cdf8ac33712edd4b7ba408138c0d21c3b1"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/no_downstream/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/no_downstream/result_9.json",
+      "bytes": 9045,
+      "sha256": "2267cdc448243c1551d774b1e8c2ff243ddd14f48448c0f010b821a51dbd67b8"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/no_grouping/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/no_grouping/result_9.json",
+      "bytes": 9046,
+      "sha256": "4fbc7d637fcfb4282e6336b2a364c36643e73c867a0ddd4d7b60ab6fb30f5927"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/no_new_training/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/no_new_training/result_9.json",
+      "bytes": 9058,
+      "sha256": "c4606dc5d49d81af483751caa9d0e030ee637f85e0f1e96f109197feeabebc01"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/ablation/video/traffic_crossing_s101/projected_mean/result_9.json",
+      "path": "review_v1_20261102/ablation/video/traffic_crossing_s101/projected_mean/result_9.json",
+      "bytes": 9016,
+      "sha256": "183a828d1ae1f95d5ff51b9a4c30663fe99e8afcd5a9ae3339cfde28a71d5c25"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/route_downstream/summary.json",
+      "path": "review_v1_20261102/route_downstream/summary.json",
+      "bytes": 46420,
+      "sha256": "4736a3930ddcf213adbe8cf235238eb187ac8cb5aa870b053eaaa74361af0c54"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/route_downstream/video/horse_field_s101/full/result_9.json",
+      "path": "review_v1_20261102/route_downstream/video/horse_field_s101/full/result_9.json",
+      "bytes": 9024,
+      "sha256": "2e0dd54a70caddeb6b73e2023b010739a6bda3a813722e9d3bae8b89f6230200"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/route_downstream/video/traffic_crossing_s101/full/result_9.json",
+      "path": "review_v1_20261102/route_downstream/video/traffic_crossing_s101/full/result_9.json",
+      "bytes": 9029,
+      "sha256": "be6274b19181e8a5eb3fa0f866bd4caba17fece7112e6efcacd3bbf4abcdfc63"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/accepted/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s101/accepted/result_41.json",
+      "bytes": 29717,
+      "sha256": "f3488d640cdf58777ab27b4b2314ef818ff17b53d9b93f6898594104eec173f4"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/accepted/result_9.json",
+      "path": "review_v1_20261102/video/horse_field_s101/accepted/result_9.json",
+      "bytes": 14901,
+      "sha256": "9c4b918e24d043763cde2be61552869b15d253fa400dba35c3f2ad94a66f02a2"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/candidate/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s101/candidate/result_41.json",
+      "bytes": 23978,
+      "sha256": "d4f78b6e27ca747391262d700a7bd649e0190312413178bcf96b40531138ee97"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/candidate/result_9.json",
+      "path": "review_v1_20261102/video/horse_field_s101/candidate/result_9.json",
+      "bytes": 8780,
+      "sha256": "a279b0c052f93dd0c50bf517745f8faef2cfe2be8fb1f0dafe24563217e9224a"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/dense/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s101/dense/result_41.json",
+      "bytes": 1125,
+      "sha256": "5054f279cdfd73612740d8eb3f15a5c71860b2a34b0e1fcc05330c70fbe398bc"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s101/dense/result_9.json",
+      "path": "review_v1_20261102/video/horse_field_s101/dense/result_9.json",
+      "bytes": 1124,
+      "sha256": "fda3e3ff72440e8d9049098693d19334f39a43928746d2894c9b52e7ebea4ed4"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s303/accepted/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s303/accepted/result_41.json",
+      "bytes": 30156,
+      "sha256": "c0158145e484b28d090e5887b79c8afbf937b1b80d5d8995af34113a769e46ee"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s303/candidate/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s303/candidate/result_41.json",
+      "bytes": 24035,
+      "sha256": "9720524020635d41caeb32b56e85447b2d82f46fc53a1f5bd46b6b019981affd"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/horse_field_s303/dense/result_41.json",
+      "path": "review_v1_20261102/video/horse_field_s303/dense/result_41.json",
+      "bytes": 1125,
+      "sha256": "6c413ed82822f605ce38c176a7dceab6b919a691bd93dcd2e608b1c1cf496d5a"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/accepted/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/accepted/result_41.json",
+      "bytes": 29738,
+      "sha256": "9403bb7ae2482067ea5a7e65b3863b492e97327cfab3e544edfe74b68e317b1c"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/accepted/result_9.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/accepted/result_9.json",
+      "bytes": 14929,
+      "sha256": "7718aaddac192ecf21a0092e40714633440fb7232915f05121ee508bd7005764"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/candidate/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/candidate/result_41.json",
+      "bytes": 24015,
+      "sha256": "64dd69bd348dc0455fe89f69345ce156d69b92d0a15c5c72463cb78ba8a509e5"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/candidate/result_9.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/candidate/result_9.json",
+      "bytes": 8813,
+      "sha256": "9a86c206a2695e9b71b126fdcb67afc76e7f2ad302c084a05dd2df7aa4250cfd"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/dense/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/dense/result_41.json",
+      "bytes": 1130,
+      "sha256": "28776016ee4e0fad793eec587471e85ec46cc8ffb875567e090cd0312092070e"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s101/dense/result_9.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s101/dense/result_9.json",
+      "bytes": 1129,
+      "sha256": "8627c20a6e2fe6a0c530a4426a6783151fda44c22b6d6d105d1817879a9b4607"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s303/accepted/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s303/accepted/result_41.json",
+      "bytes": 30169,
+      "sha256": "e73f014139abb9d926e6d4375be58c9c8470681ef5d73892c1f3d786868e48d8"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s303/candidate/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s303/candidate/result_41.json",
+      "bytes": 24028,
+      "sha256": "9da139423742f0e57b1ed410ed6836cee9e181793293cfa9c002f321e3000a1b"
+    },
+    {
+      "source": "artifacts/review_v1_20261102/video/traffic_crossing_s303/dense/result_41.json",
+      "path": "review_v1_20261102/video/traffic_crossing_s303/dense/result_41.json",
+      "bytes": 1130,
+      "sha256": "de3ee231c73b50dbc70fe384d0eb611c149621007f5de70debaa69c11ffbc3e6"
+    }
+  ]
+}

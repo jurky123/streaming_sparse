@@ -1,0 +1,38 @@
+{
+  "identity": {
+    "case": "horse_field",
+    "seed": 303,
+    "method": "dense",
+    "source": "d8ebb33b6f9396d6dcd3cab0db0a5ae1f709df4d1264f7249ff26c63b4ab8cee",
+    "runtime": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+    "checkpoint": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+    "resolution": [
+      512,
+      768
+    ],
+    "history_pages": 338,
+    "layer0_history_pages": 360,
+    "page_tokens": 64,
+    "probes": 16,
+    "clean": "dense",
+    "speed_valid": false
+  },
+  "chunks": 41,
+  "frames": 480,
+  "quality": {},
+  "runtime": {
+    "status": "quality_reference_not_speed_accepted",
+    "raw_bytes": 4845207552,
+    "summary_bytes": 167496576,
+    "token_identity_bytes": 60223488,
+    "parameter_bytes": 14482368,
+    "persistent_bytes": 5087409984,
+    "limit_bytes": 5112856576,
+    "within_limit": true,
+    "history_pages": 338,
+    "clean": "dense; full commit; no terminal trimming",
+    "dynamic_execution": "per-head CPU count reference; no graph claim"
+  },
+  "speed_valid": false,
+  "status": "measured_pending_comparison_and_visual_review"
+}
