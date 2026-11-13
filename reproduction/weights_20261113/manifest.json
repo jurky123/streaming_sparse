@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "code_commit": "04e710f785d2ccac7e01633702b70a006c679249",
+  "selected": "summary_pretrained",
+  "assets": [
+    {
+      "name": "summary_pretrained",
+      "path": "artifacts/review_v1_20261102/summary_expand/reef_fish/latest.pt",
+      "payload": "summary_pretrained.pt.gz",
+      "bytes": 43684320,
+      "sha256": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+      "compressed_bytes": 40198264,
+      "compressed_sha256": "e6c68cc8bcd41be4637649bd66f322f7c5ac393a24b8c5a6d651f3a228690dda"
+    },
+    {
+      "name": "full_calibrated",
+      "path": "artifacts/review_v1_20261102/route_expanded/model.pt",
+      "payload": "full_calibrated.pt.gz",
+      "bytes": 14551138,
+      "sha256": "5c008889003c8f3ad6deca395aeaffaee4bc776e3da3f0c2d448d76565820add",
+      "compressed_bytes": 13154731,
+      "compressed_sha256": "d7d2ad743f4ea652b2ce9297f00fdc34fbd1dc84a40ad15662d7ade2eaeba6b5"
+    },
+    {
+      "name": "two_step_distilled",
+      "path": "artifacts/review_v1_20261102/distill/city_walk/latest.pt",
+      "payload": "two_step_distilled.pt.gz",
+      "bytes": 43677024,
+      "sha256": "e31bd8213357a40dea3c6ec841e33a199b10ab49f398b3e1e3daa4b021f825bc",
+      "compressed_bytes": 40289287,
+      "compressed_sha256": "da77abeef985e9c4a9b29b9b33312f0ed7eb0915e1e12b645e8bbcf89ae97607"
+    },
+    {
+      "name": "downstream_router_pilot",
+      "path": "artifacts/review_v1_20261102/route_downstream/fit/model.pt",
+      "payload": "downstream_router_pilot.pt.gz",
+      "bytes": 14550946,
+      "sha256": "6970d15a6985f98266e3c9634c8fd3575871c56c68da158591488e1694855028",
+      "compressed_bytes": 13154765,
+      "compressed_sha256": "94489e4e5423ebb4238303d2631973f43b15be93fac6580f6d08ce6a7314dfab"
+    },
+    {
+      "name": "single_step_flow",
+      "path": "artifacts/flow_single_20261104/train/reef_fish/model.pt",
+      "payload": "single_step_flow.pt.gz",
+      "bytes": 14551330,
+      "sha256": "26dcda119d0b1a557ad23dd6681ab1fde28e47589877b21cc595ae07637132c4",
+      "compressed_bytes": 13152359,
+      "compressed_sha256": "0f0a9f67673741c0fee0fee06fecc359f581e2b58fe61653bc01bd0e2ce360c5"
+    },
+    {
+      "name": "legacy_sparse",
+      "path": "artifacts/four_gaps_20261031/shared/epoch1.pt",
+      "payload": "legacy_sparse.pt.gz",
+      "bytes": 14770676,
+      "sha256": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+      "compressed_bytes": 12998041,
+      "compressed_sha256": "29a6dd16011276e5f4898b9da3569037389b74de10d9740fc58317b2e0756616"
+    },
+    {
+      "name": "legacy_route_initializer",
+      "path": "artifacts/full_route_grad_20261031/epoch1.pt",
+      "payload": "legacy_route_initializer.pt.gz",
+      "bytes": 2041110,
+      "sha256": "491756aca581fa3c64a2e993a4319577abeddec5614aec40c71c416138ac074b",
+      "compressed_bytes": 916454,
+      "compressed_sha256": "b5b0e78cd5703fe5b75a8551d896e447360f3c5913c3e47e7b9a5a468baf6130"
+    },
+    {
+      "name": "legacy_compensation",
+      "path": "artifacts/compensation_probe_20261030/model.pt",
+      "payload": "legacy_compensation.pt.gz",
+      "bytes": 1639306,
+      "sha256": "8a472e737521a3dfd5cd2133d3de9e74b7445c4f86a13ca45e15c6c07a672d26",
+      "compressed_bytes": 1507040,
+      "compressed_sha256": "e55e2479c6d00fbe27fc4647387816d267d62fde57dc57929b997beb7d3680ce"
+    },
+    {
+      "name": "legacy_dictionary",
+      "path": "artifacts/broad_coverage_20261030/dictionary.pt",
+      "payload": "legacy_dictionary.pt.gz",
+      "bytes": 5906108,
+      "sha256": "f68aaa1559ad42715144b0a6ee78fcdcee0561cca3f5b478b226d6406115150b",
+      "compressed_bytes": 2802103,
+      "compressed_sha256": "3b13b91dd283647a79127cf7a618f7c23d98ec54b9e9c92f76693518eb7e34bb"
+    },
+    {
+      "name": "legacy_pool",
+      "path": "artifacts/mass_variance_20261030/train_00_30/best.pt",
+      "payload": "legacy_pool.pt.gz",
+      "bytes": 2336066,
+      "sha256": "6dad1d50282489c714e512b5d991c0417d3678745e3e1df09d883f32f78f79f4",
+      "compressed_bytes": 1504189,
+      "compressed_sha256": "1d8fc086a178870f6f1d9afd93e4205a9493532d4b9cbd15e156510f83e9f53c"
+    },
+    {
+      "name": "embedding_city_walk",
+      "path": "artifacts/broad_coverage_20261030/embeddings/city_walk.pt",
+      "payload": "embedding_city_walk.pt.gz",
+      "bytes": 4195484,
+      "sha256": "ba76d6995a649290c4ada35efd727172af17c477a989d69ff709799e07153263",
+      "compressed_bytes": 254513,
+      "compressed_sha256": "2599a2c63ba293bd7c90fc52fa8139b4e2baec016727d96c230361ba8e3c8c59"
+    },
+    {
+      "name": "embedding_reef_fish",
+      "path": "artifacts/broad_coverage_20261030/embeddings/reef_fish.pt",
+      "payload": "embedding_reef_fish.pt.gz",
+      "bytes": 4195484,
+      "sha256": "7efb76d3493b5a3dc11adde7b6d185eb1a75801d090b5168ae4a08c9ca5aba69",
+      "compressed_bytes": 195791,
+      "compressed_sha256": "fd30390f18c445f0e57c14fb26a5105077d80638e9eda5ad87778baab755314a"
+    },
+    {
+      "name": "embedding_horse_field",
+      "path": "artifacts/broad_coverage_20261030/embeddings/horse_field.pt",
+      "payload": "embedding_horse_field.pt.gz",
+      "bytes": 4195484,
+      "sha256": "d512e2dc6b0dd083509414f8b41430f8dac6abfbd43c0194186607585ae6ee44",
+      "compressed_bytes": 196117,
+      "compressed_sha256": "2cfaf5b67a4d20e494ef617ebb5e8b599f96f8e74d16d4ab4456318f55a3399d"
+    },
+    {
+      "name": "embedding_traffic_crossing",
+      "path": "artifacts/broad_coverage_20261030/embeddings/traffic_crossing.pt",
+      "payload": "embedding_traffic_crossing.pt.gz",
+      "bytes": 4195484,
+      "sha256": "137c61b419a55baf5cfb7db966f23317530e0f6d8731d5b0a8f6d9892e9b9072",
+      "compressed_bytes": 228672,
+      "compressed_sha256": "5657596f1b71ca3cf83f6d42962b0f151871b699f03dfa004d43084478f2d684"
+    }
+  ],
+  "protocol": {
+    "height": 512,
+    "width": 768,
+    "history_pages": 338,
+    "layer0_history_pages": 360,
+    "page_tokens": 64,
+    "probes": 16,
+    "exact_density": 0.1,
+    "early_window": [
+      21,
+      101
+    ],
+    "seed": 101,
+    "backbone_frozen": true
+  },
+  "scope": "Exact original checkpoint bytes, including optimizer states when present; inference/ablation reproduction, not complete historical training resume state."
+}

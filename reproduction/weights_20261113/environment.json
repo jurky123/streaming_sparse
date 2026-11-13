@@ -1,0 +1,15 @@
+{
+  "torch": "2.6.0+cu124",
+  "torchvision": "0.21.0+cu124",
+  "triton": "3.2.0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "transformers": "5.17.0",
+  "diffusers": "0.31.0",
+  "lpips": "0.1.4",
+  "imageio": "2.38.0",
+  "imageio-ffmpeg": "0.6.0",
+  "einops": "0.8.2",
+  "safetensors": "0.8.0",
+  "huggingface-hub": "1.32.0"
+}

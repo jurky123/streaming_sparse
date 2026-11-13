@@ -65,3 +65,7 @@
 这是某次训练边界的静态快照，原机器后续继续训练不会自动同步到本仓库。
 
 原项目许可证保留于 [LICENSE](LICENSE)。
+
+## Published trained weights and reproduction
+
+The trained sparse-module checkpoints, exact prompt embeddings, SHA256 manifests, and restoration/run commands are available in [reproduction/weights_20261113](reproduction/weights_20261113/README.md). The selected configuration retains summary pretraining and excludes downstream distillation. Published assets include the other reported ablation checkpoints; base Wan/Self-Forcing weights are fetched separately at pinned revisions.

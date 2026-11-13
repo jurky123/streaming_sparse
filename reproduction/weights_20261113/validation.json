@@ -1,0 +1,20 @@
+{
+  "restored_assets": 14,
+  "strict_model_loads": [
+    "summary_pretrained",
+    "full_calibrated",
+    "two_step_distilled",
+    "downstream_router_pilot",
+    "single_step_flow"
+  ],
+  "all_checkpoint_and_embedding_checksums_verified": true,
+  "entrypoint_imports": true,
+  "fresh_gpu_rollout_tested": false,
+  "scope": "Temporary empty asset tree restored; CPU strict-load validation in existing pinned environment",
+  "checkpoint_hashes_match_reported_video_identities": [
+    "summary_pretrained",
+    "full_calibrated",
+    "downstream_router_pilot",
+    "single_step_flow"
+  ]
+}
