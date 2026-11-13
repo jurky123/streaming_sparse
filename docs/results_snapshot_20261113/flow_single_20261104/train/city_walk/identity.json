@@ -1,0 +1,18 @@
+{
+  "initial": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+  "code": "84bdc93e66550a1e282e76e90cf5673a6b241e0d92e0a9b48fe43106ed69dfc9",
+  "runtime": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+  "case": "city_walk",
+  "seed": 1,
+  "chunks": [
+    2,
+    5
+  ],
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "loss": "native flow MSE, same x/t/text/history; dense stopgrad; frozen backbone and hard router"
+}

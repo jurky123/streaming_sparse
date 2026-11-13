@@ -1,0 +1,9 @@
+{
+  "event": "c5_s0",
+  "flow_mse": 0.028117695823311806,
+  "flow_nmse": 0.019485076889395714,
+  "forward_nmse": 0.0,
+  "grad_norm": 0.007565809413790703,
+  "gradient_parameters": 203,
+  "seconds": 19.68281650543213
+}

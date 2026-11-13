@@ -45,6 +45,12 @@
 |horse_field|projected_mean|0.32450|0.50709|13.809|+0.05408|
 |traffic_crossing|full|0.32551|0.40167|15.822|+0.00000|
 |traffic_crossing|accepted|0.34068|0.33813|13.431|+0.01518|
+|traffic_crossing|mass_route|0.33788|0.39517|15.634|+0.01237|
+|traffic_crossing|no_detail|0.32970|0.40311|16.054|+0.00420|
+|traffic_crossing|no_downstream|0.33651|0.38336|15.527|+0.01101|
+|traffic_crossing|no_grouping|0.23520|0.51686|16.709|-0.09031|
+|traffic_crossing|no_new_training|0.33005|0.39583|15.961|+0.00454|
+|traffic_crossing|projected_mean|0.35889|0.31506|13.151|+0.03338|
 
 projected_mean仅将完整均值替换为当前basis和旧center的rank8重建，保留相同K、细节与mask，并非完整旧kernel重现。no_new_training保留新结构但不做本轮训练；no_downstream保留摘要预训练。mass_route保持同预算且强制own页。no_grouping仅在视频中评估。
 
