@@ -1,0 +1,34 @@
+set_oracle_v1 — immutable data schema
+
+Scope: city_walk/horse_field, seeds101/303, chunks2/5/8, layers1/15/29, steps0/2, one preregistered head and two Q64 tiles per event.144 instances from4 baseline trajectories. Page64, R4/rank8. K=floor(P*0.10), own mandatory: P216/K21 at chunk2, P410/K41 at chunk5/8. Clean/layer0 Dense, G-KVR L3 baseline closed-loop history; no video decoding or downstream metrics.
+
+contributions/<event_id>/residuals_fp64.npz
+ e: float64[64,P,128], signed residual normalized by each Query's Dense denominator.
+ d: float64[64,P], exact-minus-summary denominator mass normalized by Dense denominator.
+ exact_mass, summary_mass: float64[64,P], positive normalized page masses. These allow stable positive-sum denominators, including bounds.
+ dense_output[64,128], dense_logz[64], C: offline teacher and normalization.
+ own, K: scalars; mass/risk: bool[P] deployedM16 masks.
+ J(x)=sum_q ||sum_unselected e||² / (sum_selected exact_mass + sum_unselected summary_mass)² / C.
+ Algebraically z=1-sum_unselected d; equivalent within recorded finite-precision residual. Raw/dense validation is recorded separately.
+ All these residual/teacher/exact-denominator fields are ORACLE LABELS, not legal inputs to an online predictor.
+
+summary_and_route_features.npz
+ ONLINE-AVAILABLE: query[64,128]; summary_keys[P,4,128]; summary_mean[P,128]; summary_detail[P,3,8]; summary_stats[P,4,12]; basis[128,8]; theta[4]; risk_features_q64[64,P,4]; risk_features_probe16[16,P,4]; mass_per_query[64,P]; mass_scores/risk_scores[P]; rank arrays; probe_indices; online_summary_logz; token_ids[P,64], query_token_ids[64]; page_is_history, page_age; token_latent_frame,token_y,token_x.
+ query/summary/basis stored in FP32 as exactly representable BF16-deployed values; original BF16 input hashes are in identity.json. Original raw key/value hashes identify the stream state.
+ Teacher-only diagnostic: exact_page_logz[64,P]. Never feed this to a learned online router.
+ summary_page_logz[64,P] is an FP64 reference quantity computable from stored summary; online_summary_logz comes from deployed FP32 feature evaluation.
+ Raw ranks exclude own protection; selected masks include it.
+
+identity.json: original Q/K/V/summary/basis/theta/token-position hashes, prior contribution reuse hashes, page and trajectory identity, compressed file hashes. Full model/code/split identities are in identity_and_splits.json.
+READY.json means atomically completed instance, not final dataset acceptance. manifest.state=FROZEN_VALIDATED and acceptance.json are final acceptance gates. Contributions are read-only after acceptance. New experiments append outside contributions.
+
+searches/v1/<event_id>/
+ result.json: Mass/Risk/Greedy, plus3 exchange starts; all accepted trajectories, all per-round top20 actions and first-vs-second gaps; own/count checks and one-swap local certificates.
+ candidate_gain_surfaces.npz: gains[round,K-1,P-K], removed/added original page IDs for axes, state_masks[round,P]. Contains EVERY round including terminal no-improvement round, not only first4. State hashes are in result.top_candidates.risk. Threshold max(1e-12,1e-9*J) defines no improving local action.
+ D02.npz: names index method/trajectory states. A,C,Z,kappa perQuery; weighted_components[state,64,5] ordered(A_history,A_current,C_HH,C_CC,C_HC), normalized by eachQuery mixedZ² and Dense output energy. Sum equals trueNMSE. age_A[state,6,64], age_inner_products[state,64,6,6] use ages0(current)..5. Cross terms are signed.
+ validation.json: direct original FP64 mixedN/Z checks for all final methods, all accepted Risk exchanges and Query subsets. capture_validation.json covers random budgets1/K/P/4/P and separates FP32 deployed output error. Transient originalN/Z spool is removed only after successful direct validation.
+
+representatives/: raw selected-head BF16 QKV, summary,basis,tokenIDs for city_walk/horse_field seed101 c5 l15 step0 t0, to permit rebuilding labels. Full historicalKV is not duplicated for all144 instances.
+trajectories/: baseline latent identity and commit token-bijection checks; horse trajectories match saved baseline latents bitwise. No downstream metric evaluation.
+global_bounds/ and global_bounds_parallel/: preregistered12 instances only, full-page convex lower bounds plus complete binary-tree proof logs; audit.json replay required. No success-only subset filtering. Work cap12 CPU core-hours.
+analyses/: T2 results and explanatory diagnostics. T3 candidate-pool/projection and T4 training have NOT been run. The required features and full gain surfaces are available for them.

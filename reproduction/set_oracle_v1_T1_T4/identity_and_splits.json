@@ -1,0 +1,30 @@
+{
+  "baseline": "178f95a80814ff672f59ade8f1c86bf0f037000b",
+  "checkpoint": "summary_pretrained",
+  "grouping": "G-KVR",
+  "weights": {
+    "checkpoints/self_forcing_dmd.pt": "a0413986d9734e02c09504e1520f5697ba6df731bb2f0f35577485e9cc8f56a3",
+    "artifacts/four_gaps_20261031/shared/epoch1.pt": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+    "artifacts/review_v1_20261102/summary_expand/reef_fish/latest.pt": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83"
+  },
+  "code": {
+    "local_experiments/review_v1/ops.py": "662b86f45bffde659b6a743629bfb69038c231f7a0164671f70bcbaa7d1e14ef",
+    "local_experiments/review_v1/runtime.py": "0471acb413cbd04d50b87fa9b7efce49c9347f7ac971d755263815265ea6597d",
+    "local_experiments/review_v1/model.py": "a9d9ffe49a97ff9bb9adbdfaa8fd5364ab4af61257648f904a2d902c6529cb4a",
+    "local_experiments/group_response/core.py": "1dacc2b3f45f92e8dcf56835d3cfd27b7d57a37707b92342afc20e0ae2172393",
+    "local_experiments/group_response/baseline_runtime.py": "e670c96965879e1066623a52a05adec69c0571edf614f7fd01a46ce56dcb0565",
+    "local_experiments/rollout_suite.py": "24cb6a68dd69e8e8a8689f3c0b9e787d6a0e4a7692207dd14f1fcfbfd85c0593",
+    "local_experiments/broad_common.py": "3d97b375eded79a6fc9e509b5fc53d819d0544a8c46ab69aca8c672245498cf8"
+  },
+  "inputs": {
+    "city_walk": "ba76d6995a649290c4ada35efd727172af17c477a989d69ff709799e07153263",
+    "horse_field": "d512e2dc6b0dd083509414f8b41430f8dac6abfbd43c0194186607585ae6ee44"
+  },
+  "splits": {
+    "city_walk": "future fitting/development",
+    "horse_field": "mechanism validation, previously seen in development; not unseen test"
+  },
+  "head_rule": "(layer+chunk+(seed-101)//202+3*step)%12",
+  "tile_rule": "t0=(17*layer+13*chunk+seed)%72; t1=(t0+36)%72",
+  "position_rule": "absolute original token id -> latent_frame=id//1536, row=(id%1536)//48, col=id%48"
+}

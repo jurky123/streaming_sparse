@@ -1,0 +1,43 @@
+{
+  "scope": 144,
+  "split": {
+    "train": "city_walk seed101 (36)",
+    "validation": "city_walk seed303 (36)",
+    "evaluation": "horse_field seeds101/303 (72), previously seen development scene"
+  },
+  "seed": 17,
+  "pools": {
+    "small": [
+      8,
+      16
+    ],
+    "medium": [
+      16,
+      32
+    ],
+    "large": [
+      32,
+      64
+    ]
+  },
+  "ranks": [
+    4,
+    8,
+    16,
+    32
+  ],
+  "query_counts": [
+    16,
+    64
+  ],
+  "steps": [
+    1,
+    2,
+    4
+  ],
+  "T4": "ridge signed residual + log exact/summary mass predictor, fixed rank16; lambdas1e-4/1e-2/1 chosen on validation only; no test tuning",
+  "T4_gate": "Report T3 signal first; explicit current request also authorizes a diagnostic minimum predictor if oracle signal is weak; do not claim deployability",
+  "frozen_manifest_sha256": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+  "online_allowlist": "(None, ('query', 'summary_keys', 'summary_mean', 'summary_detail', 'basis', 'risk_features_q64', 'risk_scores', 'mass_scores', 'probe_indices', 'page_age', 'page_is_history'), <code object <dictcomp> at 0x7fbc6a3c64a0, file \"/home/shuchenweng/jzk/streaming_sparse/local_experiments/set_oracle_v1/stage34.py\", line 18>, 'online_load.<locals>.<dictcomp>')",
+  "created": 1794655881.1465902
+}

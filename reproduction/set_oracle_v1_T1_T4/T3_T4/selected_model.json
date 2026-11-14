@@ -1,0 +1,7 @@
+{
+  "method": "ridge0.01_q64_small",
+  "steps": 1,
+  "validation_mean_gain_pct": -1.0631079552745735,
+  "selection": "maximize mean relative NMSE reduction on 36 city_walk seed303 instances, no evaluation labels",
+  "trials": 54
+}

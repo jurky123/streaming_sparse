@@ -1,0 +1,43 @@
+set_oracle_v1：T1＋T2完成报告
+
+范围：city_walk、horse_field；seed101/303；chunk2/5/8；layer1/15/29；step0/2；每事件一个确定性head和两个64-Query tile。共144实例、4条基础轨迹，覆盖12个head。
+基线：178f95a8 / summary_pretrained / G-KVR；512×768，Page64，R4/rank8，骨干与稀疏参数冻结。chunk2为P216/K21，其余P410/K41；own保护。
+场景减半保留city_walk作为后续拟合/开发，horse_field作为机制验证；它们都参与过开发，不称全新测试集。
+
+T1：数据已验收并冻结
+manifest.state=FROZEN_VALIDATED；144/144完成；复用旧贡献6例；FP64原始混合输出与残差重建最大NMSE差异6.44e-15。
+数据贡献文件约3.21GiB；搜索及全部候选矩阵约191.0MiB。没有永久保存全量Gram矩阵。
+保存完整有符号e、d、Dense输出/logZ、原始BF16值的Query与摘要、全部64Query四项风险特征、M16真实评分/排名/mask、精确及摘要logZ、原始token身份/位置/年龄、输入/模型/代码哈希。
+全部144例分别记录原FP32 SelectedAttention的Risk输出与FP64参考差异；Greedy/交换集合的直接验证使用原始页贡献FP64目标，不能称它们都已做FP32部署复测。
+两个horse轨迹均与此前G-KVR基线latent逐位一致。city没有旧轨迹参照，未另生成重复控制视频。2个代表实例额外保留所选head原始QKV。
+
+T2：集合收益与初始化
+Risk＋Exchange相对每例较强Mass/Risk：141/144改善，3例持平，0例下降；均值39.44%，中位数36.92%，P10/P90=14.05%/69.48%，范围0–97.65%。
+Risk交换次数中位数9，范围0–24。前1/2/4次交换平均取得该轨迹最终局部收益的38.19%/58.92%/80.33%（仅141个正收益实例；停止轨迹按最终结果计）。这不是全局最优Recovery。
+三起点最终集合相同106/144；38例集合不同，其中19例Risk的一次交换局部最优被其他起点可行集合超过。因此此前六例的初始化无关性没有完全推广。
+Greedy在本144例未出现必须接受误差增加的步骤；算法仍按固定预算选满，不由此推断目标单调。
+全部Risk交换轮（包括终止轮）均保存完整收益矩阵、当前集合、候选页面轴及集合哈希；所有初始化保留完整接受轨迹和每轮前20候选/第一第二名差距。
+
+D02：机制解释
+按每Query实际分母加权，133/144例跨页项减少；43/144例呈现单页能量增加但跨页项减少。
+以Risk分母固定作明确加性归因：交叉项是111例的最大正向贡献，独立能量是30例，3例无收益。分母变化在98例帮助、39例拖累，不能沿用早期三个实例“分母均不利”的结论。
+历史—历史、当前—当前、历史—当前及年龄0–5交互均已按Query保存。C有符号；减少正交叉项与出现净负交叉项须区别，不能把所有改善都叫抵消。
+
+代表性全局界
+预登记12个新实例，2个GLOBAL_TOL、10个BOUNDED_INCUMBENT；所有12例完整前沿/剪枝证据均独立回放通过。详细LB/UB及Recovery区间见analyses/global_bounds.csv和recovery_intervals.csv。
+记录到的求解器CPU消耗6.08核时；根节点准备和独立审计另有开销，预留在12核时上限内。全局队列墙钟12.6分钟。未闭合样本没有被剔除或当作OPT点估计。
+此前六例证书/界在global_bounds/legacy_reference.json保留来源，未重算；其中traffic样本不属于当前144例。
+
+本轮能回答什么
+Q1：在本两场景、四轨迹的范围内，集合交换收益普遍存在；144个tile有关联，不能当作144条独立视频或未见场景证据。
+Q2：少量交换能取得大部分自身最终局部收益，但存在初始化敏感性；全局Recovery须逐实例看认证/区间，不能用局部最好值代替OPT。
+Q3/Q4：本轮尚未执行候选池或投影比较，未回答低成本定位和低维充分性；所需在线特征和完整动作监督已保存。
+未运行T3性能消融、独立页残差oracle、T4预测器训练、在线router或下游视频质量。
+
+文件入口
+manifest.json / identity_and_splits.json / acceptance.json / SCHEMA.txt
+contributions/<event_id>/：只读的原始数据；后续算法只追加searches或analyses的新版本。
+searches/v1/<event_id>/：完整搜索轨迹、全交换收益、D02、原始FP64验证。
+analyses/per_instance.csv / stratified.csv / exchange_steps.csv / cancellation/per_instance.csv
+analyses/overview.png / preregistered_exchange_curves.png
+global_bounds及global_bounds_parallel：求解上下界、原始节点日志、独立审计。

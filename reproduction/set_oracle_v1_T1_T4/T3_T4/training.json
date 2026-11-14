@@ -1,0 +1,13 @@
+{
+  "train_instances": 36,
+  "samples": 795648,
+  "features": 88,
+  "output_rank": 16,
+  "outputs": 17,
+  "lambdas": [
+    0.0001,
+    0.01,
+    1.0
+  ],
+  "teacher_labels_only": true
+}
