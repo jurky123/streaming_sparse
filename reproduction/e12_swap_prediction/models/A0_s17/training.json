@@ -1,0 +1,172 @@
+{
+  "architecture": "A0",
+  "seed": 17,
+  "gpu": 0,
+  "parameters": 1089,
+  "updates": 2000,
+  "wall_seconds": 4.100684127770364,
+  "train_states": [
+    "city_walk_s101_c2_l15_s0_h5_t22",
+    "city_walk_s101_c2_l15_s0_h5_t58",
+    "city_walk_s101_c2_l15_s2_h11_t22",
+    "city_walk_s101_c2_l15_s2_h11_t58",
+    "city_walk_s101_c2_l1_s0_h3_t0",
+    "city_walk_s101_c2_l1_s0_h3_t36",
+    "city_walk_s101_c2_l1_s2_h9_t0",
+    "city_walk_s101_c2_l1_s2_h9_t36",
+    "city_walk_s101_c2_l29_s0_h7_t44",
+    "city_walk_s101_c2_l29_s0_h7_t8",
+    "city_walk_s101_c2_l29_s2_h1_t44",
+    "city_walk_s101_c2_l29_s2_h1_t8",
+    "city_walk_s101_c5_l15_s0_h8_t25",
+    "city_walk_s101_c5_l15_s0_h8_t61",
+    "city_walk_s101_c5_l15_s2_h2_t25",
+    "city_walk_s101_c5_l15_s2_h2_t61",
+    "city_walk_s101_c5_l1_s0_h6_t3",
+    "city_walk_s101_c5_l1_s0_h6_t39",
+    "city_walk_s101_c5_l1_s2_h0_t3",
+    "city_walk_s101_c5_l1_s2_h0_t39",
+    "city_walk_s101_c5_l29_s0_h10_t11",
+    "city_walk_s101_c5_l29_s0_h10_t47",
+    "city_walk_s101_c5_l29_s2_h4_t11",
+    "city_walk_s101_c5_l29_s2_h4_t47",
+    "city_walk_s101_c8_l15_s0_h11_t28",
+    "city_walk_s101_c8_l15_s0_h11_t64",
+    "city_walk_s101_c8_l15_s2_h5_t28",
+    "city_walk_s101_c8_l15_s2_h5_t64",
+    "city_walk_s101_c8_l1_s0_h9_t42",
+    "city_walk_s101_c8_l1_s0_h9_t6",
+    "city_walk_s101_c8_l1_s2_h3_t42",
+    "city_walk_s101_c8_l1_s2_h3_t6",
+    "city_walk_s101_c8_l29_s0_h1_t14",
+    "city_walk_s101_c8_l29_s0_h1_t50",
+    "city_walk_s101_c8_l29_s2_h7_t14",
+    "city_walk_s101_c8_l29_s2_h7_t50"
+  ],
+  "validation_states": [
+    "city_walk_s303_c2_l15_s0_h6_t44",
+    "city_walk_s303_c2_l15_s0_h6_t8",
+    "city_walk_s303_c2_l15_s2_h0_t44",
+    "city_walk_s303_c2_l15_s2_h0_t8",
+    "city_walk_s303_c2_l1_s0_h4_t22",
+    "city_walk_s303_c2_l1_s0_h4_t58",
+    "city_walk_s303_c2_l1_s2_h10_t22",
+    "city_walk_s303_c2_l1_s2_h10_t58",
+    "city_walk_s303_c2_l29_s0_h8_t30",
+    "city_walk_s303_c2_l29_s0_h8_t66",
+    "city_walk_s303_c2_l29_s2_h2_t30",
+    "city_walk_s303_c2_l29_s2_h2_t66",
+    "city_walk_s303_c5_l15_s0_h9_t11",
+    "city_walk_s303_c5_l15_s0_h9_t47",
+    "city_walk_s303_c5_l15_s2_h3_t11",
+    "city_walk_s303_c5_l15_s2_h3_t47",
+    "city_walk_s303_c5_l1_s0_h7_t25",
+    "city_walk_s303_c5_l1_s0_h7_t61",
+    "city_walk_s303_c5_l1_s2_h1_t25",
+    "city_walk_s303_c5_l1_s2_h1_t61",
+    "city_walk_s303_c5_l29_s0_h11_t33",
+    "city_walk_s303_c5_l29_s0_h11_t69",
+    "city_walk_s303_c5_l29_s2_h5_t33",
+    "city_walk_s303_c5_l29_s2_h5_t69",
+    "city_walk_s303_c8_l15_s0_h0_t14",
+    "city_walk_s303_c8_l15_s0_h0_t50",
+    "city_walk_s303_c8_l15_s2_h6_t14",
+    "city_walk_s303_c8_l15_s2_h6_t50",
+    "city_walk_s303_c8_l1_s0_h10_t28",
+    "city_walk_s303_c8_l1_s0_h10_t64",
+    "city_walk_s303_c8_l1_s2_h4_t28",
+    "city_walk_s303_c8_l1_s2_h4_t64",
+    "city_walk_s303_c8_l29_s0_h2_t0",
+    "city_walk_s303_c8_l29_s0_h2_t36",
+    "city_walk_s303_c8_l29_s2_h8_t0",
+    "city_walk_s303_c8_l29_s2_h8_t36"
+  ],
+  "loss": [
+    {
+      "step": 1,
+      "loss": 6.2827324867248535
+    },
+    {
+      "step": 100,
+      "loss": 5.963655471801758
+    },
+    {
+      "step": 200,
+      "loss": 5.783814430236816
+    },
+    {
+      "step": 300,
+      "loss": 5.625646114349365
+    },
+    {
+      "step": 400,
+      "loss": 5.498323440551758
+    },
+    {
+      "step": 500,
+      "loss": 5.3773064613342285
+    },
+    {
+      "step": 600,
+      "loss": 5.25441312789917
+    },
+    {
+      "step": 700,
+      "loss": 5.13436222076416
+    },
+    {
+      "step": 800,
+      "loss": 5.030451774597168
+    },
+    {
+      "step": 900,
+      "loss": 4.945335865020752
+    },
+    {
+      "step": 1000,
+      "loss": 4.878285884857178
+    },
+    {
+      "step": 1100,
+      "loss": 4.822714328765869
+    },
+    {
+      "step": 1200,
+      "loss": 4.774365425109863
+    },
+    {
+      "step": 1300,
+      "loss": 4.732799530029297
+    },
+    {
+      "step": 1400,
+      "loss": 4.6991729736328125
+    },
+    {
+      "step": 1500,
+      "loss": 4.6719231605529785
+    },
+    {
+      "step": 1600,
+      "loss": 4.647957801818848
+    },
+    {
+      "step": 1700,
+      "loss": 4.624932765960693
+    },
+    {
+      "step": 1800,
+      "loss": 4.602479934692383
+    },
+    {
+      "step": 1900,
+      "loss": 4.580836772918701
+    },
+    {
+      "step": 2000,
+      "loss": 4.559389114379883
+    }
+  ],
+  "initial_weight_sha256": "6e331d6f80c5017381dfedfd47321bf6220f4775e54894fdbe6c0748a2b13426",
+  "weights_sha256": "893349b7619dcdf28702f2d42b880cb4b92a2179c470ceb874df79ec39644132"
+}

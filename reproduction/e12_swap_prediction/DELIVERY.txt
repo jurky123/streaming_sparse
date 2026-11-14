@@ -1,0 +1,9 @@
+E12 Set-Conditional Swap Prediction
+
+Report: REPORT.zh.txt
+Repository archive: artifacts/e12_swap_prediction_review.tar.gz
+Archive SHA256: e4c899bf216192c11d2865de28842ba1f98315147b0134039f08889b010033b4
+Source: local_experiments/e12_swap_prediction/
+
+This directory contains the unpacked review archive plus this delivery note: reports, instance tables, figures, small model weights, selection records, audits, and source snapshots.
+The full frozen set_oracle_v1 dataset and derived per-state training cache are not included. See REPRODUCE.txt and protocol.json for dataset requirements and execution rules.

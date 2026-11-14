@@ -1,0 +1,787 @@
+{
+  "protocol": "preloaded same chunk5 layer1/15/29, 3 warmups,10 measurements; CPU one thread reference includes complete32-slot feature generation even for ablations; GPU measurement is scoring-only with preloaded features, excludes feature generation and transfers. Not fused production latency, not directly comparable to prior GPU total-router timing.",
+  "torch_threads": 1,
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "parameters": 1089,
+  "score_flops_per_tile": 1081344,
+  "score_flops_per_layer": 934281216,
+  "excluded_from_flops": [
+    "GELU",
+    "bias",
+    "feature generation",
+    "candidate selection",
+    "normalization",
+    "memory",
+    "launch"
+  ],
+  "rows": [
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "layer": 1,
+      "name": "A0_s17",
+      "page_ms": 12.585080228745937,
+      "candidate_ms": 0.5066096782684326,
+      "normalize_score_decide_ms": 1.0674926452338696,
+      "total_ms": 14.205445069819689,
+      "gpu_scoring_only_ms": 0.10956799983978271,
+      "samples": [
+        {
+          "page_ms": 13.035877607762814,
+          "candidate_ms": 0.5345083773136139,
+          "normalize_score_decide_ms": 1.1386675760149956,
+          "total_ms": 14.709053561091423,
+          "action": null
+        },
+        {
+          "page_ms": 13.09125404804945,
+          "candidate_ms": 0.5170656368136406,
+          "normalize_score_decide_ms": 1.0931408032774925,
+          "total_ms": 14.701460488140583,
+          "action": null
+        },
+        {
+          "page_ms": 12.53910269588232,
+          "candidate_ms": 0.5073761567473412,
+          "normalize_score_decide_ms": 1.1665103957057,
+          "total_ms": 14.212989248335361,
+          "action": null
+        },
+        {
+          "page_ms": 12.486342340707779,
+          "candidate_ms": 0.5095992237329483,
+          "normalize_score_decide_ms": 1.0909177362918854,
+          "total_ms": 14.086859300732613,
+          "action": null
+        },
+        {
+          "page_ms": 14.268875122070312,
+          "candidate_ms": 0.5030781030654907,
+          "normalize_score_decide_ms": 1.0790051892399788,
+          "total_ms": 15.850958414375782,
+          "action": null
+        },
+        {
+          "page_ms": 12.972848489880562,
+          "candidate_ms": 0.5026161670684814,
+          "normalize_score_decide_ms": 1.0342895984649658,
+          "total_ms": 14.509754255414009,
+          "action": null
+        },
+        {
+          "page_ms": 12.631057761609554,
+          "candidate_ms": 0.5108630284667015,
+          "normalize_score_decide_ms": 1.0559801012277603,
+          "total_ms": 14.197900891304016,
+          "action": null
+        },
+        {
+          "page_ms": 12.46657408773899,
+          "candidate_ms": 0.5058431997895241,
+          "normalize_score_decide_ms": 1.0468130931258202,
+          "total_ms": 14.019230380654335,
+          "action": null
+        },
+        {
+          "page_ms": 12.434573844075203,
+          "candidate_ms": 0.5032680928707123,
+          "normalize_score_decide_ms": 1.0456908494234085,
+          "total_ms": 13.983532786369324,
+          "action": null
+        },
+        {
+          "page_ms": 12.428302317857742,
+          "candidate_ms": 0.5028862506151199,
+          "normalize_score_decide_ms": 1.042235642671585,
+          "total_ms": 13.973424211144447,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "layer": 1,
+      "name": "A1_s17",
+      "page_ms": 12.362120673060417,
+      "candidate_ms": 0.48032868653535843,
+      "normalize_score_decide_ms": 1.01463682949543,
+      "total_ms": 13.860002625733614,
+      "gpu_scoring_only_ms": 0.11366400122642517,
+      "samples": [
+        {
+          "page_ms": 12.649010866880417,
+          "candidate_ms": 0.5057631060481071,
+          "normalize_score_decide_ms": 1.012919470667839,
+          "total_ms": 14.167693443596363,
+          "action": null
+        },
+        {
+          "page_ms": 12.398004531860352,
+          "candidate_ms": 0.4802737385034561,
+          "normalize_score_decide_ms": 1.0159136727452278,
+          "total_ms": 13.894191943109035,
+          "action": null
+        },
+        {
+          "page_ms": 12.14564312249422,
+          "candidate_ms": 0.485333614051342,
+          "normalize_score_decide_ms": 1.0168664157390594,
+          "total_ms": 13.647843152284622,
+          "action": null
+        },
+        {
+          "page_ms": 12.248588725924492,
+          "candidate_ms": 0.4764171317219734,
+          "normalize_score_decide_ms": 0.9982511401176453,
+          "total_ms": 13.72325699776411,
+          "action": null
+        },
+        {
+          "page_ms": 12.543421238660812,
+          "candidate_ms": 0.4847627133131027,
+          "normalize_score_decide_ms": 1.024230383336544,
+          "total_ms": 14.05241433531046,
+          "action": null
+        },
+        {
+          "page_ms": 12.683196924626827,
+          "candidate_ms": 0.4743635654449463,
+          "normalize_score_decide_ms": 0.9946124628186226,
+          "total_ms": 14.152172952890396,
+          "action": null
+        },
+        {
+          "page_ms": 12.327429838478565,
+          "candidate_ms": 0.4836004227399826,
+          "normalize_score_decide_ms": 1.0222569108009338,
+          "total_ms": 13.833287172019482,
+          "action": null
+        },
+        {
+          "page_ms": 12.39681150764227,
+          "candidate_ms": 0.47654658555984497,
+          "normalize_score_decide_ms": 1.0133599862456322,
+          "total_ms": 13.886718079447746,
+          "action": null
+        },
+        {
+          "page_ms": 12.226017192006111,
+          "candidate_ms": 0.48038363456726074,
+          "normalize_score_decide_ms": 1.0951152071356773,
+          "total_ms": 13.80151603370905,
+          "action": null
+        },
+        {
+          "page_ms": 12.25471030920744,
+          "candidate_ms": 0.4757251590490341,
+          "normalize_score_decide_ms": 1.012648455798626,
+          "total_ms": 13.7430839240551,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "layer": 1,
+      "name": "A2_s17",
+      "page_ms": 12.2291324660182,
+      "candidate_ms": 0.4740576259791851,
+      "normalize_score_decide_ms": 0.9754323400557041,
+      "total_ms": 13.69217736646533,
+      "gpu_scoring_only_ms": 0.11008000001311302,
+      "samples": [
+        {
+          "page_ms": 12.203773483633995,
+          "candidate_ms": 0.4743635654449463,
+          "normalize_score_decide_ms": 1.184895634651184,
+          "total_ms": 13.863032683730125,
+          "action": null
+        },
+        {
+          "page_ms": 12.220416218042374,
+          "candidate_ms": 0.4963856190443039,
+          "normalize_score_decide_ms": 0.9715184569358826,
+          "total_ms": 13.68832029402256,
+          "action": null
+        },
+        {
+          "page_ms": 12.114995159208775,
+          "candidate_ms": 0.47410279512405396,
+          "normalize_score_decide_ms": 0.9962264448404312,
+          "total_ms": 13.58532439917326,
+          "action": null
+        },
+        {
+          "page_ms": 12.166873551905155,
+          "candidate_ms": 0.47401245683431625,
+          "normalize_score_decide_ms": 0.9762588888406754,
+          "total_ms": 13.617144897580147,
+          "action": null
+        },
+        {
+          "page_ms": 12.237097136676311,
+          "candidate_ms": 0.4699043929576874,
+          "normalize_score_decide_ms": 0.9581046178936958,
+          "total_ms": 13.665106147527695,
+          "action": null
+        },
+        {
+          "page_ms": 12.243869714438915,
+          "candidate_ms": 0.477558933198452,
+          "normalize_score_decide_ms": 0.9746057912707329,
+          "total_ms": 13.6960344389081,
+          "action": null
+        },
+        {
+          "page_ms": 12.228471226990223,
+          "candidate_ms": 0.469183549284935,
+          "normalize_score_decide_ms": 0.9663999080657959,
+          "total_ms": 13.664054684340954,
+          "action": null
+        },
+        {
+          "page_ms": 12.289116159081459,
+          "candidate_ms": 0.4666987806558609,
+          "normalize_score_decide_ms": 0.9699668735265732,
+          "total_ms": 13.725781813263893,
+          "action": null
+        },
+        {
+          "page_ms": 12.556997127830982,
+          "candidate_ms": 0.475345179438591,
+          "normalize_score_decide_ms": 0.990905798971653,
+          "total_ms": 14.023248106241226,
+          "action": null
+        },
+        {
+          "page_ms": 12.229793705046177,
+          "candidate_ms": 0.4733707755804062,
+          "normalize_score_decide_ms": 0.999031588435173,
+          "total_ms": 13.702196069061756,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "layer": 15,
+      "name": "A0_s17",
+      "page_ms": 12.23351014778018,
+      "candidate_ms": 0.4781302995979786,
+      "normalize_score_decide_ms": 0.99946279078722,
+      "total_ms": 13.705231714993715,
+      "gpu_scoring_only_ms": 0.10905599966645241,
+      "samples": [
+        {
+          "page_ms": 12.248970568180084,
+          "candidate_ms": 0.4839804023504257,
+          "normalize_score_decide_ms": 0.9929202497005463,
+          "total_ms": 13.725871220231056,
+          "action": null
+        },
+        {
+          "page_ms": 12.297172099351883,
+          "candidate_ms": 0.4739025607705116,
+          "normalize_score_decide_ms": 1.0040812194347382,
+          "total_ms": 13.775155879557133,
+          "action": null
+        },
+        {
+          "page_ms": 12.218049727380276,
+          "candidate_ms": 0.47099683433771133,
+          "normalize_score_decide_ms": 0.9896736592054367,
+          "total_ms": 13.678720220923424,
+          "action": null
+        },
+        {
+          "page_ms": 12.149330228567123,
+          "candidate_ms": 0.48235803842544556,
+          "normalize_score_decide_ms": 1.0114144533872604,
+          "total_ms": 13.64310272037983,
+          "action": null
+        },
+        {
+          "page_ms": 12.280970811843872,
+          "candidate_ms": 0.4730401560664177,
+          "normalize_score_decide_ms": 1.0321056470274925,
+          "total_ms": 13.786116614937782,
+          "action": null
+        },
+        {
+          "page_ms": 12.184547260403633,
+          "candidate_ms": 0.4729507490992546,
+          "normalize_score_decide_ms": 0.996897928416729,
+          "total_ms": 13.654395937919617,
+          "action": null
+        },
+        {
+          "page_ms": 12.249411083757877,
+          "candidate_ms": 0.49309805035591125,
+          "normalize_score_decide_ms": 0.9905761107802391,
+          "total_ms": 13.733085244894028,
+          "action": null
+        },
+        {
+          "page_ms": 12.183936312794685,
+          "candidate_ms": 0.4692329093813896,
+          "normalize_score_decide_ms": 0.9845644235610962,
+          "total_ms": 13.637733645737171,
+          "action": null
+        },
+        {
+          "page_ms": 12.256214395165443,
+          "candidate_ms": 0.48280879855155945,
+          "normalize_score_decide_ms": 1.0091708973050117,
+          "total_ms": 13.748194091022015,
+          "action": null
+        },
+        {
+          "page_ms": 12.184456922113895,
+          "candidate_ms": 0.4981076344847679,
+          "normalize_score_decide_ms": 1.002027653157711,
+          "total_ms": 13.684592209756374,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "layer": 15,
+      "name": "A1_s17",
+      "page_ms": 12.282024137675762,
+      "candidate_ms": 0.4768073558807373,
+      "normalize_score_decide_ms": 0.9961309842765331,
+      "total_ms": 13.751850929111242,
+      "gpu_scoring_only_ms": 0.1085439994931221,
+      "samples": [
+        {
+          "page_ms": 12.224152684211731,
+          "candidate_ms": 0.47408323734998703,
+          "normalize_score_decide_ms": 1.018819399178028,
+          "total_ms": 13.717055320739746,
+          "action": null
+        },
+        {
+          "page_ms": 12.231847271323204,
+          "candidate_ms": 0.47050509601831436,
+          "normalize_score_decide_ms": 1.0007647797465324,
+          "total_ms": 13.70311714708805,
+          "action": null
+        },
+        {
+          "page_ms": 12.312861159443855,
+          "candidate_ms": 0.47966279089450836,
+          "normalize_score_decide_ms": 0.9893942624330521,
+          "total_ms": 13.781918212771416,
+          "action": null
+        },
+        {
+          "page_ms": 12.23853975534439,
+          "candidate_ms": 0.4823897033929825,
+          "normalize_score_decide_ms": 1.0034097358584404,
+          "total_ms": 13.724339194595814,
+          "action": null
+        },
+        {
+          "page_ms": 12.288674712181091,
+          "candidate_ms": 0.4742629826068878,
+          "normalize_score_decide_ms": 0.9818598628044128,
+          "total_ms": 13.744797557592392,
+          "action": null
+        },
+        {
+          "page_ms": 12.872155755758286,
+          "candidate_ms": 0.47928187996149063,
+          "normalize_score_decide_ms": 0.9905165061354637,
+          "total_ms": 14.34195414185524,
+          "action": null
+        },
+        {
+          "page_ms": 12.27636355906725,
+          "candidate_ms": 0.4801228642463684,
+          "normalize_score_decide_ms": 1.0034311562776566,
+          "total_ms": 13.759917579591274,
+          "action": null
+        },
+        {
+          "page_ms": 12.287684716284275,
+          "candidate_ms": 0.48714689910411835,
+          "normalize_score_decide_ms": 0.9840726852416992,
+          "total_ms": 13.758904300630093,
+          "action": null
+        },
+        {
+          "page_ms": 12.348179705440998,
+          "candidate_ms": 0.4651658236980438,
+          "normalize_score_decide_ms": 0.9914971888065338,
+          "total_ms": 13.804842717945576,
+          "action": null
+        },
+        {
+          "page_ms": 12.17411644756794,
+          "candidate_ms": 0.474332831799984,
+          "normalize_score_decide_ms": 1.0723024606704712,
+          "total_ms": 13.720751740038395,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "layer": 15,
+      "name": "A2_s17",
+      "page_ms": 12.285244185477495,
+      "candidate_ms": 0.4775542765855789,
+      "normalize_score_decide_ms": 0.9963661432266235,
+      "total_ms": 13.776067178696394,
+      "gpu_scoring_only_ms": 0.11008000001311302,
+      "samples": [
+        {
+          "page_ms": 12.216557748615742,
+          "candidate_ms": 0.4628412425518036,
+          "normalize_score_decide_ms": 0.9662490338087082,
+          "total_ms": 13.645648024976254,
+          "action": null
+        },
+        {
+          "page_ms": 12.250511907041073,
+          "candidate_ms": 0.47422293573617935,
+          "normalize_score_decide_ms": 0.9475238621234894,
+          "total_ms": 13.672258704900742,
+          "action": null
+        },
+        {
+          "page_ms": 12.348298914730549,
+          "candidate_ms": 0.49400143325328827,
+          "normalize_score_decide_ms": 0.9908154606819153,
+          "total_ms": 13.833115808665752,
+          "action": null
+        },
+        {
+          "page_ms": 12.221517972648144,
+          "candidate_ms": 0.476607121527195,
+          "normalize_score_decide_ms": 1.0108547285199165,
+          "total_ms": 13.708979822695255,
+          "action": null
+        },
+        {
+          "page_ms": 12.279538437724113,
+          "candidate_ms": 0.4907948896288872,
+          "normalize_score_decide_ms": 1.0205823928117752,
+          "total_ms": 13.790915720164776,
+          "action": null
+        },
+        {
+          "page_ms": 12.26812694221735,
+          "candidate_ms": 0.47601573169231415,
+          "normalize_score_decide_ms": 0.9835017845034599,
+          "total_ms": 13.727644458413124,
+          "action": null
+        },
+        {
+          "page_ms": 12.291992083191872,
+          "candidate_ms": 0.482829287648201,
+          "normalize_score_decide_ms": 1.0019168257713318,
+          "total_ms": 13.776738196611404,
+          "action": null
+        },
+        {
+          "page_ms": 12.799687683582306,
+          "candidate_ms": 0.47850143164396286,
+          "normalize_score_decide_ms": 1.0116659104824066,
+          "total_ms": 14.289855025708675,
+          "action": null
+        },
+        {
+          "page_ms": 12.290949933230877,
+          "candidate_ms": 0.4818672314286232,
+          "normalize_score_decide_ms": 1.0025789961218834,
+          "total_ms": 13.775396160781384,
+          "action": null
+        },
+        {
+          "page_ms": 12.916329316794872,
+          "candidate_ms": 0.47542527318000793,
+          "normalize_score_decide_ms": 0.9866291657090187,
+          "total_ms": 14.378383755683899,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "layer": 29,
+      "name": "A0_s17",
+      "page_ms": 12.843456584960222,
+      "candidate_ms": 0.4778350703418255,
+      "normalize_score_decide_ms": 1.0053846053779125,
+      "total_ms": 14.327566139400005,
+      "gpu_scoring_only_ms": 0.1085439994931221,
+      "samples": [
+        {
+          "page_ms": 12.832771986722946,
+          "candidate_ms": 0.4776781424880028,
+          "normalize_score_decide_ms": 1.0034600272774696,
+          "total_ms": 14.313910156488419,
+          "action": null
+        },
+        {
+          "page_ms": 12.849703431129456,
+          "candidate_ms": 0.47776009887456894,
+          "normalize_score_decide_ms": 1.0329652577638626,
+          "total_ms": 14.360428787767887,
+          "action": null
+        },
+        {
+          "page_ms": 12.74705771356821,
+          "candidate_ms": 0.4747239872813225,
+          "normalize_score_decide_ms": 1.0320954024791718,
+          "total_ms": 14.253877103328705,
+          "action": null
+        },
+        {
+          "page_ms": 12.961755506694317,
+          "candidate_ms": 0.4933606833219528,
+          "normalize_score_decide_ms": 1.0978998616337776,
+          "total_ms": 14.553016051650047,
+          "action": null
+        },
+        {
+          "page_ms": 12.837209738790989,
+          "candidate_ms": 0.4815366119146347,
+          "normalize_score_decide_ms": 0.9911572560667992,
+          "total_ms": 14.309903606772423,
+          "action": null
+        },
+        {
+          "page_ms": 12.571422383189201,
+          "candidate_ms": 0.47791004180908203,
+          "normalize_score_decide_ms": 0.994313508272171,
+          "total_ms": 14.043645933270454,
+          "action": null
+        },
+        {
+          "page_ms": 12.980182655155659,
+          "candidate_ms": 0.4812655970454216,
+          "normalize_score_decide_ms": 1.003701239824295,
+          "total_ms": 14.465149492025375,
+          "action": null
+        },
+        {
+          "page_ms": 12.924465350806713,
+          "candidate_ms": 0.494370236992836,
+          "normalize_score_decide_ms": 1.00729800760746,
+          "total_ms": 14.42613359540701,
+          "action": null
+        },
+        {
+          "page_ms": 12.808505445718765,
+          "candidate_ms": 0.47035515308380127,
+          "normalize_score_decide_ms": 1.00706797093153,
+          "total_ms": 14.285928569734097,
+          "action": null
+        },
+        {
+          "page_ms": 12.87828665226698,
+          "candidate_ms": 0.4759961739182472,
+          "normalize_score_decide_ms": 0.9869392961263657,
+          "total_ms": 14.341222122311592,
+          "action": null
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "layer": 29,
+      "name": "A1_s17",
+      "page_ms": 12.87188520655036,
+      "candidate_ms": 0.48236316069960594,
+      "normalize_score_decide_ms": 0.996752642095089,
+      "total_ms": 14.350204728543758,
+      "gpu_scoring_only_ms": 0.10956799983978271,
+      "samples": [
+        {
+          "page_ms": 12.882606126368046,
+          "candidate_ms": 0.47795847058296204,
+          "normalize_score_decide_ms": 0.9874710813164711,
+          "total_ms": 14.348035678267479,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.887214310467243,
+          "candidate_ms": 0.4820171743631363,
+          "normalize_score_decide_ms": 0.993591733276844,
+          "total_ms": 14.362823218107224,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.780322693288326,
+          "candidate_ms": 0.47469232231378555,
+          "normalize_score_decide_ms": 1.004301942884922,
+          "total_ms": 14.259316958487034,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.765493243932724,
+          "candidate_ms": 0.47509465366601944,
+          "normalize_score_decide_ms": 0.9967172518372536,
+          "total_ms": 14.237305149435997,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.870542705059052,
+          "candidate_ms": 0.4827091470360756,
+          "normalize_score_decide_ms": 0.9991219267249107,
+          "total_ms": 14.352373778820038,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.83280085772276,
+          "candidate_ms": 0.48139598220586777,
+          "normalize_score_decide_ms": 0.9816586971282959,
+          "total_ms": 14.295855537056923,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.76098471134901,
+          "candidate_ms": 0.48880092799663544,
+          "normalize_score_decide_ms": 0.9863777086138725,
+          "total_ms": 14.236163347959518,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.880342081189156,
+          "candidate_ms": 0.4921071231365204,
+          "normalize_score_decide_ms": 0.9984513744711876,
+          "total_ms": 14.370900578796864,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.892545200884342,
+          "candidate_ms": 0.485394150018692,
+          "normalize_score_decide_ms": 0.9967880323529243,
+          "total_ms": 14.374727383255959,
+          "action": [
+            338,
+            11
+          ]
+        },
+        {
+          "page_ms": 12.873227708041668,
+          "candidate_ms": 0.48299040645360947,
+          "normalize_score_decide_ms": 0.9981896728277206,
+          "total_ms": 14.354407787322998,
+          "action": [
+            338,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "layer": 29,
+      "name": "A2_s17",
+      "page_ms": 12.866650242358446,
+      "candidate_ms": 0.4808260127902031,
+      "normalize_score_decide_ms": 0.9964564815163612,
+      "total_ms": 14.3580948933959,
+      "gpu_scoring_only_ms": 0.10905599966645241,
+      "samples": [
+        {
+          "page_ms": 12.924375012516975,
+          "candidate_ms": 0.4883706569671631,
+          "normalize_score_decide_ms": 1.002507284283638,
+          "total_ms": 14.415252953767776,
+          "action": null
+        },
+        {
+          "page_ms": 12.850053608417511,
+          "candidate_ms": 0.4786308854818344,
+          "normalize_score_decide_ms": 1.0005449876189232,
+          "total_ms": 14.329229481518269,
+          "action": null
+        },
+        {
+          "page_ms": 12.761544436216354,
+          "candidate_ms": 0.4892507568001747,
+          "normalize_score_decide_ms": 1.0954765602946281,
+          "total_ms": 14.346271753311157,
+          "action": null
+        },
+        {
+          "page_ms": 12.87934836000204,
+          "candidate_ms": 0.48732850700616837,
+          "normalize_score_decide_ms": 0.993901863694191,
+          "total_ms": 14.3605787307024,
+          "action": null
+        },
+        {
+          "page_ms": 12.920518405735493,
+          "candidate_ms": 0.4786113277077675,
+          "normalize_score_decide_ms": 0.995885580778122,
+          "total_ms": 14.395015314221382,
+          "action": null
+        },
+        {
+          "page_ms": 12.835405766963959,
+          "candidate_ms": 0.47580618411302567,
+          "normalize_score_decide_ms": 0.9970273822546005,
+          "total_ms": 14.308239333331585,
+          "action": null
+        },
+        {
+          "page_ms": 12.88672350347042,
+          "candidate_ms": 0.482168048620224,
+          "normalize_score_decide_ms": 0.9902454912662506,
+          "total_ms": 14.359137043356895,
+          "action": null
+        },
+        {
+          "page_ms": 12.853952124714851,
+          "candidate_ms": 0.49788691103458405,
+          "normalize_score_decide_ms": 1.008249819278717,
+          "total_ms": 14.360088855028152,
+          "action": null
+        },
+        {
+          "page_ms": 12.84993439912796,
+          "candidate_ms": 0.4720287397503853,
+          "normalize_score_decide_ms": 0.9924592450261116,
+          "total_ms": 14.314422383904457,
+          "action": null
+        },
+        {
+          "page_ms": 12.894648127257824,
+          "candidate_ms": 0.4794839769601822,
+          "normalize_score_decide_ms": 0.9829206392168999,
+          "total_ms": 14.357052743434906,
+          "action": null
+        }
+      ]
+    }
+  ]
+}
