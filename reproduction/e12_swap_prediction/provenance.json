@@ -1,0 +1,24 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.6.0+cu124",
+  "scipy": "1.15.3",
+  "sources": {
+    "core.py": "508043cdcb568e4c3e7d5f104d9a2f2447900b92d05b436ed17e1b2808ead151",
+    "evaluate.py": "6fd7bf7c4033129ff197ab7115f6bfa59b2b37c2eca7681dfd5a7edbdc482dbd",
+    "train.py": "d4ba7ddff274b89113f11250969c7d6133ea55c30e6c6e672d9debf582675b91",
+    "benchmark.py": "f972f5aac221e23190a23face39583b58b7a58df2276b8d10d8e188a4780f136",
+    "__init__.py": "f2f263eb8de20a2a173e008dc7670591c635b1abd4beb51d415ab72e7407b9aa",
+    "run.py": "9358432356e373000d6d4b51d04b8d87c788bf68c75ba6f92ddc974a16b28606",
+    "prepare.py": "5948c8f36a85fad95a1d3f81d11268221606646fb53b5df9cac6530887a86285",
+    "audit.py": "b2219d9851f3153174dab67d08b7ff9a9a0e3826b7ec28fa1fe0b4f2ec3da8ff",
+    "report.py": "359972ca3ed6758f034677369d20d634ea155d0f52fe379cc861389908755f63"
+  },
+  "frozen_manifest_sha256": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+  "model_hashes": {
+    "A0_s17": "893349b7619dcdf28702f2d42b880cb4b92a2179c470ceb874df79ec39644132",
+    "A1_s17": "893286ac4b406115f28e285545aadf30545d6f0ae8fbb61f198fdc1020eaaf88",
+    "A2_s17": "9aaba6d75c2715dcd2fb6573bcba42097befdd98f2381c619a058449f90c3335",
+    "A0_s29": "c599b61ac5aae6324f58a24842615c2b5d557bfc8d3db3e5f8e3cf404d19e2c6"
+  }
+}

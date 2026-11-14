@@ -1,0 +1,105 @@
+{
+  "name": "E12 Set-Conditional Swap Prediction",
+  "baseline": "178f95a8 / summary_pretrained / G-KVR",
+  "manifest_sha256": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+  "states": 144,
+  "splits": {
+    "train": 36,
+    "validation": 36,
+    "evaluation": 72
+  },
+  "input_probes": 16,
+  "evaluation_queries": 64,
+  "pool": [
+    16,
+    32
+  ],
+  "initial": "Risk own protected; fixed10%",
+  "no_op": "fixed zero logit and zero true gain; swap only if max logit exceeds frozen nonnegative threshold",
+  "feature_names": [
+    "remove_log_relative_risk",
+    "remove_log_relative_mass",
+    "remove_log_relative_X0",
+    "remove_log_relative_X1",
+    "remove_log_relative_X2",
+    "remove_log_relative_X3",
+    "remove_risk_rank_fraction",
+    "remove_age_over5",
+    "remove_history",
+    "remove_relative_value_distance",
+    "add_log_relative_risk",
+    "add_log_relative_mass",
+    "add_log_relative_X0",
+    "add_log_relative_X1",
+    "add_log_relative_X2",
+    "add_log_relative_X3",
+    "add_risk_rank_fraction",
+    "add_age_over5",
+    "add_history",
+    "add_relative_value_distance",
+    "set_mass",
+    "set_mass_weighted_risk",
+    "set_risk_variance",
+    "set_history_fraction",
+    "H_norm",
+    "H_dot_remove",
+    "H_dot_add",
+    "H_cos_remove",
+    "H_cos_add",
+    "remove_add_cos",
+    "H_norm_change",
+    "H_cos_direction_change"
+  ],
+  "feature_slots": {
+    "A0": [
+      0,
+      20
+    ],
+    "A1": [
+      0,
+      24
+    ],
+    "A2": [
+      0,
+      32
+    ]
+  },
+  "architecture": "32 -> 32 GELU -> 1; identical1089 parameters; unused standardized feature slots zero",
+  "seed": 17,
+  "second_seed": 29,
+  "updates": 2000,
+  "optimizer": "Adam lr1e-3 betas(.9,.999) eps1e-8 weight_decay0 grad_clip1",
+  "batch": "full batch of36 complete states; no independent-action sampling",
+  "loss": "KL/soft-target cross entropy across512 swaps + no-op; gain normalized by per-state standard deviation; temperature0.3 fixed before training",
+  "label_scale": "max(std(512 gains),1e-12), labels only; never inference feature",
+  "thresholds": [
+    0,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2,
+    4,
+    8,
+    16,
+    "infinity"
+  ],
+  "selection": "maximize mean relative gain subject to degradation<=15% on validation; no-op fallback allowed; evaluate threshold0 separately",
+  "second_seed_rule": "if any primary model passes validation, retrain only highest validation gain passing architecture with seed29, same budget, select threshold on validation",
+  "multi_rule": "only if selected architecture passes validation with BOTH seeds; freeze both models first, evaluate their own trajectories at1/2/4; no new training states in this first-round decision study",
+  "scope": "three single-step architectures first; no global solving, residual predictors, video generation, M64 sweep or fused kernels; phase2 expanded-state training deferred",
+  "allowlist": [
+    "query",
+    "summary_keys",
+    "summary_mean",
+    "summary_detail",
+    "basis",
+    "risk_features_probe16",
+    "risk_scores",
+    "probe_indices",
+    "page_age",
+    "page_is_history",
+    "theta"
+  ],
+  "created": 1794659356.2605784
+}

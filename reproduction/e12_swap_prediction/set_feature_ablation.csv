@@ -1,0 +1,7 @@
+split,comparison,mean_gain_difference_pp,median_gain_difference_pp,wins,losses,ties
+validation,A1 minus A0,-0.048713381424941055,0.0,2,3,31
+validation,A2 minus A0,-0.10822391674059689,0.0,0,1,35
+validation,A2 minus A1,-0.05951053531565584,0.0,2,2,32
+evaluation,A1 minus A0,-2.950087293078716,0.0,12,7,53
+evaluation,A2 minus A0,-0.04082702558955517,0.0,1,1,70
+evaluation,A2 minus A1,2.909260267489161,0.0,6,11,55

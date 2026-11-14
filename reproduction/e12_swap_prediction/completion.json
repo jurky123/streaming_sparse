@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "scope": "E12 single-step A/B/C plus gated seed29",
+  "primary_models": 3,
+  "secondary_models": 1,
+  "states": 144,
+  "evaluation": 72,
+  "multi_round": "not run: two-seed validation gate failed",
+  "raw_data_unchanged": true
+}
