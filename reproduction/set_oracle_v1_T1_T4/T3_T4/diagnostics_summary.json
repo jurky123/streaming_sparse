@@ -1,0 +1,29 @@
+{
+  "train": {
+    "n": 36,
+    "median_set_residual_cosine": 0.03691671630894798,
+    "mean_denominator_relative_mae": 0.5234110527887692,
+    "oracle_interventions": {
+      "oracle_residual_predicted_denominator": 6.136155664683347,
+      "predicted_residual_oracle_denominator": -0.3472091501228996
+    }
+  },
+  "validation": {
+    "n": 36,
+    "median_set_residual_cosine": 0.03751376341238618,
+    "mean_denominator_relative_mae": 2.2155989116658246,
+    "oracle_interventions": {
+      "oracle_residual_predicted_denominator": 9.579340397921026,
+      "predicted_residual_oracle_denominator": 3.2607364404387518
+    }
+  },
+  "evaluation": {
+    "n": 72,
+    "median_set_residual_cosine": 0.033230313692300964,
+    "mean_denominator_relative_mae": 2.1641621887701663,
+    "oracle_interventions": {
+      "oracle_residual_predicted_denominator": 8.676050355881635,
+      "predicted_residual_oracle_denominator": 2.9915556957335605
+    }
+  }
+}

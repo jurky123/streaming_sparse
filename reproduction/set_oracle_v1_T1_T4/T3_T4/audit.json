@@ -1,0 +1,1028 @@
+{
+  "passed": true,
+  "instances": 144,
+  "total_masks_checked": 34560,
+  "max_objective_error": 0.0,
+  "max_summary_mass_error": 1.6653345369377348e-15,
+  "frozen_files_verified": 734,
+  "changed_frozen_files": [],
+  "teacher_poisoning_test": "passed; exact_page_logz and reference logZ not accessed by online allowlist",
+  "splits": {
+    "train": [
+      "city_walk_s101_c2_l15_s0_h5_t22",
+      "city_walk_s101_c2_l15_s0_h5_t58",
+      "city_walk_s101_c2_l15_s2_h11_t22",
+      "city_walk_s101_c2_l15_s2_h11_t58",
+      "city_walk_s101_c2_l1_s0_h3_t0",
+      "city_walk_s101_c2_l1_s0_h3_t36",
+      "city_walk_s101_c2_l1_s2_h9_t0",
+      "city_walk_s101_c2_l1_s2_h9_t36",
+      "city_walk_s101_c2_l29_s0_h7_t44",
+      "city_walk_s101_c2_l29_s0_h7_t8",
+      "city_walk_s101_c2_l29_s2_h1_t44",
+      "city_walk_s101_c2_l29_s2_h1_t8",
+      "city_walk_s101_c5_l15_s0_h8_t25",
+      "city_walk_s101_c5_l15_s0_h8_t61",
+      "city_walk_s101_c5_l15_s2_h2_t25",
+      "city_walk_s101_c5_l15_s2_h2_t61",
+      "city_walk_s101_c5_l1_s0_h6_t3",
+      "city_walk_s101_c5_l1_s0_h6_t39",
+      "city_walk_s101_c5_l1_s2_h0_t3",
+      "city_walk_s101_c5_l1_s2_h0_t39",
+      "city_walk_s101_c5_l29_s0_h10_t11",
+      "city_walk_s101_c5_l29_s0_h10_t47",
+      "city_walk_s101_c5_l29_s2_h4_t11",
+      "city_walk_s101_c5_l29_s2_h4_t47",
+      "city_walk_s101_c8_l15_s0_h11_t28",
+      "city_walk_s101_c8_l15_s0_h11_t64",
+      "city_walk_s101_c8_l15_s2_h5_t28",
+      "city_walk_s101_c8_l15_s2_h5_t64",
+      "city_walk_s101_c8_l1_s0_h9_t42",
+      "city_walk_s101_c8_l1_s0_h9_t6",
+      "city_walk_s101_c8_l1_s2_h3_t42",
+      "city_walk_s101_c8_l1_s2_h3_t6",
+      "city_walk_s101_c8_l29_s0_h1_t14",
+      "city_walk_s101_c8_l29_s0_h1_t50",
+      "city_walk_s101_c8_l29_s2_h7_t14",
+      "city_walk_s101_c8_l29_s2_h7_t50"
+    ],
+    "validation": [
+      "city_walk_s303_c2_l15_s0_h6_t44",
+      "city_walk_s303_c2_l15_s0_h6_t8",
+      "city_walk_s303_c2_l15_s2_h0_t44",
+      "city_walk_s303_c2_l15_s2_h0_t8",
+      "city_walk_s303_c2_l1_s0_h4_t22",
+      "city_walk_s303_c2_l1_s0_h4_t58",
+      "city_walk_s303_c2_l1_s2_h10_t22",
+      "city_walk_s303_c2_l1_s2_h10_t58",
+      "city_walk_s303_c2_l29_s0_h8_t30",
+      "city_walk_s303_c2_l29_s0_h8_t66",
+      "city_walk_s303_c2_l29_s2_h2_t30",
+      "city_walk_s303_c2_l29_s2_h2_t66",
+      "city_walk_s303_c5_l15_s0_h9_t11",
+      "city_walk_s303_c5_l15_s0_h9_t47",
+      "city_walk_s303_c5_l15_s2_h3_t11",
+      "city_walk_s303_c5_l15_s2_h3_t47",
+      "city_walk_s303_c5_l1_s0_h7_t25",
+      "city_walk_s303_c5_l1_s0_h7_t61",
+      "city_walk_s303_c5_l1_s2_h1_t25",
+      "city_walk_s303_c5_l1_s2_h1_t61",
+      "city_walk_s303_c5_l29_s0_h11_t33",
+      "city_walk_s303_c5_l29_s0_h11_t69",
+      "city_walk_s303_c5_l29_s2_h5_t33",
+      "city_walk_s303_c5_l29_s2_h5_t69",
+      "city_walk_s303_c8_l15_s0_h0_t14",
+      "city_walk_s303_c8_l15_s0_h0_t50",
+      "city_walk_s303_c8_l15_s2_h6_t14",
+      "city_walk_s303_c8_l15_s2_h6_t50",
+      "city_walk_s303_c8_l1_s0_h10_t28",
+      "city_walk_s303_c8_l1_s0_h10_t64",
+      "city_walk_s303_c8_l1_s2_h4_t28",
+      "city_walk_s303_c8_l1_s2_h4_t64",
+      "city_walk_s303_c8_l29_s0_h2_t0",
+      "city_walk_s303_c8_l29_s0_h2_t36",
+      "city_walk_s303_c8_l29_s2_h8_t0",
+      "city_walk_s303_c8_l29_s2_h8_t36"
+    ],
+    "evaluation": [
+      "horse_field_s101_c2_l15_s0_h5_t22",
+      "horse_field_s101_c2_l15_s0_h5_t58",
+      "horse_field_s101_c2_l15_s2_h11_t22",
+      "horse_field_s101_c2_l15_s2_h11_t58",
+      "horse_field_s101_c2_l1_s0_h3_t0",
+      "horse_field_s101_c2_l1_s0_h3_t36",
+      "horse_field_s101_c2_l1_s2_h9_t0",
+      "horse_field_s101_c2_l1_s2_h9_t36",
+      "horse_field_s101_c2_l29_s0_h7_t44",
+      "horse_field_s101_c2_l29_s0_h7_t8",
+      "horse_field_s101_c2_l29_s2_h1_t44",
+      "horse_field_s101_c2_l29_s2_h1_t8",
+      "horse_field_s101_c5_l15_s0_h8_t25",
+      "horse_field_s101_c5_l15_s0_h8_t61",
+      "horse_field_s101_c5_l15_s2_h2_t25",
+      "horse_field_s101_c5_l15_s2_h2_t61",
+      "horse_field_s101_c5_l1_s0_h6_t3",
+      "horse_field_s101_c5_l1_s0_h6_t39",
+      "horse_field_s101_c5_l1_s2_h0_t3",
+      "horse_field_s101_c5_l1_s2_h0_t39",
+      "horse_field_s101_c5_l29_s0_h10_t11",
+      "horse_field_s101_c5_l29_s0_h10_t47",
+      "horse_field_s101_c5_l29_s2_h4_t11",
+      "horse_field_s101_c5_l29_s2_h4_t47",
+      "horse_field_s101_c8_l15_s0_h11_t28",
+      "horse_field_s101_c8_l15_s0_h11_t64",
+      "horse_field_s101_c8_l15_s2_h5_t28",
+      "horse_field_s101_c8_l15_s2_h5_t64",
+      "horse_field_s101_c8_l1_s0_h9_t42",
+      "horse_field_s101_c8_l1_s0_h9_t6",
+      "horse_field_s101_c8_l1_s2_h3_t42",
+      "horse_field_s101_c8_l1_s2_h3_t6",
+      "horse_field_s101_c8_l29_s0_h1_t14",
+      "horse_field_s101_c8_l29_s0_h1_t50",
+      "horse_field_s101_c8_l29_s2_h7_t14",
+      "horse_field_s101_c8_l29_s2_h7_t50",
+      "horse_field_s303_c2_l15_s0_h6_t44",
+      "horse_field_s303_c2_l15_s0_h6_t8",
+      "horse_field_s303_c2_l15_s2_h0_t44",
+      "horse_field_s303_c2_l15_s2_h0_t8",
+      "horse_field_s303_c2_l1_s0_h4_t22",
+      "horse_field_s303_c2_l1_s0_h4_t58",
+      "horse_field_s303_c2_l1_s2_h10_t22",
+      "horse_field_s303_c2_l1_s2_h10_t58",
+      "horse_field_s303_c2_l29_s0_h8_t30",
+      "horse_field_s303_c2_l29_s0_h8_t66",
+      "horse_field_s303_c2_l29_s2_h2_t30",
+      "horse_field_s303_c2_l29_s2_h2_t66",
+      "horse_field_s303_c5_l15_s0_h9_t11",
+      "horse_field_s303_c5_l15_s0_h9_t47",
+      "horse_field_s303_c5_l15_s2_h3_t11",
+      "horse_field_s303_c5_l15_s2_h3_t47",
+      "horse_field_s303_c5_l1_s0_h7_t25",
+      "horse_field_s303_c5_l1_s0_h7_t61",
+      "horse_field_s303_c5_l1_s2_h1_t25",
+      "horse_field_s303_c5_l1_s2_h1_t61",
+      "horse_field_s303_c5_l29_s0_h11_t33",
+      "horse_field_s303_c5_l29_s0_h11_t69",
+      "horse_field_s303_c5_l29_s2_h5_t33",
+      "horse_field_s303_c5_l29_s2_h5_t69",
+      "horse_field_s303_c8_l15_s0_h0_t14",
+      "horse_field_s303_c8_l15_s0_h0_t50",
+      "horse_field_s303_c8_l15_s2_h6_t14",
+      "horse_field_s303_c8_l15_s2_h6_t50",
+      "horse_field_s303_c8_l1_s0_h10_t28",
+      "horse_field_s303_c8_l1_s0_h10_t64",
+      "horse_field_s303_c8_l1_s2_h4_t28",
+      "horse_field_s303_c8_l1_s2_h4_t64",
+      "horse_field_s303_c8_l29_s0_h2_t0",
+      "horse_field_s303_c8_l29_s0_h2_t36",
+      "horse_field_s303_c8_l29_s2_h8_t0",
+      "horse_field_s303_c8_l29_s2_h8_t36"
+    ]
+  },
+  "rows": [
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.885780586188048e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.43689570931383e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.245004513516506e-17
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-17
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.938893903907228e-17
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t3",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.214306433183765e-17
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t39",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.42861286636753e-17
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t3",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t39",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.938893903907228e-17
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.71445146547012e-17
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t42",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t6",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t42",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t6",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.71445146547012e-17
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.216449660063518e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.71445146547012e-17
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t30",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t66",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t30",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.4432899320127035e-15
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t66",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-15
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.3592239273284576e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.498001805406602e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.942890293094024e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t33",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.106226635438361e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t69",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.996003610813204e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t33",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t69",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.245004513516506e-17
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.71445146547012e-17
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.469446951953614e-17
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.0816681711721685e-17
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.106226635438361e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.992007221626409e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.996003610813204e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.469446951953614e-17
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.163336342344337e-17
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.938893903907228e-17
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-17
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.71445146547012e-17
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-17
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t39",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-17
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t3",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t39",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.469446951953614e-17
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3877787807814457e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.498001805406602e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t42",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t6",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 9.43689570931383e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t42",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t6",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.996003610813204e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-17
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.942890293094024e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t44",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-17
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t8",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t22",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.938893903907228e-17
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t58",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.326672684688674e-17
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t30",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t66",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t30",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.4432899320127035e-15
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t66",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.049116928532385e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.5265566588595902e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.6653345369377348e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t11",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.440892098500626e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t47",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.249000902703301e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.942890293094024e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3183898417423734e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t25",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t61",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.498001805406602e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t33",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 8.881784197001252e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t69",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t33",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-16
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t69",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.1102230246251565e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.938893903907228e-17
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t14",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.249000902703301e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t50",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 5.551115123125783e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 4.163336342344337e-17
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.7755575615628914e-17
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t28",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 7.771561172376096e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t64",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 6.661338147750939e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3322676295501878e-15
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 1.3322676295501878e-15
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t0",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 3.3306690738754696e-16
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t36",
+      "masks_checked": 240,
+      "max_objective_error": 0.0,
+      "max_online_summary_mass_error": 2.220446049250313e-16
+    }
+  ]
+}

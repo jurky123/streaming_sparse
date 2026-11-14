@@ -1,0 +1,12 @@
+T1–T4 review delivery
+
+Main report: REPORT_T1_T4.zh.txt
+Original archive: artifacts/set_oracle_v1_T1_T4_review.tar.gz (relative to repository root)
+Archive SHA256: 2d49303bc186bcf15d93791358e2156c045560b152ffe4e32f41e8f19dbae4d8
+
+This directory contains the exact unpacked review archive plus this delivery note.
+T1_T2/: summary, instance tables, global bounds, figures.
+T3_T4/: summaries, instance tables, trained small predictors, projections, audits, reproducibility code.
+Experiment source: local_experiments/set_oracle_v1/
+
+The multi-GB immutable contributions, full candidate-gain surfaces, raw trajectories and complete proof journals are not part of this compact Git delivery. Rerunning data-dependent experiments requires the original set_oracle_v1 dataset; SET_ORACLE_ROOT points to it. Existing SCHEMA.txt and REPORT.zh.txt describe the T1/T2 snapshot; REPORT_T1_T4.zh.txt is the current complete report.
