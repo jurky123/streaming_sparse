@@ -1,0 +1,12 @@
+E13 Counterfactual Set States and Decoupled Ranking
+
+Report: REPORT.zh.txt
+Source: local_experiments/e13_counterfactual/
+Review archive: artifacts/e13_counterfactual_review.tar.gz
+Review SHA256: 245b4e12f1b8c37a1c53dc0628e2a60823281a5dcac483be3eac224877e9428b
+Paired-label archive: artifacts/e13_counterfactual_paired_labels.tar.gz
+Paired-label SHA256: 3ead7f56e3ee7c43b40f1807250fd9429a7aebba7720932348361b4db2edeb81
+
+This directory contains the exact unpacked review archive plus this note. It includes reports, tables, figures, small model weights, protocol, audits, and reproducibility sources.
+The separate paired-label archive contains complete fixed-pair counterfactual gains and masks. Original multi-GB set_oracle_v1 contributions and derived full feature caches are not included.
+Gating was not trained because the preregistered development ranking gate failed.

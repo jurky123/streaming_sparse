@@ -1,0 +1,1178 @@
+{
+  "passed": true,
+  "events": 144,
+  "states": 994,
+  "medium_labels": 508928,
+  "anchor_labels": 457792,
+  "max_error": 5.551115123125783e-17,
+  "evaluation_masks": 1976,
+  "same_initial_weights": true,
+  "same_updates": 2000,
+  "same_parameters": 1089,
+  "equal_event_batch": true,
+  "train_only_normalizer": true,
+  "teacher_allowlist_pass": true,
+  "frozen_files_verified": 734,
+  "worst_case_high_precision": {
+    "event_id": "horse_field_s303_c2_l29_s2_h2_t66",
+    "model": "A0_Risk",
+    "baseline_nmse": 1.3209677589002472e-08,
+    "after_nmse": 2.785050210114063e-06,
+    "relative_gain_pct": -20983.407913246247,
+    "precision_bits": 63
+  },
+  "checks": [
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t58",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t58",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t36",
+      "states": 4,
+      "medium_labels": 2048,
+      "anchor_labels": 1792,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 5.204170427930421e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0408340855860843e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t3",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t39",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0842021724855044e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t3",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t39",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3010426069826053e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0408340855860843e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.204170427930421e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t42",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.204170427930421e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t6",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t42",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t6",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 2.0816681711721685e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 2.0816681711721685e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t58",
+      "states": 6,
+      "medium_labels": 3072,
+      "anchor_labels": 2304,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t58",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t30",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 5.204170427930421e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t66",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t30",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 8.131516293641283e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t66",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2912,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.710505431213761e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3552527156068805e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t33",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.421010862427522e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t69",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t33",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t69",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.0816681711721685e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.0816681711721685e-17,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.0328790734103208e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.131516293641283e-20,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 0
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t58",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t58",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t36",
+      "states": 4,
+      "medium_labels": 2048,
+      "anchor_labels": 1664,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 16
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2912,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 2.6020852139652106e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 6.505213034913027e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 6.505213034913027e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2016,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t39",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0842021724855044e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t3",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t39",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0842021724855044e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0408340855860843e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t42",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t6",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3552527156068805e-20,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t42",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.551115123125783e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t6",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.7755575615628914e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.0842021724855044e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 2.0816681711721685e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t44",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2688,
+      "max_error": 1.734723475976807e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t8",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t22",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t58",
+      "states": 4,
+      "medium_labels": 2048,
+      "anchor_labels": 1664,
+      "max_error": 5.551115123125783e-17,
+      "evaluation_masks": 16
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t22",
+      "states": 6,
+      "medium_labels": 3072,
+      "anchor_labels": 2304,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 24
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t58",
+      "states": 5,
+      "medium_labels": 2560,
+      "anchor_labels": 1920,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 20
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t30",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2464,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t66",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2912,
+      "max_error": 4.336808689942018e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t30",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 1.0842021724855044e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t66",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 2240,
+      "max_error": 5.421010862427522e-20,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t11",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t47",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t61",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t25",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.421010862427522e-20,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t61",
+      "states": 6,
+      "medium_labels": 3072,
+      "anchor_labels": 3072,
+      "max_error": 2.168404344971009e-19,
+      "evaluation_masks": 24
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t33",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.551115123125783e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t69",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t33",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.204170427930421e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t69",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t14",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 1.3877787807814457e-17,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t50",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 6.938893903907228e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t28",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 8.673617379884035e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t64",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.3881317890172014e-21,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 5.421010862427522e-20,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t0",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.2526065174565133e-19,
+      "evaluation_masks": 28
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t36",
+      "states": 7,
+      "medium_labels": 3584,
+      "anchor_labels": 3584,
+      "max_error": 3.469446951953614e-18,
+      "evaluation_masks": 28
+    }
+  ]
+}

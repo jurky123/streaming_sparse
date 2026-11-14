@@ -1,0 +1,62 @@
+{
+  "train": {
+    "risk": {
+      "n": 36,
+      "mean_gain_pct": 9.620505211141355,
+      "median_gain_pct": 9.532428528057183,
+      "p10_gain_pct": 4.4571675801272015,
+      "worst_gain_pct": -17.029858240988734,
+      "degraded": 1,
+      "positive": 35,
+      "positive_filtered_mean_pct": 10.093556828946598,
+      "oracle_mean_pct": 10.159780823107493,
+      "positive_filtered_recovery": 0.9934817497233528,
+      "actual_recovery": 0.9469205466775813,
+      "best_action_hit_rate": 0.6666666666666666
+    },
+    "all_states_descriptive": {
+      "n": 249,
+      "mean_gain_pct": 5.996093743743726,
+      "median_gain_pct": 4.833916877083003,
+      "p10_gain_pct": -6.162888828019876,
+      "worst_gain_pct": -29.62549177675791,
+      "degraded": 72,
+      "positive": 177,
+      "positive_filtered_mean_pct": 7.851199368402051,
+      "oracle_mean_pct": 13.270019514430123,
+      "positive_filtered_recovery": 0.5916494214544656,
+      "actual_recovery": 0.45185266963800896,
+      "best_action_hit_rate": 0.1566265060240964
+    }
+  },
+  "validation": {
+    "risk": {
+      "n": 36,
+      "mean_gain_pct": -3.9159170273008943,
+      "median_gain_pct": -0.7429663517322339,
+      "p10_gain_pct": -15.19080834857259,
+      "worst_gain_pct": -48.37608203806167,
+      "degraded": 21,
+      "positive": 15,
+      "positive_filtered_mean_pct": 1.696930615647812,
+      "oracle_mean_pct": 15.11475189566957,
+      "positive_filtered_recovery": 0.11226982932706878,
+      "actual_recovery": -0.2590791469374246,
+      "best_action_hit_rate": 0.0
+    },
+    "all_states_descriptive": {
+      "n": 251,
+      "mean_gain_pct": -3.8681129182669456,
+      "median_gain_pct": -1.7750752500452258,
+      "p10_gain_pct": -23.082423230988606,
+      "worst_gain_pct": -165.66743360158492,
+      "degraded": 169,
+      "positive": 82,
+      "positive_filtered_mean_pct": 4.332717444232205,
+      "oracle_mean_pct": 16.351543966892226,
+      "positive_filtered_recovery": 0.2649729868326117,
+      "actual_recovery": -0.2365594910241445,
+      "best_action_hit_rate": 0.00398406374501992
+    }
+  }
+}

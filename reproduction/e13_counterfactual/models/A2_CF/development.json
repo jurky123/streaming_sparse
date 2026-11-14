@@ -1,0 +1,62 @@
+{
+  "train": {
+    "risk": {
+      "n": 36,
+      "mean_gain_pct": 5.588149623178026,
+      "median_gain_pct": 5.506111102620547,
+      "p10_gain_pct": 0.5321708992288635,
+      "worst_gain_pct": -6.448080427755644,
+      "degraded": 3,
+      "positive": 33,
+      "positive_filtered_mean_pct": 5.9556713751532,
+      "oracle_mean_pct": 10.159780823107493,
+      "positive_filtered_recovery": 0.5862007733087675,
+      "actual_recovery": 0.5500265921552452,
+      "best_action_hit_rate": 0.08333333333333333
+    },
+    "all_states_descriptive": {
+      "n": 249,
+      "mean_gain_pct": 9.378232317574243,
+      "median_gain_pct": 4.6938065058732406,
+      "p10_gain_pct": -1.5296186709512025,
+      "worst_gain_pct": -14.877199896739901,
+      "degraded": 39,
+      "positive": 210,
+      "positive_filtered_mean_pct": 9.972751393236626,
+      "oracle_mean_pct": 13.270019514430123,
+      "positive_filtered_recovery": 0.7515249983160934,
+      "actual_recovery": 0.7067233252653576,
+      "best_action_hit_rate": 0.11244979919678715
+    }
+  },
+  "validation": {
+    "risk": {
+      "n": 36,
+      "mean_gain_pct": -10.142128870602594,
+      "median_gain_pct": -0.05328737631259564,
+      "p10_gain_pct": -7.88413530083082,
+      "worst_gain_pct": -341.70572034230145,
+      "degraded": 19,
+      "positive": 17,
+      "positive_filtered_mean_pct": 2.2064545477594484,
+      "oracle_mean_pct": 15.11475189566957,
+      "positive_filtered_recovery": 0.14598020285014437,
+      "actual_recovery": -0.6710086239330432,
+      "best_action_hit_rate": 0.027777777777777776
+    },
+    "all_states_descriptive": {
+      "n": 251,
+      "mean_gain_pct": -7.2579157521094855,
+      "median_gain_pct": -0.037759537178444894,
+      "p10_gain_pct": -16.51357462223821,
+      "worst_gain_pct": -697.4542111213001,
+      "degraded": 127,
+      "positive": 124,
+      "positive_filtered_mean_pct": 7.290299522182102,
+      "oracle_mean_pct": 16.351543966892226,
+      "positive_filtered_recovery": 0.44584777663461805,
+      "actual_recovery": -0.44386730493493115,
+      "best_action_hit_rate": 0.05179282868525897
+    }
+  }
+}

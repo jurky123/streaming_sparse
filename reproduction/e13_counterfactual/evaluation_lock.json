@@ -1,0 +1,26 @@
+{
+  "frozen_at": 1794662256.712837,
+  "models": {
+    "A0_Risk": "6e6939f42d70995c2b74057a1610a68c571d46ed3de66347efb2fb371ec7f9a2",
+    "A2_Risk": "d80ddd2a49f94d3b42a3dbcd43b695aa29f609b8f3c903117c8dda498c8b5fb7",
+    "A0_CF": "170a181afa14d5146165041cccded51d5a1b00e33b6dcc818d214a1ccdec9de0",
+    "A2_CF": "bb5ed55e4a02f4ac42df4c3c7236c53a9cd3b8c71bec994f2aefb7420e8290d1"
+  },
+  "gating_tests": [
+    {
+      "arch": "A0",
+      "positive_filtered_recovery": 0.14027630439779848,
+      "positive_filtered_gain_improvement_pp": 0.1791761990543994,
+      "passed": false
+    },
+    {
+      "arch": "A2",
+      "positive_filtered_recovery": 0.14598020285014437,
+      "positive_filtered_gain_improvement_pp": 0.5095239321116365,
+      "passed": false
+    }
+  ],
+  "gating_winner": null,
+  "gating_status": "not_run_ranking_gate_failed",
+  "test_not_accessed": true
+}

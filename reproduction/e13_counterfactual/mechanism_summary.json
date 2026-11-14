@@ -1,0 +1,35 @@
+{
+  "train": {
+    "events": 36,
+    "states": 249,
+    "anchors": 16608,
+    "pair_main_fraction_mean": 0.809798319701315,
+    "set_main_fraction_mean": 0.05396605819413411,
+    "interaction_fraction_mean": 0.13623562210455098,
+    "state_dependent_fraction_mean": 0.1902016802986851,
+    "anchor_sign_flip_fraction_mean": 0.15718762212902837,
+    "mean_rank_flip_vs_risk_mean": 0.08656647489971
+  },
+  "validation": {
+    "events": 36,
+    "states": 251,
+    "anchors": 16512,
+    "pair_main_fraction_mean": 0.8642540521770345,
+    "set_main_fraction_mean": 0.02886628571214742,
+    "interaction_fraction_mean": 0.10687966211081808,
+    "state_dependent_fraction_mean": 0.13574594782296553,
+    "anchor_sign_flip_fraction_mean": 0.14698482218013467,
+    "mean_rank_flip_vs_risk_mean": 0.07431842275856543
+  },
+  "evaluation": {
+    "events": 72,
+    "states": 494,
+    "anchors": 33120,
+    "pair_main_fraction_mean": 0.821222455047818,
+    "set_main_fraction_mean": 0.05717989819360617,
+    "interaction_fraction_mean": 0.12159764675857583,
+    "state_dependent_fraction_mean": 0.178777544952182,
+    "anchor_sign_flip_fraction_mean": 0.15949263771529396,
+    "mean_rank_flip_vs_risk_mean": 0.07862488363121845
+  }
+}

@@ -1,0 +1,6306 @@
+{
+  "event_count": 144,
+  "states": 994,
+  "by_split": {
+    "train": 249,
+    "validation": 251,
+    "evaluation": 494
+  },
+  "max_direct_error": 5.551115123125783e-17,
+  "events": [
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t22",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "f4d1f75dbc37530c985b54917a9fa4ef2302a4cb35f94b6a303c0f2524509106",
+        "anchors.npz": "7d45e4d70198cdd2f1d5899118cc5b2ae82a2f58a7397caffc444ee6894441d4"
+      },
+      "source_identity_sha256": "8e489d2fcab0430c3b420f7021d3c7652e41397f9204aad6375970991ceddc61"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s0_h5_t58",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "e27899f510dabd7f1ac4abe097e4784cfc15d6394c9bf59e0c974d39b57604dc",
+        "anchors.npz": "12c7effe78df7c1605855008be6ee2fb1f1d902bf8228928daa7f5e78eafc3bb"
+      },
+      "source_identity_sha256": "0fcdd403f45a30c5c1eb585bf37db7fd33e75ec61d1f62c5890a2bf168fdd053"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t22",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "e3523a4efc1aa9c7343f73447e9d6ca4d97f1625f2ba98a60e15ed085fb94678",
+        "anchors.npz": "7172d7fc7887ffba05d6c6216be42b424158dc9b088dcdba71a11ed89a78ca0a"
+      },
+      "source_identity_sha256": "04ff8377d3943de8bfdf9d286419dc166f514ef579b0a8fdc85e5ac4148d8947"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l15_s2_h11_t58",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "722f79dabedcab55c66fdc1dfbf16d01d25857e4e985db3fa97a0e141ee4dd36",
+        "anchors.npz": "8751d218d731a7a1619a681df915a2980f1350e650c7514362e7c242d752c53f"
+      },
+      "source_identity_sha256": "e3582f8f369fac868145200a4b5762c5421f9e2edbb1a7b35df374bd2c01afa4"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t0",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "3eaa3a2e6cd274820a257f582cd48f35a91e6d3df58e1e95bf04540a454bfac2",
+        "anchors.npz": "4843d8c24ce0e5d21db5a2f77b09cad4d5e16906116b1606127f775c634b225f"
+      },
+      "source_identity_sha256": "8b6efbe1330809d03a204070ffa3b1d519648618fa2244382a17235d88bd08f2"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s0_h3_t36",
+      "split": "train",
+      "states": [
+        "risk",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk",
+          "oracle_step1",
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 4,
+      "anchor_pairs": 448,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "0bb8cba8c73de0738a7610699dc41a13e0bb7ca05d670f59803cb5c74c64258d",
+        "anchors.npz": "74e39a8d769dea718fe963cf4bf22eba8f3c3645f454f6add64797d1714aa50c"
+      },
+      "source_identity_sha256": "a1559d4c2601f43f031d36d4688c2700b28a397bfb04af9c556d8048d6b09115"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t0",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "0dcd370ace64bfd2982409ceec27211d5914c974aa3e06d3edcfb73337e34d72",
+        "anchors.npz": "003d9171204f0a6206f5fa10747a11ae0bba166c8973c60a718bcae6fe561cb6"
+      },
+      "source_identity_sha256": "d687813f56f6b012b0cf08cddf7b400b4f2ab422bb1c7b6f0948bcf138bc88ca"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l1_s2_h9_t36",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "21325a60d3c824bd97465025aa664078db54a65d065bd2f556246a967be5308c",
+        "anchors.npz": "65661b6331cfce6b05abca5a78ca4bfd47f368f03c784ebd92e58695b918360a"
+      },
+      "source_identity_sha256": "25803e16955884bd8381622a87142d5d46a3974c095a693f36f8b3db9826fec5"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t44",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "381db375f7365221bffffdfa256ae3722febe1b3b32b7037374278b5bb7c3db9",
+        "anchors.npz": "60dc64f2e65b466f5e7dc3a6e272b2e28031a3f2b9d1ded00e6f5066dbb71718"
+      },
+      "source_identity_sha256": "cc1ed6e370eeda4af2f0c8b610f29f06cb2805a30d8cf615ceef5de7c358f529"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s0_h7_t8",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "a3abd7704a59f438a62683cb2a7b3c73046c28cb8c7e78b741cef75f6550afa5",
+        "anchors.npz": "5826cda4c2edff3acec8a80aefb416c07bead5f91a5ff65913b45f5f2a632d82"
+      },
+      "source_identity_sha256": "6ab16170b4fcbcafa32b8f79851778614da89cd8c234fa4b3e2d43e1d3ca6d31"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t44",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "cc24ab72aad563e8e7fb5cc85ce2fdde4c42f6b89c9a3c4dbb1690d325d46dd1",
+        "anchors.npz": "ed29f65ee694b1269582decb2e40b4d7044b6f729ca2536948079524ce509865"
+      },
+      "source_identity_sha256": "acd9b0400ec254600badbc9b4ad385376cd7377e0dab8230a4ed8bc9f1768b50"
+    },
+    {
+      "event_id": "city_walk_s101_c2_l29_s2_h1_t8",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 5.204170427930421e-18,
+      "files": {
+        "states.npz": "9e4457d3cb867f29144e9d7343ff77635863f1f8ace30c9a76092366798c873c",
+        "anchors.npz": "c94d3f6fea25dd82253d7b8f9cbb520dc4d73670e8ba5df7e52149bec2a4bb20"
+      },
+      "source_identity_sha256": "2eacedae257e9cd8a42c55e782e14e7ce3d80d145aa74ef00747fb04094d1fca"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t25",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "0f704704b4edab4627ec90ceb17224391bc06093aff832afc56a16cc67f67a62",
+        "anchors.npz": "2fac9a7bd53a974e9844763e397b644a339e8d16627d73c1cf3f73218ef65101"
+      },
+      "source_identity_sha256": "deb48ab6fd726e31ce0eb2a780e7eb870ce3f61bf62ca82d1699cd49e6ba34e8"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s0_h8_t61",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "d09413c01c52ff08045f8221eaaa0ffc88fd52744a572591aa456efbd23bbd3c",
+        "anchors.npz": "555ca89e0badb472b5866cdb1c485ebc97a63c4acf417d8d145b12e09095a83d"
+      },
+      "source_identity_sha256": "94a26c88beb4ecbc86c9522954eb89bd0f1be2fd01d8cfe210ca7212ec06947f"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t25",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "e70dd127041a3a44c6826c57ffbcea754535d1ea427db537c40c00dc140f970e",
+        "anchors.npz": "4f6b800e7136ffc401f28b84d92e6ed1f9d2526ab15080eef20b65fc28bde232"
+      },
+      "source_identity_sha256": "5ac3cfe2e69eb167ea0205dffa9a80329de678c0ae868df9ecec5978cc825d32"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l15_s2_h2_t61",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "a887b6016c820afecfe0fc32e6af86a71959cedd258462254b1ad70db4cac5a5",
+        "anchors.npz": "31d0d5a5a2b218e1abaac2c9ae63981321ad6657a11ab2bf98524e97fafc73b6"
+      },
+      "source_identity_sha256": "f4274f408320c308c7c0595bb82ac36c0d1baf6e5e9ff2aeb3b810d1cc2e3935"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t3",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "22c468538535d8a9ef756676f4957dbdde9f81b83a643063ca83311023caedf0",
+        "anchors.npz": "b8e797cf276df0ac7081766bf6d2b8f61b24f8330b7c0d6bbdef509ab903c315"
+      },
+      "source_identity_sha256": "82bcb7fbdf0f0ea0b937047e83d8df59060d40c30c604a02131d61418d9eee49"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s0_h6_t39",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "599afef8a223f727ea2b28d664c55cebbb12bc353c46380ed1b93b6d621363d0",
+        "anchors.npz": "6bd9ac72f04beac1182d2ccfca7b1f51240cb0c7bbe089ee3a106b8b35c492e1"
+      },
+      "source_identity_sha256": "c34d67a0726d752115bce86e3e358e077be4d4687751f37e9eb3229464c8c8ce"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t3",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "22a178598cae0b468dc2c888a46ed2a921424d9b7a6988975160181f9f23b159",
+        "anchors.npz": "bd08f5f2c832f46a6424ec328ff58144b8a33c69de5c65c5e7f528fa8c96f17a"
+      },
+      "source_identity_sha256": "223594244e4870c4744a6eea2a6e45c18a57722f841be9499af913e9d7ba2c99"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l1_s2_h0_t39",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.710505431213761e-20,
+      "files": {
+        "states.npz": "6cfdd712153c5bd6f37c1c067b8fc1719557868d6ddc9b578bb09c579ec51ec3",
+        "anchors.npz": "b9e0d590d3bab1f11271ea638d4e5c593011ccd3798e7bfb3e3439801e420eb3"
+      },
+      "source_identity_sha256": "070d588032f302c4591cc8c562b38d9493adc5809efe5f72b271df28d5400cb3"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t11",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "7c01220a3633590668d3edb7fdd5f03cf1cfdbab5a570ccad1dd335889ca4996",
+        "anchors.npz": "f0b344dad2ef44b6866563e9a79dfa2be774b25e7c06f9e6b58ad0862403ac10"
+      },
+      "source_identity_sha256": "168688d60986ecc9b2248f8349cfff19bc2d039b2167d18406a916510ef89d27"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s0_h10_t47",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "cfa37477fbb3c7a8ca2084f08eb62eedb2ab783db8b7503d114e1f506f667b0d",
+        "anchors.npz": "4a5bad2be347de1350c6de5ad1d77697e8a060667dbfecd6f93ce613377165f8"
+      },
+      "source_identity_sha256": "7fd09b48ccf425e2ebd3161f765fc24bfa7ae581a71dbf2a504558deb8f0d047"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t11",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "3934b08b847a6852f9dc6eaf6610fa30fdf3878a0bba3296bee8b35fb5db9a18",
+        "anchors.npz": "3e3bc15d9299585d4458799098fb84abdea5b93291271f9365c8f65d6b25d9fc"
+      },
+      "source_identity_sha256": "0e57a15faf62d26382cc0ecc288217d863ff8dc7383c229575c11736588e331d"
+    },
+    {
+      "event_id": "city_walk_s101_c5_l29_s2_h4_t47",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "99a7aec226b876a5e5629a51a55b338bda2b9ebbdd372f9cded8448f5c678fa4",
+        "anchors.npz": "70f53ce2dc1de95df33bf4f4ff63dd9ae17c219e28a47b44fa2220f6a0938594"
+      },
+      "source_identity_sha256": "56331cd4c5fd35748ca67b8692bb094e99ab6ca93547400fdf905ad11fff11b6"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t28",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.0408340855860843e-17,
+      "files": {
+        "states.npz": "876796b5b787d1f6406444fa8259090374b136a07c708c2bc506245fb3b361e5",
+        "anchors.npz": "29a1402b59218432b916ce7ef71cfc79a92d298d9cd6b9cc4f290b8d4df861fc"
+      },
+      "source_identity_sha256": "28c8661026d55730da8883ca1e53570dd782269b5a5cc7ded3072ac29c1fa59e"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s0_h11_t64",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "48f86be29522c259300b14bd20fc9c8cf567bac9aaf6c67cfc80e18fc4924bb0",
+        "anchors.npz": "c31a66bbdd42407caf6a9e14e5f9a163e1e5a91a3639ec2d9113481419d1321c"
+      },
+      "source_identity_sha256": "7848473ce0cb6c15e2d4cc73d5c3bb46e5cc1f4db5609692f171cfb0e81c23c5"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t28",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "f17dfd1f8ce0842c1f45733a56f2e6c40810fc1f0cfaf7d66ea661a7cd1fa6fc",
+        "anchors.npz": "7e4b100b912afbc9ac42fa837d391ebb5c7c3a5c1f88d990d485600071bb4df6"
+      },
+      "source_identity_sha256": "45b32dc2d41ed460b3689f4d83349aad9467225d71558640045cabaefc16ca38"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l15_s2_h5_t64",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "ff074696d93fc13ec24f1ab909dd946d7aa8f69ad0c64d019c4ee085ae378f90",
+        "anchors.npz": "f642a27ff45f1b8f6171854a3ac810304cca4d26d3626bd322e493ceb604c998"
+      },
+      "source_identity_sha256": "e35a57a2617faf1c8a44fe7e4ab1a597e1c6cd7eb95fdb143dd52c68aef25907"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t42",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "155726bf5aed1bd94c49975c4fa8a9b89b1d03c077b1b491e2b72b9b78ce09c9",
+        "anchors.npz": "102dcc427676bb65f7f3ed254a4918c1f024d5a2f40d3468bf7c08f3ebc8a532"
+      },
+      "source_identity_sha256": "ce29a1c21d37dc4a346c900874f3aaab1b599f190c224571790a41486bfbd5a5"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s0_h9_t6",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.710505431213761e-20,
+      "files": {
+        "states.npz": "32511d0f26438caad8940d5db677bb26329349995ddfad5cc8b25d346b7941fb",
+        "anchors.npz": "de77cf2979fe4d3f94d335c1ac49ee2b16477578f9548b6437687c8051987e46"
+      },
+      "source_identity_sha256": "a04b7085702059729c422c39cde693529bc0163dfdd54eef93f0d0710615a56e"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t42",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "4212df77e34d292002cf9ca4bb7861216c27952d987cb7de1d7ead490aa781d0",
+        "anchors.npz": "057d7dbfd41d410a1b17072ccf9eb918f98b102a5629f003b13d494294de925f"
+      },
+      "source_identity_sha256": "8664409c7d1aa740721923bb59fed5f4a18e33e26c132352400d8eb185e1a539"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l1_s2_h3_t6",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "efe5036247dfb78206ea5b3cf83925c375bf827f3b5a3d91ff8f02f316620878",
+        "anchors.npz": "014f74774dbfc5919bdf3ae0a991d41ce6a1829390d172509aff4877433347ef"
+      },
+      "source_identity_sha256": "b3e9561d00f1704429661080c481281f68df3234cdfac520ced04cf5a4e3689e"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t14",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "e5bc90d2a2c66f5315ba45f33b867114dc3effafa69d1f7de6d8862016521299",
+        "anchors.npz": "200f07c74d8b6c7c31ee3e285fe5ac5e3cf6ee8e6e3482c14c0ac3fb2cd67080"
+      },
+      "source_identity_sha256": "b7cfe8bcd146e2c106ff21780b6d43c2c22ddff86437e270db863f893baa47b5"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s0_h1_t50",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "27cb7990f1cf539733e2a10cd19b567a0044e2c92e7a9f1caf9de40cfcb24a31",
+        "anchors.npz": "d67ee13dbde2c0b4878a3c7e0c310c027b8db2376400273e5a4f94669a267cff"
+      },
+      "source_identity_sha256": "04cd1900934a6423ec1bd74fcc21a7af4a58954768705d1851e53ead9ae4de38"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t14",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "552d667638043be74b5a60c2a03fd8f396c089843ce99600b5adfca63542628a",
+        "anchors.npz": "d000dc1581acc47d831ebc5218872a6c23f613a9e36be0249526cfb4f4214e88"
+      },
+      "source_identity_sha256": "af825b10d1dd148077df201032546e057c436a8a7dab65782d3db15bb6071b98"
+    },
+    {
+      "event_id": "city_walk_s101_c8_l29_s2_h7_t50",
+      "split": "train",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "b504eb509b4ffad533e7f1f5e3e22071108a8c694ec6003eea5f9ac2332a2834",
+        "anchors.npz": "edabddb9930233134f8d667eff096f3b6e152a578378c2088bcd9f473fe5d909"
+      },
+      "source_identity_sha256": "919dcf5f63b6f5041b3af1f919d2a775209173173fed4efef9c97a9f4bc92a15"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t44",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "dad3975023edbcf9afa91a81b2917b6d9780501f0daf8104a1beb8fb6095f82c",
+        "anchors.npz": "66c768cb8a2656412889e48565944261a4796221d6542ee67002ca6f91beb7c5"
+      },
+      "source_identity_sha256": "2b02f7df3cdf12672eb215ce92b8090488e0cfc40595f30c3d2ceff253f1e591"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s0_h6_t8",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 2.0816681711721685e-17,
+      "files": {
+        "states.npz": "458d6ca860adb4991b8e9bbffb56d4daf1fbc8f77a5cad2bef78055bf61a141f",
+        "anchors.npz": "acb6b91ad65cbe683b200866bce0c9fceae7a8ae4b8347a6c36d9ef6fcaab002"
+      },
+      "source_identity_sha256": "11dc866ee53c2e762b4e774fe063b01813c92ce241dceb44921f00e2bf341662"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t44",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "13af7b571069833406d4cfbb4c93b6d7cef86353649e9db637eb46264892724b",
+        "anchors.npz": "aa5e24da77c92099b3accafcdf5705e623d5e0a60dc2f594a57d945715311c20"
+      },
+      "source_identity_sha256": "72aa04a3f2a7a020d80752256a157e3259d2f50e984dd3b14cca0212d8f8fc87"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l15_s2_h0_t8",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "8b52646da9f3901a23b1e5a7a2430ca5d30952785f1da513a5bd4af034c712da",
+        "anchors.npz": "997d3b8508b96f3d40144d419a1b3c826a83dc877eec47ea073d9dee003ac52b"
+      },
+      "source_identity_sha256": "a5b48e8c9b21f913d42368b24ee40e28b1b753b3cc19eb7a565e45f62583cd77"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t22",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "a1e2135cc231b806e6b08a457dda60cfb9d8a1d3ebd313cd7a829105096d9908",
+        "anchors.npz": "34e96f13065fb4a4a7ce9b1109d02c76ff3583d27c617ae972dd0e366ce196d3"
+      },
+      "source_identity_sha256": "50d12e3016c04585c029c6c320a37d2277776b563ebe8c69213b4a324742edf9"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s0_h4_t58",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 6,
+      "anchor_pairs": 384,
+      "max_direct_error": 5.204170427930421e-18,
+      "files": {
+        "states.npz": "afeec67add66bc0ae276d32becf84bd2b9ec0e8d8f48576db1427e5d12e7083f",
+        "anchors.npz": "a577131cb5045b5340a93e388d23a62296b7aace42f4929450b4fbd5714fd6a9"
+      },
+      "source_identity_sha256": "8cc15f51797d2a10b3bfa3bf8d6c597e2e6b01eefb61c6ec3fd45e5875d5a772"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t22",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "5656c7fc76cead4fec0b56797d1b25103a1a7edf772b33ecbc7fed6e08679981",
+        "anchors.npz": "be66683dcd87dc4f294091dc831ade09aad029c18e23c559096f5539ddc27d23"
+      },
+      "source_identity_sha256": "ad7beda9f979303aa596beee6a4a76c362dabf72ef85533ac66799d0fbbd3889"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l1_s2_h10_t58",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "552b818f25c73e919af9835bebdf7f3c53b070ae7189fb2815388597f3f7061d",
+        "anchors.npz": "55d5052293630acbc57276615392cd85c79d3befa9a6f81881f8a6504465310c"
+      },
+      "source_identity_sha256": "76fcd3a3bd12194ef15fe17e0992ad8503fd060dfd72f5ab2fec99a127918410"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t30",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 5.204170427930421e-18,
+      "files": {
+        "states.npz": "a8e7dfabec71a5d368c859ab9bc16a5a03f16b7690c63cb910d373a5b3433b57",
+        "anchors.npz": "84a7ca3174fdb24ca7bec46e1c17d9de66986ab2d902aa97962e5a9fda9205b5"
+      },
+      "source_identity_sha256": "6b7acac8f052f1e221754eeb12b8161fdfd82761479b405ff9cd1e897a87d1d6"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s0_h8_t66",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "95148427c7c6e6687ce45d951aed8fa07b2350402b7ae6807d60cc147875fb08",
+        "anchors.npz": "47b352746914a21937ddd58ecfca383fccfecaa95785b90b0f081251d967338b"
+      },
+      "source_identity_sha256": "5c6c9c26df6d3c8d7feb969c7122862352f45478a8a2e783d98d1ad01d20672e"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t30",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 8.131516293641283e-20,
+      "files": {
+        "states.npz": "5b6ce13e85cd81f4f988fe7c8034f8b5b22233b821b418beae9641dd018ea595",
+        "anchors.npz": "671dca487b7d5c267dafdba7d095e68aabe65cb9061a60fc23cc649225c088a4"
+      },
+      "source_identity_sha256": "5806186ec36c04215230652086c06d54471651d21cb576606bc1d9148247f252"
+    },
+    {
+      "event_id": "city_walk_s303_c2_l29_s2_h2_t66",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 416,
+      "max_direct_error": 1.0587911840678754e-22,
+      "files": {
+        "states.npz": "a5f55866d367ca09a8a6622cef657563307d2a717b69568ab2b4c0790d79a4ce",
+        "anchors.npz": "1d8e2c152ace6dc88de4aa712709b965abc4efbaa270e2c1baf3544e0649b0d6"
+      },
+      "source_identity_sha256": "b81b745a948b91ae64b0e3f92be7e2b8b33e489fb7a9d0c0f16e663731c7730e"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t11",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "78f853b0b910e82615fe40a6783a85e46b00b9c9f94e9ae82f119e03f1976d00",
+        "anchors.npz": "89965c38b2817c370deb8f1571e8aefd52bf24fbcde0023368cec0410ceba270"
+      },
+      "source_identity_sha256": "f07e5c50759da52fd07c26b1f83d3021d0dff80b314cb7c37ddf864f53bbaf81"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s0_h9_t47",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "d9862d5f4429aeac48301f60c641b0e6acc28f670f9522b835f95cd9771d76b7",
+        "anchors.npz": "d0049fc430b80046f376aff49388c7682249df297d4087c0d80558a411e9c25b"
+      },
+      "source_identity_sha256": "d004505d87afbed63d78050000319f095f450d009d42f7381326d337fd4320d5"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t11",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "a4bbe90dc01cb939f5f1d2029b97a9aa8f30bd2cc2f442d008cb2065dd0aefcf",
+        "anchors.npz": "e63b915af6663486e411c04b2bda65aaa43aa6019128e55715df89225078a92d"
+      },
+      "source_identity_sha256": "b6ae32210e10fc66e9912c2085c295f12e0f87cc772feccca28945fe361e64ae"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l15_s2_h3_t47",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "a64d8f7436e6e9ec5819b55d9ca3705ebe8518b303e973206443656d8d98c196",
+        "anchors.npz": "178445a059d77ab689bde49d1081f761182f07e96d040c889a166ff05ae29994"
+      },
+      "source_identity_sha256": "07c2095e75067b0c9591c32047635be178ff432e55ee7ca24ac6ba1c596ab224"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t25",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "e501f8e2002671f4c9580a670755c9ba3a2bc36ce45676a0655f61521fd9f3f6",
+        "anchors.npz": "2b2b0f38f7f20a7b64873a532b4f1027173e9d534284df819033582ab962e1aa"
+      },
+      "source_identity_sha256": "9c44c8755b107328e31119af885612054072a2d9c898f7d3a9c5ee38e1b0ed29"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s0_h7_t61",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "ac70420e3d658fc3d5018a0afe474ae8333051d22cc896f5e312fab000f40643",
+        "anchors.npz": "f64f86b067731dc08d168f5de53cf4211ff21ef61edbe4b722fa2949c989f8a5"
+      },
+      "source_identity_sha256": "0b8ae3b92ce9e25d3fee0451f6cbe8cae2385c7186a359e9c5b13c00f9569eb8"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t25",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.710505431213761e-20,
+      "files": {
+        "states.npz": "d253efaa6e2c9e32e4a22f18d5a497b8db3c47df53b75ecfa49e9f84c429394d",
+        "anchors.npz": "37a2813786868a4399c496b624ce599f07bebd7b3fb64b00b8104173511cabaa"
+      },
+      "source_identity_sha256": "ee210a6542ad26b04f914d07aa0992008d7a82e65a2e494c1c518038728d111e"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l1_s2_h1_t61",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3552527156068805e-20,
+      "files": {
+        "states.npz": "2cd817251550a747da68b4c21b77cf48efa1d5ed4be66f2ae03e78712d110021",
+        "anchors.npz": "fee1c76df288ef0fd754fa4b3c31b0e17c33c9161706920b897a441766a4502d"
+      },
+      "source_identity_sha256": "cdc479e4dfe044c4f52a988ab940abc9bbac421296460a76ac25bfa7fbd02bd7"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t33",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "e1b04df53f447ef57b0f0d2cc1e8787ced79c5a4662008aabad483c9b0537638",
+        "anchors.npz": "a154793ffadb4f90b6de139de814ea7cc95f1348b9332b7089ed374d302d03dd"
+      },
+      "source_identity_sha256": "204e40779f340565711d1155b92adc8c1918a8cdbffcd00f9b7331b21137c0bc"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s0_h11_t69",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "3261f34e4ea64e0c4eaccad16235f9d58e4ab4299e14ee923d964a2d09953d42",
+        "anchors.npz": "b31ea3a07f9c0dfce79e2ef82479cd59729191cb1406a85a34ed57a70daa3673"
+      },
+      "source_identity_sha256": "0d90fadaed6dd1d967ce8af21bd115a1d7488d2c1f2bad7a03aee91a5f76d407"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t33",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "de1f80ed947099a04fe6f001998eb71bca502f220032e376934d6add685d5f9a",
+        "anchors.npz": "b771d59e386cfa738429c56e3c51e5a24d77044f282ccfb422c20823eaa221a7"
+      },
+      "source_identity_sha256": "355a66e75b6d6bdcff02b91f65475eadd7db9fa52cfcc00529bd3c2d819c8c96"
+    },
+    {
+      "event_id": "city_walk_s303_c5_l29_s2_h5_t69",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "56fe3ec01bc795cc3a32cea8955d51465321fd6d780e205654acca4c99982722",
+        "anchors.npz": "6e782dc262e60f714bbd3e667d85f68b6c7acfeaa50a4c844fe6caec9ad2adc8"
+      },
+      "source_identity_sha256": "c03616dbb1d30f70b0a86892b5aa366029561bb0a1fa96d5a2d8123b521c6f4b"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t14",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "921def58b9e5e205d286d19941975ced40eafb96bf83594520e0df871dfea878",
+        "anchors.npz": "f9f86a7da69eb5fad88d0fd567bd395587c6557df56360d131d0fff5da921347"
+      },
+      "source_identity_sha256": "3f99d6e30b43d874783d7e892d052bdabb4dd6f877a3c550e7789e4647486f55"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s0_h0_t50",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.0408340855860843e-17,
+      "files": {
+        "states.npz": "e009f1c6a66966996b49e6593cf2703853dc26db32a7ebf9197903d2f85f317b",
+        "anchors.npz": "bc960a60f505ceae4a13222b68ceac845efb08f8f1747e2f7a21dc62c040178d"
+      },
+      "source_identity_sha256": "e3e443d7b3fbc5e3c5b6ab53bc0c2dfab60fa19e71aa10b90e88376d91e2d0fb"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t14",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "0f5f7b87b4f4c45e425228664286e0de922c1469b8078d1eff1bec3da3bb04df",
+        "anchors.npz": "bcacaf4093ef0f5c2819aff0131d9ced623c566276e913c600ab7388c892b4cb"
+      },
+      "source_identity_sha256": "bc6e72fded56a6bfcc5d7e214b94239efb437738e37dc59ec90e17e6960ed6e6"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l15_s2_h6_t50",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "c62ede1f4625f17f366d907413625fe7ee3c59490634ff0fb596f7ae2460f9bf",
+        "anchors.npz": "6c8a55077f03c51cc6cc9506b1770de0c6bb09cdeab4bd8564a0f220ab99f54d"
+      },
+      "source_identity_sha256": "0fbbf2f064eaf8389c0dd85daa78ccb93f630b5e55d5d1ccd08aec740c2d85e6"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t28",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "6ea77f271a9850048d13c708b813199df7299f0f0104e94f8295e8337548d6f6",
+        "anchors.npz": "1fd2727b99961552b19a777ff4bae5715aaa642a45eba8d13d412336b35d38e9"
+      },
+      "source_identity_sha256": "32e77bb594428eff0b79fe9477392e89071e53c09c9f04b0add58de48c5d291f"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s0_h10_t64",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "f90e09bfcf71b15233eaa895e4e6248d41aed99084a9f9f707e147d0357ac79b",
+        "anchors.npz": "74f37e88f1af0c05e3593ecaf5c1181139ef7e440a47da950a5f8eea8dac0855"
+      },
+      "source_identity_sha256": "a9c0d3f7b3867356402f5711cb391cac5861e0e6896fb235adebdff3cdcb7fb6"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t28",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "2e4000c2e903f5610318ffb71aaac6cde74761b4d62f0057abe4fa8bede62e5b",
+        "anchors.npz": "fe10d74d8a4950d1952f003268cdb0e55135c9b84792b3271d6b8928357954bd"
+      },
+      "source_identity_sha256": "e4bb5e854e7ea7c414d931f05a428c89c84e8a8def7947d01d8f5f50a4645005"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l1_s2_h4_t64",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "a067fb5012016eb9d5caa84b3fbdba5806a933f2ae381dfed0fca659df1eb8db",
+        "anchors.npz": "5b45eb00c6d69bad558bda57211f2c75f8d9336ff8799edb7db895012b8f2749"
+      },
+      "source_identity_sha256": "17533f2e4003ca1e27842473a23a0dfc23ced1ca4b3fcc4c51742bc0e6c3fb9c"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t0",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.0328790734103208e-20,
+      "files": {
+        "states.npz": "21f37e50b2e4782e4ee81e432ab37a29c28ac949a632a5b29cf346ddd02240d8",
+        "anchors.npz": "28201d9d8b989a55c2b56e3149407f948310861ac3caabb431f4328daf129494"
+      },
+      "source_identity_sha256": "cc36fa86dfab3b23d2f2f07a311bdca22c2f81795a7f9a3a406b695c0e05e982"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s0_h2_t36",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.2705494208814505e-21,
+      "files": {
+        "states.npz": "8bde2664defa15bbc6d076ee85696ee78180e81b2e023528e922de13d31ddc86",
+        "anchors.npz": "ff4192ab2ebe7f4f45fa6d26d9b7e36f2ff047ec572ae085113f7f23293910c0"
+      },
+      "source_identity_sha256": "6eb3a2672289fec5b1b87fb4648ea18a297a59638bb0a01357a2281327221089"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t0",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "4f89c230fa2948ba9287923a9532cdd11938b0b60cea4196240d3d4a79185f74",
+        "anchors.npz": "d59652f31fe86af35aba05d92220ed935539b877afb395b06843967e3af97677"
+      },
+      "source_identity_sha256": "3634c6dbda2e1655b2240b1c7fddf61c31f7dd295fbb1700b3e79ee072fa7b69"
+    },
+    {
+      "event_id": "city_walk_s303_c8_l29_s2_h8_t36",
+      "split": "validation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "a268c8ca15154ff247f18c8227056a37e5bca7d5402e321c489e6be6313c3bf3",
+        "anchors.npz": "8ef3d73eab9a3f5ade2baa348cd5af52d2e5e5fa73cc06100a4b44b84d17a1ad"
+      },
+      "source_identity_sha256": "f048699b472ddc213cf7ac7c71066167ed540ffcb9814cd0605bb27ee580e5d9"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t22",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "beabdc51855408732e7db51d2036927c335e5af5ed7fbbcd033c0d417c039ef1",
+        "anchors.npz": "3086e2876d51b8bbe98cc9ed78634ef07c067d040ac0400011880075983333cc"
+      },
+      "source_identity_sha256": "0e4986281816bb1fe83fcfa70f1291ba55c4bd9a1541c026ad237d146c8f78d8"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s0_h5_t58",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "ac5bb378fe0264ce0bbfc6bf7b916ae1e77ace5d22be4b87400b9d2ee113f8e7",
+        "anchors.npz": "4c4556eaf3318c57e2ff4f2e384b5f5d8889a1951421e17316e7ab4eb64bc0cc"
+      },
+      "source_identity_sha256": "ac9cebe936e01a76a635be33579fadb9abb08e298f3dc1a2c6806a47b96b84b6"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t22",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "df1b6566b0aa6d605ab94fbeb0d03c9af56bb05132175fdc7c0ff91b45eb82b0",
+        "anchors.npz": "88e227e3a9924397a38c6d9843f26900b571a411830e39beb8179962b7322681"
+      },
+      "source_identity_sha256": "b05b5a446b7819d46565f320f1b9ae46d37b86a7ddee063706a84345fff82a80"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l15_s2_h11_t58",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "baf79a8de252e2f80cf42c152ce133a46be26d79c88ab22432843e8c5bdd9ecb",
+        "anchors.npz": "85767500c188dba0702427e562d44a43a9498b6f1e5e918aea7d4f32a31c0f6c"
+      },
+      "source_identity_sha256": "9783553ba24377a2cc6052f392b5d8c5ae22615a114946bf80f3ba22c9bcd0ee"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t0",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "fedb9b0936bd0b7ce37adb1ca3b0a374d7abd5444911be21ac6041baf11361d5",
+        "anchors.npz": "32ada0c981781095b07f7ed52d10d4f158ba9b77898113460f3468506a040ea4"
+      },
+      "source_identity_sha256": "ea5cdeb48a4757a8507c2fff7ba5fc041cf7e1fa993094b83b5f63d390831939"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s0_h3_t36",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk",
+          "oracle_step1",
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 4,
+      "anchor_pairs": 416,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "5c92644f482ed9da4005eb4de29b517337ef7f59d11d0b588b3b1149cf85e69a",
+        "anchors.npz": "c1f7717d11c1ac38c36fbf533fdb5bb22aab11032c6f5c7902aeb266d5117a9a"
+      },
+      "source_identity_sha256": "86d8deb8d1badf0aa9586d7f31d65de63113bf30820d4106c5fa5a89ff423962"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t0",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 416,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "01ff85a31a9fecec9b291083fdb83d52a812f4e337c9571722ba56514a894fde",
+        "anchors.npz": "5f2bcf381546ec4ac26ecbb25303365610ac7e0ea2cc4ab0241f59e7d3fd39ff"
+      },
+      "source_identity_sha256": "fd395dce207ed11ae505b030fcc43234548cc80969b8638583259ef8c0b72325"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l1_s2_h9_t36",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "53d9a56d9a7e4cac1443aec07a0d731ed9057e81893f8b72b266c2ca393780db",
+        "anchors.npz": "d098442dc6add920b2df15815116647b07edbf8ed70428f9edcde7fa0fd3f1cd"
+      },
+      "source_identity_sha256": "1532a91113f24ecc51e14a6d5ccd66481f932f49d85fec5cfbd5f1bf80b9cd6f"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t44",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "001bd7ea9dbaf5de20f0f8f4c680292244c3db22602abe71fb16ee3c565fbb60",
+        "anchors.npz": "b020e1967ed2c0c48321f0291ecfd40b5707a6f618fb8c8828fd86509eebfc59"
+      },
+      "source_identity_sha256": "a0ab8b797d001cbcd4606498ba2b87c3641ef2dd0fa7e46c18459551dcb00f11"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s0_h7_t8",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "e52936dc76795ab783f3991d84cac88ddf9b5e988cb17fa73b0943758a134477",
+        "anchors.npz": "772d3590428a6f3ec38d920c39e1671a6cb72806ae2bf1015bfd70727f6b4d97"
+      },
+      "source_identity_sha256": "bd9e2088e558f8da972308f7323610474c6b2e6de1847fe1371450d8474f7a28"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t44",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 288,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "7c7b2e3f1323238508d3cd79787be335ee7b6ae72ffab0ebe49118d675a950e5",
+        "anchors.npz": "ba08b006a17432a24b82cb18d36a8557f9f353ee0155374e9e9d97b0ea7bcf98"
+      },
+      "source_identity_sha256": "955bf1acfe77bd05948a5e7912d4d002222dbeeadff2a841bd488773fbc97f19"
+    },
+    {
+      "event_id": "horse_field_s101_c2_l29_s2_h1_t8",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "c015441c2dc857d269be6f8c7c55ed4394dec8ed0130c016ce743ae57b3c6274",
+        "anchors.npz": "e9042f41b1c96667185977d7bd5d11fc85495d1da921e619012b305cbb9f9ef8"
+      },
+      "source_identity_sha256": "a20aa84c14224a1902279dda693b4af1789d4307075c475d8b867b3cb379ad5f"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t25",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "917fea7bcd08daf72ceaf18d473d9f81d062cde03d1dd2d58f4fe48bb2fe77d1",
+        "anchors.npz": "ed85756e02d32a7ee7ccb925cebef3d248a3b0c68bf30531b156d7d71b113fd1"
+      },
+      "source_identity_sha256": "9a617623572e3835f6a8f537239e82c476db1b2a0d42702d1d42ae5a180958fa"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s0_h8_t61",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "7124a9ce2447ac549a79df73735eb2b2703e7d0baac7be6b2ff4828e58cc5237",
+        "anchors.npz": "a477ac276ae9d52eabaca6ad63035649f7d05648c4f5e5648a93856bbfd9b85e"
+      },
+      "source_identity_sha256": "06c3c52945d1881bbc1a5699fa8af7614d9890682fa76395b85f7fa96f80945d"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t25",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "888be792a6df154720f49cdf1a51ea9a50d8a7f29d161423ebc5f36116f3b611",
+        "anchors.npz": "e4da61f867c17e0da6e6952c12d9750b00fef356836bc3cc7b0503ac06299111"
+      },
+      "source_identity_sha256": "b468ae2a368e4aeadcaa0c06afc6f0ec0bae8e4ce9fdf510ba4707cf8d3574c5"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l15_s2_h2_t61",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "a2d02303a0f678696730c8bbce1cdb28ceb573ee0c6d0858f7cbb96e383d312f",
+        "anchors.npz": "4e6c775437dbe0507d5452893aee644c7652d734dbfd3975fe6012bafa4f4c36"
+      },
+      "source_identity_sha256": "0cc8a81bbb8534ed900f90882e8adc3a556d5a83a82b141b580eb7ff08a76ff0"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t3",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "aa4fc7525f7b7e39bc10967a408f3c3f83e189db9891aaddd2ca43bd116ceea0",
+        "anchors.npz": "4581cbcd590de369ef515949b33c3e3b54e830bd3eb0477fb1caed15af627b3d"
+      },
+      "source_identity_sha256": "ff111985555bba822e0cede5073ff6416cebdbab91b4887f6ce3b05d07480f45"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s0_h6_t39",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.0842021724855044e-19,
+      "files": {
+        "states.npz": "c3775f0396803c7e33acef70fa34f06c6fc145745545c6119d1ca20948267738",
+        "anchors.npz": "6c36443415abea72fc9977d090139c13c030d27a487511b98d25617d71f41b1e"
+      },
+      "source_identity_sha256": "0fc006f1534d8d41efd19d5ea95e7e1312972d7fced794cc9484c69c5a6d158c"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t3",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "e73af44bf49ec70bdff4e8f55ed6a478938cf178037cbb9637673d923ab2ec12",
+        "anchors.npz": "e4a88b6ca644bd128920488b9583142a9282b9f5d57d6f72ab57355c94ee26cf"
+      },
+      "source_identity_sha256": "4300f804a273d80b15610d966af00408993fe54c4605b1afc7b876b64522b007"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l1_s2_h0_t39",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "4b81f33ebe7ac54c5c91ce85bc8f93173f856817faf157dc6f35f40bbde8af9f",
+        "anchors.npz": "aab44e25668d82bac67bbd6c81a85eb6bdb0879408385a37f9a2eab05fe771a1"
+      },
+      "source_identity_sha256": "d1624b5330ce1fdd12f5d63f4a21c00411ba2fe86a88353c9b95f5deaf0ed43f"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t11",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "3aff81939151e9f737ed618871f2650cc01330b2d818dd58e96dcd9a58603115",
+        "anchors.npz": "91e8ddb4255a95b64ed5e17a46f06ad59a5415f736545606eaae9523badf21f3"
+      },
+      "source_identity_sha256": "275589990740d5acfbe4f69320d12f213568fa0eb641d3f2b5b310aafaffc975"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s0_h10_t47",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.0842021724855044e-19,
+      "files": {
+        "states.npz": "b25771bc04f938c14f946fb21eae3fc22019eacce8776e5c415975d64998c0da",
+        "anchors.npz": "a7c47e0e5c472fab14396d8e0db37539486eb8d4da904edb256b39532f460145"
+      },
+      "source_identity_sha256": "8293db8e5482bcaf983b104287f66dee2e0b99ec4aa62e7b8df750bc4fe9f530"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t11",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "62111419a43d770d6d6b2f179c4af4e9c4252361c38617c98f475321dba893c0",
+        "anchors.npz": "25c8ac41ebb1f667e96740a9c2e88365e37ebb0f74fa087c80ff114fc930c761"
+      },
+      "source_identity_sha256": "b08e807649791daa82630552a7beadeedc0618b37249726e2c10ff1988816be3"
+    },
+    {
+      "event_id": "horse_field_s101_c5_l29_s2_h4_t47",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "0074ddb560321134d28f68882ae499a330f0b6ef0755b9f552fa388b6a5083c2",
+        "anchors.npz": "ffe94cc9d34c122d8123bcebea88886e6eb83d903ca7f49f9e817b6e52672f3f"
+      },
+      "source_identity_sha256": "78a64fe2d890336f7b7b1959309c37a34fcebfc70771aff74152b67cd6582df0"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t28",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "850d06809267499579023f8891b6ad26e91e782bb975607ae5cbbc182a54da6d",
+        "anchors.npz": "02916fe8660a1a0154619be1be8029bd4da89723d002184f48ee2ea5f9592d97"
+      },
+      "source_identity_sha256": "c464de70e1977e927e7d22b9eb6e6faeff138ba3bde28ebd5c729ca7d20c879e"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s0_h11_t64",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "ef5e87717798ad679180e8105e5343ac6f493a4f38a540a717d52c833122aac5",
+        "anchors.npz": "077fe2db2d7044c4d9b1f395dccac1da739482df79e570866b6ccb80d3a960a3"
+      },
+      "source_identity_sha256": "c85fcc67ee1e3ac084da3ee1609a76503d982b762e9fb52569a3d3ee9ee94dc3"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t28",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "0cd835d8aa5edf1c952837bdcebca63a944df650cb076aca70d174e62239ac30",
+        "anchors.npz": "f43dd8a9a04e97a5c822315a598142fef98a36e043261b6aca1e5691c2468556"
+      },
+      "source_identity_sha256": "ec2cef4c4f316e972943489060eeef57a4f69466f5b5676099d4ab3c630b65aa"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l15_s2_h5_t64",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "298129cd7b1cb82348fcd96b6819838169c82643e81e9a607eb3dc03599a8a81",
+        "anchors.npz": "55f0776ce7da64869ba54a65476d8133b61228f30aeaf33fe3f32a3a99d58d9c"
+      },
+      "source_identity_sha256": "db7826a5b9da9e7bbd5023471283971dd5176860005d77a0581aff06b11cfedd"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t42",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "2164ab740f4541dabafe8641eea0ffc77e28cd61493358213a74db6121ed87a4",
+        "anchors.npz": "fe270da1311f8e73b6ad4a73600b055977c07c8740ff5cc267f30aa5d8e4ee5c"
+      },
+      "source_identity_sha256": "bf65abff6aecccb582260f484e5ae97b5169d89a5c923b8de4513329e4530453"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s0_h9_t6",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3552527156068805e-20,
+      "files": {
+        "states.npz": "8f2c2dddca101ba0d1c3c7df2136ad48524f063a198348036d853ecf1fe324de",
+        "anchors.npz": "9ed1cb4576d186de61f1e7e8551df24438f8d4a927784985af93bc2309bafde7"
+      },
+      "source_identity_sha256": "6c07391e352bf8d795b00c041f36483e58603f53762a43c49dd4cf5919cca821"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t42",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.551115123125783e-17,
+      "files": {
+        "states.npz": "fbbdc1fe8ad00c83735f4f00bbec3c48ba6a0b51fdf8496037fcdea56cb59f15",
+        "anchors.npz": "c119afe9bd7a25e6e3ea63db503663c579a21761ead54d72a35f3dd88cd32a58"
+      },
+      "source_identity_sha256": "bed99696a6b2b4174c07f3acf8a1e0e13a602335cab2fcb69cec2dc3e1971e4a"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l1_s2_h3_t6",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.7755575615628914e-17,
+      "files": {
+        "states.npz": "c9d64ea7cb41f13b602c1787a29be5e15deafc42fd27cef889874d0b329dbdbf",
+        "anchors.npz": "e8e7765dffafaa8b60360b03bcd31a0211ea554e52c6614dad5f8817fbbe5eda"
+      },
+      "source_identity_sha256": "acdeb0cd80e0a7a3224764751fde75e0aff02dc521c6db4e3a28e39200b0c462"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t14",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "6e707e8d6366b7df388a32ef53b31fff00d6bfb2a938b8a8a8e968f83495a97f",
+        "anchors.npz": "55450bd67c43fc353ac00962a303ae70bcae5afb463c04607229eef14d268c0f"
+      },
+      "source_identity_sha256": "504c4f47250161a13c7da04fc91c210842141b2d62b4940ddc592aa66e39edad"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s0_h1_t50",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "caefa299681c1fe4375b2dc09e85fd4664087f021eed5cf295ce2a9f4388ac4e",
+        "anchors.npz": "45bfa144aaa30935bcf3065fbad6faca0951ef1d89e2e07089d6a52c3a846095"
+      },
+      "source_identity_sha256": "972646a79ff89dcd89acd2ea140370343fd25dd4f1290129e3c7528d3763bca4"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t14",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "9ec4835e549a1649bef8c36160ae5ea44ee9fed521d5127aeac9d0afb260d736",
+        "anchors.npz": "ad6abf31f399c6b19a25656e27266d7a90b998e5f2c809efd07c1474e1340c14"
+      },
+      "source_identity_sha256": "dbb5adfa3669306d2ebc142650ba211a0b6af7a59099dde207a589a63c5807b1"
+    },
+    {
+      "event_id": "horse_field_s101_c8_l29_s2_h7_t50",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.0842021724855044e-19,
+      "files": {
+        "states.npz": "19aaa867312f2639352d234a7cb7fc3b48cc63ba6941a465e3d00619e4854d0b",
+        "anchors.npz": "b8dffab09b438e135a4586754389d56b48a3a18e30e86eec5faf1dc3af1194ca"
+      },
+      "source_identity_sha256": "e1c7cb6739d9b82caf7ddb2de2d2692fe5b5727ffe7c0d1ba042222ed559b03b"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t44",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "6bd77a75f0dbd156a68ef7371dc46dbd28c1aaea57388e77dfd98e99780f217d",
+        "anchors.npz": "0dbd5d1a7330a9a97dc5d981ce8d3afaca295a76a700184bd71dc46bdf776d73"
+      },
+      "source_identity_sha256": "fe43bd1ddbb965fc3548dd982ab4afb2e9a6dcdee024d99165738430f5b26f4a"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s0_h6_t8",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 2.0816681711721685e-17,
+      "files": {
+        "states.npz": "2e3f031d95f865332927014ba5ae802d6d04408dc8dbe0ab99d3195f59028246",
+        "anchors.npz": "5c27d44adb8d97ca3a545ff8c374f019247bc0735b98cd01443f0228d7f68158"
+      },
+      "source_identity_sha256": "6fe686ed9f1ef292f1c3644d2c0f651245150ed68039db60083fb814073bc554"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t44",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 384,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "7a66a9672bb70787299ec6d39681f6f82a7c3b1622ba33a34cf8a7f2ea40edad",
+        "anchors.npz": "29fa64e8c0aac3cc4d0aa181ba291e54c1d61392a16a8dd2e2a404ba6640c6c7"
+      },
+      "source_identity_sha256": "4bfbb60a610de2aa540354e7b6d0d99a67a1bdc1b0c4437ea51618b197ab6293"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l15_s2_h0_t8",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "4ece8806e769af787e9ab2ffb268d535b0ae33f6d02702cbdb27a4bbf904e3b8",
+        "anchors.npz": "01f222405e3d83a5c1414109530f3867d8cd26ed24d08c947a28129639151878"
+      },
+      "source_identity_sha256": "47ae8e5adc31c728ff05f1f6564b3f84b6eec5c454fc0133d186ac1eb9969705"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t22",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "b25a817d996ec1664a66e9d68ee7f7cd3dffd9c13ea76368597fa3555436cc99",
+        "anchors.npz": "8c1bb1f1908d9924ac6487684a54fc8f8a6b4f3e756b0d96895281e1f97f8276"
+      },
+      "source_identity_sha256": "02c7770b485433ab92db3a08bf5cb3d8e405ed8eda8e7303989f47eeeba2719e"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s0_h4_t58",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk",
+          "oracle_step1",
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 4,
+      "anchor_pairs": 416,
+      "max_direct_error": 5.551115123125783e-17,
+      "files": {
+        "states.npz": "9c11266d4ea59853246e5643ed188c31e9e788610bb3e985cc2e2ef009037517",
+        "anchors.npz": "dc5ee40bb09378308f7e4285b1fc62be1f6548efc9dd930bce09dbbac4f5ccd4"
+      },
+      "source_identity_sha256": "238413f0763f218c9971da95af74900505243a2214a833d7ef370ecdd539a2aa"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t22",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 6,
+      "anchor_pairs": 384,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "1561be29fe1f9027b9ba887443f6f7bdf287755b07d0aa0ad6a41f5a7eaaf8fc",
+        "anchors.npz": "fbdde36b83cf0088e9322bfe61b235b0173f2128499c47e26344124d29f153f8"
+      },
+      "source_identity_sha256": "11365ab55504746e5f938add6caefed743032fa3a4c758dd21ed2f45af00d41c"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l1_s2_h10_t58",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1",
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 5,
+      "anchor_pairs": 384,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "f9aefd1fa13679692fffb7d397e530f14c9fc85ca28557b3715416eb50b2f0d0",
+        "anchors.npz": "2faa4a3ce2b47569255a420bf76d724d0fc67542fb0ae85e80ed5ba90b77a8fb"
+      },
+      "source_identity_sha256": "5466d913d50dec30bf5105f564d51b40d2d9529304ad06435c2ecaf6fc6f1f62"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t30",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 352,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "81d38f7405af883b734cf79d98e081a4adcde0e2def94899ba325c6411d26ce5",
+        "anchors.npz": "a713079452707f7582b2e029cb00bc4c7863fa01f6ef80d61356df4b42d27b7f"
+      },
+      "source_identity_sha256": "434b08a42697057c0feaf76e179ad330c59f6e4e4dc052f8dae5032661d43702"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s0_h8_t66",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 416,
+      "max_direct_error": 4.336808689942018e-19,
+      "files": {
+        "states.npz": "3ea45907f080bf131742428212081070516e2183a98c2b9301ff37b150408d49",
+        "anchors.npz": "aef48c3a6aaa343959865f8df8eb9ffaddd6f3e7f9773d38c088a75db2350152"
+      },
+      "source_identity_sha256": "408e001c505d79aa586fceffd3ed6914cdb25d781f2f8f231e675d863c764054"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t30",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "0fed8b26bdab96dd450ee0e379f722d52dd587ab9d27e1fe867189b356f5d9e2",
+        "anchors.npz": "3f6cefc7ee712b6ab88b52ce2dc41cca253b2d2adf8837acc55e26a896b6b387"
+      },
+      "source_identity_sha256": "df7c7fbd8eaa077f6b7783428c6138266e58b92cb3a5ff547fbccec1824339f6"
+    },
+    {
+      "event_id": "horse_field_s303_c2_l29_s2_h2_t66",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 320,
+      "max_direct_error": 5.421010862427522e-20,
+      "files": {
+        "states.npz": "69aea9fa5a6481368d2d4040b4d804c35bd71f721639292217b1b78229801cdf",
+        "anchors.npz": "9f87bf7e5f85dec0b255500ecd191c00204b94e3b73565b7beff21c049c096ce"
+      },
+      "source_identity_sha256": "59ab7d28ed8dc8222a71cf3b880f09d6f4c150b1b03da63d4cb9374e964d416e"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t11",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "319e47173e401a8cd64cc4fff99d838395612448e3753e6db3b433777fa636f0",
+        "anchors.npz": "446ea53e286eec448cd142a2de0e42c94445f3478d2daecb84591ced2a9eef34"
+      },
+      "source_identity_sha256": "11b7a5b1157bb084013311baebf7c41e7755c20f96ddd2c9c5cc14bb56f3f350"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s0_h9_t47",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "a4758f4f9fc5a47885c851343966c58a1b864695db33e3ca030f0bc8c815218c",
+        "anchors.npz": "b10539ecf752aa3cf3512eaa31e2334d9d41a26ca903262fd2a5301e65b5c9bc"
+      },
+      "source_identity_sha256": "ff12b82b528c4c62cc70a17417a56d689f1fbeb6b3d264eb289b56b4cf559a3d"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t11",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "0795742b2a5799524c38d21a18f10d5d44ab4b705c59e1522e24d39df4bc25b2",
+        "anchors.npz": "b56711e4d531eaad00d3967d4f7e7467be021b0ea91eb02598a02a15a39b9838"
+      },
+      "source_identity_sha256": "7f592b761b75b6bffabe32be881e3267e1f0008aa79d5682c375e664655c2483"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l15_s2_h3_t47",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "0562c5b58b267f4c4652cd86c4c33397a382148039e1fb8c8ef2accdf9770ca6",
+        "anchors.npz": "41c3bf7fd0f22d0f37c08acf096f22a5516bcb4f0ee53b49893b613eebc87273"
+      },
+      "source_identity_sha256": "877fe1445f397d7eed7ada6dfb93ec941350b6103c6fd9f2fe46dd5b6363e2b7"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t25",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "bbea9cab8bdd946e8478ec153a722fb5c39d4f07eb339823187c1b5511b03145",
+        "anchors.npz": "2fca0261d5e94188ff5cab81e89afc0c4962018f8d6d6813512ade55caf603d9"
+      },
+      "source_identity_sha256": "f0b708b98d78f705268b892289e9ae908f717f5f763710368668d5337344a40b"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s0_h7_t61",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "82884353bf3635d6625a34ea4190801f9bcf484147731aa8a6d2ac7468b51344",
+        "anchors.npz": "bed0b2574e810fd5ff3d0c025063d26e9c1146f39297c9ab27b33f1168e3d50d"
+      },
+      "source_identity_sha256": "ef711ef701dbf047892a60ff8aae0c806be6603e0d30dc97b143c0b4e46fa6c6"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t25",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.710505431213761e-20,
+      "files": {
+        "states.npz": "a828133b98390d44b8af210ff82daf047bc763cb7021d85e7d1b6c6a02e6efb6",
+        "anchors.npz": "a27563bd578b92356b55de0b1af1ab54084133033962bd7590e6671b0b361536"
+      },
+      "source_identity_sha256": "768fe263d758d0c737b5c91d92cb345660ef4ba7a5318a7e8ef299c2cfc14e4d"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l1_s2_h1_t61",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2",
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 6,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "f47fdbeea0afb3d728269009193304defc8ed6b5ea7fb499c54d3aa0adbb6c73",
+        "anchors.npz": "30c64cdf1989aa4c9f5e73a2afc0396aa6763ed275922ad5c32267bed77b53db"
+      },
+      "source_identity_sha256": "2928953bc39f45520063f72cf2a2b798cf1ee698280417e5dc45037ad7dbbc51"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t33",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 5.551115123125783e-17,
+      "files": {
+        "states.npz": "77770a7186ecb25be86515621e33a1c624cff9ea5740682ac1647ad7c4edbe5d",
+        "anchors.npz": "aedeb0d63e23e60c9a6cdadc5e096144e53d9c1bcadb61893935d0b6d8e27aef"
+      },
+      "source_identity_sha256": "41cb118480305988fb7f9317e6987796efdf05fbab034a5ce45506a10596595e"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s0_h11_t69",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "b6faed0b098e1ee40e8a5e725d3c1127e006bf383ede05f7099750e464b8f6c3",
+        "anchors.npz": "5a71bf9a2f47bef79d164297c06b7c9c65317e680e0f989795ade194a1c7be9a"
+      },
+      "source_identity_sha256": "9699f04f236321e7c54ba4dede353de341a53ec8fd11c72afe3e5c896497be5f"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t33",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "bc0625d45b5b58a3f1249a8f4076020c3c1211543bb103eff55e5aff0babddd5",
+        "anchors.npz": "acf37b283c75d2c1c852713d4e7489007019faad0a1f79dbe7bf368f38b65d80"
+      },
+      "source_identity_sha256": "e84beaab5ca928f0d018edf681d134e1cb8b173ebb7f96a63ac2b8c1edfef56f"
+    },
+    {
+      "event_id": "horse_field_s303_c5_l29_s2_h5_t69",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "bd7446453e02e937decc947c0ea1ed1233686e5c0e33552a77a275086b89178f",
+        "anchors.npz": "7e3b4fcd863fdf018d5f96f49b2876e8385d5c9660334a4f4a0da9b893a0c223"
+      },
+      "source_identity_sha256": "d66481cb1e2a44e31441db689f5c4289eed71fbb4d7e3ab9c924f9f58139d95d"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t14",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "665eaabaed51ba9d4e10a5bf2719ffd87357d7c3f4522b9fe1fe03d97f1e3060",
+        "anchors.npz": "729beefe93caf7bb11ad675baaf5f4994193b6bff66c271c93da8bb9ec972d92"
+      },
+      "source_identity_sha256": "1f59488ebdf91981ae679af3bd5c293358ecdba8fd3b3111ca653c0393907251"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s0_h0_t50",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "a554f23d8a0efbca238f47a827f2172fc3bf0d120026df49a019e97bb7d823f5",
+        "anchors.npz": "91af1b689a49bd6e042b3de6d0f23ea59cf31bd30c16294dbb96cec76e40e639"
+      },
+      "source_identity_sha256": "d2d700ec288b6ad7345d71328efe4ec4d194bd85643590eedfa8fb3e9e266ea6"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t14",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.3877787807814457e-17,
+      "files": {
+        "states.npz": "cba134dc48eda4f50423d7195560b4c154c0ea59dcecfe5feff6bce42159acb1",
+        "anchors.npz": "71d8912d0862e0192108189b9ef76f709bcd0e9194af8bf1f3ec0ce98b9cb182"
+      },
+      "source_identity_sha256": "54efa2ff9a82f3b30292f7dc1bbee92a0587e17622a112b08253516fd1ff3531"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l15_s2_h6_t50",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 6.938893903907228e-18,
+      "files": {
+        "states.npz": "3957af7cda46157ce3440fb4deee4a6c6d878c24628facd64016f41d17a4558a",
+        "anchors.npz": "5b1d4694f1c6b5260f78e47c65b2d52f4d63cb3888dd6bad708e98b3fd9489ae"
+      },
+      "source_identity_sha256": "973a47d7bb3b15b786b39e636687a1b9da6778a78427df29361ed0b24a3bc85d"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t28",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "f1e159a238d6f372f2f0b5f3a93de07eae14b8805b7ada494fa44ef9eb87d0ff",
+        "anchors.npz": "57917e0b7508babf6e1b7303a3dafa404dc61d249e3443036b654aa8e5f44541"
+      },
+      "source_identity_sha256": "759f77313b4d620a87b3f73016c657ab6e8b22b7485bd0091f58e6d8480642ad"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s0_h10_t64",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "b5658073429d335f31d79418c24050783ec75991533f7d4c227fb1498d51b105",
+        "anchors.npz": "3c493c4e3d43ded4d8417fef6f8043e91d55765f9ef2c9ef63a0612516093760"
+      },
+      "source_identity_sha256": "fba6ee7ab1ae28b3e7a1c0a3ee86855d466a5acf7ce1e1e2885c24cfcfc45d0f"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t28",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 8.673617379884035e-19,
+      "files": {
+        "states.npz": "d7a336649eab56ad58a9d271d8000a55797dd899da425f66bbc743c32156d18c",
+        "anchors.npz": "35d68b437f9e2d295324486fa802d9532bf41834c0d7e0660234fd1405066fb4"
+      },
+      "source_identity_sha256": "b032a2a5705cfd50cb8b2af707096ab3e64492c86aeb3289cf2a7fef71c4f411"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l1_s2_h4_t64",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.469446951953614e-18,
+      "files": {
+        "states.npz": "cad53ffb327c9e107ec5d6ee3465f12862f4ba166824869945f3e1d8af023a7b",
+        "anchors.npz": "f3aeffce035c705bceda93eae098d17e74e450f51b43410cfc9030483fab07ed"
+      },
+      "source_identity_sha256": "d3c50d8797aedae23930f59873f18e064e9bf75a87187e00a03a6fd3a4c30e8b"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t0",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 3.3881317890172014e-21,
+      "files": {
+        "states.npz": "5628fbee3a2b91f57ed30836718702efa3e85e632cf273d5539b5d122be7b857",
+        "anchors.npz": "9466aaf20cd2211e0c8ee029895bf676ef8c3882eeec29f3a4302e3e05e7fc04"
+      },
+      "source_identity_sha256": "f77523436b5b8c44e2d82a31a893c97667902b63c537fca1e21e2e3fd7238d79"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s0_h2_t36",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.710505431213761e-20,
+      "files": {
+        "states.npz": "94d9b6835836343a293dab8bf547bee1723a84db2a4b95aab2416679a1bdfbf7",
+        "anchors.npz": "254da181d9350704612324763d3c5d19e0832ec44994af39acaede878ea38c3c"
+      },
+      "source_identity_sha256": "6b3a855dbe4168ab5c2bf89dc50acb3c6a993605d17d892e76ccadb54925d82c"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t0",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 2.168404344971009e-19,
+      "files": {
+        "states.npz": "b918ad188531f0894b50f931a06455fa639c605b7ada4c42f083ae58cc7b694f",
+        "anchors.npz": "b1ee9bd287e734dfaef7bd9e8d92a1f093d6225c85ce0ef62df5af8a05cbe977"
+      },
+      "source_identity_sha256": "8ba4715babccbf2ed7316c4cf30d5d6606dcbc41176bb74b769ae9b2d55aa0b4"
+    },
+    {
+      "event_id": "horse_field_s303_c8_l29_s2_h8_t36",
+      "split": "evaluation",
+      "states": [
+        "risk",
+        "oracle_step1",
+        "oracle_step2",
+        "oracle_step4",
+        "uniform_perturb1",
+        "uniform_perturb2",
+        "uniform_perturb4"
+      ],
+      "aliases": [
+        [
+          "risk"
+        ],
+        [
+          "oracle_step1"
+        ],
+        [
+          "oracle_step2"
+        ],
+        [
+          "oracle_step4"
+        ],
+        [
+          "uniform_perturb1"
+        ],
+        [
+          "uniform_perturb2"
+        ],
+        [
+          "uniform_perturb4"
+        ]
+      ],
+      "count": 7,
+      "anchor_pairs": 512,
+      "max_direct_error": 1.734723475976807e-18,
+      "files": {
+        "states.npz": "451fb302628ea1efbc9f0ecf15464c0970e01d817d6e6ee191413f6444cf4ff2",
+        "anchors.npz": "283d7b118ed96deffb36a54656c8ad67a5de771aabd28b46929e5c5a1d6c3408"
+      },
+      "source_identity_sha256": "fe26953f0ca4b9027d83c62b560797a0454f111c6467b78b882725d3f6c8369e"
+    }
+  ]
+}

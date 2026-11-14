@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "scope": "counterfactual supervision plus ranking factorial",
+  "events": 144,
+  "states": 994,
+  "models": 4,
+  "gating": "not_run_ranking_gate_failed",
+  "online_multiround": "not_run",
+  "data_unchanged": true
+}

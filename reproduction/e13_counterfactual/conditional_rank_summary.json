@@ -1,0 +1,80 @@
+{
+  "train": {
+    "repeated_row_fraction": 0.8909892733134921,
+    "repeated_pair_sign_flip_fraction": 0.12969896509192103,
+    "models": {
+      "A0_Risk": {
+        "mean_anchor_rank_spearman": 0.3676603135103335,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_Risk": {
+        "mean_anchor_rank_spearman": 0.4005782160658661,
+        "mean_conditional_rank_change_correlation": 0.047721832442155804,
+        "events_with_predicted_rank_change": 36
+      },
+      "A0_CF": {
+        "mean_anchor_rank_spearman": 0.39607844588958563,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_CF": {
+        "mean_anchor_rank_spearman": 0.4609614819985192,
+        "mean_conditional_rank_change_correlation": 0.060787813201626434,
+        "events_with_predicted_rank_change": 36
+      }
+    }
+  },
+  "validation": {
+    "repeated_row_fraction": 0.8920678840112433,
+    "repeated_pair_sign_flip_fraction": 0.12482908155825129,
+    "models": {
+      "A0_Risk": {
+        "mean_anchor_rank_spearman": 0.20157067174305449,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_Risk": {
+        "mean_anchor_rank_spearman": 0.19964184129571122,
+        "mean_conditional_rank_change_correlation": 0.010009481617311975,
+        "events_with_predicted_rank_change": 36
+      },
+      "A0_CF": {
+        "mean_anchor_rank_spearman": 0.2095268376229331,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_CF": {
+        "mean_anchor_rank_spearman": 0.23718813322638388,
+        "mean_conditional_rank_change_correlation": 0.023168281165128455,
+        "events_with_predicted_rank_change": 36
+      }
+    }
+  },
+  "evaluation": {
+    "repeated_row_fraction": 0.8887634600281085,
+    "repeated_pair_sign_flip_fraction": 0.1437419613399837,
+    "models": {
+      "A0_Risk": {
+        "mean_anchor_rank_spearman": 0.26308328532032366,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_Risk": {
+        "mean_anchor_rank_spearman": 0.24799085647748687,
+        "mean_conditional_rank_change_correlation": 0.04864283435721683,
+        "events_with_predicted_rank_change": 72
+      },
+      "A0_CF": {
+        "mean_anchor_rank_spearman": 0.3025632399077345,
+        "mean_conditional_rank_change_correlation": null,
+        "events_with_predicted_rank_change": 0
+      },
+      "A2_CF": {
+        "mean_anchor_rank_spearman": 0.3220662903998821,
+        "mean_conditional_rank_change_correlation": 0.050237444699107306,
+        "events_with_predicted_rank_change": 72
+      }
+    }
+  }
+}

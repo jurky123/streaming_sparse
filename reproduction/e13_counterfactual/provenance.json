@@ -1,0 +1,30 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.6.0+cu124",
+  "scipy": "1.15.3",
+  "source": {
+    "e13_counterfactual/core.py": "0cae56ee84dd82a101320183308942683c52c8c784226536c0a765017405cddf",
+    "e13_counterfactual/evaluate.py": "e1a1acb169d21a4595e9a49e5fbd8c8d8f0e392262a710e702953888c7590aed",
+    "e13_counterfactual/diagnostics.py": "e3a9d50aab0ff43dee272a5c19c1cde4cf954234a2cf1baf3ec4c502bf2951e8",
+    "e13_counterfactual/train.py": "20f34f890c2f4ef13b8193a6bfcee5959a12ceecb0c88d7f6876163d1c16e42b",
+    "e13_counterfactual/mechanism.py": "42ba9d2336503cd40ef0cfb93c0da3375bf487db462979325202e06614a639c9",
+    "e13_counterfactual/__init__.py": "e3d1babd3c46f79d9e87b2c742532636a18bed75ef0faf6447894b2f87d08716",
+    "e13_counterfactual/prepare.py": "9c64fd5362e3168d8b60e6e4cb308278fdcf8c4af2725653d6b865d9c8c109b6",
+    "e13_counterfactual/audit.py": "8f7e343b9864aef80615212eb97f3da98df7da93d6ef15dbf9adef5560366491",
+    "e13_counterfactual/report.py": "81ef55426f367569b02a65f7e25cec875efc0be44668c19f77b257dc9611e426",
+    "e13_counterfactual/run.py": "a5229e7b675904bd31cf671e5878eb245ce8d3342c322e7662a31888e3753c65",
+    "e12_swap_prediction/core.py": "508043cdcb568e4c3e7d5f104d9a2f2447900b92d05b436ed17e1b2808ead151",
+    "e12_swap_prediction/train.py": "d4ba7ddff274b89113f11250969c7d6133ea55c30e6c6e672d9debf582675b91",
+    "e12_swap_prediction/__init__.py": "f2f263eb8de20a2a173e008dc7670591c635b1abd4beb51d415ab72e7407b9aa",
+    "set_oracle_v1/__init__.py": "c991e6c15be1311a67b945735bea5b0db1af2d526b97c51b36bb9d378984ab47",
+    "set_oracle_v1/common.py": "5abaaa0735c830656adde85c74cf8aa56e83f3cfb2ab3f19a1e6ed3a01c2a2be"
+  },
+  "data_manifest_sha256": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+  "weights": {
+    "A0_Risk": "6e6939f42d70995c2b74057a1610a68c571d46ed3de66347efb2fb371ec7f9a2",
+    "A2_Risk": "d80ddd2a49f94d3b42a3dbcd43b695aa29f609b8f3c903117c8dda498c8b5fb7",
+    "A0_CF": "170a181afa14d5146165041cccded51d5a1b00e33b6dcc818d214a1ccdec9de0",
+    "A2_CF": "bb5ed55e4a02f4ac42df4c3c7236c53a9cd3b8c71bec994f2aefb7420e8290d1"
+  }
+}
