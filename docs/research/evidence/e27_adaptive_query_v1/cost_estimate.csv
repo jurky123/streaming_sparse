@@ -1,0 +1,2 @@
+page_coeff_bytes,history_cache_MiB,query_projection_GFLOPs,page_query_products_GFLOPs,page_encoder_current_GFLOPs,page_encoder_allpages_GFLOPs,extra_raw_KV_reads,combined_existing85_and_new32_BF16_coeff_bytes
+64,7.17919921875,0.028311552,0.36274176,0.082280448,0.46854144,0,234

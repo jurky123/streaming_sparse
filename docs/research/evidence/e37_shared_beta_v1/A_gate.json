@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "seeds": [
+    {
+      "seed": 17,
+      "gap_recovery": 0.31561401630775354,
+      "checks": {
+        "gap": false,
+        "gain": true,
+        "degradation": true,
+        "p10": true,
+        "absolute_tail": true,
+        "mean_relative": true
+      },
+      "passed": false
+    },
+    {
+      "seed": 29,
+      "gap_recovery": 0.1109081579939845,
+      "checks": {
+        "gap": false,
+        "gain": true,
+        "degradation": true,
+        "p10": true,
+        "absolute_tail": false,
+        "mean_relative": false
+      },
+      "passed": false
+    }
+  ],
+  "rule": "Both seeds: A2 recovers >=50% of E29 to TrueBeta executed Oracle-recovery gap; actual gain improves; degraded count strictly decreases, P10 and worst absolute NMSE increase no worse, mean relative gain no worse. No grid/extra groups. Only after this gate consider B; Test stays sealed."
+}

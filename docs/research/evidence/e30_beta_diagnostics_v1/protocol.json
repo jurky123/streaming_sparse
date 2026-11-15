@@ -1,0 +1,14 @@
+{
+  "stage": "E30-A1-A3 only; no training",
+  "seeds": [17,29],
+  "split": "development", "events_per_seed":288, "test_accessed":false,
+  "frozen": ["E24 C summary", "E27 adaptive phi", "B16", "E29 selected Reader including local response and beta", "Risk", "Medium pool"],
+  "A1": "mass-squared weighted LS, F=[1,phi], relative ridge 1e-6 * trace(XtX)/5; fixed E24 training bscale; per-page logmass common scaling cancels algebraically; Shared includes all matched occurrences; LOTO excludes all64 Queries of held event; current pages keep event Oracle fit",
+  "A2": "candidate union is initial Medium remove/add pages; remaining pages including own form background; reconstruct all T/U after each replacement; same replacement fixed across counterfactual states",
+  "A3": "M16 main beta/error/sensitivity; Q64 extra regression metrics; true/predicted/summary mass weighted errors; selected-proposal gradient of gain wrt all beta, top1/4/8 linear influence concentration; exact top8-page beta interventions diagnose nonlinear score change, not deployment",
+  "capacity_gate": "both seeds (R_OracleCoeff64 - R_Predicted)/(R_True - R_Predicted) >=0.70; denominator must be positive; this does not authorize or demonstrate online success",
+  "B": "not executed in this stage even if capacity passes",
+  "acceptance": "positive predicted gain, no fitted threshold; Q64 true gain evaluation; no action or beta clipping",
+  "conditional": "existing E25 five-state common legal panel; report pooled double-centered correlation and event median plus sign flip recall",
+  "fitting_labels": "offline teacher; no claims of deployability or holdout independence for event LS or Shared"
+}

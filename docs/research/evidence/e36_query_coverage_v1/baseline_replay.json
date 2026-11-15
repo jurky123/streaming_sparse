@@ -1,0 +1,6 @@
+{
+  "checks": 2880,
+  "max_absolute_gain_difference": 0.0,
+  "E35_topL": true,
+  "E25_P2_P3": true
+}

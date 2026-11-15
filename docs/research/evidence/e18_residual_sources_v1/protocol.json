@@ -1,0 +1,16 @@
+{
+  "created": 1794671016.1266944,
+  "scope": "E18-A/B/C/D, same144 frozen headtiles994 states, no new QKV/attention sampling/video/network/summary/global solve",
+  "sources": {
+    "data_manifest": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+    "E13_preparation": "72553d0c5763ddb408a8c3ee5a1600d271fdd2326fa9323fdda4f507c50b5d33",
+    "E17_model": "00c9a0d04c95757a70e936180553b61e30b2fd4dee4f54f4bc1139a4311d0ff9"
+  },
+  "A": "ez=d*(summary_page_output-Dense_output), ev=e-ez in DenseZ-normalized coordinates; page energy VV+ZZ+2VZ and actual mixed set energy with true Z,C; all pages, Risk unselected, union of pages in strictly beneficial panel swaps, best beneficial swap pages; labels only for grouping",
+  "B": "I_VV,I_VZ,I_ZV,I_ZZ at Q64 and matching16; all terms signed, absolute shares separate; report all candidates, true-positive/negative, selected bad/good, panel best; not causal attribution",
+  "D": "Full-V online proxy only, M16 matched target components; signed/absolute cosine per query before averaging; pages, residual sets, swap directions; retain target total,V,Z; no label features",
+  "C": "reuse E17 training-fitted lambda without any new ratio or gate search. Convert E17 Iproxy and lambda Bproxy to NMSE-like units by C_hat=4*sum16(norm(all_summary_output)^2), X_I=64*mean16(Iproxy)/C_hat, X_B=64*lambda*mean16(Bproxy)/C_hat. Train ONE nonnegative common multiplier c per representation against both true I and B; preserves original E17 ranking and zero-gate. Weights equal event, equal state-action, per-event divide both errors by mean(I^2+B^2). No evaluation label scale.",
+  "C_interventions": "base=cX_I-cX_B; teacherI=I-cX_B; teacherB=cX_I-B; teacherIB=I-B; full oracle=I-B+D. All Q64 true terms same NMSE units, no D except full oracle. Repeat teacher replacements with4*true16 terms as query-coverage control; evaluate all on trueQ64 output. No claim of global optimum or deployability.",
+  "fit": "train city10136 only; development36 diagnostic only no tuning; freeze before horse72 evaluation; original E17 lambda fixed; no scale/threshold grid",
+  "report": "risk and post-risk separate; equal event then state weights; per-event and pooled statistics; full signed cross terms, oracle interventions conditional on retained proxy, not unconditional information upper bounds"
+}

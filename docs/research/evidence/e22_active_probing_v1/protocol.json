@@ -1,0 +1,29 @@
+{
+  "created": 1794713544.3748715,
+  "scope": "Stage1 only two existing snapshots, M16, Q64 real evaluation, Page64, K41 own protected, one swap only, all410 pages sampled. No neural training, new data or production change.",
+  "seeds": [
+    17,
+    29,
+    43,
+    71,
+    101
+  ],
+  "b": [
+    1,
+    2,
+    4
+  ],
+  "sampling": "independent per-event/seed/page/group uniform WITHOUT replacement permutations, nested first b; no truth-based selection; plan hash locked before evaluation",
+  "plan_sha": "41512aba573a11e9bf3186e8ee509c8adbb884d1cc1311a1744e1977d7e54b0d",
+  "panels": "PRIMARY Medium:16 lowest Risk selected non-own removals and32 highest Risk unselected additions (stable sort ties pageID); SECONDARY full14760 legal swaps to diagnose selection noise",
+  "independent": "same sampled N/Z, same estimated Dense center; per-page s_p=mean_M ||e_p||^2 / Ztilde_D^2; one swap maximizes s_add-s_remove within same pool, positive score else no-op. Does NOT reroute41 pages; this controls one-action strength and uses no set interaction.",
+  "set": "estimated Dense output from all sampled pages, candidate mixed outputs from same sampled N/Z and original summary; optimize squared difference averaged16 Queries, no true Dense/trueC in policy",
+  "noop": "base:positive predicted gain only. Independent-repeat diagnostic pairs17->29 and43->71: proposed action from first seed accepted only if second seed scores SAME action positive; second samples are extra cost, no true-label gating. Seed101 only primary variance.",
+  "information_gate": "For b1 or b2: ProbeSet mean true gain>0 in EACH snapshot, positive in>=4/5 seeds EACH, mean true gain strictly greater than ProbeIndependent EACH, primary Medium. Exploratory gate, not statistical significance.",
+  "cost_gate": "No actual saved exact pages proven at fixedK41. Report extra probe byte and QK/AV costs relative to41 pages plus scoring; no expand or kernel unless actual quality-matched savings demonstrated. No stage2 if either gate fails.",
+  "stage2": "Conditional only. Candidate/background weighted probing and selected-page feedback are not automatically authorized as large sweeps; retain as unrun if stage1 gates fail.",
+  "sources": {
+    "city_walk_s101_c5_l15_s0_h8_t61": "ffd432855ab01d72438ebfe5ac30648e217f2ecb7f15cfe5947d7f597ecebd5a",
+    "horse_field_s101_c5_l15_s0_h8_t61": "fd2e0aac548911ef2fbb29791f74988a751b96350b8f81631406c951b8c9422c"
+  }
+}

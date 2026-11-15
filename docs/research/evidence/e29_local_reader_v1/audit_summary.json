@@ -1,0 +1,14 @@
+{
+  "action_checks": 3456,
+  "all_count_own_valid": true,
+  "summary_only_exact_actions": 12,
+  "summary_only_checked": 12,
+  "max_summary_only_score_difference": 9.450773497121645e-15,
+  "max_independent_predicted_gain_error": 6.938893903907228e-18,
+  "max_true_gain_error": 1.0361358541988164e-09,
+  "frozen_C_phi": true,
+  "training_updates": [
+    4608,
+    4608
+  ]
+}

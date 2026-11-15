@@ -1,0 +1,10 @@
+{
+ "scope":"E35-A only. Frozen E29 predicted scores and true Q64 gains on original Medium512 pool, C seeds17/29, existing288 development events each. No raw QKV reads, attention forwards, training, Test, beta replacement or E35-B execution.",
+ "L":[1,2,4,8],
+ "ranking":"Descending cached E30 initial_Predicted (stable exact E29 score replay), deterministic original panel index tie-break; include top actions even if predicted negative, no-op true gain0 available to oracle. True labels never used for ranking.",
+ "independent":"Recompute only independent energy ordering from cached E29 response,beta,summary mass,center using same E30 positive-mixture formula. No raw inputs or model execution. Report same L for context and union of Set top2 plus Independent top2.",
+ "upper_bounds":"TopL action Oracle distinct from union of four proposed actions and from Cartesian legal swaps among their touched pages. L8 actions can touch16 pages; B proposed union touches<=8 pages and <=16 legal pairs. All ratios also refer to original Medium Oracle, no denominator mixing.",
+ "thresholds":"True positive and best-hit tolerance1e-12. Aggregate gain includes all events; per-event recovery and positive-coverage denominators require Medium Oracle>1e-12. Relative NMSE metrics require initial NMSE>1e-12. Also save raw distributions and absolute regrets.",
+ "reference_gate":"Both C seeds Set Top8 oracle recovery>=70% and positive-action coverage>=80% of events with positive Medium oracle. This operationalizes 'most gains' before inspection, is not an online success criterion. B not run in this turn regardless; separately report B-pool bound and actual distinct page costs.",
+ "cost":"Hypothetical exact Key-only M16 verification: pages/(2*K) raw bytes relative final K exact KV pages, K21/41;2*heads12*tiles72*M16*pages*64*128 QK FLOPs. No latency claim, no reuse credits, existing Reader/search and synchronization excluded. Actual verification count this experiment is zero."
+}

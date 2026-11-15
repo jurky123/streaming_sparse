@@ -1,0 +1,10 @@
+{
+  "identity_max_relative": 1.5162958557276365e-13,
+  "replay_action_mismatches": 0,
+  "replay_max_gain_difference": 0.0,
+  "independent_LS_max_relative": 4.4666571309236523e-10,
+  "independent_score_max_relative": 1.3877787807814457e-17,
+  "shared_LS_max_relative": 6.368090577503567e-12,
+  "shared_LOTO_target_excluded": true,
+  "true_action_gain_max_difference": 1.5612511283791264e-17
+}

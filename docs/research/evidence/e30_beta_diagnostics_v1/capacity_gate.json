@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 17,
+      "baseline": 0.11587540892866385,
+      "true_beta": 0.46369741222923155,
+      "oracle_coeff": 0.4545802362455267,
+      "gap_recovery": 0.9737878113023622,
+      "target": 0.3593508112390612,
+      "passed": true,
+      "true_beta_degradation_fraction": 0.1736111111111111,
+      "true_beta_mean_improvement": 5.469544725541965,
+      "true_beta_p10": -2.112261485221228
+    },
+    {
+      "seed": 29,
+      "baseline": 0.24620465194926291,
+      "true_beta": 0.5547557598857789,
+      "oracle_coeff": 0.49228474472774497,
+      "gap_recovery": 0.7975343029042461,
+      "target": 0.4621904275048241,
+      "passed": true,
+      "true_beta_degradation_fraction": 0.17708333333333334,
+      "true_beta_mean_improvement": 6.075209197942131,
+      "true_beta_p10": -1.9856490945250904
+    }
+  ],
+  "training_executed": false,
+  "test_accessed": false,
+  "scope": "A1-A3 completed; B not executed",
+  "rule": "Both seeds recover >=70% of the E29-to-TrueBeta gap"
+}

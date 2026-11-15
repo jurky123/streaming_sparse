@@ -1,0 +1,42 @@
+from .report import *
+import tarfile
+
+def main():
+ summary=json.loads((DEST/'summary.json').read_text());gates=json.loads((DEST/'gates.json').read_text());audit=json.loads((DEST/'independent_audit.json').read_text());fixed=json.loads((DEST/'fixed_mask_decomposition.json').read_text());table('fixed_mask_decomposition.csv',fixed);general=list(csv.DictReader((DEST/'generalization.csv').open()));fit=[r for seed in [17,29] for r in json.loads((DEST/f's{seed}/fits.json').read_text())]
+ select={(r['seed'],r['method']):r for r in summary if r['scope']=='covered'}
+ lines=['# E33-A：四代表 Key 质量响应的跨 Query 容量诊断','', '**本轮判定：'+('通过容量与质量联合筛选，B阶段尚未启动。' if gates['passed'] else '未通过容量与混合质量的联合筛选，不启动 E33-B。')+'**','', 'A1仅学习正权重；A2保持等权，仅拟合四个Key，Value表示冻结。结果必须分别解释质量拟合、固定原集合的输出、重新Risk选页的输出，不能以β变小替代混合输出质量。','', '## 预登记范围与信息边界','', '复用两条开发轨迹 kitchen_cook_s701 / snow_ski_s702，固定head0、layer1/15/29、chunk2/5/8、step0/2、两个tile，共72事件/模型种子，两个冻结C种子17/29。没有新QKV、网络训练、原始KV探测、Test访问或生产代码修改。基线为对应E24 Joint-C摘要与其原Risk，不是最早178f95a8摘要。','', '历史页由E28的有序token身份、原始KV SHA和摘要SHA匹配；本轮独立重验原始身份。tile：同chunk同step其他tile；step：同chunk其他step；forward：严格更早chunk。拟合只使用这些donor Query的真实页面logZ，目标事件64 Query全部留出。当前页与无donor历史页保持原摘要，不使用当前页教师。matched-tile/step只在三种donor条件共同支持的历史页上改变摘要，与forward比较。','', '每页使用单一起点、200次Adam，按donor事件/Query均匀logZ平方误差拟合。A1学习4个softmax权重，A2学习4×128个Key偏移；正则、学习率与步数先固定，仅按donor目标取最佳迭代，不按留出质量调参。A2允许脱离原pooling凸组合/均值约束，属于宽松表示诊断，不能证明现有pooling网络可以生成这些Key。未证明求得全局最优，失败也不能被称为R4容量不可能性证明。','', '拟合FP64；评价将新Key或正权重舍入BF16，权重重新归一化。K/V组配对、Value均值/rank8均固定。新的64π权重同时用于近似N与Z及Risk概率；Risk theta与四项公式不变，A2重新计算受影响页的Key均值偏差统计。原Reader的标签失效，本轮不复用旧Reader声称在线Set结果。','', '## 固定Key时，权重能修正多少质量？','', '对任意Query，Zweighted/Zequal=4Σπg exp(lg)/Σexp(lg)≤4，因此 logZweighted−logZequal≤log4≈1.386。这个上界不依赖拟合器；对正β>log4的部分，固定Key加权无法完全纠正。权重只能重新分配已有四点的质量，不能产生遗漏的高logit方向。','', '|seed|基线历史β>log4比例|基线历史β RMSE|','|---|---:|---:|']
+ for seed in [17,29]:
+  x=select[seed,'Baseline'];lines.append(f"|{seed}|{x['beta_gt_log4_fraction']:.2%}|{x['beta_rmse']:.4f}|")
+ lines+=['','## 留出质量与真实输出','', '下表仅统计该模式有合法历史donor的事件。RMSE按覆盖页×64 Query汇总，同表基线误差使用完全相同页；混合NMSE仍覆盖全页面和全部64 Query，未将未覆盖页误差当作零。正“改善”代表更好，负值代表退化。','', '|seed|方法/留出|事件|历史质量覆盖均值|β RMSE下降|固定原Risk NMSE改善|新Risk NMSE改善|新Risk＋真实一次Oracle相对旧Risk改善|','|---|---|---:|---:|---:|---:|---:|---:|']
+ for seed in [17,29]:
+  for method in METHODS:
+   for kind in KINDS+['matched-tile','matched-step']:
+    x=select[seed,method+'-'+kind];lines.append(f"|{seed}|{method}-{kind}|{x['events']}|{x['history_mass_fraction_mean']:.2%}|{x['beta_rmse_reduction']:.2%}|{x['same_mask_improvement_pct']:.2f}%|{x['new_risk_improvement_pct']:.2f}%|{x['new_oracle_vs_old_improvement_pct']:.2f}%|")
+ lines+=['','所有模式的全72事件口径也保留于summary.csv。严格forward和matched只覆盖部分重复历史页，覆盖比例以真实历史attention mass计算；它只是离线覆盖统计，不是拟合权重或在线输入。不能将低覆盖结果外推全部历史。真实Oracle按新摘要、新Risk和新Medium面板重新计算，允许no-op，是诊断而非部署收益。','', '## 摘要与路由效应必须分开','', '固定原Risk集合的NMSE只改变摘要贡献；重新Risk的NMSE同时包含离散选页变化。若前者改善而后者退化，至少说明不能把全部失败归因于摘要表示容量不足。更新Key或权重后，原有Risk评分参数未必适配新的误差结构，即使数值上已一致使用新权重和代表偏差统计。这个诊断不证明重新训练Risk一定能够修复问题。','', '|seed|方法|旧Risk ΣJ|固定旧集合 ΣJ|新Risk ΣJ|新同池Oracle ΣJ|Oracle相对新Risk空间|','|---|---|---:|---:|---:|---:|---:|']
+ for seed in [17,29]:
+  for name in ['Baseline','A1-forward','A2-forward','A2-tile','A2-step']:
+   x=select[seed,name];lines.append(f"|{seed}|{name}|{x['old_risk_sum']:.6g}|{x['same_mask_sum']:.6g}|{x['new_risk_sum']:.6g}|{x['new_oracle_sum']:.6g}|{x['oracle_gain_relative_new']:.2%}|")
+ lines+=['','这些模式的支持事件可能不同，不能横向直接比较ΣJ大小；每行旧Risk使用本行完全相同事件。可比较行内改善，以及matched条件间同支持比较。新Oracle空间变大也可能只是新初选变坏，必须检查最终绝对NMSE。','', '## Value/质量抵消','', '使用Dense分母归一化 eV=Zp(Op−Ohatp)/ZD，eZ=(Zp−Zhatp)(Ohatp−OD)/ZD；未选页累加后再除混合分母比，V能量＋Z能量＋交叉项严格重建J。下表固定原Risk集合，防止把集合改变混入抵消分析；重新Risk版本见per_event.csv。','', '|seed|方法|ΣV能量|ΣZ能量|Σ交叉项|Σ净NMSE|','|---|---|---:|---:|---:|---:|']
+ for seed in [17,29]:
+  for method in ['Baseline','A1-tile','A1-step','A1-forward','A2-tile','A2-step','A2-forward']:
+   rr=[r for r in fixed if r['seed']==seed and r['method']==method];vals=[sum(r[k] for r in rr) for k in ['V_energy','Z_energy','cross_energy','net_nmse']];lines.append('|'+str(seed)+'|'+method+'|'+'|'.join(f'{v:.6g}' for v in vals)+'|')
+ lines+=['','此抵消表统一包括全72事件，无支持页保持基线；因此与上表covered-only口径不可直接混算。纯logZ目标没有约束Value误差与质量误差之间的抵消。由误差分解观察到的相关变化仍不等于单一因果解释。','', '## 拟合收敛与量化','', '|seed|方法|独立批拟合数|donor初始MSE|donor拟合MSE|BF16后donor MSE|末20步平均改善|','|---|---|---:|---:|---:|---:|---:|']
+ for seed in [17,29]:
+  for method in METHODS:
+   rr=[r for r in fit if r['seed']==seed and r['method']==method];n=sum(r['pages'] for r in rr);vals=[sum(r[k]*r['pages'] for r in rr)/n for k in ['initial_mse','fitted_mse','quantized_mse','last20_improvement']];lines.append('|'+str(seed)+'|'+method+'|'+str(len(rr))+'|'+'|'.join(f'{v:.6g}' for v in vals)+'|')
+ lines+=['','同一物理页可能在多个不同donor集合中拟合，批次数不是独立视频数。拟合改善而留出失败支持过拟合/跨Query失配的解释；它不能排除其他初始化或受约束拟合更好。本轮不据结果扩大步数或搜索正则。','', '## 门槛、成本与后续边界','', '预登记：两个种子在forward覆盖事件上β RMSE至少下降10%、新Risk汇总NMSE≤旧Risk102%、各轨迹均不超过102%；tile/step也须质量改善且混合质量不退化超过2%。门槛失败项如下：','']
+ for g in gates['results']:lines.append(f"- seed{g['seed']} {g['method']}："+('通过' if g['passed'] else '未通过；'+', '.join(k for k,v in g['checks'].items() if not v)))
+ lines+=['','A1四个BF16权重8 B/page，338×12×29历史配置为940,992 B≈0.897 MiB；A2替换原有四个Key，不增加Key表示字节。都不新增QK扫描或原始KV探测。但这里的参数来自其他Query真实标签，不是提交时的可部署摘要构建器，不能把存储便宜当作在线可得。权重的log/归一化、摘要构建与实际访存成本尚未测量；未实现Kernel。','', '本轮只能判定所测“质量单目标拟合、冻结V与Risk”的方案是否满足联合条件。特别是A2如能降低留出logZ，却使新Risk变差，结论应是质量表示存在潜力但缺乏输出与路由兼容性，而不是四代表不含质量信息。按本轮门槛不启动联合训练，不将未通过结果自动转化为新的网络或超参数搜索。','', '## 审计与交付','', f"覆盖{len(audit['counts'])}个事件×11表示的预算/own/正权重与未修改页面检查；{len(audit['provenance'])}组donor支持验证；{len(audit['checks'])}个独立NumPy longdouble N/Z、真实混合NMSE和Oracle选中收益复算，并独立重建新Risk。全事件固定集合抵消恒等式通过。C模型和协议SHA未变；没有访问Test。",'', '主文件：per_event.csv、summary.csv、generalization.csv、fit_diagnostics.csv、fixed_mask_decomposition.csv、gates.json、independent_audit.json。s17/s29/event_*.pt保存完整拟合表示、支持集、donor页映射、Risk mask与新512动作真实标签；精简tar不含原始QKV、模型或大型拟合缓存。']
+ (DEST/'REPORT.md').write_text('\n'.join(lines)+'\n')
+ entries={p.name:p for p in DEST.glob('*.csv')}
+ for name in ['REPORT.md','protocol.json','gates.json','summary.json','independent_audit.json']:entries[name]=DEST/name
+ for seed in [17,29]:entries[f's{seed}_complete.json']=DEST/f's{seed}/complete.json'
+ for p in (ROOT/'local_experiments/e33_mass_representatives').glob('*'):
+  if p.is_file():entries['source/'+p.name]=p
+ inventory={n:sha(p) for n,p in entries.items()};dump(DEST/'review_inventory.json',inventory);entries['review_inventory.json']=DEST/'review_inventory.json'
+ with tarfile.open(DEST/'e33_a_review.tar','w') as tar:
+  for n,p in entries.items():tar.add(p,arcname=n)
+ with tarfile.open(DEST/'e33_a_review.tar') as tar:
+  for n,h in inventory.items():assert hashlib.sha256(tar.extractfile(n).read()).hexdigest()==h
+ dump(DEST/'package_audit.json',dict(files=len(entries),bytes=(DEST/'e33_a_review.tar').stat().st_size,sha256=sha(DEST/'e33_a_review.tar'),all_inventory_hashes_verified=True));print('FINISHED',len(entries),gates['passed'])
+if __name__=='__main__':main()

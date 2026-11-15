@@ -1,0 +1,2 @@
+cache_bytes_per_page,cache_MiB_29layers,original_KV_extra_reads,readout_GFLOPs,swap_norm_GFLOPs,query_projection_GFLOPs,page_encoder_allpages_GFLOPs,page_encoder_current72_GFLOPs,derived_cache_naive_read_GiB_layer,readout_affine_phi_mass_GFLOPs,set_state_accum_GFLOPs,swap_full_scalar_arithmetic_GFLOPs,main_arithmetic_GFLOPs
+170,19.069747924804688,0,0.77082624,0.226492416,0.014155776,0.50191872,0.088141824,0.05608499050140381,0.1700352,0.105988608,0.700710912,1.761716736

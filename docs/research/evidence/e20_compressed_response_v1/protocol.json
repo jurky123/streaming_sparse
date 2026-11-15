@@ -1,0 +1,19 @@
+{
+  "created": 1794674605.8436544,
+  "scope": "E20 only TWO existing snapshots, same layer15/head8/chunk5/step0, no fitting,newvideo,QKVcapture,production code",
+  "basis": "UK = QR of existing frozen layer15/head8 32-direction Key-response bank, first4/8 columns, no snapshot PCA. UV=current per-head rank8 QR OR frozen E19 V-response PCA first8/16. Shared across pages, stored FP32. No invented current rank16.",
+  "basis_sha": "eeb270a088d5caefb5a302703785451a18072f1bd6255d99359e4dfc0590affd",
+  "checkpoint_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+  "E19_PCA_sha": "89a6893a6f742ae9e42e3c077a0e680bb8d096b1ca944b0eaafe40b30e871776",
+  "stage1": "original M2 vs mean-centered M2; mu=mean(delta), eta=delta-mu; exact exp(mu)*(1+eta+eta^2/2). Choose on city ONLY by actual M16 full-legal one-swap gain, tie within1e-10 by lower Risk-unselected net residual NMSE; ties original. Freeze choice before compression, horse not used to select.",
+  "compression": "K-only r4/8 with fullV and V-only current8/PCA8/PCA16 with fullK offline FP64. Four joint configs K4/PCA16,K8/current8,K8/PCA8,K8/PCA16. Each full128 a0; original or centered moments consistently; symmetric Key second moment upper-triangle stores offdiagonal once with factor2 at contraction.",
+  "precision": "FP64-statistics controls vs PRIMARY actual BF16 stored b1,B2,a0,A1,A2 and FP32 shared bases, evaluated in FP64 for numerical diagnostics. No silent clamping of negative masses or denominators.",
+  "streaming": "all-page statistics vs history-only: keep original Risk and full legal actions, set CURRENT additional R and DeltaZ corrections to0 (estimated current exact page=existing summary); current still contributes original summary to Ohat_all/mixed denominator. Actual evaluation uses unchanged raw current KV. Report selected current/history actions; this is one conservative lifecycle diagnostic, not proof about all current error estimators.",
+  "metrics": "all14760 legal swaps plus same common panel; M16 andQ64; actual original fullQ64 NMSE, positive-score no-op, I/B errors, I sign, rank/regret, missed M2 good actions; raw byte/FLOP estimates, no latency claims",
+  "invalid": "nonpositive predicted mixed denominator at any legal candidate makes that method/panel invalid, no clipping/filtering actions",
+  "success_rule": "exploratory screen, not deployment: primary BF16 M16 must retain>=80% of selected full-form M16 true gain in BOTH snapshots, positive in both. History-only same condition for streaming screen. Payload target<=3KiB/page, upper exploratory ceiling7KiB/page; satisfying this does not prove speed. No candidate chosen using horse to deploy.",
+  "sources": {
+    "city_walk_s101_c5_l15_s0_h8_t61": "ffd432855ab01d72438ebfe5ac30648e217f2ecb7f15cfe5947d7f597ecebd5a",
+    "horse_field_s101_c5_l15_s0_h8_t61": "fd2e0aac548911ef2fbb29791f74988a751b96350b8f81631406c951b8c9422c"
+  }
+}

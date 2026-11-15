@@ -1,0 +1,17 @@
+{
+  "name": "E27-A",
+  "created": 1794723976.9062445,
+  "data": "E24 train1152/8trajectories, development288/2trajectories; frozen C seed17/29, Test sealed",
+  "network": "page712->64 GELU->32 BF16 coefficients(P,8,4), shared query128->8, tanh(u@A); no original R4 logits added",
+  "init": "seed17/29; default Linear init; query rows orthogonal/sqrt128; untrained architecture control recorded",
+  "train": "4epochs4608updates perseed; Adam1e-4 betas.9/.999 eps1e-8 wd0 clip1; same existing train data only",
+  "inner": "relative ridge1e-6 traceGram/5 asE26, X=mass*[1,phi], FP64 differentiable linear solve; no trained residual coefficient encoder",
+  "outer": "mean_page ||X C*-Z*||\u00b2/(||Z*||\u00b2+64*16*fixed_train_zscale\u00b2); page-scale conditioning algebraically cancels; deliberate page-energy weighting vs raw MSE to handle extreme range",
+  "quality": "true beta throughout A; not learned",
+  "selection": "after each epoch dev, choose largest summed true64 set gain among four trained checkpoints; initial control not eligible; no test",
+  "gate": "both seeds: selected adaptive Oracle coefficient gain/P1 gain>=.8, positive gain, recovery at least5 percentage points above E26 Cphi_trueBeta; do not alter ranks or train budget to pass",
+  "evaluation": "fit64 decide16 true64; Set/Independent/no-op; exact E25 common panels; optional fit16 apply64 diagnostic after selection",
+  "B": "conditional only if both seeds pass; no larger network or additional QKV",
+  "inference_inputs": "q and normalized R4 summary only; t/beta/LS coefficients are teacher-only diagnostic",
+  "numerical_revision": "After A training audit, before B: equivalent incremental gain identity replaces difference of large objectives; all initial/epoch dev checkpoints and panels reevaluated, weights unchanged; original results archived."
+}

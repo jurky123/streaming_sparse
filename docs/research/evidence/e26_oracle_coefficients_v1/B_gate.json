@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "seeds": [
+    {
+      "seed": 17,
+      "OracleCoeff_recovery": 0.3930421445987146,
+      "P1_recovery": 0.5580004554777372,
+      "fraction_of_P1_gain": 0.7043760282636471,
+      "passed": false
+    },
+    {
+      "seed": 29,
+      "OracleCoeff_recovery": 0.31979910006790857,
+      "P1_recovery": 0.6406897499471046,
+      "fraction_of_P1_gain": 0.49914814478351055,
+      "passed": false
+    }
+  ],
+  "training_executed": false,
+  "reason": "Only E26-A authorized in this round; gate is diagnostic"
+}

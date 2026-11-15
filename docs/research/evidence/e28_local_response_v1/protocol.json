@@ -1,0 +1,16 @@
+{
+  "scope": "E28 A/B analytic only, E24 development288 per C seed17/29; no training, no test",
+  "fixed": "C summary, adaptive phi, B16, Risk, Medium512, M16 decision/Q64 truth",
+  "ridge": 1e-06,
+  "weighting": "Identical E26 mass-weighted LS for centered per-mass target and local deltaO; shared maxmass normalization across all fitted rows",
+  "identity": "within trajectory/layer/head: ordered token IDs + BF16 raw K/V + current summary SHA256, history only",
+  "sharing": "all matching development occurrences; shared is transductive teacher; LOTO excludes all64Queries of the evaluated event, not cross-video generalization",
+  "current_pages": "event-local fit in every method; shared/LOTO replace matched history only",
+  "coefficient_targets": "centered=t/m and local=projected exact-page minus summary-page output",
+  "beta": "true in all analytic comparisons",
+  "success": "report stability and real gain; no automatic training authorized",
+  "selection": "no checkpoints/hyperparameters selected",
+  "sensitivity": "Before primary results: local target additionally fit with uniform Query weights, same ridge, to isolate global mass weighting; no model/hyperparameter selection, main comparisons retain matched mass weighting",
+  "numerical": "Centered LS fits t directly using scaled mass design; summary page outputs from stable four-representative softmax, avoiding underflow 0/0; no exclusions",
+  "scale_alignment": "Centered target solve uses exactly E27 frozen zscale. Unit scale is algebraically equivalent but changed one nearly tied action at predicted gain 1.3e17; before-scale-alignment results retained. No fitting-rule/regularization change."
+}

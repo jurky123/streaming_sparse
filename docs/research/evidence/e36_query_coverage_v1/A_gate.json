@@ -1,0 +1,42 @@
+{
+  "passed": false,
+  "seeds": [
+    {
+      "seed": 17,
+      "actual_delta": 0.091420383226833,
+      "top8_delta": -0.06230235435863718,
+      "trajectories": [
+        {
+          "trajectory": "kitchen_cook_s701",
+          "actual_delta": 0.10455013631037707,
+          "top8_delta": -0.11485745061444236
+        },
+        {
+          "trajectory": "snow_ski_s702",
+          "actual_delta": 0.0571211623642279,
+          "top8_delta": 0.07498879212853815
+        }
+      ],
+      "passed": true
+    },
+    {
+      "seed": 29,
+      "actual_delta": -0.07572144248924448,
+      "top8_delta": 0.012541316348654519,
+      "trajectories": [
+        {
+          "trajectory": "kitchen_cook_s701",
+          "actual_delta": 0.01657307409414327,
+          "top8_delta": -0.0020223981910220123
+        },
+        {
+          "trajectory": "snow_ski_s702",
+          "actual_delta": -0.338557979357092,
+          "top8_delta": 0.05401589615299418
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "rule": "For EACH seed, E29-Q64 actual Oracle recovery improves >=5 percentage points OR Top8 true oracle recall improves >=10 points versus E29-M16. At least one qualifying metric must also improve separately on BOTH dev trajectories for that seed. Report trajectory splits and concentration; do not accept an improvement solely on one trajectory. Only then execute B."
+}

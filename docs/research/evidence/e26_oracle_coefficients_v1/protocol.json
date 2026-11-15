@@ -1,0 +1,26 @@
+{
+  "experiment": "E26-A only",
+  "created": 1794722714.7245195,
+  "data": "E24 development288 x C seed17/29; E25 same masks and panels; Test sealed",
+  "main_phi": "E24 C selected; E25 D phi secondary matched control because D trained query projection",
+  "residual_design": "mass(q,p)*[1,phi]; per-page64Query ridge fit of z* using frozen train scales",
+  "quality_design": "[1,phi] beta*; separate fit",
+  "regularizer": "1e-6*trace(X^T X)/5 times identity for all5coefficients; no outcome-based tuning",
+  "numerics": "FP64; page logmass common scaling, target max scaling algebraically cancel; no beta clipping; positive direct denominator sums",
+  "models": [
+    "E24_C",
+    "E25_D",
+    "OracleCoeff_Cphi",
+    "OracleCoeff_Dphi",
+    "Cphi_trueBeta",
+    "SVD5_trueBeta",
+    "P1",
+    "P3",
+    "NoOp"
+  ],
+  "SVD": "best Frobenius rank5 of each true 64x16 response, exact beta; offline reference not deployment",
+  "policies": "Set and same-information Independent residual-energy rule, same512Medium, one swap or no-op",
+  "gate": "main Cphi gain >=0.8*P1 gain and positive for both seeds; record only, do not train E26-B this turn",
+  "scope_limit": "No training, no new QKV, no hyperparameter search, no test",
+  "fit_identity": "per event/head-tile/page coefficients; uses all64Query teacher, including evaluation Queries; diagnostic not generalization"
+}

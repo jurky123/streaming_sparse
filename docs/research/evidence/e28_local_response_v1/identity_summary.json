@@ -1,0 +1,28 @@
+[
+  {
+    "seed": 17,
+    "unique_history_pages": 16669,
+    "history_occurrences": 78720,
+    "repeated_unique": 16669,
+    "repeat_occurrence_coverage": 1.0,
+    "cross_chunk_pages": 3011,
+    "cross_step_pages": 16669,
+    "occurrence_histogram": {
+      "4": 13658,
+      "8": 3011
+    }
+  },
+  {
+    "seed": 29,
+    "unique_history_pages": 16654,
+    "history_occurrences": 78720,
+    "repeated_unique": 16654,
+    "repeat_occurrence_coverage": 1.0,
+    "cross_chunk_pages": 3026,
+    "cross_step_pages": 16654,
+    "occurrence_histogram": {
+      "4": 13628,
+      "8": 3026
+    }
+  }
+]

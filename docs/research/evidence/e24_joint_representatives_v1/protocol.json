@@ -1,0 +1,145 @@
+{
+  "created": 1794715862.0923035,
+  "cases": [
+    {
+      "id": "city_walk_s701",
+      "name": "city_walk",
+      "seed": 701,
+      "split": "train",
+      "prompt": "A pedestrian in a yellow coat walks along a wet city sidewalk at dusk. The camera tracks smoothly beside them, with reflections and moving traffic in the background."
+    },
+    {
+      "id": "forest_run_s702",
+      "name": "forest_run",
+      "seed": 702,
+      "split": "train",
+      "prompt": "A runner wearing a blue jacket jogs along a winding forest trail. Sunlight passes through leaves as the camera follows from behind."
+    },
+    {
+      "id": "reef_fish_s703",
+      "name": "reef_fish",
+      "seed": 703,
+      "split": "train",
+      "prompt": "A school of colorful fish swims around a coral reef in clear blue water. The underwater camera moves slowly forward through the scene."
+    },
+    {
+      "id": "robot_work_s704",
+      "name": "robot_work",
+      "seed": 704,
+      "split": "train",
+      "prompt": "A small industrial robot arm sorts colored wooden blocks on a workbench. A steady camera shows repeated precise movements and changing block positions."
+    },
+    {
+      "id": "flower_wind_s705",
+      "name": "flower_wind",
+      "seed": 705,
+      "split": "train",
+      "prompt": "Red and white flowers sway in a garden breeze, with bees moving between blossoms. A close camera slowly pans across the flower bed."
+    },
+    {
+      "id": "fabric_dance_s706",
+      "name": "fabric_dance",
+      "seed": 706,
+      "split": "train",
+      "prompt": "A dancer in a long flowing green dress turns in a sunlit studio. The camera tracks the movement while fabric folds change continuously."
+    },
+    {
+      "id": "waterfall_s707",
+      "name": "waterfall",
+      "seed": 707,
+      "split": "train",
+      "prompt": "Water cascades over dark rocks in a mountain stream. The camera slowly moves upstream, revealing foam, ripples, and mist."
+    },
+    {
+      "id": "toy_train_s708",
+      "name": "toy_train",
+      "seed": 708,
+      "split": "train",
+      "prompt": "A red toy train circles a wooden track through a miniature town. The camera stays low beside the tracks as the train passes buildings and trees."
+    },
+    {
+      "id": "kitchen_cook_s701",
+      "name": "kitchen_cook",
+      "seed": 701,
+      "split": "development",
+      "prompt": "A cook chops vegetables on a kitchen counter and places them in a steaming pan. A steady medium shot shows the hands, utensils, and rising steam."
+    },
+    {
+      "id": "snow_ski_s702",
+      "name": "snow_ski",
+      "seed": 702,
+      "split": "development",
+      "prompt": "A skier in an orange jacket carves turns down a snowy slope. The camera follows smoothly, with snow spraying and distant mountains visible."
+    },
+    {
+      "id": "tennis_match_s701",
+      "name": "tennis_match",
+      "seed": 701,
+      "split": "test",
+      "prompt": "Two tennis players exchange shots on an outdoor court. A stable wide shot shows the players moving, the ball crossing the net, and shifting shadows."
+    },
+    {
+      "id": "bird_flight_s702",
+      "name": "bird_flight",
+      "seed": 702,
+      "split": "test",
+      "prompt": "A white seabird flies along a rocky coastline over turquoise waves. The camera tracks the bird from the side as its wings flap and the landscape moves behind it."
+    },
+    {
+      "id": "fireworks_night_s703",
+      "name": "fireworks_night",
+      "seed": 703,
+      "split": "test",
+      "prompt": "Bright fireworks expand above a city river at night. Reflections ripple on the water while boats drift slowly below the illuminated skyline."
+    },
+    {
+      "id": "portrait_turn_s704",
+      "name": "portrait_turn",
+      "seed": 704,
+      "split": "test",
+      "prompt": "A woman with curly hair turns her head and smiles while standing near a sunny window. A close steady camera captures natural facial movement and shifting hair."
+    }
+  ],
+  "events_per_trajectory": 144,
+  "total_events": 2016,
+  "chunk": [
+    2,
+    5,
+    8
+  ],
+  "layers": [
+    1,
+    15,
+    29
+  ],
+  "steps": [
+    0,
+    2
+  ],
+  "heads": [
+    0,
+    3,
+    6,
+    9
+  ],
+  "tiles": "t0=(17*layer+13*chunk+7*step+seed)%72,t1=(t0+36)%72, same two tiles allheads",
+  "trajectory": "frozen178f95a8 summary_pretrained G-KVR L3, clean Dense, same raw trajectory for A/B/C. Prompts disjoint across splits, seeds/tiles never shuffled across split. These prompts appeared in earlier repository development; not globally unseen benchmark.",
+  "seeds": [
+    17,
+    29
+  ],
+  "training": "SharedFrozenR4 readerwarmup2304updates; main A_matched and C initialize identical warmreader then2304updates each with same seed/eventorder; A freezes summary, C trains pools. B2304poolingupdates fromoriginal. Two seeds17/29; no hyperparameter sweep. Warmup budget reported separately.",
+  "optimizer": "Adam lr1e-4 betas(.9,.999) eps1e-8 weight_decay0 clip1;lambda_r=.1 lambda_s=.1 alpha=.1 rank temperature.3; no sweep",
+  "states": "deterministic10stepcycle 6Risk,2teacher1-or2 greedy Medium exchanges,2one random legal swap; regenerate newRisk/candidates/labels each update",
+  "basis": "uncentered net online-residual PCA16, training trajectories only, equal eventweight; freeze. Fixed train scales zRMS betaRMS and realgainRMS for normalization.",
+  "checkpoint": "evaluate development after each epoch, choose checkpoint passing initial<=1.02old; score finalNMSE, constraints and bothtrajectories positive; freeze beforetest. Test only after full user criteria met.",
+  "summary": "pool_k,pool_v,pool_feature trainable only; bank/group_gate/group_v/basis/theta frozen. Physical pages unchanged. Current cheap=True/history cheap=False.",
+  "reader": "712->64 GELU->85 page encoder; per-component pageRMS normalization, Query128->4 linear;phi=tanh(query/sqrt128+relativeR4logits);85BF16coefficients=170B/page. Sharedreader acrossheads/layers, no embeddings.",
+  "gate": "C initialaggregate<=1.02old, bothdevtrajectorymeanpositive swaps, stable advantage overA across2seeds, Set betterIndependent, pooledOracle recovery>=.2, extra cache<=192B, mainreadout+swap target<=2GFLOPs; fullcost separate",
+  "stage0": "implementation-only oldtwo snapshots, not training/testdata",
+  "checkpoint_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+  "coefficient_precision": "170B/page actualBF16pagecoefficients in train/eval; FP32network parameters/phi, FP64 reference contribution and set-ratio math. No deployed latency claim.",
+  "numerical_revision": "Before formaltraining: canonical raw page output+logZ cached. Common exponent shift=max(rawpageLogZ,summarypageLogZ)-300 keeps dominant linear quantities finiteFP64; subnormal tiny pages may underflow but canonical finite logZ retained, beta supervision uses logZ directly. No page/instance removed or clipped. FP64 contribution/label/ratio math, FP32network,BF16coefficients. Median train-event RMS fixed scales; equaltracePCA max-scales each event before covariance (algebraically invariant).",
+  "relative_metric_floor": "No instances dropped: NMSE<=1e-12 marked numerical-floor for per-instance relative percentages only; all absolute/aggregateNMSE and pooledOracle sums retain all. Development per-trajectory positivity uses mean absolute true exchange gain. Count floor cases explicitly.",
+  "matched_control_revision": "Before test/quality verdict: original A2304 becomes shared readerwarmup. MainA=A_matched: same warmreader asC, frozen summary additional2304updates, same order/seed/optimizer asC. B retains2304poolingupdates fromoriginal. This isolates trainable representation from extra readout updates. Warm-onlyA retained, not mainC baseline."
+}

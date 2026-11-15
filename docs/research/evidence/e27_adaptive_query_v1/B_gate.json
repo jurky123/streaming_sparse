@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 17,
+      "adaptive_recovery": 0.5110466722302222,
+      "P1_fraction": 0.9158535037264168,
+      "improvement_over_fixed_pp": 11.827568269083343,
+      "passed": true
+    },
+    {
+      "seed": 29,
+      "adaptive_recovery": 0.6167675354212697,
+      "P1_fraction": 0.9626617804829718,
+      "improvement_over_fixed_pp": 12.51763068907923,
+      "passed": true
+    }
+  ],
+  "rule": "both seeds >=80% P1 gains and >=5 percentage points Oracle recovery over Cphi_trueBeta, positive gain"
+}

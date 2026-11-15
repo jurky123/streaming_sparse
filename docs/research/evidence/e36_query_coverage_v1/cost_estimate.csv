@@ -1,0 +1,4 @@
+method,probes,query_dependent_compute_ratio,additional_raw_kv_bytes,additional_page_cache_bytes,risk_probes,actions,status,selector_distance_GFLOPs_per_layer
+Uniform16,16,1.0,0,0,16,512,executed,
+Predicted-Q64,64,4.0,0,0,16,512,executed,
+Coreset16,16,1,0,0,16,512,not executed; capacity/cost estimate only,0.339738624

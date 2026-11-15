@@ -1,0 +1,14 @@
+from .core import *
+from ..broad_common import PROMPTS
+
+def run():
+ OUT.mkdir(exist_ok=True)
+ if (OUT/'protocol.json').exists():return
+ cases=[]
+ names={'train':[n for n,p in PROMPTS['train']],'development':['kitchen_cook','snow_ski'],'test':['tennis_match','bird_flight','fireworks_night','portrait_turn']};prompts=dict(sum(PROMPTS.values(),[]))
+ for sp,ns in names.items():
+  for i,n in enumerate(ns):cases.append(dict(id=n+'_s'+str(701+i),name=n,seed=701+i,split=sp,prompt=prompts[n]))
+ assert len(cases)==14 and len(set(c['name'] for c in cases))==14
+ dump(OUT/'protocol.json',dict(created=time.time(),cases=cases,events_per_trajectory=144,total_events=2016,chunk=[2,5,8],layers=[1,15,29],steps=[0,2],heads=[0,3,6,9],tiles='t0=(17*layer+13*chunk+7*step+seed)%72,t1=(t0+36)%72, same two tiles allheads',trajectory='frozen178f95a8 summary_pretrained G-KVR L3, clean Dense, same raw trajectory for A/B/C. Prompts disjoint across splits, seeds/tiles never shuffled across split. These prompts appeared in earlier repository development; not globally unseen benchmark.',seeds=[17,29],training='One fixed schedule: 2epochs x1152 train events=2304updates per A/B/C per seed. A readout-only; B pooling-only; C from trainedA readout and ORIGINAL pooling, additional2304jointupdates. Report C inheritedA budget separately; A checkpoint selection from same2304updates, no claim equal totalpretraining.',optimizer='Adam lr1e-4 betas(.9,.999) eps1e-8 weight_decay0 clip1;lambda_r=.1 lambda_s=.1 alpha=.1 rank temperature.3; no sweep',states='deterministic10stepcycle 6Risk,2teacher1-or2 greedy Medium exchanges,2one random legal swap; regenerate newRisk/candidates/labels each update',basis='uncentered net online-residual PCA16, training trajectories only, equal eventweight; freeze. Fixed train scales zRMS betaRMS and realgainRMS for normalization.',checkpoint='evaluate development after each epoch, choose checkpoint passing initial<=1.02old; score finalNMSE, constraints and bothtrajectories positive; freeze beforetest. Test only after full user criteria met.',summary='pool_k,pool_v,pool_feature trainable only; bank/group_gate/group_v/basis/theta frozen. Physical pages unchanged. Current cheap=True/history cheap=False.',reader='712->64 GELU->85 page encoder; per-component pageRMS normalization, Query128->4 linear;phi=tanh(query/sqrt128+relativeR4logits);85BF16coefficients=170B/page. Sharedreader acrossheads/layers, no embeddings.',gate='C initialaggregate<=1.02old, bothdevtrajectorymeanpositive swaps, stable advantage overA across2seeds, Set betterIndependent, pooledOracle recovery>=.2, extra cache<=192B, mainreadout+swap target<=2GFLOPs; fullcost separate',stage0='implementation-only oldtwo snapshots, not training/testdata',checkpoint_sha=sha(PRE)))
+ print('registered',len(cases),'trajectories')
+if __name__=='__main__':run()

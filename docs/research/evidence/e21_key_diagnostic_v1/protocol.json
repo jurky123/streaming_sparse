@@ -1,0 +1,14 @@
+{
+  "scope": "Two existing E20 snapshots, full V, original M2 locked by E20. Q64/Page64/P410/K41/own. No videos, training networks, new cache or inference code.",
+  "basis_rules": {
+    "bankQR8": "E20 fixed QR first8",
+    "bankSVD8": "left singular vectors of full 128x32 frozen bank, descending singular values",
+    "trainQ8": "uncentered second moment PCA of ALL64 queries in the 36 city_walk seed101 TRAIN events, each event equal weight; shared across heads. Neither city303 nor horse used.",
+    "snapshotKOracle8": "per-snapshot PCA of all raw k-kappa vectors, train and evaluate on same snapshot; capacity diagnostic ONLY"
+  },
+  "rank16": "Only if no non-oracle rank8 passes M16>=80% fullM2 positive in BOTH snapshots: one trainQ16 (same training eigensystem), no other rank16 search.",
+  "quality": "M16 primary, Q64 control. Passing K-only/fullV is not low-cost sketch validation. No post-hoc chosen basis generalized from two cases.",
+  "B": "Full legal and HH/HC/CH/CC panels; true raw gains, full-M2 scores versus missing-current response. H/C arrow means remove->add. Restricted HH distinguishes action coverage from missing-current scoring. Additional HH controls zero only current residual E or only current denominator correction, not trainable methods.",
+  "precision": "FP32 bases, FP64 direct polynomial contractions; no BF16 cache implementation. Costs hypothetical BF16 fullV and V8 for ranks8/16.",
+  "created": 1794675648.4301424
+}

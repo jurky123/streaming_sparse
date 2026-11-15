@@ -1,0 +1,15 @@
+{
+  "name": "E25",
+  "scope": "E24 matched A / C selected checkpoints, seeds17/29; development288; test sealed",
+  "teacher_scoring": "P1 projected true output error (equivalent online-centred t/u), frozen training B16,16 probes; P2 full128/16; P3 full128/64; all actions evaluated true64",
+  "no_op": "predicted gain strictly positive, no tuning",
+  "counterfactual": "risk, reconstructed teacher1/2, seeded random1/2; common legal subset of original Medium; new labels per frozen summary; raw and action-demeaned and double-centred diagnostics",
+  "conditional_tolerance": 1e-12,
+  "D_gate": {
+    "both_C_teacher16_recovery_min": 0.5,
+    "both_C_teacher16_minus_proposal_min": 0.2
+  },
+  "D_if_pass": "same reader from scratch seed17/29 on respective frozen C; 4epochs=4608updates; train-only existing B/scales; same E24 states and residual+set loss; dev checkpoint selection, no test",
+  "no_new_qkv": true,
+  "no_pool_training": true
+}

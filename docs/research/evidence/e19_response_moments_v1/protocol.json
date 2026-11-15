@@ -1,0 +1,15 @@
+{
+  "created": 1794672813.4545975,
+  "scope": "E19 A144 frozen headtiles994 sets; B only TWO existing snapshots city_walk/horse_field s101c5l15step0h8t61, no new video/data capture/router",
+  "A_fit": "Three shared global16-dimensional uncentered PCA/SVD subspaces, on net/V/Z page vectors separately. Train city10136 only. Average per-event second moment divided by its trace; same event weight. No mean subtraction/restoration (linear origin projection preserves residual additivity). Current basis rank8 QR orthonormal span. No rank or covariance-weight selection on dev/test.",
+  "A_eval": "project all three components into each same subspace; page/set/candidate energy and set direction; decisions use projected NET residual and exact d/Z, Q16 vsQ64, original common legal panels; final actualQ64 NMSE. Oracle representation capacity only, not online prediction.",
+  "B_groups": "raw physicalPage64.reshape(P,4,16,128), actual learned/recentered K reps and decoded BF16 mean/detail/basis; no regrouping; token IDs and summary caches verified",
+  "B_M0": "Z0=16 exp(ell)(1+mean(delta)); N0=16 exp(ell)(1+mean(delta))*meanV; linear K mean offset plus exact V mean offset, no covariance",
+  "B_M1": "same Z asM0; N1=16 exp(ell)*mean((1+delta)*V) = N0 +16 exp(ell)Cov(V,K)q/sqrt128",
+  "B_M2": "Z2=16 exp(ell)*mean(1+delta+delta^2/2); N2=16 exp(ell)*mean((1+delta+delta^2/2)*V), includes full mixed delta^2V, not just Key variance",
+  "B_scale": "shared per-query online summary total logZ for ALL group/page N/Z; delta estimates subtract original four representatives. ehat=deltaNhat-Ohat_all deltaZhat; predicted mixed denominator sums estimated exact Z on selected pages and original summary Z elsewhere. No Dense output/true d in moment policy.",
+  "B_exact_controls": "exact deltas centered by online Ohat_all (centering-only error diagnostic), and exact Dense-centered residual/full true denominator oracle",
+  "B_metrics": "delta distribution and regimes maxabsdelta<=.5,<=1,<=2,>2; DeltaN/DeltaZ relative squared error; residual cosine/norm error; initial Risk common panel and full legal one-swap panel, Q16/64 scores evaluated trueQ64. No-op if top score<=0. Invalid predicted denominators NOT clipped: whole method/panel marked invalid if any baseline/candidate denominator<=0.",
+  "B_capacity": "full moment contractions computed offline from16 raw tokens, first covariance explicitly formed and audited; second delta^2V contraction includes full tensor without materializing it. Not proposed cache size or deployable latency.",
+  "frozen_manifest_sha": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4"
+}

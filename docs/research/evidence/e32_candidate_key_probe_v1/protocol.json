@@ -1,0 +1,14 @@
+{
+ "scope":"E32 candidate-only Key probing, existing two development trajectories, 288 events per frozen C/E29 seed17/29; no training, new QKV, Test, Kernel or new persistent deployed cache",
+ "b":[1,2,4],"sampling_seeds":[17,29,43,71,101],
+ "sampling":"Uniform without replacement within each physical 16-token subgroup. PCG64 seed from SHA256(trajectory/layer/head/sampling_seed, ordered token IDs). No values, true logZ, gains, or model seed in sampling. First b of one permutation; same physical IDs reuse offsets across contexts and both C seeds. Plans generated and hashed before evaluation.",
+ "candidate_pages":"Union of initial Medium 16 remove and32 add pages; own excluded; same candidate pages for same-info Independent and Set. Counterfactual analysis reuses these probes, not new queries or refreshed candidate pools.",
+ "estimator":"logZprobe=logsumexp(q dot sampled_K/sqrt128)+log(16/b) over four groups and b tokens; beta=logZprobe-logZsummary. Only M16 queries. No V probe, bias correction, coefficient fit, clipping or repeated-probe acceptance gate.",
+ "frozen":"E29 local response and all background beta, E24 C summary, E27 phi, B16, Risk, K/own budget, single Medium swap/no-op",
+ "baselines":["E29", "Candidate-True", "Full-True"],
+ "main_evaluation":"Real Q64 pre-W_O NMSE; aggregate within sampling seed and averaged over all5 seeds. Baselines counted once per model seed. No selection of favorable random seeds. Same-info Independent uses one legal swap or no-op.",
+ "information_gate":"For b2 or b4, BOTH C seeds: mean Set gain exceeds E29 and same-info Independent; closes >=50% Candidate-True minus E29 gain gap (gap must be positive); each development trajectory positive mean actual gain; at least4/5 sampling seeds exceed E29 aggregate gain. Exploratory consistency filter, not statistical significance across independent videos.",
+ "reliability_gate":"Separate: mean per-event improvement nonnegative, mean degradation rate <=15%, P10 and worst relative tail better than E29. No gain-only success claim, no Test or automatic Kernel even if passed.",
+ "stop":"No b>4 or broader sampling sweep; if unreliable stop, do not approach full page computation.",
+ "cost":"Incremental Key bytes and QK FLOPs only; count actual48 candidates and K21 or41; retain all frozen Reader/summary/scoring overhead separately; no V, no credit for hypothetical Key reuse or ideal gathers. Five seeds are repeated experiments, not5-probe deployment ensemble. No measured latency claim."
+}

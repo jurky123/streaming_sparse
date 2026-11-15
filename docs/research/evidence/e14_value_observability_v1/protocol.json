@@ -1,0 +1,58 @@
+{
+  "name": "E14 context decision value and observability",
+  "created": 1794665657.8777208,
+  "base_manifest_sha256": "6ca99276dbc3f0b06f8f872c6d5e7bfe3eb417bdf43edfbb5569aa0ab43167a4",
+  "E13_preparation_sha256": "72553d0c5763ddb408a8c3ee5a1600d271fdd2326fa9323fdda4f507c50b5d33",
+  "scope": "same144 head-tiles,994 sets and common fixed legal candidate panels; no new states/QKV/video/MLP/global solving",
+  "split": "city101 train36,city303 validation36,horse101/303 evaluation72",
+  "input_probes": 16,
+  "objective_queries": 64,
+  "A_estimands": {
+    "requested": "j_mean=argmax mean(g), compare mean max(0,g_i_best) minus mean max(0,g_i_jmean); per-state perfect acceptance explicitly oracle",
+    "strict_fixed": "single action or no-op chosen before state: max(0,max_j mean(g_j))",
+    "strong_fixed_with_perfect_gate": "j_plus=argmax_j mean(max(0,g_j)), same perfect state-dependent acceptance; pure conditional-ranking comparison"
+  },
+  "A_normalizations": [
+    "absolute NMSE",
+    "V/mean stateNMSE",
+    "mean per-state relative gain",
+    "V/conditional-oracle gain"
+  ],
+  "material_thresholds": [
+    0.001,
+    0.01,
+    0.05
+  ],
+  "numerical_tie_tolerance": 1e-12,
+  "B_directions": "Q16 per-query and aggregated basis-coordinate cosine: selected H versus true unselected E, report both signs; delta proxy=m_r h_r-m_a h_a versus e_r-e_a; random common rotations as null",
+  "B_projection": "existing per-head rank8 basis; QR orthonormal basis for retained energy only; report basis condition number",
+  "B_targets": "all unordered same-head set pairs, same candidate: (g(S2,a)-g(S1,a))/sigma_event; sigma_event=std of full anchor gain matrix, labels/evaluation only, never inference input",
+  "B_models": {
+    "pair_only": "delta prediction exactly0",
+    "scalar": "4 state scalar differences, no pair dependence",
+    "e13_context": "12 existing context feature differences",
+    "dot": "4 scalars + mean_q(-H_q(S)) dot delta_proxy_q",
+    "bilinear": "4 scalars + mean_q outer(-H_q(S),delta_proxy_q),64 bilinear coefficients"
+  },
+  "B_fit": "ridge without intercept on feature differences; train-only feature RMS, equal event weight and equal state-pair/action weight inside event; lambda1e-4,.01,1,100 chosen by development weightedMSE",
+  "B_ranking_panels": {
+    "online_linear": "same20-feature linear initial pair preference + predicted context correction; no teacher input",
+    "oracle_initial_anchor": "true initial g0/sigma plus predicted correction, offline isolation diagnostic",
+    "true_conditional": "same panel true labels + no-op oracle"
+  },
+  "B_static_probe": "20 pair features + intercept ridge, only initial Risk training labels centered by per-event mean and scaled by sigma_event; validation only selects regularization",
+  "B_eval": "freeze coefficients before evaluation; no threshold tuning or gating; rank effects from same-score differences, positive-only teacher rejection separately diagnostic",
+  "excluded": [
+    "new neural/router training",
+    "network search",
+    "new covariance summary",
+    "multiround rollout",
+    "global optimization",
+    "hardware kernel optimization"
+  ],
+  "B_modes": {
+    "full_change": "fit complete gain differences",
+    "interaction_only": "subtract action mean within each state pair from both features and target; isolates conditional ranking, scalar-only becomes zero"
+  },
+  "B_modes_registered_before_fit": 1794665811.7053316
+}

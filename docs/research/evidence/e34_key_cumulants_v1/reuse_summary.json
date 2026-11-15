@@ -1,0 +1,14 @@
+[
+  {
+    "seed": 17,
+    "history_occurrences": 78720,
+    "repeated_occurrences": 62051,
+    "all_repeated_coefficients_and_variance_identical": true
+  },
+  {
+    "seed": 29,
+    "history_occurrences": 78720,
+    "repeated_occurrences": 62066,
+    "all_repeated_coefficients_and_variance_identical": true
+  }
+]

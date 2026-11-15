@@ -1,0 +1,40 @@
+{
+  "scope": "E31-A/B analytic diagnostics only; no training, new QKV, Test or cache changes",
+  "seeds": [
+    17,
+    29
+  ],
+  "development_events_per_seed": 288,
+  "frozen": [
+    "E24 C",
+    "E27 Adaptive phi",
+    "E29 Reader local response",
+    "B16",
+    "Risk",
+    "Medium",
+    "E28 page identity"
+  ],
+  "schemes": {
+    "A0": "E30 original mass-squared ridge; unchanged five features",
+    "A1": "within each page and occurrence normalize sum_q mass^2 to 1; then pool occurrences; unchanged five features",
+    "A2": "same event-balanced weighting as A1; replace last phi component (F index4) with raw variance feature sum_g softmax(R4 logits)_g sum_j ||q_blockj||^2/128 * stats[g,j]; no extra dimensions or fitted rescaling"
+  },
+  "ridge": "E26 fixed relative ridge 1e-6 * trace(XtX)/5; existing train bscale; never tune on actions",
+  "current_pages": "All cross-context methods keep the identical E30 original OracleCoeff64 beta on current pages, isolating historical reuse. Event-local fits of A2 saved for history; no current feature-change confound.",
+  "main_modes": [
+    "Shared all matched appearances including target",
+    "LOTO all other matched appearances excluding target Q64"
+  ],
+  "donor_categories": {
+    "tile": "same chunk and denoising step, different Query tile",
+    "step": "same chunk, different denoising step",
+    "forward": "strictly earlier chunk of same physical page, any saved step/tile; never future donor"
+  },
+  "missing_donors": "Use E29 predicted beta on uncovered history pages; all categories share original event-teacher current pages. Report coverage and covered-event subset.",
+  "matched_support": "For each held event, intersect historical pages with donors in all three categories; evaluate each category on same support, baseline prediction elsewhere.",
+  "B_quality": "sum_qp m^2*(beta-beta_true)^2, plus divide by sum weights; all/candidate/background separately; M16 main and Q64 regression checks",
+  "B_decision": "Frozen E29 predicted response; TrueBeta teacher gain scores. Equal state/action weights; Huber with each teacher-state RMS floored by existing training gscale, plus 0.1 listwise KL including no-op, identical teacher/student temperature0.3 (exact teacher has zero loss). No loss fitting or updates.",
+  "primary_inference": "M16, positive predicted gain or no-op, Q64 real NMSE; reuse E25 five-state common legal panel",
+  "continuation": "No automatic training. Report both-seed LOTO changes vs E30 A0 and E29; same-info Independent, degradation/P10/worst, conditional correlation. Successful regression alone is insufficient.",
+  "numerics": "E30 separate logsumexp positive mixtures, unbounded beta retained; no clipping or deleted events"
+}
