@@ -1,0 +1,3 @@
+split,event,gain_error
+train,data/forest_run_s702/c8_l29_s0_h9_t39.pt,6.278422226557723e-12
+development,data/snow_ski_s702/c2_l29_s2_h9_t11.pt,5.7870375158586285e-15

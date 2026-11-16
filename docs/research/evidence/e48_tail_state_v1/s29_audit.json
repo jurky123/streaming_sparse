@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "updates": 2304,
+  "critical_removed_page_baseline_exact": true,
+  "all_endpoints_exact": false,
+  "Test": false,
+  "checks": [
+    {
+      "split": "train",
+      "event": "data/forest_run_s702/c2_l29_s2_h9_t11.pt",
+      "gain_error": 5.551115123125783e-17
+    },
+    {
+      "split": "development",
+      "event": "data/kitchen_cook_s701/c2_l15_s2_h9_t60.pt",
+      "gain_error": 0.0
+    }
+  ]
+}

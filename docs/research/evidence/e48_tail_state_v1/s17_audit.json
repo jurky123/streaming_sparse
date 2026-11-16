@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "updates": 2304,
+  "critical_removed_page_baseline_exact": true,
+  "all_endpoints_exact": false,
+  "Test": false,
+  "checks": [
+    {
+      "split": "train",
+      "event": "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+      "gain_error": 6.278422226557723e-12
+    },
+    {
+      "split": "development",
+      "event": "data/snow_ski_s702/c2_l29_s2_h9_t11.pt",
+      "gain_error": 5.7870375158586285e-15
+    }
+  ]
+}
