@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "independent_checks": 42,
+  "E43_replay_checks": 384,
+  "identity_audit": {
+    "passed": true,
+    "records": 19680,
+    "physical_pages": 9840,
+    "summary_raw_collisions": 0,
+    "groups": 24,
+    "raw_attention": false
+  },
+  "sparse_clock_verified": true,
+  "Test": false,
+  "max_score_error": 2.849588485098406e-12,
+  "max_gain_error": 1.3877787807814457e-17
+}

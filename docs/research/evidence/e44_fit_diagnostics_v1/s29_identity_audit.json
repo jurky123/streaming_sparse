@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "records": 19680,
+  "physical_pages": 9840,
+  "summary_raw_collisions": 0,
+  "groups": 24,
+  "raw_attention": false
+}
