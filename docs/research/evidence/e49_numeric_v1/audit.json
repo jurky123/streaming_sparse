@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "events_per_seed": 1440,
+  "models": 3,
+  "interval_self_tests": 24,
+  "historical_replay_rows": 17280,
+  "weights_unchanged": true,
+  "Test": false,
+  "training": false,
+  "conditional_precision_guarantee": "fixed binary inputs, IEEE754 operations outward, MPFR-directed exp; interval inclusion also tested with independent mpmath reference"
+}

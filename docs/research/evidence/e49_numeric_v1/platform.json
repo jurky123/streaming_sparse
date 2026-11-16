@@ -1,0 +1,12 @@
+{
+  "machine": "x86_64",
+  "python": "3.10.12",
+  "torch": "2.6.0+cu124",
+  "numpy": "2.2.6",
+  "mpfr": "4.1.0",
+  "float64_mantissa_bits": 53,
+  "float64_smallest_subnormal": "5e-324",
+  "rounding_mode": 0,
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0",
+  "flags": "-O2 -std=c++17 -fno-fast-math -frounding-math -shared -fPIC; link libmpfr.so.6"
+}

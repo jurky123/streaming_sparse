@@ -1,0 +1,47 @@
+[
+  {
+    "file": "s17_scores_part0.tar.gz",
+    "sha256": "2bbff6438305da87bddfbfd0f41e5cefd34dc9d5f1d5968f058f8a522179b2e7",
+    "bytes": 22595205
+  },
+  {
+    "file": "s17_scores_part1.tar.gz",
+    "sha256": "c7b78e30d14efe2428f7e98d08d121512210633b1ccbe0b14af461e9e135c8e8",
+    "bytes": 22610880
+  },
+  {
+    "file": "s17_scores_part2.tar.gz",
+    "sha256": "5d71c7aa42030ebfd5c2baa668825e5b8af2888f0bbcbc8b2a72415b0a1e4e88",
+    "bytes": 20871653
+  },
+  {
+    "file": "s17_scores_part3.tar.gz",
+    "sha256": "b1c3dfe4f8ee14444629d478feb0cc7861f802d79215b64245ab8c06fce52458",
+    "bytes": 20845034
+  },
+  {
+    "file": "s29_scores_part0.tar.gz",
+    "sha256": "ec3e5dadedead95c2571ed561d0a225cb2d07a5bab76eff29421059a2ed6d92e",
+    "bytes": 22596255
+  },
+  {
+    "file": "s29_scores_part1.tar.gz",
+    "sha256": "d78a113ed9db1363a8ad139c8be284aa5b97c50f55878d31b24a28465589483d",
+    "bytes": 22617671
+  },
+  {
+    "file": "s29_scores_part2.tar.gz",
+    "sha256": "86c180c4577485c68d893055cdf4da194769166770caa917a8a663de96ee2e25",
+    "bytes": 20855416
+  },
+  {
+    "file": "s29_scores_part3.tar.gz",
+    "sha256": "9a6459125656d5a33c0dfb72052d139ef16d70ec796fa5cad460d23fe5435387",
+    "bytes": 20855112
+  },
+  {
+    "file": "reference_review.tar.gz",
+    "sha256": "e2c463024c6978c48bc235dad563ad394d8cff8ff7a5de36c39f58f1f0366580",
+    "bytes": 15052859
+  }
+]
