@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "events": 48,
+  "train_states": 96,
+  "heldout_states": 48,
+  "P_to_L_exact_states": 144,
+  "E43_action_matrix_replay_exact": true,
+  "max_score_difference": 0.0,
+  "identity_audit": "/home/shuchenweng/jzk/streaming_sparse/artifacts/e44_fit_diagnostics_v1/s17/identity_audit.json",
+  "raw_attention": false,
+  "training": false,
+  "Test": false
+}

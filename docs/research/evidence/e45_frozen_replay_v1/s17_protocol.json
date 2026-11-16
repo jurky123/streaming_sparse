@@ -1,0 +1,16 @@
+{
+  "seed": 17,
+  "models": "Original E43 final P/L only",
+  "training": false,
+  "Test": false,
+  "heldout": "one new background state per original event: second eligible selected and second eligible unselected outside initial Medium; own protected; no label-based selection",
+  "comparisons": [
+    "current-state scores",
+    "other-trained-state preference",
+    "P-to-L transplant"
+  ],
+  "queries": "original Q64, M16 probes; heldout states only, no new Query claim",
+  "units": "same canonical Q64 full target",
+  "initialization": "frozen existing models",
+  "checkpoint_selection": false
+}
