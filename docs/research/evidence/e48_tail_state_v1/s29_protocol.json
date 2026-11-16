@@ -1,0 +1,12 @@
+{
+  "seed": 29,
+  "tail_events": [
+    "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+    "data/reef_fish_s703/c5_l29_s0_h9_t37.pt"
+  ],
+  "states": "all48 E43 train events; Risk plus deterministic seed4800+event-index permutations of selected/unselected non-own pages, swap counts 4/8/16; no true gain selection",
+  "training": false,
+  "Test": false,
+  "rawKV": "tail logit concentration only",
+  "boundary": "New representative-state pilot, not full-distribution pure-set training"
+}

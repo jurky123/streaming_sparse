@@ -1,0 +1,11 @@
+{
+  "seed": 17,
+  "phase": "trained",
+  "events": 1440,
+  "arms": [
+    "Full_Pset"
+  ],
+  "Test": false,
+  "training": false,
+  "rawKV": false
+}
