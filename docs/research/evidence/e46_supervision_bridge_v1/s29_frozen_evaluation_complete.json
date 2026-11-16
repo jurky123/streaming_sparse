@@ -1,0 +1,12 @@
+{
+  "seed": 29,
+  "phase": "frozen",
+  "events": 1440,
+  "arms": [
+    "E43_P",
+    "E44_Pset"
+  ],
+  "Test": false,
+  "training": false,
+  "rawKV": false
+}

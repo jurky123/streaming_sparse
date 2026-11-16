@@ -1,0 +1,17 @@
+event,arm,score_error
+data/city_walk_s701/c2_l15_s0_h0_t10.pt,Aligned_M16,3.068636490743959e-12
+data/city_walk_s701/c2_l15_s0_h0_t10.pt,Layer_split,8.02815062692086e-13
+data/fabric_dance_s706/c5_l15_s0_h0_t18.pt,Aligned_M16,1.0250523676126177e-12
+data/fabric_dance_s706/c5_l15_s0_h0_t18.pt,Layer_split,1.0049870820521417e-12
+data/flower_wind_s705/c8_l15_s0_h0_t20.pt,Aligned_M16,9.514188482190322e-13
+data/flower_wind_s705/c8_l15_s0_h0_t20.pt,Layer_split,1.2681882453902116e-12
+data/reef_fish_s703/c2_l15_s0_h0_t12.pt,Aligned_M16,6.372552984433566e-12
+data/reef_fish_s703/c2_l15_s0_h0_t12.pt,Layer_split,4.740967817981612e-12
+data/robot_work_s704/c5_l15_s0_h0_t16.pt,Aligned_M16,6.301505758171677e-12
+data/robot_work_s704/c5_l15_s0_h0_t16.pt,Layer_split,1.3261095644983775e-12
+data/toy_train_s708/c8_l15_s0_h0_t23.pt,Aligned_M16,8.418085564558531e-13
+data/toy_train_s708/c8_l15_s0_h0_t23.pt,Layer_split,4.692401930342024e-13
+data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt,Aligned_M16,9.616506646981798e-12
+data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt,Layer_split,5.9291722058355326e-12
+data/snow_ski_s702/c5_l15_s0_h0_t14.pt,Aligned_M16,3.620678653811285e-12
+data/snow_ski_s702/c5_l15_s0_h0_t14.pt,Layer_split,7.591464349504529e-13

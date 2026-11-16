@@ -1,0 +1,13 @@
+event,M16_target_direct_error,arm,split,direct_gain,legacy_gain,gain_error
+data/city_walk_s701/c5_l1_s0_h0_t27.pt,1.3660947373317356e-17,,,,,
+data/flower_wind_s705/c5_l15_s0_h6_t53.pt,2.846030702774449e-18,,,,,
+data/robot_work_s704/c5_l1_s0_h3_t66.pt,4.336808689942018e-18,,,,,
+data/waterfall_s707/c5_l29_s0_h9_t41.pt,1.2658040395526355e-24,,,,,
+data/forest_run_s702/c8_l29_s0_h9_t39.pt,,E43_P,train,-0.6683436138585916,-0.6683436138648701,6.278422226557723e-12
+data/forest_run_s702/c8_l29_s0_h9_t39.pt,,E44_Pset,train,-0.6683436138585916,-0.6683436138648701,6.278422226557723e-12
+data/kitchen_cook_s701/c2_l1_s0_h3_t24.pt,,E43_P,development,-0.07209681532723915,-0.07209681532723915,0.0
+data/kitchen_cook_s701/c2_l29_s2_h3_t46.pt,,E44_Pset,development,-0.013133908174492975,-0.013133908174492975,0.0
+data/forest_run_s702/c8_l29_s0_h9_t39.pt,,Aligned_M16,train,-0.6683436138585916,-0.6683436138648701,6.278422226557723e-12
+data/forest_run_s702/c8_l29_s0_h9_t39.pt,,Layer_split,train,-0.6683436138585916,-0.6683436138648701,6.278422226557723e-12
+data/kitchen_cook_s701/c2_l1_s0_h3_t24.pt,,Aligned_M16,development,-0.07209681532723915,-0.07209681532723915,0.0
+data/kitchen_cook_s701/c2_l1_s0_h3_t24.pt,,Layer_split,development,-0.0704585122430194,-0.0704585122430194,0.0

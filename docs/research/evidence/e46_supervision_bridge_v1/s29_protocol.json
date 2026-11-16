@@ -1,0 +1,13 @@
+{
+  "seed": 29,
+  "A": "E43 exact48/96; 2304 updates, original joint losses; only set target M16 instead of Q64; original Q64 gain normalization held fixed; compare original E43 P",
+  "A_units": "M16 true output squared-error difference averaged across16 / original Q64 mean dense energy; same as predicted score units",
+  "B": "Frozen E43 P and E44 P_set on all train/development Risk events; stratify fitted48, unused chunk5-step0 same head, other heads/steps/chunks, dev",
+  "C": "3 layer-specific E29 initialized Readers, 2304 total E39-T0 scheduled updates; eachlayer768, independent Adam; compare reused E39-T0 (shared) same budget",
+  "C_boundary": "3x stored Reader weights, same active FLOPs; separates layer distributions but changes parameter sharing and optimizer clocks; does not establish coordinate mismatch cause",
+  "optimizer": "Adam reset lr1e-4 betas .9/.999 eps1e-8 wd0 clip1; frozen C/phi/B",
+  "checkpoint": "final only; no dev selection",
+  "test": false,
+  "newKV": false,
+  "query_selection": "not executed: full Q64 summary contrast is not already free online; cost/observable score must be defined before testing"
+}

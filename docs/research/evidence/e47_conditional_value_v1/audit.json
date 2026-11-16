@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "Test": false,
+  "source_files": 71,
+  "models": {
+    "artifacts/e29_local_reader_v1/s17/selected.pt": "0dfdd406dc8f61f7e7e9ea49ef7571cfe9fb3c806edfffdb7b1de2f4217650d5",
+    "artifacts/e43_fit_v1/s17/P_final.pt": "edfbf909dcd5bf00090f071ff6cac5319dd7e11a5599f0508bea63b8ff0b2e61",
+    "artifacts/e44_fit_diagnostics_v1/s17/P_set_final.pt": "a7f229cd896ea418145526e2c5ebe44e68d86c20cf4c555a238e83dd5fa982bb",
+    "artifacts/e39_action_margin_v1/T0_s17/epoch1.pt": "cce089472ff5eeb07cb9d85a3e41d902b24cb66d6efbf8f07cd26ede53335be9",
+    "artifacts/e29_local_reader_v1/s29/selected.pt": "3392dd069b24ba741daa2806623e97add50284f8ffca1f841dc93ec9ea04c495",
+    "artifacts/e43_fit_v1/s29/P_final.pt": "bd7b58959b0568dd1cb47b65b8dd1d4ff3e654115914567ffb98a461a8966efe",
+    "artifacts/e44_fit_diagnostics_v1/s29/P_set_final.pt": "6339de95d06991f757ff0d472934b2718464533bf2d797a5c45537b79e4bceac",
+    "artifacts/e39_action_margin_v1/T0_s29/epoch1.pt": "d7d125cbcdb96bcd3b1bc8b08fc6b6a1f0893b8cb5881c1385b141d27965065a"
+  },
+  "events_per_seed": 144,
+  "interpretation": "mechanism diagnostic, no deployment success"
+}

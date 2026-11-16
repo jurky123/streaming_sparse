@@ -1,0 +1,13 @@
+{
+  "seed": 29,
+  "total_updates": 2304,
+  "steps": {
+    "1": 768,
+    "15": 768,
+    "29": 768
+  },
+  "parameters": 153471,
+  "active_parameters": 51157,
+  "test": false,
+  "schedule_sha": "c5445ac8549813c2221e872d3410c908433e6b9827bf4b319c517501896bbbeb"
+}

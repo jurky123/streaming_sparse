@@ -1,0 +1,12 @@
+{
+  "seed": 29,
+  "phase": "trained",
+  "events": 1440,
+  "arms": [
+    "Aligned_M16",
+    "Layer_split"
+  ],
+  "Test": false,
+  "training": false,
+  "rawKV": false
+}

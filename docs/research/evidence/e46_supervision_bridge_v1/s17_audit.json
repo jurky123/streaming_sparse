@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "seed": 17,
+  "alignment_direct_checks": 12,
+  "full_phase_seed_events": 2880,
+  "active_layer_steps": 768,
+  "optimizer_updates_total": 2304,
+  "Test": false,
+  "raw_attention": false
+}
