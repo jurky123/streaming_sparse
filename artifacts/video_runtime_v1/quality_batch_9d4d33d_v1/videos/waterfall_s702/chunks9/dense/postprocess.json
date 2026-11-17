@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "waterfall",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4279.45751953125,
+  "VAE_decode_wall_seconds": 4.279312781058252,
+  "video_encode_seconds": 1.797253175638616,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

@@ -1,0 +1,348 @@
+{
+  "jobs": 84,
+  "summary": {
+    "c_risk": {
+      "all_lpips": 0.3181087215264727,
+      "all_ssim": 0.4767635765784819,
+      "all_psnr": 14.284754408051587,
+      "early_lpips": 0.2129974676362638,
+      "early_ssim": 0.5900603899732232,
+      "early_psnr": 16.183134320928612,
+      "late_lpips": 0.4232199754166816,
+      "late_ssim": 0.36346676318374066,
+      "late_psnr": 13.013197387406919
+    },
+    "c_pset": {
+      "all_lpips": 0.31727027373521455,
+      "all_ssim": 0.4828215497412852,
+      "all_psnr": 14.368684965366842,
+      "early_lpips": 0.20613409177001032,
+      "early_ssim": 0.6025214871657746,
+      "early_psnr": 16.418721079664284,
+      "late_lpips": 0.4284064557004188,
+      "late_ssim": 0.36312161231679574,
+      "late_psnr": 13.040884188490606
+    }
+  },
+  "paired": [
+    {
+      "case": "bird_flight",
+      "seed": 701,
+      "lpips_delta": -0.006245490303263074,
+      "ssim_delta": -0.00012324489653114945,
+      "psnr_delta": 0.34995978373685865
+    },
+    {
+      "case": "bird_flight",
+      "seed": 702,
+      "lpips_delta": 0.03484265273436904,
+      "ssim_delta": -0.01152045987546435,
+      "psnr_delta": -0.6579890906708599
+    },
+    {
+      "case": "city_walk",
+      "seed": 701,
+      "lpips_delta": -0.003556653298437573,
+      "ssim_delta": 0.02459659129381181,
+      "psnr_delta": 0.9939056062896849
+    },
+    {
+      "case": "city_walk",
+      "seed": 702,
+      "lpips_delta": -0.01508452296257018,
+      "ssim_delta": 0.024031138233840454,
+      "psnr_delta": 0.5206325518030219
+    },
+    {
+      "case": "fabric_dance",
+      "seed": 701,
+      "lpips_delta": -0.014538723789155439,
+      "ssim_delta": 0.011660618707537651,
+      "psnr_delta": 0.14967077173228027
+    },
+    {
+      "case": "fabric_dance",
+      "seed": 702,
+      "lpips_delta": -0.0012537172064185365,
+      "ssim_delta": 0.0013029094785451667,
+      "psnr_delta": 0.42801100840693707
+    },
+    {
+      "case": "fireworks_night",
+      "seed": 701,
+      "lpips_delta": -0.013467617589049075,
+      "ssim_delta": 0.011362588405609109,
+      "psnr_delta": 0.08824632056487047
+    },
+    {
+      "case": "fireworks_night",
+      "seed": 702,
+      "lpips_delta": 0.005250320257619012,
+      "ssim_delta": -0.00873948000371455,
+      "psnr_delta": -0.0720105565370126
+    },
+    {
+      "case": "flower_wind",
+      "seed": 701,
+      "lpips_delta": 0.010624312842264727,
+      "ssim_delta": 0.023819910548627365,
+      "psnr_delta": -0.01640759457808194
+    },
+    {
+      "case": "flower_wind",
+      "seed": 702,
+      "lpips_delta": 0.0038222287781536912,
+      "ssim_delta": -0.0013739604502916447,
+      "psnr_delta": 0.06544181935485227
+    },
+    {
+      "case": "forest_run",
+      "seed": 701,
+      "lpips_delta": -0.005642079468816563,
+      "ssim_delta": 0.002627544105052948,
+      "psnr_delta": 0.251454985986733
+    },
+    {
+      "case": "forest_run",
+      "seed": 702,
+      "lpips_delta": -0.015666935220360778,
+      "ssim_delta": 0.016027620900422368,
+      "psnr_delta": 0.024873319558677665
+    },
+    {
+      "case": "kitchen_cook",
+      "seed": 701,
+      "lpips_delta": -0.011717954883351922,
+      "ssim_delta": 0.00950287543237216,
+      "psnr_delta": 0.40627671649584407
+    },
+    {
+      "case": "kitchen_cook",
+      "seed": 702,
+      "lpips_delta": -0.03202650663442913,
+      "ssim_delta": 0.09108130522072322,
+      "psnr_delta": 0.9555502079752642
+    },
+    {
+      "case": "portrait_turn",
+      "seed": 701,
+      "lpips_delta": -0.0018680784851312637,
+      "ssim_delta": 0.0032821387052535123,
+      "psnr_delta": 0.11179857495780254
+    },
+    {
+      "case": "portrait_turn",
+      "seed": 702,
+      "lpips_delta": 0.021518050879240053,
+      "ssim_delta": -0.007726831734180428,
+      "psnr_delta": -0.4757120716964067
+    },
+    {
+      "case": "reef_fish",
+      "seed": 701,
+      "lpips_delta": -0.011466085258871328,
+      "ssim_delta": 0.006728801503777526,
+      "psnr_delta": 0.08919700832240629
+    },
+    {
+      "case": "reef_fish",
+      "seed": 702,
+      "lpips_delta": 0.056518898159265474,
+      "ssim_delta": -0.02860700525343418,
+      "psnr_delta": -1.1266667727530582
+    },
+    {
+      "case": "robot_work",
+      "seed": 701,
+      "lpips_delta": 0.0019185828510671632,
+      "ssim_delta": -0.022226796858012654,
+      "psnr_delta": 0.05997305035646683
+    },
+    {
+      "case": "robot_work",
+      "seed": 702,
+      "lpips_delta": -0.008974610758014034,
+      "ssim_delta": -0.004946249723434493,
+      "psnr_delta": 0.014578327517732248
+    },
+    {
+      "case": "snow_ski",
+      "seed": 701,
+      "lpips_delta": -0.023673065821640166,
+      "ssim_delta": 0.027023250609636396,
+      "psnr_delta": 0.7646843380305661
+    },
+    {
+      "case": "snow_ski",
+      "seed": 702,
+      "lpips_delta": 0.02497061910107734,
+      "ssim_delta": -0.012145345285534848,
+      "psnr_delta": -0.5139722763333943
+    },
+    {
+      "case": "tennis_match",
+      "seed": 701,
+      "lpips_delta": -0.018371676234528456,
+      "ssim_delta": 0.004312693141400814,
+      "psnr_delta": 0.011788436723181306
+    },
+    {
+      "case": "tennis_match",
+      "seed": 702,
+      "lpips_delta": 0.03998600281775,
+      "ssim_delta": -0.05653258077800272,
+      "psnr_delta": -0.4921771131714934
+    },
+    {
+      "case": "toy_train",
+      "seed": 701,
+      "lpips_delta": -0.004501892812550062,
+      "ssim_delta": 0.0029704986140132172,
+      "psnr_delta": -0.019373953544063127
+    },
+    {
+      "case": "toy_train",
+      "seed": 702,
+      "lpips_delta": -0.008537731715478003,
+      "ssim_delta": 0.02507728096097711,
+      "psnr_delta": 0.1957395737386296
+    },
+    {
+      "case": "waterfall",
+      "seed": 701,
+      "lpips_delta": -0.013659839984029531,
+      "ssim_delta": 0.0231022246181965,
+      "psnr_delta": 0.3288077072583562
+    },
+    {
+      "case": "waterfall",
+      "seed": 702,
+      "lpips_delta": -0.012675024149939429,
+      "ssim_delta": 0.015055212937295448,
+      "psnr_delta": -0.08622507469861418
+    }
+  ],
+  "lpips_wins": 19,
+  "by_seed": {
+    "701": {
+      "c_risk": 0.30893871867530315,
+      "c_pset": 0.3006411285156251
+    },
+    "702": {
+      "c_risk": 0.32727872437764227,
+      "c_pset": 0.333899418954804
+    }
+  },
+  "windows": {
+    "all": [
+      21,
+      101
+    ],
+    "early": [
+      21,
+      61
+    ],
+    "late": [
+      61,
+      101
+    ]
+  },
+  "identity": {
+    "weights": {
+      "seed": 17,
+      "summary_sha": "c1cba52d857c2bcce994e5566e7503a5dfdad652a8d5683a07a6b126d46fb96b",
+      "reader_sha": "656a9db173f2c16b24c4e337c552df2f88d93256624c312f6b7818be92f6fb87",
+      "phi_sha": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+      "B16_sha": "9e013f23efdf50a174be1e9a0a863c2b070bb70ef6c37884f2cd86737aefb8b0",
+      "base_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+      "placeholder": false,
+      "broadcast_source": null,
+      "quality_status": "Reader adaptation and video quality require validation",
+      "deployment": {
+        "mode": "stream",
+        "model_seed": 17,
+        "checkpoint": "/tmp/streaming_sparse-0/runtime/quality_baseline_9d4d33d/artifacts/full_coverage_v1/training/C_s17/deployment.pt",
+        "reader_checkpoint": "/tmp/streaming_sparse-0/runtime/quality_baseline_9d4d33d/artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt",
+        "tile_batch": 72,
+        "history_pages": 360,
+        "stream_tail_mode": 4,
+        "stream_warps": 8,
+        "bf16_qk": true,
+        "split_summary": true,
+        "fused_risk": false,
+        "static_route": false,
+        "moment_scores": true,
+        "late_reader": true,
+        "blocked_scores": true,
+        "packed_scores": true,
+        "reader_page32": false,
+        "lazy_scores": false,
+        "reader_split": true,
+        "reader_layout": true,
+        "reader_layout_kind": "a",
+        "scan_exclude": true,
+        "projected_risk": true,
+        "cached_logmass": true,
+        "legacy_components": "rope,attention",
+        "profile": false,
+        "validate": false,
+        "reader_output32": true,
+        "coeff_bf16": true,
+        "endpoint_den": true,
+        "cached_endpoints": true
+      },
+      "runtime_code": {
+        "deployment.py": "0332566f6d0c8a57d2f7cfba2685843a0a29994a4ea33c40332958e063ef61b1",
+        "runtime.py": "e5c819131126b88102b250e54eae9c4f5d524e7e10662368d674e6d13d87a56a",
+        "scores.py": "4ed5b6202909c45ef7189645e8d911783eba53c0e607425db916b0b27b8437d8",
+        "attention.py": "7e08eb05634126735dc63de0ef4d3ebb4de3f24167dbc93ca6421b1f20f7a4ff",
+        "page.py": "955d68682c69f563147d75368d831ed20a53af77df0130b5b3469b5f680f0dd4",
+        "pipeline_graph.py": "c1aaa662f6d0191e894b1c8bfdcb65ae6583c950a44157861aff99b3cfad8067",
+        "weights.py": "a84bf8c70227d27be0f758c731c680a8c9fcca2a5f59ffeb4636ef3a9b66a2aa",
+        "worker.py": "fa5a37edd46e9bddf66d0bbf06485d26b10327af3873cc1b696ddc029552fa9f",
+        "reader_reduce.py": "97f66285c2360e8835a623dca1b569c9f3a42200c81e4ad959ac4a26565f7824",
+        "reader_split.py": "ca841e49fbb770b7fa8c358b07b173e308f02b6f03cd0358ba8022a09e56f148",
+        "endpoint_den.py": "83505d2349310f6e8c43410df92d6253410a2064c6693d1a0e5896a24fbc0e6c",
+        "scores_moments.py": "1def1cdef885a388afc5f510e4c6745837367f6896e55408a31a011fe0278576",
+        "scores_packed.py": "e91e9f211996ecf7efa00de0b59cf9851adff6942849234e0601337ff56289c3",
+        "exclude_scan.py": "c556dad98b8153a74dab56f6cb3335d25b7021a3722668303a9605e5688d1da9",
+        "risk_projected.py": "f0aea97694b7b2b10d3572512632b08b6d83df39478f20aa34a4d103634ad98f",
+        "logmass_cached.py": "b9ace28cb0de5b41ed3e47e77b5853beba55c32cc2dbc8400432f566042d1fdd",
+        "legacy_components.py": "d39ac3803a7e8a7bcc109a15c33d0fcfbb2c44d27ae129dd0ea63ea7212bd6c0"
+      }
+    },
+    "deployment": {
+      "mode": "stream",
+      "model_seed": 17,
+      "checkpoint": "/tmp/streaming_sparse-0/runtime/quality_baseline_9d4d33d/artifacts/full_coverage_v1/training/C_s17/deployment.pt",
+      "reader_checkpoint": "/tmp/streaming_sparse-0/runtime/quality_baseline_9d4d33d/artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt",
+      "tile_batch": 72,
+      "history_pages": 360,
+      "stream_tail_mode": 4,
+      "stream_warps": 8,
+      "bf16_qk": true,
+      "split_summary": true,
+      "fused_risk": false,
+      "static_route": false,
+      "moment_scores": true,
+      "late_reader": true,
+      "blocked_scores": true,
+      "packed_scores": true,
+      "reader_page32": false,
+      "lazy_scores": false,
+      "reader_split": true,
+      "reader_layout": true,
+      "reader_layout_kind": "a",
+      "scan_exclude": true,
+      "projected_risk": true,
+      "cached_logmass": true,
+      "legacy_components": "rope,attention",
+      "profile": false,
+      "validate": false,
+      "reader_output32": true,
+      "coeff_bf16": true,
+      "endpoint_den": true,
+      "cached_endpoints": true
+    }
+  }
+}

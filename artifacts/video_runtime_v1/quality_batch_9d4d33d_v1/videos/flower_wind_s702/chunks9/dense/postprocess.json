@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "flower_wind",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4299.53125,
+  "VAE_decode_wall_seconds": 4.299393119290471,
+  "video_encode_seconds": 1.5641166036948562,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

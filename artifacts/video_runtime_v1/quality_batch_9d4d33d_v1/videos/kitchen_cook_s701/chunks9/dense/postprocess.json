@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "kitchen_cook",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 701
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4304.1171875,
+  "VAE_decode_wall_seconds": 4.303969785571098,
+  "video_encode_seconds": 1.4253076985478401,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

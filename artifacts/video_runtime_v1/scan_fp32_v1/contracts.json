@@ -1,0 +1,82 @@
+[
+  {
+    "k": 16,
+    "dominant_position": -1,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 16,
+    "dominant_position": 0,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 16,
+    "dominant_position": 8,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 16,
+    "dominant_position": 15,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 32,
+    "dominant_position": -1,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 32,
+    "dominant_position": 0,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 32,
+    "dominant_position": 16,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  },
+  {
+    "k": 32,
+    "dominant_position": 31,
+    "bitwise": true,
+    "compiled_bitwise": true,
+    "output_dtypes": [
+      "torch.float64",
+      "torch.float64"
+    ]
+  }
+]

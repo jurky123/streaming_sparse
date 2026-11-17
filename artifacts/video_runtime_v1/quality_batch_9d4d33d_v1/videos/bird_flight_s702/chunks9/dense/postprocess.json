@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "bird_flight",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4305.39892578125,
+  "VAE_decode_wall_seconds": 4.305261589586735,
+  "video_encode_seconds": 1.8148318780586123,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

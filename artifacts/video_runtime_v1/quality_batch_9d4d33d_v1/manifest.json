@@ -1,0 +1,506 @@
+[
+  {
+    "case": "bird_flight",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "bird_flight",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "bird_flight",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "bird_flight",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "bird_flight",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "bird_flight",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "fabric_dance",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "fireworks_night",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "flower_wind",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "forest_run",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "kitchen_cook",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "portrait_turn",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "reef_fish",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "robot_work",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "snow_ski",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "tennis_match",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "toy_train",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 701,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 702,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 702,
+    "method": "c_risk",
+    "chunks": 9
+  },
+  {
+    "case": "waterfall",
+    "noise_seed": 702,
+    "method": "c_pset",
+    "chunks": 9
+  }
+]

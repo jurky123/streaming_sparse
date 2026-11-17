@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "reef_fish",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4302.74560546875,
+  "VAE_decode_wall_seconds": 4.3026158809661865,
+  "video_encode_seconds": 2.191471876576543,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

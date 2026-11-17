@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "fireworks_night",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4296.7685546875,
+  "VAE_decode_wall_seconds": 4.296653143130243,
+  "video_encode_seconds": 1.7714156871661544,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

@@ -11,13 +11,13 @@ def scan_kernel(L,V,LO,O,N:tl.constexpr,K:tl.constexpr,D:tl.constexpr,G:tl.const
     n=tl.program_id(0)*G+tl.arange(0,G);b=n//M;m=n%M
     k=tl.arange(0,K);d=tl.arange(0,D)
     logs=tl.load(L+b[:,None]*LS0+m[:,None]*LS1+k[None,:]*LS2,n[:,None]<N,0)
-    value=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+k[None,:,None]*VS2+d[None,None,:]*VS3,n[:,None,None]<N,0)
+    value=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+k[None,:,None]*VS2+d[None,None,:]*VS3,n[:,None,None]<N,0).to(tl.float64)
     top=tl.argmax(logs,1);maximum=tl.max(logs,1)
     ll=tl.load(L+b[:,None]*LS0+m[:,None]*LS1+(k[None,:]-1)*LS2,(n[:,None]<N)&(k[None,:]>0),-float('inf'))
     rl=tl.load(L+b[:,None]*LS0+m[:,None]*LS1+(k[None,:]+1)*LS2,(n[:,None]<N)&(k[None,:]<K-1),-float('inf'))
     wl=lib.exp(ll-maximum[:,None]);wr=lib.exp(rl-maximum[:,None])
-    vl=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+(k[None,:,None]-1)*VS2+d[None,None,:]*VS3,(n[:,None,None]<N)&(k[None,:,None]>0),0)
-    vr=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+(k[None,:,None]+1)*VS2+d[None,None,:]*VS3,(n[:,None,None]<N)&(k[None,:,None]<K-1),0)
+    vl=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+(k[None,:,None]-1)*VS2+d[None,None,:]*VS3,(n[:,None,None]<N)&(k[None,:,None]>0),0).to(tl.float64)
+    vr=tl.load(V+b[:,None,None]*VS0+m[:,None,None]*VS1+(k[None,:,None]+1)*VS2+d[None,None,:]*VS3,(n[:,None,None]<N)&(k[None,:,None]<K-1),0).to(tl.float64)
     z=tl.associative_scan(wl,1,_sum)+tl.associative_scan(wr,1,_sum,reverse=True)
     num=tl.associative_scan(wl[:,:,None]*vl,1,_sum)+tl.associative_scan(wr[:,:,None]*vr,1,_sum,reverse=True)
     # The one exclusion which removes the maximum uses its own scale, so a
@@ -35,9 +35,9 @@ def _sum(a,b):return a+b
 @torch.library.custom_op('streaming_sparse::exclude_scan',mutates_args=())
 def exclude_scan(logs:torch.Tensor,values:torch.Tensor)->tuple[torch.Tensor,torch.Tensor]:
     b,m,k=logs.shape;d=values.shape[-1]
-    lo=torch.empty(logs.shape,device=logs.device,dtype=logs.dtype);out=torch.empty(values.shape,device=values.device,dtype=values.dtype)
+    lo=torch.empty(logs.shape,device=logs.device,dtype=logs.dtype);out=torch.empty(values.shape,device=values.device,dtype=torch.float64)
     compiled=scan_kernel[(tr.cdiv(b*m,GROUP),)](logs,values,lo,out,b*m,k,d,GROUP,*logs.stride(),*values.stride(),m,num_warps=WARPS,enable_fp_fusion=False)
     KERNEL_STATS[k]=dict(registers=compiled.n_regs,spills=compiled.n_spills,group=GROUP,warps=WARPS)
     return lo,out
 @exclude_scan.register_fake
-def _(logs,values):return logs.new_empty(logs.shape),values.new_empty(values.shape)
+def _(logs,values):return logs.new_empty(logs.shape),values.new_empty(values.shape,dtype=torch.float64)

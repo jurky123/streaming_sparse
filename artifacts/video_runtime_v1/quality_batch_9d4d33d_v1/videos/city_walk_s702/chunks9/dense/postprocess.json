@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "city_walk",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4290.8232421875,
+  "VAE_decode_wall_seconds": 4.290678214281797,
+  "video_encode_seconds": 1.7838946217671037,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

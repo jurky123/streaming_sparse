@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "portrait_turn",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 702
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4300.20361328125,
+  "VAE_decode_wall_seconds": 4.300056819804013,
+  "video_encode_seconds": 1.4536644974723458,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

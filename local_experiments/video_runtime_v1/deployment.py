@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 from .weights import ROOT,load
 
-CURRENT=dict(mode='stream',model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True)
+CURRENT=dict(mode='stream',model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True,scan_fp32=True)
 
 def current(**overrides):return SimpleNamespace(**(CURRENT|overrides))
 def identity(a):return {k:getattr(a,k,v) for k,v in CURRENT.items() if k!='local_assets'}
@@ -13,6 +13,7 @@ def configure(a):
     scores.SCAN_EXCLUDE=a.scan_exclude
     reader_reduce.PAGE32=a.reader_page32;reader_reduce.SPLIT=a.reader_split;reader_reduce.LAYOUT=a.reader_layout or a.reader_split;reader_reduce.LAYOUT_KIND=a.reader_layout_kind
     reader_reduce.WARPS=4;reader_reduce.SHARD=128;reader_reduce.AGG32=True;reader_reduce.PACKED=a.packed_scores;reader_reduce.MOMENTS=a.moment_scores
+    reader_reduce.SCAN_FP32=getattr(a,'scan_fp32',False)
     reader_reduce.OUTPUT32=getattr(a,'reader_output32',False);reader_reduce.ENDPOINT_DEN=getattr(a,'endpoint_den',False)
     from . import endpoint_den
     endpoint_den.CACHED_GROUPS=getattr(a,'cached_endpoints',False)

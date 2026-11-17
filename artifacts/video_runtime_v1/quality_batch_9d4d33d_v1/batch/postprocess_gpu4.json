@@ -1,0 +1,21 @@
+{
+  "pid": 2307328,
+  "command": [
+    "/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python",
+    "-u",
+    "-m",
+    "local_experiments.video_runtime_v1.worker",
+    "--root",
+    "/home/shuchenweng/jzk/streaming_sparse/artifacts/video_runtime_v1/quality_batch_9d4d33d_v1",
+    "--stage",
+    "postprocess",
+    "--tile-batch",
+    "72",
+    "--model-seed",
+    "17",
+    "--history-pages",
+    "360",
+    "--local-assets",
+    "/tmp/streaming_sparse-0/runtime"
+  ]
+}

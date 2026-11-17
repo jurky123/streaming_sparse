@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "tennis_match",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 701
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4303.98681640625,
+  "VAE_decode_wall_seconds": 4.303840068168938,
+  "video_encode_seconds": 1.933570102788508,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

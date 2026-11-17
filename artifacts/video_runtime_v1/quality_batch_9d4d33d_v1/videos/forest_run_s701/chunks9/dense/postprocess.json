@@ -1,0 +1,15 @@
+{
+  "job": {
+    "case": "forest_run",
+    "chunks": 9,
+    "method": "dense",
+    "noise_seed": 701
+  },
+  "quality": {},
+  "VAE_decode_gpu_ms": 4668.65771484375,
+  "VAE_decode_wall_seconds": 4.668573716655374,
+  "video_encode_seconds": 1.9679228067398071,
+  "side_by_side_seconds": 0.0,
+  "quality_status": "full-coverage baseline; paired Dense metrics and visual inspection",
+  "dense_reference_decode_reused": true
+}

@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "scan_deployed": true,
+  "p2_deployed": false,
+  "quality_jobs": 84,
+  "comparison_videos": 28,
+  "source_sha256": {
+    "batch": "28d82b2a955505983fc187fbe96633bc147abc86773b6aefa8f286c492b6b471",
+    "deployment": "50fb615150c301e535cb50d8d1404d2b8b63a089dd159db7025d80fdbad86b38",
+    "benchmark_hotspots": "b2d976c4ca0790a5a5f695d6b79ec474e0f73a2e4c5ed0161eaed8a9b2732926",
+    "exclude_scan": "ee9f5e27f2503d27160dee428867fa190a82ca8010fdb808e664de0e437d7387",
+    "reader_reduce": "b69cf8a7dde39c5b3d7f17edef978ea67b99e607989824de28a3190dc0c7a8a9",
+    "reader_chunked": "45caa24232d62dc90ef37dd9e5c0c1085dd2da8bde6d18af4cbf7c9c0fa38f73",
+    "check_p2": "489140d727dda088b8c5150019b9a927ffcfd4a269add6e697858f895344cab3",
+    "profile_scan_fp32": "639ae872d4f22df59b7440ebeafb9c8d51fb95f0ef0212b5bd83d15934a556b6",
+    "run_scan_fp32_video": "72aaaae681ca8580fc05c210e7e0e052114b5283a929efbdd45d7b1f59c05353",
+    "quality_scan_fp32_video": "c8358c2bad2d9d5e17ed6eed8e92fd918fb25ab291271dd01b631d0fdffcda87",
+    "report_quality_batch": "4e79b1034f871cf4537a39073055c1f1f8938e726405d47e01688f2a74d92f20"
+  }
+}
