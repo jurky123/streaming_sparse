@@ -89,10 +89,12 @@ VECTOR_WARPS=4
 VECTOR_WIDTH=16
 VECTOR_MAXNREG=0
 VECTOR_PACK=False
+OUTPUT32=False
+ENDPOINT_DEN=False
 LAYOUT_KIND="a"
 
 @torch.library.custom_op('streaming_sparse::reader_reduce',mutates_args=())
-def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tensor,detail:torch.Tensor,z:torch.Tensor,lm:torch.Tensor,mask:torch.Tensor,mapping:torch.Tensor,candidates:int,shard:int,warps:int,aggregate_float:bool,query_group:int,fma:bool)->tuple[torch.Tensor,torch.Tensor,torch.Tensor]:
+def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tensor,detail:torch.Tensor,z:torch.Tensor,lm:torch.Tensor,mask:torch.Tensor,mapping:torch.Tensor,candidates:int,shard:int,warps:int,aggregate_float:bool,query_group:int,fma:bool,output_float:bool=False)->tuple[torch.Tensor,torch.Tensor,torch.Tensor]:
     h,t,m,p=z.shape[:4];b=h*t
     if aggregate_float and PAGE32:mean=mean.float();detail=detail.float()
     kernel=reader_kernel;launch={}
@@ -104,9 +106,11 @@ def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tenso
         from .reader_layout import reader_kernel as kernel
     args=[x.contiguous() for x in (u,co,A,mean,detail,z,lm,mask,mapping)]
     ns=tr.cdiv(p,shard)
-    state=torch.empty((b,m,ns,3,16),device=u.device,dtype=torch.float64)
-    logs=torch.empty((b,m,ns,4),device=u.device,dtype=torch.float64)
-    cand=torch.empty((b,m,candidates,34),device=u.device,dtype=torch.float64)
+    output_dtype=torch.float32 if output_float else torch.float64
+    if output_float:assert SPLIT and aggregate_float
+    state=torch.empty((b,m,ns,3,16),device=u.device,dtype=output_dtype)
+    logs=torch.empty((b,m,ns,4),device=u.device,dtype=output_dtype)
+    cand=torch.empty((b,m,candidates,34),device=u.device,dtype=output_dtype)
     if SPLIT:
         assert aggregate_float and LAYOUT and LAYOUT_KIND=='a' and query_group==1
         from .reader_split import scalar_kernel,vector_kernel
@@ -126,9 +130,10 @@ def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tenso
     return state,logs,cand
 
 @reader_reduce.register_fake
-def _(u,co,A,mean,detail,z,lm,mask,mapping,candidates,shard,warps,aggregate_float,query_group,fma):
+def _(u,co,A,mean,detail,z,lm,mask,mapping,candidates,shard,warps,aggregate_float,query_group,fma,output_float=False):
     h,t,m,p=z.shape[:4];b=h*t
-    return (u.new_empty((b,m,tr.cdiv(p,shard),3,16),dtype=torch.float64),u.new_empty((b,m,tr.cdiv(p,shard),4),dtype=torch.float64),u.new_empty((b,m,candidates,34),dtype=torch.float64))
+    dtype=torch.float32 if output_float else torch.float64
+    return (u.new_empty((b,m,tr.cdiv(p,shard),3,16),dtype=dtype),u.new_empty((b,m,tr.cdiv(p,shard),4),dtype=dtype),u.new_empty((b,m,candidates,34),dtype=dtype))
 
 def compact_scores(u,en,z,lm,mask,remove,add):
     h,t,m,p=z.shape[:4];b=h*t;r=remove.shape[-1];a=add.shape[-1]
@@ -136,13 +141,14 @@ def compact_scores(u,en,z,lm,mask,remove,add):
     mapping=torch.full_like(mask,-1,dtype=torch.int32)
     mapping=mapping.scatter(1,remove,torch.arange(r,device=z.device,dtype=torch.int32)[None].expand(b,-1))
     mapping=mapping.scatter(1,add,torch.arange(r,r+a,device=z.device,dtype=torch.int32)[None].expand(b,-1))
-    state,logs,cand=reader_reduce(u,en['co'],en['A'],en['mean'],en['detail'],z,lm,mask,mapping,r+a,SHARD,WARPS,AGG32,GROUP,FMA)
+    state,logs,cand=reader_reduce(u,en['co'],en['A'],en['mean'],en['detail'],z,lm,mask,mapping,r+a,SHARD,WARPS,AGG32,GROUP,FMA,OUTPUT32)
+    logs=logs.double()
     weights=logs[...,:3].softmax(2)
-    merged=(weights[...,None]*state).sum(2)
+    merged=(weights[...,None]*state.double()).sum(2)
     H=merged[:,:,0];E=merged[:,:,1]-H;ob=merged[:,:,2]
     lb=logs[:,:,:,2].logsumexp(2);maximum=logs[:,:,:,3].amax(2)
-    lr,br=cand[:,:,:r,0],cand[:,:,:r,1];la,ba=cand[:,:,r:,0],cand[:,:,r:,1]
-    cr,pr=cand[:,:,:r,2:18],cand[:,:,:r,18:];ca,pa=cand[:,:,r:,2:18],cand[:,:,r:,18:]
+    lr,br=cand[:,:,:r,0].double(),cand[:,:,:r,1].double();la,ba=cand[:,:,r:,0].double(),cand[:,:,r:,1].double()
+    cr,pr=cand[:,:,:r,2:18].double(),cand[:,:,:r,18:].double();ca,pa=cand[:,:,r:,2:18].double(),cand[:,:,r:,18:].double()
     er=lr+br;ea=la+ba
     from . import scores_moments
     if MOMENTS and scores_moments.LAZY:
@@ -153,6 +159,9 @@ def compact_scores(u,en,z,lm,mask,remove,add):
         rx,ro=exclude_group(er,cr+pr);ax,ao=exclude_group(la,ca)
     if MOMENTS and scores_moments.FUSED_DEN:
         den=torch.empty((b,m,r,a),device=lb.device,dtype=lb.dtype)
+    elif ENDPOINT_DEN:
+        from .endpoint_den import denominator
+        den=denominator(lb,rx,lr,ax,ea)
     else:
         if scores_moments.PRECOMPUTE_DEN:
             from .scores_den import first_den

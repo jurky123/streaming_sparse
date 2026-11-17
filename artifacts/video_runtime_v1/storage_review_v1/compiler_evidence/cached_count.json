@@ -1,0 +1,30 @@
+{
+  "source": "cavnjwkqlv3wrlazw2h4lc2kjbzgo27odm4ueeph2mtewohsuvgb.py",
+  "kernels": [
+    {
+      "kernel": "triton_red_fused_logaddexp_logsumexp_moment_reduce_26",
+      "xnumel": [
+        "13824"
+      ],
+      "log1p_sites": 0,
+      "exp_sites": 1
+    },
+    {
+      "kernel": "triton_poi_fused_logaddexp_27",
+      "xnumel": [
+        "221184"
+      ],
+      "log1p_sites": 2,
+      "exp_sites": 2
+    },
+    {
+      "kernel": "triton_poi_fused_logaddexp_logsumexp_moment_reduce_35",
+      "xnumel": [
+        "7077888"
+      ],
+      "log1p_sites": 1,
+      "exp_sites": 1
+    }
+  ],
+  "custom_add_elements": 442368
+}

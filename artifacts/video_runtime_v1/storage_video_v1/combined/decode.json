@@ -1,0 +1,10 @@
+{
+  "seconds": [
+    4.309518925845623,
+    4.3115478400141
+  ],
+  "median_seconds": 4.3105333829298615,
+  "generation_seconds": 10.58256807923317,
+  "generation_plus_decode_seconds": 14.893101462163031,
+  "timing": "sum of separately warmed generation and decode phase medians; file IO/encoding excluded"
+}

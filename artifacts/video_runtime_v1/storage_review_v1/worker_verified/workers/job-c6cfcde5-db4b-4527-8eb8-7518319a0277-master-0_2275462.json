@@ -1,0 +1,16 @@
+{
+  "stage": "generate",
+  "model_loads": 1,
+  "status": [
+    {
+      "stage": "generate",
+      "status": "done",
+      "count": 2
+    },
+    {
+      "stage": "postprocess",
+      "status": "pending",
+      "count": 2
+    }
+  ]
+}

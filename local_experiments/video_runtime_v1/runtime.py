@@ -40,7 +40,7 @@ def risk_from_logits(probes,z,summary,theta):
     return (f*theta[:,None,None,None]).sum(-1).mean(2)
 
 class VideoRuntime(StreamingRuntime):
-    def __init__(self,engine,model,reader,phi,B,*,full_pset=False,tile_batch=2,profile=False,config=Config(),validate=False,graph_batches=True,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,stream_attention=False,stream_tail_mode=4,stream_warps=4,bf16_qk=False,split_summary=False,fused_risk=False,static_route=False,legacy_components=None,projected_risk=False,cached_logmass=False):
+    def __init__(self,engine,model,reader,phi,B,*,full_pset=False,tile_batch=2,profile=False,config=Config(),validate=False,graph_batches=True,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,stream_attention=False,stream_tail_mode=4,stream_warps=4,bf16_qk=False,split_summary=False,fused_risk=False,static_route=False,legacy_components=None,projected_risk=False,cached_logmass=False,coeff_bf16=False):
         if tile_batch<1 or 72%tile_batch:raise ValueError('tile_batch must divide 72')
         if config.probes!=16 or config.density!=.1:raise ValueError('Frozen configuration requires M16 / 10%')
         # The deployed default uses the prior direct-LUT exact and full-mean tail.
@@ -72,6 +72,7 @@ class VideoRuntime(StreamingRuntime):
         from . import pipeline_graph
         pipeline_graph.CACHED_LOGMASS=cached_logmass
         self.cached_logmass=cached_logmass
+        self.coeff_bf16=coeff_bf16
         if "risk" in self.legacy_components:
             from .legacy_components import risk
             risk_fn=risk
@@ -85,7 +86,7 @@ class VideoRuntime(StreamingRuntime):
             old=store.summary
             slab=Summary(*(torch.empty((h,p,*getattr(old,n).shape[2:]),device=device,dtype=torch.bfloat16) for n in ('keys','mean','detail','stats')))
             self.slabs[l]=slab;store.summary=slab.slice(0,config.history_pages)
-            self.encodings[l]=dict(co=torch.empty(h,p,5,17,device=device),A=torch.empty(h,p,8,4,device=device),mean=torch.empty(h,p,16,device=device,dtype=torch.float64),detail=torch.empty(h,p,3,16,device=device,dtype=torch.float64))
+            self.encodings[l]=dict(co=torch.empty(h,p,5,17,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),A=torch.empty(h,p,8,4,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),mean=torch.empty(h,p,16,device=device,dtype=torch.float64),detail=torch.empty(h,p,3,16,device=device,dtype=torch.float64))
             self.projected_basis[l]=self.model[l].basis.bfloat16().double().transpose(1,2)@self.B
             if stream_attention and not self.legacy_attention:self.value_slabs[l]=torch.empty(12,p,4,128,device=device,dtype=torch.float32)
         self.counters=torch.zeros(4,device=device,dtype=torch.int64)
@@ -95,7 +96,7 @@ class VideoRuntime(StreamingRuntime):
         if hasattr(self,'timings'):self.timings.events.clear()
     def encode(self,l,s):
         self.counters[3]+=s.mean.shape[0]*s.mean.shape[1]
-        co,A,mean=encode(s,self.reader,self.phi,self.B)
+        co,A,mean=encode(s,self.reader,self.phi,self.B,coeff_bf16=self.coeff_bf16)
         detail=torch.matmul(s.detail.double(),self.projected_basis[l][:,None])
         return dict(co=co,A=A,mean=mean,detail=detail)
     def write_encoding(self,l,value,*,start=None,slots=None):
@@ -207,7 +208,7 @@ class VideoRuntime(StreamingRuntime):
         extra+=sum(p.numel()*p.element_size() for net in (self.reader,self.phi) for p in net.parameters())
         value_bytes=sum(x.numel()*x.element_size() for x in self.value_slabs.values())
         extra+=self.batch_graph.static_bytes()+value_bytes
-        result.update(implementation='VideoRuntimeV1',cached_logmass=self.cached_logmass,projected_risk=self.projected_risk,legacy_components=sorted(self.legacy_components),static_route=self.static_route,fused_risk=self.fused_risk,split_summary=self.split_summary,stream_attention=self.stream_attention,stream_tail_mode=self.stream_tail_mode,stream_warps=self.stream_warps,bf16_qk=self.bf16_qk,compact_reader=self.batch_graph.compact_reader,tensor_math=self.tensor_math,projection_float=self.batch_graph.projection_float,representative_value_bytes=value_bytes,full_pset=self.full_pset,tile_batch=self.tile_batch,graph_batches=self.graph_batches,compile_route=self.compile_route,compile_tail=self.compile_tail,action_kernel=self.action_kernel,batch_graph_shapes=len(self.batch_graph.entries),batch_graph_replays=self.batch_graph.calls,
+        result.update(implementation='VideoRuntimeV1',coeff_bf16=self.coeff_bf16,cached_logmass=self.cached_logmass,projected_risk=self.projected_risk,legacy_components=sorted(self.legacy_components),static_route=self.static_route,fused_risk=self.fused_risk,split_summary=self.split_summary,stream_attention=self.stream_attention,stream_tail_mode=self.stream_tail_mode,stream_warps=self.stream_warps,bf16_qk=self.bf16_qk,compact_reader=self.batch_graph.compact_reader,tensor_math=self.tensor_math,projection_float=self.batch_graph.projection_float,representative_value_bytes=value_bytes,full_pset=self.full_pset,tile_batch=self.tile_batch,graph_batches=self.graph_batches,compile_route=self.compile_route,compile_tail=self.compile_tail,action_kernel=self.action_kernel,batch_graph_shapes=len(self.batch_graph.entries),batch_graph_replays=self.batch_graph.calls,
             page_encoding='commit-time history; once per step current; shared by every Query tile',
             raw_kv='native resident [1,L,H,D], current scratch writes, no history cat/repack/gather',
             logits=('M16 FP32 R4 for routing; Q64 recomputed inside streamed Attention' if self.stream_attention else 'Q64 FP32 R4 shared with M16 Risk/Reader'),

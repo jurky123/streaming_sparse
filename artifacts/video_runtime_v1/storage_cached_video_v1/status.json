@@ -1,0 +1,10 @@
+{
+  "status": "complete_short_video_bitwise",
+  "scope": "P0 shared deployment + P1 storage and cached endpoint denominator",
+  "adopted": [
+    "reader_output32",
+    "coeff_bf16",
+    "endpoint_den",
+    "cached_endpoints"
+  ]
+}

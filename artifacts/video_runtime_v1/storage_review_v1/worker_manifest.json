@@ -1,0 +1,14 @@
+[
+  {
+    "case": "city_walk",
+    "noise_seed": 701,
+    "method": "dense",
+    "chunks": 9
+  },
+  {
+    "case": "city_walk",
+    "noise_seed": 701,
+    "method": "c_pset",
+    "chunks": 9
+  }
+]

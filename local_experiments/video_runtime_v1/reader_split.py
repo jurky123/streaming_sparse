@@ -7,8 +7,8 @@ def feature(U,A,row,head,p,P:tl.constexpr,J:tl.constexpr,PACK_A:tl.constexpr):
     f=tl.full(p.shape,0,tl.float32)
     for i in tl.static_range(8):
         u=tl.load(U+row*8+i)
-        if PACK_A:a=tl.load(A+((head*8+i)*4+J)*P+p,p<P,0)
-        else:a=tl.load(A+head*P*32+p*32+i*4+J,p<P,0)
+        if PACK_A:a=tl.load(A+((head*8+i)*4+J)*P+p,p<P,0).to(tl.float32)
+        else:a=tl.load(A+head*P*32+p*32+i*4+J,p<P,0).to(tl.float32)
         f=f+u*a
     return lib.tanh(f)
 
@@ -26,9 +26,9 @@ def scalar_kernel(U,CO,A,Z,LM,MASK,MAP,WORK,LOGSTATE,CAND,T:tl.constexpr,M:tl.co
     CB_STEP:tl.constexpr=P if PACK_CO else 17
     RP_STEP:tl.constexpr=16 if PACK_CO else 17
     RP_ROW:tl.constexpr=80 if PACK_CO else 85
-    beta=f0*tl.load(cb+CB_STEP*1,p<P,0)+f1*tl.load(cb+CB_STEP*2,p<P,0)
-    beta=beta+f2*tl.load(cb+CB_STEP*3,p<P,0);beta=beta+f3*tl.load(cb+CB_STEP*4,p<P,0)
-    beta=(beta+tl.load(cb,p<P,0)).to(dtype)
+    beta=f0*tl.load(cb+CB_STEP*1,p<P,0).to(tl.float32)+f1*tl.load(cb+CB_STEP*2,p<P,0).to(tl.float32)
+    beta=beta+f2*tl.load(cb+CB_STEP*3,p<P,0).to(tl.float32);beta=beta+f3*tl.load(cb+CB_STEP*4,p<P,0).to(tl.float32)
+    beta=(beta+tl.load(cb,p<P,0).to(tl.float32)).to(dtype)
     z0=tl.load(Z+(row*P+p)*4,p<P,0).to(dtype)
     z1=tl.load(Z+(row*P+p)*4+1,p<P,0).to(dtype)
     z2=tl.load(Z+(row*P+p)*4+2,p<P,0).to(dtype)
@@ -84,11 +84,11 @@ def vector_kernel(CO,MEAN,DETAIL,MASK,MAP,WORK,STATE,CAND,T:tl.constexpr,M:tl.co
     wb=tl.load(WORK+off+9*S)
     selected=tl.load(MASK+b*P+p,p<P,0);slot=tl.load(MAP+b*P+p,p<P,-1)
     base=CO+head*P*RP_ROW+p[:,None]*RP_ROW+d[None,:]
-    rp=f0[:,None]*tl.load(base+RP_STEP*1,p[:,None]<P,0)
-    rp=rp+f1[:,None]*tl.load(base+RP_STEP*2,p[:,None]<P,0)
-    rp=rp+f2[:,None]*tl.load(base+RP_STEP*3,p[:,None]<P,0)
-    rp=rp+f3[:,None]*tl.load(base+RP_STEP*4,p[:,None]<P,0)
-    rp=(rp+tl.load(base,p[:,None]<P,0)).to(dtype)
+    rp=f0[:,None]*tl.load(base+RP_STEP*1,p[:,None]<P,0).to(tl.float32)
+    rp=rp+f1[:,None]*tl.load(base+RP_STEP*2,p[:,None]<P,0).to(tl.float32)
+    rp=rp+f2[:,None]*tl.load(base+RP_STEP*3,p[:,None]<P,0).to(tl.float32)
+    rp=rp+f3[:,None]*tl.load(base+RP_STEP*4,p[:,None]<P,0).to(tl.float32)
+    rp=(rp+tl.load(base,p[:,None]<P,0).to(tl.float32)).to(dtype)
     db=DETAIL+head*P*48+p[:,None]*48+d[None,:]
     approx=c0[:,None]*tl.load(db,p[:,None]<P,0).to(dtype)
     approx=approx+c1[:,None]*tl.load(db+16,p[:,None]<P,0).to(dtype)

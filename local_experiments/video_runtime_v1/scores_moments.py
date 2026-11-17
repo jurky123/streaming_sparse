@@ -59,7 +59,7 @@ def _(den,state,cand,lb,rx,ro,ax,ao,maximum,stats,dot):
 
 def moments(den,state,cand,lb,rx,ro,ax,ao,maximum):
     r=den.shape[-2];H=state[:,:,0];E=state[:,:,1]
-    lm,beta=cand[...,0],cand[...,1];c,p=cand[...,2:18],cand[...,18:]
+    lm,beta=cand[...,0].double(),cand[...,1].double();c,p=cand[...,2:18].double(),cand[...,18:].double()
     approx=(lm-maximum[...,None]).exp();exact=(lm+beta-maximum[...,None]).exp()
     diff=torch.where(beta.abs()<.5,approx*torch.expm1(beta.clamp(-.5,.5)),exact-approx)
     u=diff[...,None]*(c-H[:,:,None])+exact[...,None]*p

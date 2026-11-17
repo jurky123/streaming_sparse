@@ -1,0 +1,113 @@
+{
+  "fixtures": [
+    {
+      "file": "reference_input_17_01.npz",
+      "max_abs": 1.9651164376299768e-19,
+      "gain": 4.9190206811771675e-11,
+      "action": 0,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_02.npz",
+      "max_abs": 1.0164395367051604e-19,
+      "gain": 5.150859577320335e-11,
+      "action": 0,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_03.npz",
+      "max_abs": 3.1933142111487123e-19,
+      "gain": 2.607419518770978e-11,
+      "action": 0,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_04.npz",
+      "max_abs": 2.4881592825595072e-20,
+      "gain": 1.5707407399554246e-20,
+      "action": 32,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_05.npz",
+      "max_abs": 2.8796409701215e-16,
+      "gain": 0.13152966220020074,
+      "action": 105,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_06.npz",
+      "max_abs": 1.069602617437238e-23,
+      "gain": 2.8149483374754976e-24,
+      "action": 32,
+      "passed": true
+    },
+    {
+      "file": "reference_input_17_07.npz",
+      "max_abs": 2.0816681711721685e-16,
+      "gain": 0.11126162498700722,
+      "action": 194,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_01.npz",
+      "max_abs": 7.813878938420921e-20,
+      "gain": 1.0500086313486672e-13,
+      "action": 65,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_02.npz",
+      "max_abs": 4.1504614415460717e-20,
+      "gain": -3.5625503760880586e-13,
+      "action": 65,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_03.npz",
+      "max_abs": 2.8587361969832636e-20,
+      "gain": -1.1584491391748596e-13,
+      "action": 65,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_04.npz",
+      "max_abs": 5.551115123125783e-17,
+      "gain": 1.4339845797644734e-19,
+      "action": 1,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_05.npz",
+      "max_abs": 1.8041124150158794e-16,
+      "gain": 0.10746298092650203,
+      "action": 251,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_06.npz",
+      "max_abs": 6.410980619530986e-20,
+      "gain": 9.907233711712914e-23,
+      "action": 32,
+      "passed": true
+    },
+    {
+      "file": "reference_input_29_07.npz",
+      "max_abs": 1.4224732503009818e-16,
+      "gain": 0.10996262906270005,
+      "action": 194,
+      "passed": true
+    }
+  ],
+  "dominant_remove": true,
+  "packed_fp32_storage": [
+    {
+      "maximum": 0.0,
+      "bitwise": true
+    },
+    {
+      "maximum": 1000.0,
+      "bitwise": true
+    }
+  ]
+}

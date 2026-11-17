@@ -12,7 +12,7 @@ CUDA_VISIBLE_DEVICES=3 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bi
   --mode stream --chunks 9 --tile-batch 72 --stream-warps 8 \
   --bf16-qk --split-summary --moment-scores --late-reader \
   --blocked-scores --packed-scores --history-pages 360 \
-  --reader-layout --reader-split --scan-exclude --projected-risk --cached-logmass --legacy-components rope,attention \
+  --reader-layout --reader-split --scan-exclude --projected-risk --cached-logmass --reader-output32 --coeff-bf16 --endpoint-den --cached-endpoints --legacy-components rope,attention \
   --reader-checkpoint artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt \
   --local-assets /tmp/streaming_sparse-0/runtime --output <fresh-output>
 
@@ -31,3 +31,8 @@ Preserve FP32 SGEMM projection; fuse Risk features/M16 reduction. Short latent/R
 
 Log-mass acceptance: artifacts/video_runtime_v1/logmass_video_v1/MODULE_DISTANCE.zh.md
 Cache FP64 R4 local mass once, then normalize across pages; short latent/RGB bitwise equal.
+
+Reader storage / endpoint acceptance: artifacts/video_runtime_v1/storage_cached_video_v1/MODULE_DISTANCE.zh.md
+Shared accepted deployment: local_experiments/video_runtime_v1/deployment.py
+Resident worker defaults now use full-coverage weights, 360 history pages, tile_batch 72, all accepted flags.
+Worker generate and postprocess remain separate stages; use a fresh queue after configuration changes.
