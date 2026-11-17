@@ -1,0 +1,78 @@
+{
+  "rows": {
+    "baseline": {
+      "generation": 12.736644478980452,
+      "trials": [
+        12.731816991232336,
+        12.741471966728568
+      ],
+      "vae": 4.298955370206386,
+      "total": 17.035599849186838,
+      "stages": {
+        "attention": {
+          "milliseconds": 3212.088322162628,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 892.4057648181915,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 489.9000306725502,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 4046.7865233421326,
+          "calls": 812
+        }
+      }
+    },
+    "page32": {
+      "generation": 12.568907771259546,
+      "trials": [
+        12.567474918439984,
+        12.570340624079108
+      ],
+      "vae": 4.314852735958993,
+      "total": 16.88376050721854,
+      "stages": {
+        "attention": {
+          "milliseconds": 3211.824129998684,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 893.046790599823,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 489.59692507982254,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 3879.835667848587,
+          "calls": 812
+        }
+      }
+    }
+  },
+  "error": {
+    "latent_equal": false,
+    "latent_nmse": 0.2301713526248932,
+    "rgb_equal": false,
+    "rgb_mae_255": 11.668603919296668,
+    "psnr": 18.68526949963896,
+    "ssim": 0.6941914793103934,
+    "lpips": 0.19499974575301166,
+    "window": [
+      21,
+      101
+    ]
+  },
+  "route_ms": {
+    "before": 5.30948805809021,
+    "after": 5.073407888412476
+  },
+  "generation_speedup": 1.013345368648854,
+  "total_speedup": 1.0089932181816592,
+  "default_changed": false
+}

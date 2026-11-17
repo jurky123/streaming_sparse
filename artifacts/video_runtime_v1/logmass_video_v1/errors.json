@@ -1,0 +1,8 @@
+{
+  "baseline_matches_current": true,
+  "latent_equal": true,
+  "latent_nmse": 0.0,
+  "rgb_equal": true,
+  "rgb_mae_255": 0.0,
+  "rgb_max_abs_255": 0.0
+}

@@ -1,0 +1,23 @@
+{
+  "fp32": {
+    "ms": 1.2738560438156128,
+    "tflops": 13.48650757470264,
+    "shape": 2048
+  },
+  "bf16": {
+    "ms": 0.6799359917640686,
+    "tflops": 202.13513497854373,
+    "shape": 4096
+  },
+  "fp64": {
+    "ms": 1.2554240226745605,
+    "tflops": 13.684515250393199,
+    "shape": 2048
+  },
+  "copy": {
+    "ms": 0.42393600940704346,
+    "gbps": 1266.3961071646588
+  },
+  "device": "NVIDIA A100-SXM4-40GB",
+  "notes": "Empirical large GEMM/copy reference, not hardware peak or an achievable guarantee for small nonlinear kernels."
+}

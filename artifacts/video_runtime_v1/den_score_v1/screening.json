@@ -1,0 +1,342 @@
+[
+  {
+    "name": "kind_a_b128_w4",
+    "before": 3.710271954536438,
+    "after": 4.3485119342803955,
+    "speedup": 0.8532279571978281,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 255,
+        "spills": 126,
+        "block": 128,
+        "warps": 4
+      }
+    }
+  },
+  {
+    "name": "kind_a_b128_w8",
+    "before": 3.7042880058288574,
+    "after": 4.086608171463013,
+    "speedup": 0.9064456024181824,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 202,
+        "spills": 0,
+        "block": 128,
+        "warps": 8
+      }
+    }
+  },
+  {
+    "name": "kind_a_b16_w2_shared",
+    "before": 3.7009119987487793,
+    "after": 3.6741760969161987,
+    "speedup": 1.0072767067030404,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 114,
+        "spills": 0,
+        "block": 16,
+        "warps": 2,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b16_w4_shared",
+    "before": 3.7008960247039795,
+    "after": 3.6982719898223877,
+    "speedup": 1.0007095299882791,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 66,
+        "spills": 0,
+        "block": 16,
+        "warps": 4,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w1",
+    "before": 3.7148959636688232,
+    "after": 4.422528028488159,
+    "speedup": 0.8399937636887651,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 255,
+        "spills": 128,
+        "block": 32,
+        "warps": 1
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w2",
+    "before": 3.707087993621826,
+    "after": 3.944048047065735,
+    "speedup": 0.9399195824654822,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 208,
+        "spills": 0,
+        "block": 32,
+        "warps": 2
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w2_shared",
+    "before": 3.703487992286682,
+    "after": 3.817407965660095,
+    "speedup": 0.9701577682034007,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 186,
+        "spills": 0,
+        "block": 32,
+        "warps": 2,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w4",
+    "before": 3.714319944381714,
+    "after": 3.717103958129883,
+    "speedup": 0.999251026126918,
+    "max_abs": 1.734723475976807e-18,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 115,
+        "spills": 0,
+        "block": 32,
+        "warps": 4
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w4_shared",
+    "before": 3.7057600021362305,
+    "after": 3.6693440675735474,
+    "speedup": 1.0099243717383974,
+    "max_abs": 1.734723475976807e-18,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 106,
+        "spills": 0,
+        "block": 32,
+        "warps": 4,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b32_w8_shared",
+    "before": 3.7215200662612915,
+    "after": 3.8143839836120605,
+    "speedup": 0.9756542818578976,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 64,
+        "spills": 0,
+        "block": 32,
+        "warps": 8,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b64_w2",
+    "before": 3.7033599615097046,
+    "after": 4.734431982040405,
+    "speedup": 0.7822184320226863,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 255,
+        "spills": 120,
+        "block": 64,
+        "warps": 2
+      }
+    }
+  },
+  {
+    "name": "kind_a_b64_w4",
+    "before": 3.7001760005950928,
+    "after": 3.93231999874115,
+    "speedup": 0.9409651304521572,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 206,
+        "spills": 0,
+        "block": 64,
+        "warps": 4
+      }
+    }
+  },
+  {
+    "name": "kind_a_b64_w8",
+    "before": 3.7014400959014893,
+    "after": 3.838800072669983,
+    "speedup": 0.9642179915160426,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 114,
+        "spills": 0,
+        "block": 64,
+        "warps": 8
+      }
+    }
+  },
+  {
+    "name": "kind_a_b64_w8_shared",
+    "before": 3.703711986541748,
+    "after": 3.79748797416687,
+    "speedup": 0.9753057841754731,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 105,
+        "spills": 0,
+        "block": 64,
+        "warps": 8,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b8_w2_shared",
+    "before": 3.720847964286804,
+    "after": 3.7594399452209473,
+    "speedup": 0.9897346462514445,
+    "max_abs": 2.7755575615628914e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 65,
+        "spills": 0,
+        "block": 8,
+        "warps": 2,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_b8_w4_shared",
+    "before": 3.702015995979309,
+    "after": 3.7114880084991455,
+    "speedup": 0.9974479204841439,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {
+      "(864, 16, 16, 32)": {
+        "registers": 46,
+        "spills": 0,
+        "block": 8,
+        "warps": 4,
+        "shared_first": true
+      }
+    }
+  },
+  {
+    "name": "kind_a_p216_b32_w4_precompute",
+    "before": 2.788864016532898,
+    "after": 2.782256007194519,
+    "speedup": 1.0023750543879828,
+    "max_abs": 5.551115123125783e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {}
+  },
+  {
+    "name": "kind_a_p288_b32_w4_precompute",
+    "before": 3.2296959161758423,
+    "after": 3.224623918533325,
+    "speedup": 1.0015728958696133,
+    "max_abs": 1.3877787807814457e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {}
+  },
+  {
+    "name": "kind_a_p360_b32_w4_precompute",
+    "before": 3.269711971282959,
+    "after": 3.264367938041687,
+    "speedup": 1.0016370805444432,
+    "max_abs": 1.0408340855860843e-17,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {}
+  },
+  {
+    "name": "kind_a_p432_b32_w4_precompute",
+    "before": 3.69868803024292,
+    "after": 3.689695954322815,
+    "speedup": 1.0024370777515068,
+    "max_abs": 1.734723475976807e-18,
+    "actions_equal": true,
+    "noop_equal": true,
+    "bitwise": false,
+    "kernel": {}
+  }
+]

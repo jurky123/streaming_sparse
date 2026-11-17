@@ -1,0 +1,9 @@
+{
+  "status": "completed_candidate_not_promoted",
+  "default_changed": false,
+  "generation_speedup": 1.013345368648854,
+  "total_speedup": 1.0089932181816592,
+  "reason": "Modest speed gain; large video drift from changed aggregation order; experimental switches remain off.",
+  "next": "Preserve reduction layout while reusing vector coefficients; investigate denominator/score fusion",
+  "baseline_matches_previous_split": true
+}

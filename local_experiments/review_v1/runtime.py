@@ -31,13 +31,14 @@ class PageStore:
 class GroupingOps:
     @staticmethod
     @torch.no_grad()
-    def group(model,k,v,config):
+    def group(model,k,v,config,page_order=None):
         # k already RoPE encoded. Each physical page owns all its representatives.
         k=k[0].transpose(0,1);v=v[0].transpose(0,1)
         f=model.group_features(k.float()[:,None],v.float()[:,None]).squeeze(1)
         order=balanced(f,[3,3,2,2,2]);fp=reorder(f,order)
         inner=balanced(fp.reshape(-1,64,32),[2,2]).reshape(12,72,64)
-        order=order.reshape(12,72,64).gather(2,inner)[:,config.page_order(k.device)].flatten(1)
+        page_order=config.page_order(k.device) if page_order is None else page_order
+        order=order.reshape(12,72,64).gather(2,inner)[:,page_order].flatten(1)
         return reorder(k,order).reshape(12,72,64,128),reorder(v,order).reshape(12,72,64,128),order
 
 class SelectedAttention:

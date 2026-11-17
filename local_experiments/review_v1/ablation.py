@@ -31,41 +31,57 @@ class AblationRuntime(StreamingRuntime):
         kr=k[0].transpose(0,1).gather(1,idx).reshape(12,72,64,128)
         vr=v[0].transpose(0,1).gather(1,idx).reshape_as(kr)
         return kr,vr,order
+    def route_scores(self,probes,summary,model):
+        f,_=RouteOps.features(probes,summary)
+        return mass_scores(probes,summary,8,self.config.probes) if self.variant=='mass_route' else (f*model.theta[:,None,None]).sum(-1).reshape(12,8,self.config.probes,summary.keys.shape[1]).mean(2)
+    def build_summary(self,model,k,v,cheap=False):
+        return SummaryOps.build(model,k,v,cheap)
+    def query_route_scores(self,query,summary,model):
+        offsets=torch.linspace(0,63,self.config.probes,device=query.device).round().long()
+        scores=[]
+        for tile in range(0,72,8):
+            probes=query[:,tile*64:(tile+8)*64].reshape(12,8,64,128).index_select(2,offsets).flatten(1,2)
+            scores.append(self.route_scores(probes,summary,model))
+        return torch.cat(scores,1)
+    def apply_rotary(self,q,k,grid_sizes,freqs,start_frame):
+        from wan.modules.causal_model import causal_rope_apply
+        return causal_rope_apply(q,grid_sizes,freqs,start_frame).contiguous(),causal_rope_apply(k,grid_sizes,freqs,start_frame).contiguous()
+    def history_and_current(self,cache,k,v,p):
+        return torch.cat((cache['k'][:,:p*64].detach(),k),1),torch.cat((cache['v'][:,:p*64].detach(),v),1)
+    def select_pages(self,scores,own,threshold):
+        return RouteOps.select(scores,own,self.config,threshold)
+    def selected_attention(self,*args):
+        return SelectedAttention.run(*args)
     def forward(self,l,module,x,grid_sizes,freqs,cache,start):
         from wan.modules.causal_model import causal_rope_apply
         store=self.stores[l];m=self.model[l];p=store.n;b,n,_=x.shape
         assert (b,n)==(1,4608)
         q=module.norm_q(module.q(x)).view(b,n,12,128);k=module.norm_k(module.k(x)).view_as(q);v=module.v(x).view_as(q)
-        q=causal_rope_apply(q,grid_sizes,freqs,start_frame=start//1536).to(v.dtype).contiguous()
-        k=causal_rope_apply(k,grid_sizes,freqs,start_frame=start//1536).to(v.dtype).contiguous()
+        q,k=self.apply_rotary(q,k,grid_sizes,freqs,start//1536)
+        q=q.to(v.dtype);k=k.to(v.dtype)
         # History detached, current gradients retained; no implicit crosschunk BPTT.
-        kh=torch.cat((cache['k'][:,:p*64].detach(),k),1);vh=torch.cat((cache['v'][:,:p*64].detach(),v),1)
+        kh,vh=self.history_and_current(cache,k,v,p)
         step=self.engine.current['step']
         if not self.sparse or step==4 or p<=72:out=self.engine.dense(q,kh,vh)
         else:
-            current=SummaryOps.build(m,k[0].transpose(0,1).reshape(12,72,64,128),v[0].transpose(0,1).reshape(12,72,64,128),cheap=True)
+            current=self.build_summary(m,k[0].transpose(0,1).reshape(12,72,64,128),v[0].transpose(0,1).reshape(12,72,64,128),cheap=True)
             history=store.summary.slice(0,p)
             if torch.is_grad_enabled():
-                history=SummaryOps.build(m,kh[0,:p*64].transpose(0,1).reshape(12,p,64,128),vh[0,:p*64].transpose(0,1).reshape(12,p,64,128))
+                history=self.build_summary(m,kh[0,:p*64].transpose(0,1).reshape(12,p,64,128),vh[0,:p*64].transpose(0,1).reshape(12,p,64,128))
             summary=Summary(*(torch.cat((getattr(history,name),getattr(current,name)),1) for name in ('keys','mean','detail','stats')))
-            query=q[0].transpose(0,1);offsets=torch.linspace(0,63,self.config.probes,device=q.device).round().long()
-            # Process tiles separately: bounded feature lifetime, no full probe-page buffer.
-            scores=[]
+            query=q[0].transpose(0,1)
             with torch.no_grad():
-                for tile in range(0,72,8):
-                    probes=query[:,tile*64:(tile+8)*64].reshape(12,8,64,128).index_select(2,offsets).flatten(1,2)
-                    f,_=RouteOps.features(probes,summary)
-                    scores.append(mass_scores(probes,summary,8,self.config.probes) if self.variant=='mass_route' else (f*m.theta[:,None,None]).sum(-1).reshape(12,8,self.config.probes,p+72).mean(2))
-                scores=torch.cat(scores,1);own=(torch.arange(72,device=q.device)+p)[None].expand(12,-1)
+                scores=self.query_route_scores(query,summary,m)
+                own=(torch.arange(72,device=q.device)+p)[None].expand(12,-1)
                 threshold=None if self.thresholds is None else self.thresholds[l,:,step][:,None,None]
-                selection=RouteOps.select(scores,own,self.config,threshold)
+                selection=self.select_pages(scores,own,threshold)
                 if threshold is None:selection['fixed_count']=max(1,math.floor((p+72)*self.config.density))
             # Transform only after routing: remove compensation information
             # without silently changing the router's input statistics.
             summary=change_summary(summary,m.basis,self.centers[l],self.variant)
-            out=SelectedAttention.run(query,kh[0].transpose(0,1).reshape(12,p+72,64,128),vh[0].transpose(0,1).reshape(12,p+72,64,128),summary,m.basis,selection).transpose(0,1)[None]
+            out=self.selected_attention(query,kh[0].transpose(0,1).reshape(12,p+72,64,128),vh[0].transpose(0,1).reshape(12,p+72,64,128),summary,m.basis,selection).transpose(0,1)[None]
         if step==4:
             kg,vg,order=self.group(l,k,v)
-            store.commit(kg,vg,SummaryOps.build(m,kg,vg),order,start)
+            store.commit(kg,vg,self.build_summary(m,kg,vg),order,start)
         with torch.no_grad():cache['global_end_index'].fill_(start+n);cache['local_end_index'].fill_(p*64+n)
         return module.o(out.flatten(2))

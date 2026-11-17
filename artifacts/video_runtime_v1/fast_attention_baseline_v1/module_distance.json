@@ -1,0 +1,56 @@
+[
+  {
+    "module": "\u7cbe\u7b97\uff0b\u8865\u507f Attention",
+    "ms": 1.2954400181770325,
+    "floor_ms": 0.7710440531604944,
+    "distance": 1.6801115485776064,
+    "max_gap_ms": 0.5243959650165381,
+    "formula": "\u7ea6155.855 GFLOPs\uff0c\u65e7\u7cbe\u7b97\u4e0e\u5b8c\u6574\u5747\u503c/rank8\u8865\u507f\u7684\u4e3b\u8981BF16\u53d1\u5c04\u91cf",
+    "opportunity": "\u5df2\u5207\u6362\u65e7\u5feb\u5b9e\u73b0\uff1b\u4e0b\u4e00\u4f18\u5148\u7ea7\u4f4e\u4e8eReader/Risk"
+  },
+  {
+    "module": "Reader \u6807\u91cf\uff0b\u5411\u91cf",
+    "ms": 1.935,
+    "floor_ms": 0.44712000992149115,
+    "distance": 4.327697166449255,
+    "max_gap_ms": 1.487879990078509,
+    "formula": "\u4ec5\u4e24\u9636\u6bb5\u5de5\u4f5c\u533a566.23 MB\u8bfb\u5199\uff1b\u672a\u8ba1\u5171\u4eab\u7cfb\u6570/exp/tanh",
+    "opportunity": "\u9ad8\uff1a\u5411\u91cf1.446ms\u3001255\u5bc4\u5b58\u5668\uff1b\u91cd\u590d\u7cfb\u6570\u8bbf\u95ee\u548c\u5f52\u7ea6\u5e03\u5c40"
+  },
+  {
+    "module": "Risk\uff08softmax\uff0bU\u6295\u5f71\uff0b\u4e3b\u5f52\u7ea6\uff09",
+    "ms": 0.874579,
+    "floor_ms": 0.2263545050227549,
+    "distance": 3.863757869153435,
+    "max_gap_ms": 0.6482244949772451,
+    "formula": "\u4ec5Z\u8bfb\u3001prob\u5199/\u8bfb286.65 MB\uff1b\u672a\u8ba1U/\u975e\u7ebf\u6027",
+    "opportunity": "\u9ad8\uff1a\u878d\u5408\u4e0e\u590d\u7528\uff1b\u65e7fused\u8def\u5f84\u6709\u95ed\u73af\u5dee\u5f02\uff0c\u4e0d\u80fd\u76f4\u63a5\u7b49\u4ef7\u66ff\u6362"
+  },
+  {
+    "module": "512\u52a8\u4f5c\u6807\u91cf\u8bc4\u5206",
+    "ms": 0.336603,
+    "floor_ms": 0.08942400198429823,
+    "distance": 3.7641236416494017,
+    "max_gap_ms": 0.24717899801570176,
+    "formula": "den\u548cdot\u81f3\u5c11113.25 MB\u8f93\u5165\uff1b\u672a\u8ba1\u5176\u4ed6\u8f93\u5165\u4e0eexp",
+    "opportunity": "\u4e2d\uff1a\u5408\u5e76\u5206\u6bcd\u751f\u4ea7/\u6d88\u8d39\uff0c\u51cf\u5c11\u4e2d\u95f4\u5f20\u91cf"
+  },
+  {
+    "module": "\u52a8\u4f5clog\u5206\u6bcd\u751f\u6210",
+    "ms": 0.260348,
+    "floor_ms": 0.044712000992149115,
+    "distance": 5.822776753957265,
+    "max_gap_ms": 0.2156359990078509,
+    "formula": "\u8f93\u51faden\u81f3\u5c1156.62 MB\uff1b\u672a\u8ba1\u591a\u6b21logaddexp\u4e0e\u8f93\u5165",
+    "opportunity": "\u4e2d\uff1a\u4fdd\u6301\u7a33\u5b9a\u6b63\u8d28\u91cf\u5f52\u4e00\u5316\uff0c\u5c1d\u8bd5\u878d\u5408\u5230\u8bc4\u5206"
+  },
+  {
+    "module": "\u6392\u9664\u5019\u9009\u5411\u91cfBMM",
+    "ms": 0.372346,
+    "floor_ms": 0.04137750074733049,
+    "distance": 8.998755199684753,
+    "max_gap_ms": 0.3309684992526695,
+    "formula": "0.566 GFLOPs\uff0cFP64\u5927\u77e9\u9635\u53c2\u8003\uff1b\u672a\u8ba1softmax",
+    "opportunity": "\u5f53\u524d\u4ecd\u6267\u884c\uff1blazy\u9ed8\u8ba4\u5173\u95ed\uff0c\u540e\u7eed\u7814\u7a76\u7b49\u4ef7\u51cf\u5c11\u91cd\u590d\u8ba1\u7b97"
+  }
+]

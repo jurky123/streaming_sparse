@@ -1,0 +1,105 @@
+{
+  "rows": {
+    "reference": {
+      "generation": 12.74861361971125,
+      "trials": [
+        12.745846893638372,
+        12.751380345784128
+      ],
+      "vae": 4.312148136086762,
+      "total": 17.060761755798012,
+      "stages": {
+        "attention": {
+          "milliseconds": 3211.878403902054,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 894.2540946006775,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 491.47392654418945,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 4047.8770875930786,
+          "calls": 812
+        }
+      },
+      "legacy_components": "rope",
+      "generation_speedup": 1.0,
+      "total_speedup": 1.0,
+      "vs_dense": 0.7509513405779404
+    },
+    "current": {
+      "generation": 11.325196038000286,
+      "trials": [
+        11.325649378821254,
+        11.324742697179317
+      ],
+      "vae": 4.300390135496855,
+      "total": 15.62558617349714,
+      "stages": {
+        "attention": {
+          "milliseconds": 1851.1964069008827,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 877.508620262146,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 447.0190111398697,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 4047.809516429901,
+          "calls": 812
+        }
+      },
+      "legacy_components": "rope,attention",
+      "generation_speedup": 1.1256859110372008,
+      "total_speedup": 1.091847791587819,
+      "vs_dense": 0.8199245627999364
+    },
+    "dense": {
+      "generation": 8.507488653995097,
+      "trials": [
+        8.497643149457872,
+        8.517334158532321
+      ],
+      "vae": 4.304313257802278,
+      "total": 12.811801911797374,
+      "stages": {
+        "attention": {
+          "milliseconds": 3561.535528063774,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 821.3114819526672,
+          "calls": 261
+        }
+      },
+      "legacy_components": "rope",
+      "generation_speedup": 1.498516676096245,
+      "total_speedup": 1.331644203778089,
+      "vs_dense": 1.0
+    }
+  },
+  "error_vs_previous": {
+    "latent_equal": false,
+    "latent_nmse": 0.30102160573005676,
+    "rgb_equal": false,
+    "rgb_mae_255": 13.434152649571656,
+    "psnr": 17.32991606558995,
+    "ssim": 0.6838870655745268,
+    "lpips": 0.23327281111851333,
+    "window": [
+      21,
+      101
+    ]
+  },
+  "authorization": "\u7cbe\u7b97\u548c\u8865\u507f\u7528\u65e7\u7684\u5feb\u5b9e\u73b0\u3002",
+  "default_attention": "prior_fast",
+  "scope": "Only exact and compensation change; current Risk, summary weights, Reader and Full_Pset preserved; A-only/split/rope shared; PAGE32 and lazy off."
+}

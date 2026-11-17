@@ -1,0 +1,33 @@
+Current video baseline (user selected prior fast exact + compensation)
+
+Full-coverage C_s17 + Risk + Full_Pset_s17; Page64/Q64/R4;
+full 128-d V mean + rank8 detail; M16/B16; 10% exact; 16x32 swap + no-op.
+Exact/tail: prior direct page-LUT kernel + complete V mean/rank8 tail + base2 LSE merge.
+Keep current Risk/summary/Reader; do not enable legacy Risk or summary.
+Reader: A-only layout + scalar/vector split; positive prefix/suffix exclusion scan; PAGE32 and lazy fallback disabled.
+RoPE: validated bitwise-equal prior fused implementation.
+
+Run a short video (fresh output path required):
+CUDA_VISIBLE_DEVICES=3 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.video_runtime_v1.benchmark_hotspots \
+  --mode stream --chunks 9 --tile-batch 72 --stream-warps 8 \
+  --bf16-qk --split-summary --moment-scores --late-reader \
+  --blocked-scores --packed-scores --history-pages 360 \
+  --reader-layout --reader-split --scan-exclude --projected-risk --cached-logmass --legacy-components rope,attention \
+  --reader-checkpoint artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt \
+  --local-assets /tmp/streaming_sparse-0/runtime --output <fresh-output>
+
+VideoRuntime legacy_components=None now selects attention.
+benchmark_hotspots --legacy-components defaults to attention.
+Explicit strings override component selection, including '' for the prior control.
+For repeated comparison use run_fast_attention_baseline (fresh artifact root required).
+Only 9 chunks/105 frames, 768x512, 360 history pages by default in this acceptance.
+Previous experiment artifacts retain their original configurations and numerical meaning.
+
+Scan acceptance: artifacts/video_runtime_v1/exclude_scan_video_v1/REPORT.zh.md
+Latent/RGB bitwise-equal short video; generic experiment switch stays opt-in.
+
+Risk acceptance: artifacts/video_runtime_v1/risk_projected_video_v1/REPORT.zh.md
+Preserve FP32 SGEMM projection; fuse Risk features/M16 reduction. Short latent/RGB bitwise equal.
+
+Log-mass acceptance: artifacts/video_runtime_v1/logmass_video_v1/MODULE_DISTANCE.zh.md
+Cache FP64 R4 local mass once, then normalize across pages; short latent/RGB bitwise equal.

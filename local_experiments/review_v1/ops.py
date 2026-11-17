@@ -42,7 +42,7 @@ def deployed(x): return x.to(torch.bfloat16).float()
 
 class SummaryOps:
     @staticmethod
-    def build(model, k, v, cheap=False):
+    def build(model, k, v, cheap=False, haar_basis=None):
         # Raw KV is already rounded by the cache; statistics use precisely that state.
         k=deployed(k);v=deployed(v);h,p,t,d=k.shape
         assert (t,d)==(64,128)
@@ -59,9 +59,10 @@ class SummaryOps:
         pk=(a[...,None]*kg).sum(3);pv=(a[...,None]*vg).sum(3)
         pk=deployed(pk-pk.mean(2,keepdim=True)+k.mean(2,keepdim=True))
         mu=deployed(v.mean(2));basis=deployed(model.basis)
+        ha=haar(k) if haar_basis is None else haar_basis
         code=torch.einsum('hprd,hdk->hprk',pv,basis)
-        detail=deployed(torch.einsum('ar,hprk->hpak',haar(k),code)/4)
-        reconstructed=mu[:,:,None]+torch.einsum('ar,hpak,hdk->hprd',haar(k),detail,basis)
+        detail=deployed(torch.einsum('ar,hprk->hpak',ha,code)/4)
+        reconstructed=mu[:,:,None]+torch.einsum('ar,hpak,hdk->hprd',ha,detail,basis)
         # Slots 0:8 D; 8 bK; 9 bV; 10 sV; slot11 stores page scalars:
         # rep0 bV0, rep1 Bp, reps2/3 reserved=0. No hidden auxiliary cache.
         km=kg.mean(3);vm=vg.mean(3)
@@ -76,14 +77,14 @@ class SummaryOps:
 
 class RouteOps:
     @staticmethod
-    def features(q, summary, valid=None, block=16):
+    def features(q, summary, valid=None, block=16, check_valid=True):
         """Two QK passes; output H,Q,P,4 scalar features, no conditional V vectors.
         Training/calibration reference retains these 4 features. Inference can
         contract theta blockwise; a fused production implementation is deferred.
         """
         h,n,d=q.shape;p=summary.keys.shape[1];q=deployed(q)
         if valid is None: valid=torch.ones(h,p,device=q.device,dtype=torch.bool)
-        assert valid.any(-1).all()
+        if check_valid: assert valid.any(-1).all()
         logz=q.new_full((h,n),-torch.inf)
         for a in range(0,p,block):
             keys=summary.keys[:,a:a+block].float()
@@ -110,14 +111,14 @@ class RouteOps:
         return torch.cat(features,2),logz
 
     @staticmethod
-    def select(scores, own, config, threshold=None, valid=None):
+    def select(scores, own, config, threshold=None, valid=None, check_valid=True):
         """Device counts and fixed capacity. Padding -1 MUST NOT be read.
         own H,T (one protected current page); scores H,T,P.
         """
         h,t,p=scores.shape
         if valid is None:valid=torch.ones_like(scores,dtype=torch.bool)
         valid=valid.expand_as(scores)
-        assert valid.gather(-1,own[...,None]).all()
+        if check_valid: assert valid.gather(-1,own[...,None]).all()
         cap=min(config.id_capacity,math.ceil(config.max_fraction*p))
         ranked=scores.masked_fill(~valid,-torch.inf).scatter(-1,own[...,None],torch.inf)
         vals,order=ranked.topk(min(config.id_capacity,p),dim=-1)

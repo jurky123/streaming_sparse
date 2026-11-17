@@ -1,0 +1,16 @@
+{
+  "status": "complete_user_selected_baseline",
+  "authorization": "User: \u7cbe\u7b97\u548c\u8865\u507f\u7528\u65e7\u7684\u5feb\u5b9e\u73b0\u3002",
+  "legacy_components": "rope,attention",
+  "legacy_risk": false,
+  "legacy_summary": false,
+  "lazy": false,
+  "page32": false,
+  "default_attention": "prior_fast",
+  "reference": "A-only split + rope, previous stream attention",
+  "reference_matches_prior_split": true,
+  "generation_speedup": 1.1256859110372008,
+  "total_speedup": 1.091847791587819,
+  "vs_dense": 0.8199245627999364,
+  "route_capture_validated": true
+}

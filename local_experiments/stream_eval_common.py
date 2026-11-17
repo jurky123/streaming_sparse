@@ -6,7 +6,7 @@ import torch
 from .learned_cache.io import atomic,digest,disk_guard
 from .gap_gpu_processes import inventory
 REPO=Path(__file__).resolve().parents[1]
-ROOT=REPO/'artifacts/stream_methods_20261102'
+ROOT=Path(os.environ.get('STREAM_EVAL_ROOT',str(REPO/'artifacts/stream_methods_20261102')))
 
 def native_vae():
     path=REPO/'wan/modules/vae.py';spec=importlib.util.spec_from_file_location('stream_eval_native_vae',path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
@@ -28,13 +28,23 @@ def decode(vae,z,limit=480):
     assert count==limit
     return frames
 
+def identify_gpu_process():
+    """Map container process to NVIDIA host PID using exclusive context creation."""
+    before=[r for ps in inventory(os.environ['CUDA_VISIBLE_DEVICES']).values() for r in ps]
+    if before:raise RuntimeError(f'GPU must be idle before worker CUDA initialization: {before}')
+    probe=torch.empty(1,device='cuda');torch.cuda.synchronize()
+    after=[r for ps in inventory(os.environ['CUDA_VISIBLE_DEVICES']).values() for r in ps]
+    if len(after)!=1:raise RuntimeError(f'Cannot identify unique newly created CUDA context: {after}')
+    os.environ['STREAM_HOST_PID']=str(after[0]['pid'])
+    return dict(container_pid=os.getpid(),host_pid=after[0]['pid'],before=before,after=after)
+
 class Watch:
     def __init__(self):self.rows=[];self.stop=threading.Event()
     def sample(self):
         try:
             rows=[p for ps in inventory(os.environ['CUDA_VISIBLE_DEVICES']).values() for p in ps]
             # The identified parent holds idle VRAM only; no kernels run in it during subprocess execution.
-            allowed={os.getpid(),int(os.environ['STREAM_RESERVATION_PID'])}
+            allowed={int(os.environ['STREAM_HOST_PID'])}
             self.rows.append(dict(time=time.time(),contexts=rows,peers=[r for r in rows if r['pid'] not in allowed]))
         except Exception as e:self.rows.append(dict(time=time.time(),error=repr(e)))
     def __enter__(self):
@@ -60,8 +70,15 @@ def quality(out,method,frames,vae):
     from .high_sparse_experiment import prefix_quality
     os.environ['TORCH_HOME']=str(REPO/'artifacts/rollout_acceptance_20261030/torch_cache')
     metric=lpips.LPIPS(net='alex').eval().requires_grad_(False)
-    reference=torch.load(out.parent/'dense/latents.pt',map_location='cpu',weights_only=True)[:,:27].cuda()
-    ref=decode(vae,reference,105);q=prefix_quality(frames,ref,metric)
+    reference=torch.load(out.parent/'dense/latents.pt',map_location='cpu',weights_only=True).cuda()
+    ref=decode(vae,reference,480);q=prefix_quality(frames,ref,metric)
+    predicted=np.concatenate(frames);baseline=np.concatenate(ref)
+    q['windows']={}
+    for label,start,stop in [('early',21,101),('middle',200,280),('late',400,480)]:
+        aa=np.concatenate((predicted[:21],predicted[start:stop]));bb=np.concatenate((baseline[:21],baseline[start:stop]))
+        values=prefix_quality([aa],[bb],metric)
+        q['windows'][label]={k:values[k] for k in ('lpips','ssim','psnr')}
+        q['windows'][label]['range']=[start,stop]
     a=np.concatenate(frames)[:101].astype(np.float32)/255
     brightness=a.mean((1,2))@np.array([.2126,.7152,.0722]);motion=np.abs(a[22:101:4,::4,::4]-a[21:100:4,::4,::4]).mean()
     q.update(brightness_step_pp=float(np.abs(np.diff(brightness[21:])).mean()*100),motion_l1=float(motion),interpretation='LPIPS/SSIM/PSNR measure closeness to same-input dense, not absolute perceptual quality; temporal proxies alone cannot establish better quality.')
@@ -70,7 +87,7 @@ def quality(out,method,frames,vae):
 @torch.no_grad()
 def benchmark(method,out,generate,metadata,after_warm=None,storage=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True);vae=native_vae()
-    disk_guard(ROOT,50,1)
+    disk_guard(ROOT,50,20)
     atomic(out/'status.json',dict(status='warming',method=method))
     z=generate();assert torch.isfinite(z).all();decode(vae,z);del z
     if after_warm:after_warm()
@@ -85,14 +102,24 @@ def benchmark(method,out,generate,metadata,after_warm=None,storage=None):
             z=generate();torch.cuda.synchronize();gen=time.perf_counter()-start
             frames=decode(vae,z);torch.cuda.synchronize();total=time.perf_counter()-start
         atomic(out/f'rep{rep}.peers.json',dict(reservation_pid=int(os.environ['STREAM_RESERVATION_PID']),scope='all compute and graphics contexts; parent VRAM reservoir is idle',samples=watch.rows));watch.validate()
+        peak_allocated=torch.cuda.max_memory_allocated()
         cpu=z.cpu();assert cpu.shape==(1,123,16,64,96) and torch.isfinite(cpu).all()
-        if existing.exists():assert torch.equal(cpu,torch.load(existing,weights_only=True)), 'Repeated video differs; inspect state reset'
+        if existing.exists():
+            previous=torch.load(existing,weights_only=True)
+            same=torch.equal(cpu,previous)
+            if method=='svgear':
+                delta=(cpu.float()-previous.float())
+                atomic(out/f'rep{rep}.repeatability.json',dict(bitwise_equal=same,max_abs=float(delta.abs().max()),nmse=float(delta.square().mean()/previous.float().square().mean().clamp_min(1e-12)),note='Official GPU clustering can vary through floating-point reductions; quality.json evaluates repetition zero.'))
+                if not same:
+                    atomic(out/f'rep{rep}.latents.pt',cpu,True)
+                    atomic(out/f'rep{rep}.quality.json',quality(out,method,frames,vae))
+            else:assert same, 'Repeated video differs; inspect state reset'
         else:atomic(existing,cpu,True)
-        row=dict(rep=rep,generation_seconds=gen,decode_seconds=total-gen,total_generation_vae_seconds=total,peak_allocated_bytes=torch.cuda.max_memory_allocated(),storage=storage() if storage else metadata.get('storage'),physical_gpu=os.environ['CUDA_VISIBLE_DEVICES'],metadata=metadata)
+        row=dict(rep=rep,generation_seconds=gen,decode_seconds=total-gen,total_generation_vae_seconds=total,peak_allocated_bytes=peak_allocated,storage=storage() if storage else metadata.get('storage'),physical_gpu=os.environ['CUDA_VISIBLE_DEVICES'],metadata=metadata)
         atomic(dest,row);reps.append(row);print(json.dumps(dict(method=method,rep=rep,total=total,generation=gen)),flush=True)
         if not (out/'video.mp4').exists():save_video(out/'video.mp4',frames)
         if not (out/'quality.json').exists():atomic(out/'quality.json',quality(out,method,frames,vae))
-        del z,frames,cpu;gc.collect();torch.cuda.empty_cache();disk_guard(ROOT,50,1)
+        del z,frames,cpu;gc.collect();torch.cuda.empty_cache();disk_guard(ROOT,50,20)
     if not (out/'quality.json').exists():
         z=torch.load(existing,weights_only=True).cuda();frames=decode(vae,z)
         atomic(out/'quality.json',quality(out,method,frames,vae));del z,frames

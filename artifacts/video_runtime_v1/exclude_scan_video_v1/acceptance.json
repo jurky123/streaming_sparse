@@ -1,0 +1,115 @@
+{
+  "rows": {
+    "baseline": {
+      "generation": 11.309940837323666,
+      "trials": [
+        11.308907036669552,
+        11.310974637977779
+      ],
+      "vae": 4.3170431214384735,
+      "total": 15.626983958762139,
+      "stages": {
+        "attention": {
+          "milliseconds": 1850.6342344880104,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 875.0591957569122,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 442.556414604187,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 4046.562273979187,
+          "calls": 812
+        }
+      }
+    },
+    "scan": {
+      "generation": 11.03294331440702,
+      "trials": [
+        11.029965886846185,
+        11.035920741967857
+      ],
+      "vae": 4.316709405742586,
+      "total": 15.349652720149606,
+      "stages": {
+        "attention": {
+          "milliseconds": 1850.7775920033455,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 876.9443910121918,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 445.74003344774246,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 3756.081163406372,
+          "calls": 812
+        }
+      }
+    }
+  },
+  "errors": {
+    "baseline_matches_current": true,
+    "latent_equal": true,
+    "latent_nmse": 0.0,
+    "rgb_equal": true,
+    "rgb_mae_255": 0.0,
+    "psnr": 100.0,
+    "ssim": 0.9999995723366737,
+    "lpips": 0.0,
+    "window": [
+      21,
+      101
+    ]
+  },
+  "modules": {
+    "216": {
+      "before": 2.7839839458465576,
+      "after": 2.387455940246582,
+      "speedup": 1.1660880935708582,
+      "max_abs": 2.7755575615628914e-16,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "288": {
+      "before": 3.231055974960327,
+      "after": 2.8241759538650513,
+      "speedup": 1.1440703510482186,
+      "max_abs": 1.6653345369377348e-16,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "360": {
+      "before": 3.2802881002426147,
+      "after": 2.870368003845215,
+      "speedup": 1.1428109900362118,
+      "max_abs": 4.163336342344337e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "432": {
+      "before": 3.713152050971985,
+      "after": 3.302783966064453,
+      "speedup": 1.1242491453040813,
+      "max_abs": 1.3877787807814457e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    }
+  },
+  "route_ms": {
+    "before": 5.3045759201049805,
+    "after": 4.997439861297607
+  },
+  "generation_speedup": 1.0251064031621495,
+  "total_speedup": 1.018067590431442,
+  "status": "short_video_bitwise_pass",
+  "current_command_adds": "--scan-exclude",
+  "generic_reference_switch_default": false
+}

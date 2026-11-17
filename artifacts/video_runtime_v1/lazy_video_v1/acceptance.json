@@ -1,0 +1,135 @@
+{
+  "rows": {
+    "baseline": {
+      "generation": 12.749677557032555,
+      "total": 17.054659561719745,
+      "vae": 4.30498200468719,
+      "stages": {
+        "attention": {
+          "milliseconds": 3216.883720457554,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 895.6344447135925,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 495.5678679943085,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 4045.951964855194,
+          "calls": 812
+        }
+      },
+      "trials": [
+        12.748356905765831,
+        12.75099820829928
+      ]
+    },
+    "lazy": {
+      "generation": 12.236033125314862,
+      "total": 16.547960517928004,
+      "vae": 4.311927392613143,
+      "stages": {
+        "attention": {
+          "milliseconds": 3212.731398522854,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 896.3666017055511,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 497.0393654704094,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 3523.6792187690735,
+          "calls": 812
+        }
+      },
+      "trials": [
+        12.232964833267033,
+        12.23910141736269
+      ]
+    }
+  },
+  "errors": {
+    "latent_equal": false,
+    "latent_nmse": 0.02261378802359104,
+    "rgb_equal": false,
+    "psnr": 28.82484604227092,
+    "ssim": 0.9558925978839398,
+    "lpips": 0.03171830446444801,
+    "window": [
+      21,
+      101
+    ],
+    "rgb_mae_255": 2.0531040978810142
+  },
+  "modules": {
+    "kind_a_p360": {
+      "before": 3.559775948524475,
+      "after": 2.968735933303833,
+      "speedup": 1.1990881063520151,
+      "max_abs": 5.551115123125783e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a_p288": {
+      "before": 3.4512799978256226,
+      "after": 2.8594239950180054,
+      "speedup": 1.2069843450425024,
+      "max_abs": 1.1102230246251565e-16,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a_p216": {
+      "before": 2.9218560457229614,
+      "after": 2.3313920497894287,
+      "speedup": 1.2532667107562898,
+      "max_abs": 2.220446049250313e-16,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a_p432_split": {
+      "before": 4.06279993057251,
+      "after": 3.110975980758667,
+      "speedup": 1.3059567015948879,
+      "max_abs": 1.3877787807814457e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a": {
+      "before": 4.065776109695435,
+      "after": 3.4725440740585327,
+      "speedup": 1.1708349909994267,
+      "max_abs": 1.3877787807814457e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a_p216_split": {
+      "before": 2.926095962524414,
+      "after": 2.192479968070984,
+      "speedup": 1.3346055631691311,
+      "max_abs": 2.220446049250313e-16,
+      "actions_equal": true,
+      "noop_equal": true
+    },
+    "kind_a_p360_split": {
+      "before": 3.555216073989868,
+      "after": 2.68451189994812,
+      "speedup": 1.3243435702626518,
+      "max_abs": 5.551115123125783e-17,
+      "actions_equal": true,
+      "noop_equal": true
+    }
+  },
+  "route_ms": {
+    "before": 5.287936210632324,
+    "after": 4.704192161560059
+  },
+  "generation_speedup": 1.0419780190570935,
+  "total_speedup": 1.030620029776043
+}

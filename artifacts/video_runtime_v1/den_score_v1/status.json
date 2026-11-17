@@ -1,0 +1,23 @@
+{
+  "status": "complete_screening_no_promotion",
+  "experiments": 20,
+  "current_baseline": "fast_attention_baseline_v1/current",
+  "default_changed": false,
+  "stability_passed": true,
+  "e49_cases": 14,
+  "first_den_bitwise_cases": [
+    {
+      "case": "edges",
+      "equal": true,
+      "max_abs": 0.0,
+      "nan_equal": true
+    },
+    {
+      "case": "random",
+      "equal": true,
+      "max_abs": 0.0,
+      "nan_equal": true
+    }
+  ],
+  "no_video_reason": "No robust isolated gain; full fusion ~1% at best, precomputation ~0.2%; compiler already shares first denominator step."
+}

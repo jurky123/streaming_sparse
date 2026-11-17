@@ -1,0 +1,50 @@
+[
+  {
+    "module": "\u65e7\u5feb\u7cbe\u7b97\uff0b\u8865\u507f",
+    "ms": 1.2954400181770325,
+    "floor_ms": 0.7710440531604944,
+    "work": "155.855 GFLOPs\u4e3b\u8981BF16\u53d1\u5c04\u91cf\uff1b\u6cbf\u7528\u76f8\u540c\u5b9e\u73b0\u9694\u79bb\u503c",
+    "next": "\u5df2\u5207\u6362\u5feb\u5b9e\u73b0\uff0c\u4f18\u5148\u7ea7\u4f4e\u4e8e\u8def\u7531",
+    "distance": 1.6801115485776064
+  },
+  {
+    "module": "Reader\u6807\u91cf\uff0b\u5411\u91cf",
+    "ms": 1.941,
+    "floor_ms": 0.44712000992149115,
+    "work": "\u5de5\u4f5c\u533a\u8bfb\u5199566.23MB\uff0c\u4e0d\u542b\u7cfb\u6570/\u975e\u7ebf\u6027",
+    "next": "\u7cfb\u6570\u91cd\u590d\u8bfb\u53d6\u3001\u5f52\u7ea6\u7ec4\u7ec7",
+    "distance": 4.341116382469253
+  },
+  {
+    "module": "Risk\u542bsoftmax/U\u6295\u5f71",
+    "ms": 0.8748400000000001,
+    "floor_ms": 0.2263545050227549,
+    "work": "Z\u8bfb\u3001prob\u5199/\u8bfb\u6700\u4f4e286.65MB\uff0c\u4e0d\u542bU/\u975e\u7ebf\u6027",
+    "next": "\u5171\u4eab\u6982\u7387/\u7279\u5f81\uff0c\u907f\u514d\u6539\u53d8\u8def\u7531\u8fb9\u754c",
+    "distance": 3.8649109277151537
+  },
+  {
+    "module": "512\u52a8\u4f5c\u8bc4\u5206",
+    "ms": 0.33610399999999996,
+    "floor_ms": 0.08942400198429823,
+    "work": "den/dot\u6700\u4f4e113.25MB\u8f93\u5165",
+    "next": "\u672c\u8f6e\u4ee5\u524d\u878d\u5408\u672a\u4ea7\u751f\u660e\u663e\u6536\u76ca",
+    "distance": 3.758543484321086
+  },
+  {
+    "module": "\u6392\u9664\u5019\u9009\u626b\u63cf",
+    "ms": 0.29303199999999996,
+    "floor_ms": 0.1425195031624753,
+    "work": "\u552f\u4e00\u903b\u8f91\u8f93\u5165/\u8f93\u51fa180.49MB\uff1b\u672a\u8ba1\u91cd\u590d\u52a0\u8f7d/\u626b\u63cf\u7b97\u672f",
+    "next": "\u672c\u8f6e\u5df2\u7701\u6389\u6743\u91cd\u77e9\u9635\uff1b\u8fdb\u4e00\u6b65\u4f18\u5316\u4f18\u5148\u7ea7\u4e0b\u964d",
+    "distance": 2.056083507854621
+  },
+  {
+    "module": "\u539f\u6392\u9664\u5019\u9009BMM\uff08\u5386\u53f2\u5bf9\u7167\uff09",
+    "ms": 0.371787,
+    "floor_ms": 0.24591600545682013,
+    "work": "0.566GFLOPs\uff1b\u903b\u8f91payload311.43MB",
+    "next": "\u5df2\u7531\u626b\u63cf\u66ff\u4ee3\uff1b\u539f9\u500d\u7b97\u672f\u8ddd\u79bb\u4fee\u6b63\u7ea61.51\u500d",
+    "distance": 1.5118454746748125
+  }
+]

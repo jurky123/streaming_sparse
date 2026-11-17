@@ -1,0 +1,17 @@
+{
+  "state": {
+    "equal": false,
+    "max_abs": 9.5367431640625e-07,
+    "different": 1170018
+  },
+  "logs": {
+    "equal": true,
+    "max_abs": 0.0,
+    "different": 0
+  },
+  "candidates": {
+    "equal": true,
+    "max_abs": 0.0,
+    "different": 0
+  }
+}

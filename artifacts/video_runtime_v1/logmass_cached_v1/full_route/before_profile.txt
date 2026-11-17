@@ -1,0 +1,41 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                        streaming_sparse::reader_reduce         2.51%     326.857us         6.37%     828.988us     828.988us       1.931ms        38.82%       1.936ms       1.936ms             1  
+                                          vector_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.447ms        29.08%       1.447ms       1.447ms             1  
+             triton_red_fused__to_copy_logsumexp_sub_19         0.09%      12.002us         0.14%      18.344us      18.344us     560.505us        11.27%     560.505us     560.505us             1  
+             triton_red_fused__to_copy_logsumexp_sub_19         0.00%       0.000us         0.00%       0.000us       0.000us     560.505us        11.27%     560.505us     560.505us             1  
+                                          scalar_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     484.574us         9.74%     484.574us     484.574us             1  
+                        streaming_sparse::moment_reduce         1.86%     242.519us         2.20%     286.321us     286.321us     369.511us         7.43%     369.511us     369.511us             1  
+                                           scalar_block         0.00%       0.000us         0.00%       0.000us       0.000us     336.425us         6.76%     336.425us     336.425us             1  
+                                                 kernel         0.00%       0.000us         0.00%       0.000us       0.000us     327.146us         6.58%     327.146us     163.573us             2  
+                          triton_poi_fused_logaddexp_27         0.10%      12.403us         0.14%      18.835us      18.835us     324.170us         6.52%     324.170us     324.170us             1  
+                          triton_poi_fused_logaddexp_27         0.00%       0.000us         0.00%       0.000us       0.000us     324.170us         6.52%     324.170us     324.170us             1  
+                         streaming_sparse::exclude_scan         1.96%     255.423us         2.32%     301.769us     150.884us     295.020us         5.93%     295.020us     147.510us             2  
+                                            scan_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     295.020us         5.93%     295.020us     147.510us             2  
+triton_red_fused__softmax__to_copy_add_div_linalg_ve...         0.15%      18.965us         0.23%      30.467us      30.467us     228.944us         4.60%     228.944us     228.944us             1  
+triton_red_fused__softmax__to_copy_add_div_linalg_ve...         0.00%       0.000us         0.00%       0.000us       0.000us     228.944us         4.60%     228.944us     228.944us             1  
+                                              aten::bmm         1.19%     154.857us         1.37%     178.090us      89.045us     225.488us         4.53%     225.488us     112.744us             2  
+          triton_per_fused_add_mul_pow_stack_sub_sum_33         0.12%      16.269us         0.17%      22.431us      22.431us     209.777us         4.22%     209.777us     209.777us             1  
+          triton_per_fused_add_mul_pow_stack_sub_sum_33         0.00%       0.000us         0.00%       0.000us       0.000us     209.777us         4.22%     209.777us     209.777us             1  
+                       streaming_sparse::risk_projected         1.35%     175.556us         1.49%     193.429us     193.429us     172.020us         3.46%     172.020us     172.020us             1  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_3...         0.00%       0.000us         0.00%       0.000us       0.000us     158.101us         3.18%     158.101us     158.101us             1  
+                      streaming_sparse::bf16_inputs_bmm         2.81%     366.149us         4.43%     576.880us     576.880us     155.126us         3.12%     155.126us     155.126us             1  
+                                             aten::topk         0.55%      71.833us         0.76%      98.634us      49.317us      96.026us         1.93%      96.026us      48.013us             2  
+                                             aten::sort         0.50%      65.621us         1.92%     250.274us     125.137us      72.124us         1.45%     108.891us      54.445us             2  
+void at::native::radixSortKVInPlace<2, -1, 32, 32, f...         0.00%       0.000us         0.00%       0.000us       0.000us      72.124us         1.45%      72.124us      36.062us             2  
+void at::native::sbtopk::gatherTopK<float, unsigned ...         0.00%       0.000us         0.00%       0.000us       0.000us      70.044us         1.41%      70.044us      35.022us             2  
+                                ampere_sgemm_128x128_tn         0.00%       0.000us         0.00%       0.000us       0.000us      67.387us         1.35%      67.387us      67.387us             1  
+                   triton_poi_fused_add_exclude_scan_25         0.06%       7.946us         0.10%      13.626us      13.626us      59.964us         1.21%      59.964us      59.964us             1  
+                   triton_poi_fused_add_exclude_scan_25         0.00%       0.000us         0.00%       0.000us       0.000us      59.964us         1.21%      59.964us      59.964us             1  
+                                            aten::copy_         0.41%      53.006us         1.01%     131.322us      18.760us      38.143us         0.77%      38.143us       5.449us             7  
+                                         fallback_block         0.00%       0.000us         0.00%       0.000us       0.000us      33.086us         0.67%      33.086us      33.086us             1  
+void at::native::radixSortKVInPlace<2, -1, 32, 4, fl...         0.00%       0.000us         0.00%       0.000us       0.000us      25.982us         0.52%      25.982us      12.991us             2  
+                         Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us      24.544us         0.49%      24.544us       6.136us             4  
+                   triton_poi_fused_add_exclude_scan_24         0.09%      12.262us         0.16%      20.949us      20.949us      23.390us         0.47%      23.390us      23.390us             1  
+                   triton_poi_fused_add_exclude_scan_24         0.00%       0.000us         0.00%       0.000us       0.000us      23.390us         0.47%      23.390us      23.390us             1  
+                            triton_red_fused_mul_sum_30         0.11%      14.747us         0.16%      20.889us      20.889us      22.974us         0.46%      22.974us      22.974us             1  
+                            triton_red_fused_mul_sum_30         0.00%       0.000us         0.00%       0.000us       0.000us      22.974us         0.46%      22.974us      22.974us             1  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 13.017ms
+Self CUDA time total: 4.975ms

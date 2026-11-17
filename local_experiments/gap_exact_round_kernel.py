@@ -14,6 +14,7 @@ def _attn_fwd(
     D: tl.constexpr,
     BLOCK_M: tl.constexpr,
     BLOCK_N: tl.constexpr,
+    HIGH_PRECISION_AV: tl.constexpr = False,
 ):
     tl.static_assert(BLOCK_M == 64)
     tl.static_assert(BLOCK_N == 64)
@@ -71,7 +72,12 @@ def _attn_fwd(
         l_ij = tl.sum(p, 1)
         alpha = tl.math.exp2(m_i - new_m)
         o_s = o_s * alpha[:, None]
-        o_s += tl.dot(p.to(v.dtype), v)
+        if HIGH_PRECISION_AV:
+            ph=p.to(v.dtype)
+            pl=(p-ph.to(tl.float32)).to(v.dtype)
+            o_s += tl.dot(ph,v)+tl.dot(pl,v)
+        else:
+            o_s += tl.dot(p.to(v.dtype), v)
 
         l_i = l_i * alpha + l_ij
         m_i = new_m

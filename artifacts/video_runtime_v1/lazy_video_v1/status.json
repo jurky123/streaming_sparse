@@ -1,0 +1,7 @@
+{
+  "status": "completed_short_video_candidate_with_drift",
+  "baseline_matches_previous_split": true,
+  "default_changed": false,
+  "profile_and_cost_table": "MODULE_DISTANCE.zh.md",
+  "next": "Reader vector coefficient reuse / stable fused routing"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "case": "edges",
+    "equal": true,
+    "max_abs": 0.0,
+    "nan_equal": true
+  },
+  {
+    "case": "random",
+    "equal": true,
+    "max_abs": 0.0,
+    "nan_equal": true
+  }
+]
