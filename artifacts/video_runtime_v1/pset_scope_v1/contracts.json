@@ -1,0 +1,44 @@
+[
+  {
+    "heads": [
+      0
+    ],
+    "inactive_mask_equal": true,
+    "inactive_ids_equal": true,
+    "active_mask_equal_full": true,
+    "scored": 72,
+    "expected": 72
+  },
+  {
+    "heads": [
+      7
+    ],
+    "inactive_mask_equal": true,
+    "inactive_ids_equal": true,
+    "active_mask_equal_full": true,
+    "scored": 72,
+    "expected": 72
+  },
+  {
+    "heads": [
+      11
+    ],
+    "inactive_mask_equal": true,
+    "inactive_ids_equal": true,
+    "active_mask_equal_full": true,
+    "scored": 72,
+    "expected": 72
+  },
+  {
+    "heads": [
+      0,
+      3,
+      6
+    ],
+    "inactive_mask_equal": true,
+    "inactive_ids_equal": true,
+    "active_mask_equal_full": true,
+    "scored": 216,
+    "expected": 216
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "policy": {
+    "name": "top_layers",
+    "layers": [
+      5,
+      14,
+      27,
+      3,
+      8,
+      17,
+      4
+    ],
+    "seed": 701
+  },
+  "seed": 701,
+  "gpu": "6",
+  "seconds": [
+    8.351118738763034,
+    8.347976082004607,
+    8.344724474474788
+  ],
+  "median_seconds": 8.347976082004607,
+  "counters": [
+    168354,
+    169344,
+    0,
+    223776
+  ],
+  "scope": "same GPU per seed, one full warmup then 3 repetitions, generation only excluding IO/VAE"
+}

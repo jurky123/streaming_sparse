@@ -1,0 +1,143 @@
+{
+  "cases": [
+    "kitchen_cook",
+    "forest_run",
+    "portrait_turn",
+    "reef_fish",
+    "tennis_match"
+  ],
+  "seeds": [
+    703,
+    704,
+    705,
+    706
+  ],
+  "methods": [
+    "dense",
+    "original",
+    "search_mean",
+    "search_balanced",
+    "top_layers",
+    "top_heads",
+    "top_steps"
+  ],
+  "policies": {
+    "original": {
+      "name": "original",
+      "layers": [
+        5,
+        14,
+        27,
+        3,
+        8,
+        17,
+        4
+      ],
+      "heads": [
+        4,
+        3,
+        9
+      ],
+      "steps": [
+        0
+      ],
+      "static_route": true
+    },
+    "search_mean": {
+      "name": "search_mean",
+      "layers": [
+        3,
+        4,
+        8,
+        14,
+        17,
+        25,
+        27
+      ],
+      "heads": [
+        3,
+        4,
+        9
+      ],
+      "steps": [
+        0
+      ],
+      "static_route": true
+    },
+    "search_balanced": {
+      "name": "search_balanced",
+      "layers": [
+        3,
+        8,
+        14,
+        17,
+        25,
+        26,
+        27
+      ],
+      "heads": [
+        3,
+        4,
+        9
+      ],
+      "steps": [
+        0
+      ],
+      "static_route": true
+    },
+    "top_layers": {
+      "name": "top_layers",
+      "layers": [
+        5,
+        14,
+        27,
+        3,
+        8,
+        17,
+        4
+      ],
+      "static_route": true
+    },
+    "top_heads": {
+      "name": "top_heads",
+      "heads": [
+        4,
+        3,
+        9
+      ],
+      "static_route": true
+    },
+    "top_steps": {
+      "name": "top_steps",
+      "steps": [
+        0
+      ],
+      "static_route": true
+    }
+  },
+  "policy_source_sha256": {
+    "original": "0c368556a85bcceaaf1911d5c93053044cea8f6fd7bf6826fb000ac1fd59503e",
+    "search_mean": "425298ee08d1098734e0f8e69206a0d86915954bb9b0d5813849205577e79fce",
+    "search_balanced": "b0776a2d7fcd0ca3fae3fba9fa11bd6316f2d97ff46cdff30650220074576041",
+    "top_layers": "3952056bbe621338b53530362be7c198dcefcadbbebcf2af867e42502c766c89",
+    "top_heads": "b1a6375d60cf4369b09fefd708b5b3e34b0a2cc0254fa27501c27d86605482f7",
+    "top_steps": "c07a4b7f7571a359123ef6bba6d25a81b68bf52650f38bb341423b2f5411ed00"
+  },
+  "chunks": 9,
+  "frames": 105,
+  "resolution": [
+    512,
+    768
+  ],
+  "fps": 16,
+  "history_pages": 360,
+  "tile_batch": 72,
+  "static_route": true,
+  "search_prompt": "city_walk",
+  "search_seeds": [
+    701,
+    702
+  ],
+  "frozen_before_validation": true,
+  "note": "prompts and seeds did not participate in this policy search; not a claim of being unseen by model training; no policy retuning after validation"
+}

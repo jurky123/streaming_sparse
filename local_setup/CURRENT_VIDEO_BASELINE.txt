@@ -1,3 +1,11 @@
+Retained user-selected tiers: base / intersection / step.
+Use python -m local_experiments.video_runtime_v1.accepted_tiers --tier NAME --output FRESH_PATH --local-assets /tmp/streaming_sparse-0/runtime
+base: C+Risk, Full_Pset off.
+intersection: layers3,4,5,8,14,17,27; heads3,4,9; noisy step0.
+step: all applicable layers/heads, noisy step0.
+All tiers use static route compilation and current accepted kernels.
+The full-on command below remains a research comparison, not a retained tier.
+
 Current video baseline (user selected prior fast exact + compensation)
 
 Full-coverage C_s17 + Risk + Full_Pset_s17; Page64/Q64/R4;
@@ -12,7 +20,7 @@ CUDA_VISIBLE_DEVICES=3 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bi
   --mode stream --chunks 9 --tile-batch 72 --stream-warps 8 \
   --bf16-qk --split-summary --moment-scores --late-reader \
   --blocked-scores --packed-scores --history-pages 360 \
-  --reader-layout --reader-split --scan-exclude --projected-risk --cached-logmass --reader-output32 --coeff-bf16 --endpoint-den --cached-endpoints --scan-fp32 --legacy-components rope,attention \
+  --reader-layout --reader-split --scan-exclude --projected-risk --cached-logmass --reader-output32 --coeff-bf16 --endpoint-den --cached-endpoints --scan-fp32 --route-m16 --full-pset --pset-steps all --legacy-components rope,attention \
   --reader-checkpoint artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt \
   --local-assets /tmp/streaming_sparse-0/runtime --output <fresh-output>
 
@@ -41,3 +49,17 @@ FP32 scan consumer acceptance: artifacts/video_runtime_v1/scan_fp32_video_v1/MOD
 Deployment defaults enable scan_fp32; full Reader WORK remains unchanged (P2 rejected).
 Batch now inherits tile72/history360 and forwards reader-checkpoint/local-assets.
 Batch quality (frozen 9d4d33d): artifacts/video_runtime_v1/quality_batch_9d4d33d_v1/REPORT.zh.md
+
+Two tiers are independent of implementation mode:
+  Base: same stream command with --no-full-pset (no Reader/Phi/B load/cache).
+  Set correction: --full-pset --pset-steps all (default deployment).
+  Strategy experiment: --full-pset --pset-steps last (not an implementation speedup).
+M16 input is now deployed. G=2 vector is optional --reader-vector-g2, default off.
+Report: artifacts/video_runtime_v1/tiers_m16_v1/MODULE_DISTANCE.zh.md
+Only short city_walk_s701 acceptance this round; existing 84-video quality list unchanged.
+
+Optional ablation-selected scopes (not a new global default):
+  --full-pset --pset-policy artifacts/video_runtime_v1/pset_scope_v1/presets/top_layers.json
+Other presets: top_heads, top_steps, intersection, additive_quarter.
+Preset overrides pset_steps and forces static_route=True for task-order invariance.
+Report: artifacts/video_runtime_v1/pset_scope_v1/REPORT.zh.md

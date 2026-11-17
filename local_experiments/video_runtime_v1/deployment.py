@@ -4,14 +4,22 @@ from pathlib import Path
 import os
 from .weights import ROOT,load
 
-CURRENT=dict(mode='stream',model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True,scan_fp32=True)
+CURRENT=dict(mode='stream',full_pset=True,pset_steps='all',pset_policy=None,route_m16=True,reader_vector_g2=False,model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True,scan_fp32=True)
 
 def current(**overrides):return SimpleNamespace(**(CURRENT|overrides))
-def identity(a):return {k:getattr(a,k,v) for k,v in CURRENT.items() if k!='local_assets'}
+def identity(a):
+    result={k:getattr(a,k,v) for k,v in CURRENT.items() if k!='local_assets'}
+    if result['pset_policy']:
+        from ..learned_cache.io import digest
+        result['pset_policy_sha']=digest(Path(result['pset_policy']))
+        result['static_route']=True
+        result['pset_steps']='all'
+    return result
 def configure(a):
     from . import scores,reader_reduce,scores_moments,pipeline_graph,runtime
     scores.SCAN_EXCLUDE=a.scan_exclude
     reader_reduce.PAGE32=a.reader_page32;reader_reduce.SPLIT=a.reader_split;reader_reduce.LAYOUT=a.reader_layout or a.reader_split;reader_reduce.LAYOUT_KIND=a.reader_layout_kind
+    reader_reduce.VECTOR_GROUP=2 if getattr(a,'reader_vector_g2',False) else 1
     reader_reduce.WARPS=4;reader_reduce.SHARD=128;reader_reduce.AGG32=True;reader_reduce.PACKED=a.packed_scores;reader_reduce.MOMENTS=a.moment_scores
     reader_reduce.SCAN_FP32=getattr(a,'scan_fp32',False)
     reader_reduce.OUTPUT32=getattr(a,'reader_output32',False);reader_reduce.ENDPOINT_DEN=getattr(a,'endpoint_den',False)
@@ -31,7 +39,7 @@ def configure(a):
         backbone.protocol=local_protocol
 
 def load_weights(a):
-    return load(getattr(a,'model_seed',17),getattr(a,'checkpoint',CURRENT['checkpoint']),reader_checkpoint=a.reader_checkpoint or CURRENT['reader_checkpoint'])
+    return load(getattr(a,'model_seed',17),getattr(a,'checkpoint',CURRENT['checkpoint']),reader_checkpoint=a.reader_checkpoint or CURRENT['reader_checkpoint'],include_reader=getattr(a,'full_pset',True) and a.mode not in ('dense','dense_native'))
 
 def make_runtime(engine,model,reader,phi,B,a):
     from .runtime import VideoRuntime
@@ -40,4 +48,13 @@ def make_runtime(engine,model,reader,phi,B,a):
     tail=a.mode in ('tail','action','tensor','tensorfloat','compact','compact32','stream')
     action=a.mode in ('action','tensor','tensorfloat','compact','compact32','stream')
     tensor=a.mode in ('tensor','tensorfloat','compact','compact32','stream')
-    return VideoRuntime(engine,model,reader,phi,B,full_pset=a.mode!='dense',tile_batch=a.tile_batch,profile=getattr(a,'profile',False),validate=getattr(a,'validate',False),compile_route=route,compile_tail=tail,action_kernel=action,tensor_math=tensor,projection_float=a.mode=='tensorfloat',compact_reader=a.mode in ('compact','compact32','stream'),stream_attention=a.mode=='stream',stream_tail_mode=a.stream_tail_mode,stream_warps=a.stream_warps,bf16_qk=a.bf16_qk,split_summary=a.split_summary,fused_risk=a.fused_risk,static_route=a.static_route,config=Config(history_pages=a.history_pages),legacy_components=a.legacy_components,projected_risk=a.projected_risk,cached_logmass=a.cached_logmass,coeff_bf16=getattr(a,'coeff_bf16',False))
+    rt=VideoRuntime(engine,model,reader,phi,B,full_pset=getattr(a,'full_pset',True) and a.mode!='dense',pset_steps='all' if getattr(a,'pset_policy',None) else getattr(a,'pset_steps','all'),route_m16=getattr(a,'route_m16',False),tile_batch=a.tile_batch,profile=getattr(a,'profile',False),validate=getattr(a,'validate',False),compile_route=route,compile_tail=tail,action_kernel=action,tensor_math=tensor,projection_float=a.mode=='tensorfloat',compact_reader=a.mode in ('compact','compact32','stream'),stream_attention=a.mode=='stream',stream_tail_mode=a.stream_tail_mode,stream_warps=a.stream_warps,bf16_qk=a.bf16_qk,split_summary=a.split_summary,fused_risk=a.fused_risk,static_route=a.static_route or bool(getattr(a,'pset_policy',None)),config=Config(history_pages=a.history_pages),legacy_components=a.legacy_components,projected_risk=a.projected_risk,cached_logmass=a.cached_logmass,coeff_bf16=getattr(a,'coeff_bf16',False))
+    if getattr(a,'pset_policy',None):
+        import json
+        import torch
+        torch._dynamo.config.cache_size_limit=64
+        torch._dynamo.config.accumulated_cache_size_limit=512
+        policy=json.loads(Path(a.pset_policy).read_text())
+        if 'schedule' in policy:rt.set_pset_schedule(policy['schedule'])
+        else:rt.set_pset_scope(policy.get('layers'),policy.get('heads'),policy.get('steps'))
+    return rt

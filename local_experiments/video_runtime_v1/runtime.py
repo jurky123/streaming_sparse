@@ -40,7 +40,7 @@ def risk_from_logits(probes,z,summary,theta):
     return (f*theta[:,None,None,None]).sum(-1).mean(2)
 
 class VideoRuntime(StreamingRuntime):
-    def __init__(self,engine,model,reader,phi,B,*,full_pset=False,tile_batch=2,profile=False,config=Config(),validate=False,graph_batches=True,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,stream_attention=False,stream_tail_mode=4,stream_warps=4,bf16_qk=False,split_summary=False,fused_risk=False,static_route=False,legacy_components=None,projected_risk=False,cached_logmass=False,coeff_bf16=False):
+    def __init__(self,engine,model,reader,phi,B,*,full_pset=False,tile_batch=2,profile=False,config=Config(),validate=False,graph_batches=True,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,stream_attention=False,stream_tail_mode=4,stream_warps=4,bf16_qk=False,split_summary=False,fused_risk=False,static_route=False,legacy_components=None,projected_risk=False,cached_logmass=False,coeff_bf16=False,pset_steps='all',route_m16=False):
         if tile_batch<1 or 72%tile_batch:raise ValueError('tile_batch must divide 72')
         if config.probes!=16 or config.density!=.1:raise ValueError('Frozen configuration requires M16 / 10%')
         # The deployed default uses the prior direct-LUT exact and full-mean tail.
@@ -48,7 +48,7 @@ class VideoRuntime(StreamingRuntime):
         if legacy_components is None:legacy_components="attention"
         self.legacy_components=set(legacy_components.split(",")) if legacy_components else set()
         self.legacy_attention="attention" in self.legacy_components
-        self.stream_tail_mode=stream_tail_mode;self.stream_warps=stream_warps;self.bf16_qk=bf16_qk;self.stream_attention=stream_attention;self.value_slabs={};self.reader=reader;self.phi=phi;self.B=B.double();self.full_pset=full_pset;self.tile_batch=tile_batch
+        self.stream_tail_mode=stream_tail_mode;self.stream_warps=stream_warps;self.bf16_qk=bf16_qk;self.stream_attention=stream_attention;self.value_slabs={};self.reader=reader;self.phi=phi;self.B=B.double() if B is not None else None;self.full_pset=full_pset;self.pset_schedule=None;self.pset_layers=None;self.pset_step_ids=None;self.pset_head_ids=None;self.pset_steps=pset_steps;self.route_m16=route_m16;self.tile_batch=tile_batch
         self.workspace=Workspace();self.timings=Timings(profile);self.summary_graph=GraphSummary();self.group_graph=GraphGrouping(config)
         self.split_summary=split_summary
         if split_summary:
@@ -76,20 +76,30 @@ class VideoRuntime(StreamingRuntime):
         if "risk" in self.legacy_components:
             from .legacy_components import risk
             risk_fn=risk
-        self.batch_graph=BatchGraphs(risk_fn,phi,config,compile_route=compile_route,compile_tail=compile_tail,action_kernel=action_kernel,tensor_math=tensor_math,projection_float=projection_float,compact_reader=compact_reader,probes_only=stream_attention,bf16_qk=bf16_qk,static_route=static_route)
+        self.batch_graph=BatchGraphs(risk_fn,phi,config,compile_route=compile_route,compile_tail=compile_tail,action_kernel=action_kernel,tensor_math=tensor_math,projection_float=projection_float,compact_reader=compact_reader,probes_only=stream_attention,bf16_qk=bf16_qk,static_route=static_route,input_m16=route_m16)
         self.tensor_math=tensor_math;self.compile_route=compile_route;self.compile_tail=compile_tail;self.action_kernel=action_kernel
         self.validate=validate;self.validation=[];self.checked=set();self.slabs={};self.encodings={};self.projected_basis={}
         super().__init__(engine,model,config)
-        h=12;p=config.history_pages+72;device=self.B.device
-        self.haar_basis=haar(self.B);self.offsets=torch.linspace(0,63,16,device=device).round().long()
+        h=12;p=config.history_pages+72;device=self.model[1].basis.device
+        self.haar_basis=haar(self.model[1].basis);self.offsets=torch.linspace(0,63,16,device=device).round().long()
         for l,store in self.stores.items():
             old=store.summary
             slab=Summary(*(torch.empty((h,p,*getattr(old,n).shape[2:]),device=device,dtype=torch.bfloat16) for n in ('keys','mean','detail','stats')))
             self.slabs[l]=slab;store.summary=slab.slice(0,config.history_pages)
-            self.encodings[l]=dict(co=torch.empty(h,p,5,17,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),A=torch.empty(h,p,8,4,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),mean=torch.empty(h,p,16,device=device,dtype=torch.float64),detail=torch.empty(h,p,3,16,device=device,dtype=torch.float64))
-            self.projected_basis[l]=self.model[l].basis.bfloat16().double().transpose(1,2)@self.B
+            if self.B is not None:self.encodings[l]=dict(co=torch.empty(h,p,5,17,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),A=torch.empty(h,p,8,4,device=device,dtype=torch.bfloat16 if coeff_bf16 else torch.float32),mean=torch.empty(h,p,16,device=device,dtype=torch.float64),detail=torch.empty(h,p,3,16,device=device,dtype=torch.float64))
+            if self.B is not None:self.projected_basis[l]=self.model[l].basis.bfloat16().double().transpose(1,2)@self.B
             if stream_attention and not self.legacy_attention:self.value_slabs[l]=torch.empty(12,p,4,128,device=device,dtype=torch.float32)
         self.counters=torch.zeros(4,device=device,dtype=torch.int64)
+    def set_pset_scope(self,layers=None,heads=None,steps=None):
+        """Independent deployment scope; change only between videos, then reset."""
+        self.pset_schedule=None
+        self.pset_layers=None if layers is None else frozenset(layers)
+        self.pset_step_ids=None if steps is None else frozenset(steps)
+        self.pset_head_ids=None if heads is None or len(heads)==12 else torch.tensor(heads,device=self.offsets.device,dtype=torch.long)
+    def set_pset_schedule(self,schedule):
+        """Map (layer,noisy step) to selected heads; omitted cells stay on base path."""
+        self.set_pset_scope(layers=sorted({int(k.split(':')[0]) for k,v in schedule.items() if v}))
+        self.pset_schedule={tuple(map(int,k.split(':'))):torch.tensor(v,device=self.offsets.device,dtype=torch.long) for k,v in schedule.items() if v}
     def reset(self):
         super().reset()
         if hasattr(self,'counters'):self.counters.zero_()
@@ -116,7 +126,11 @@ class VideoRuntime(StreamingRuntime):
             q=causal_rope_apply(q,grid_sizes,freqs,start_frame=start//1536).to(v.dtype).contiguous()
             k=causal_rope_apply(k,grid_sizes,freqs,start_frame=start//1536).to(v.dtype).contiguous()
         end=p*64+n;cache['k'][:,p*64:end].copy_(k);cache['v'][:,p*64:end].copy_(v)
-        kh=cache['k'][:,:end];vh=cache['v'][:,:end];step=self.engine.current['step']
+        kh=cache['k'][:,:end];vh=cache['v'][:,:end];step=self.engine.current['step'];layer_enabled=self.full_pset and (self.pset_layers is None or l in self.pset_layers);correct=layer_enabled and (step in self.pset_step_ids if self.pset_step_ids is not None else (self.pset_steps=='all' or step==3))
+        heads=self.pset_head_ids
+        if self.pset_schedule is not None:
+            heads=self.pset_schedule.get((l,step));correct=layer_enabled and heads is not None
+            if heads is not None and heads.numel()==12:heads=None
         if not self.sparse or step==4 or p<=72:
             with self.timings.stage('attention'):out=self.engine.dense(q,kh,vh)
         else:
@@ -128,28 +142,31 @@ class VideoRuntime(StreamingRuntime):
                     current=self.summary_graph(model,k[0].transpose(0,1).reshape(12,72,64,128),v[0].transpose(0,1).reshape(12,72,64,128),True)
                 slab=self.slabs[l]
                 for name in ('keys','mean','detail','stats'):getattr(slab,name)[:,p:p+72].copy_(getattr(current,name))
-                if self.full_pset:self.write_encoding(l,self.encode(l,current),start=p)
+                if correct:self.write_encoding(l,self.encode(l,current),start=p)
                 if self.stream_attention and not self.legacy_attention:
                     from .stream_attention import full_values
                     self.value_slabs[l][:,p:p+72].copy_(full_values(current,model.basis,self.haar_basis))
-            s=self.slabs[l].slice(0,p+72);en={name:value[:,:p+72] for name,value in self.encodings[l].items()}
+            s=self.slabs[l].slice(0,p+72);en={name:value[:,:p+72] for name,value in self.encodings.get(l,{}).items()}
             result=self.workspace.tensor('result',q.shape,q.device,q.dtype)
             for first in range(0,72,self.tile_batch):
-                t=self.tile_batch;qq=q[:,first*64:(first+t)*64];query=qq[0].transpose(0,1).float()
+                t=self.tile_batch;qq=q[:,first*64:(first+t)*64]
+                route_q=qq[0].transpose(0,1).reshape(12,t,64,128)
+                route_q=(route_q.index_select(2,self.offsets) if self.route_m16 else route_q).float()
                 with self.timings.stage('route_and_correction'):
                     own=(torch.arange(first,first+t,device=q.device)+p)[None].expand(12,-1)
                     if self.graph_batches:
-                        entry=self.batch_graph.get(query.reshape(12,t,64,128),s,en,model.theta,model.basis,own,self.full_pset)
+                        entry=self.batch_graph.get(route_q,s,en,model.theta,model.basis,own,correct,heads=heads)
                         if first==0:self.batch_graph.stage(entry,s,en,model.theta,model.basis)
-                        ids,mask,risk,stats=self.batch_graph.replay(entry,query.reshape(12,t,64,128),own)
+                        ids,mask,risk,stats=self.batch_graph.replay(entry,route_q,own)
                         self.counters[:3]+=stats;count=ids.shape[-1]
                     else:
+                        query=qq[0].transpose(0,1).float()
                         logits=torch.bmm(query,s.keys.float().flatten(1,2).transpose(1,2)).reshape(12,t,64,p+72,4)/math.sqrt(128)
                         probes=query.reshape(12,t,64,128).index_select(2,self.offsets)
                         z=logits.index_select(2,self.offsets);risk=risk_from_logits(probes,z,s,model.theta)
                         own=(torch.arange(first,first+t,device=q.device)+p)[None].expand(12,-1)
                         sel=RouteOps.select(risk,own,self.config,check_valid=False);mask=sel['mask'];count=max(1,math.floor((p+72)*.1))
-                        if self.full_pset:
+                        if correct:
                             rp,beta=read(probes,en['co'],en['A'],self.phi)
                             zz=z.double();lm=zz.logsumexp(-1);lm=lm-lm.logsumexp(-1,keepdim=True)
                             contrast=torch.einsum('htmpr,ar->htmpa',zz.softmax(-1),haar(zz).double())
@@ -178,6 +195,7 @@ class VideoRuntime(StreamingRuntime):
                 if self.validate and first==0 and key not in self.checked:
                     from ..review_v1.runtime import SelectedAttention
                     from ..review_v1.ops import RouteOps as ReferenceRoute
+                    query=qq[0].transpose(0,1).float()
                     probes=query.reshape(12,t,64,128).index_select(2,self.offsets)
                     f,_=ReferenceRoute.features(probes.flatten(1,2),s)
                     refscore=(f*model.theta[:,None,None]).sum(-1).reshape(12,t,16,p+72).mean(2)
@@ -193,7 +211,7 @@ class VideoRuntime(StreamingRuntime):
                 kg,vg,order=self.group_graph(model,k,v);sg=self.summary_graph(model,kg,vg)
                 slots=(torch.arange(72,device=q.device)+store.write)%self.config.history_pages
                 store.commit(kg,vg,sg,order,start)
-                if self.full_pset:self.write_encoding(l,self.encode(l,sg),slots=slots)
+                if layer_enabled:self.write_encoding(l,self.encode(l,sg),slots=slots)
                 if self.stream_attention and not self.legacy_attention:
                     from .stream_attention import full_values
                     self.value_slabs[l].index_copy_(1,slots,full_values(sg,model.basis,self.haar_basis))
@@ -203,12 +221,12 @@ class VideoRuntime(StreamingRuntime):
         result=super().finish()
         extra=sum(v.numel()*v.element_size() for e in self.encodings.values() for v in e.values())
         slabextra=sum(s.bytes() for s in self.slabs.values())-result['summary_bytes']
-        extra+=slabextra+self.workspace.bytes()+self.B.numel()*self.B.element_size()
+        extra+=slabextra+self.workspace.bytes()+(self.B.numel()*self.B.element_size() if self.B is not None else 0)
         extra+=sum(x.numel()*x.element_size() for x in self.projected_basis.values())
-        extra+=sum(p.numel()*p.element_size() for net in (self.reader,self.phi) for p in net.parameters())
+        extra+=sum(p.numel()*p.element_size() for net in (self.reader,self.phi) if net is not None for p in net.parameters())
         value_bytes=sum(x.numel()*x.element_size() for x in self.value_slabs.values())
         extra+=self.batch_graph.static_bytes()+value_bytes
-        result.update(implementation='VideoRuntimeV1',coeff_bf16=self.coeff_bf16,cached_logmass=self.cached_logmass,projected_risk=self.projected_risk,legacy_components=sorted(self.legacy_components),static_route=self.static_route,fused_risk=self.fused_risk,split_summary=self.split_summary,stream_attention=self.stream_attention,stream_tail_mode=self.stream_tail_mode,stream_warps=self.stream_warps,bf16_qk=self.bf16_qk,compact_reader=self.batch_graph.compact_reader,tensor_math=self.tensor_math,projection_float=self.batch_graph.projection_float,representative_value_bytes=value_bytes,full_pset=self.full_pset,tile_batch=self.tile_batch,graph_batches=self.graph_batches,compile_route=self.compile_route,compile_tail=self.compile_tail,action_kernel=self.action_kernel,batch_graph_shapes=len(self.batch_graph.entries),batch_graph_replays=self.batch_graph.calls,
+        result.update(implementation='VideoRuntimeV1',pset_layers=sorted(self.pset_layers) if self.pset_layers is not None else None,pset_step_ids=sorted(self.pset_step_ids) if self.pset_step_ids is not None else None,pset_heads=self.pset_head_ids.cpu().tolist() if self.pset_head_ids is not None else None,pset_steps=self.pset_steps,route_m16=self.route_m16,coeff_bf16=self.coeff_bf16,cached_logmass=self.cached_logmass,projected_risk=self.projected_risk,legacy_components=sorted(self.legacy_components),static_route=self.static_route,fused_risk=self.fused_risk,split_summary=self.split_summary,stream_attention=self.stream_attention,stream_tail_mode=self.stream_tail_mode,stream_warps=self.stream_warps,bf16_qk=self.bf16_qk,compact_reader=self.batch_graph.compact_reader,tensor_math=self.tensor_math,projection_float=self.batch_graph.projection_float,representative_value_bytes=value_bytes,full_pset=self.full_pset,tile_batch=self.tile_batch,graph_batches=self.graph_batches,compile_route=self.compile_route,compile_tail=self.compile_tail,action_kernel=self.action_kernel,batch_graph_shapes=len(self.batch_graph.entries),batch_graph_replays=self.batch_graph.calls,
             page_encoding='commit-time history; once per step current; shared by every Query tile',
             raw_kv='native resident [1,L,H,D], current scratch writes, no history cat/repack/gather',
             logits=('M16 FP32 R4 for routing; Q64 recomputed inside streamed Attention' if self.stream_attention else 'Q64 FP32 R4 shared with M16 Risk/Reader'),

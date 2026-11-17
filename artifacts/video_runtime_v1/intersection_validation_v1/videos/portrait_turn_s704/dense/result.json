@@ -1,0 +1,27 @@
+{
+  "case": "portrait_turn",
+  "seed": 704,
+  "method": "dense",
+  "quality": {},
+  "generation_seconds": 8.51718152500689,
+  "decode_seconds": 4.285180457867682,
+  "counters": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "policy": null,
+  "gpu": 1,
+  "order": [
+    "dense",
+    "top_layers",
+    "top_heads",
+    "top_steps",
+    "original",
+    "search_mean",
+    "search_balanced"
+  ],
+  "static_route": true,
+  "timing_scope": "one generation per sample after full route-shape warmup; excludes loading/compilation/VAE/IO; all methods of each sample on same GPU; method order rotated across samples"
+}

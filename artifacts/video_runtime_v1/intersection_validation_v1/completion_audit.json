@@ -1,0 +1,13 @@
+{
+  "videos": 140,
+  "comparison_videos": 20,
+  "groups": 20,
+  "scope_counts_correct": true,
+  "nonfinite_scores": 0,
+  "source_sha256": {
+    "intersection_search": "926b3dc8c99f82d89fc1d745be10efa72ccd6cb60cc5b1627d97cf679b1269ae",
+    "intersection_finalize": "fd683fb4d9899f51611e8f4220dfb3a284a4c9786a2ef62332f1951d423797c9",
+    "intersection_validation": "a857514d4a05870d00be3d8aad8b74ed2aa320e4fd396bb7b96469aae836b65f",
+    "report_intersection_validation": "0a0bbfe6b5c052a60ffff1afe552f2bc2ea620b57d9109412a67ccdc023eb904"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "policy": {
+    "name": "full"
+  },
+  "seed": 701,
+  "gpu": "6",
+  "seconds": [
+    10.450170770287514,
+    10.453645987436175,
+    10.453834910877049
+  ],
+  "median_seconds": 10.453645987436175,
+  "counters": [
+    696779,
+    701568,
+    0,
+    927072
+  ],
+  "scope": "same GPU per seed, one full warmup then 3 repetitions, generation only excluding IO/VAE"
+}

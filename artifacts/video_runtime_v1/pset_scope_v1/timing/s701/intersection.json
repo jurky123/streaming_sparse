@@ -1,0 +1,38 @@
+{
+  "policy": {
+    "name": "intersection",
+    "layers": [
+      5,
+      14,
+      27,
+      3,
+      8,
+      17,
+      4
+    ],
+    "heads": [
+      4,
+      3,
+      9
+    ],
+    "steps": [
+      0
+    ],
+    "seed": 701
+  },
+  "seed": 701,
+  "gpu": "6",
+  "seconds": [
+    7.758545784279704,
+    7.757944506593049,
+    7.7558399848639965
+  ],
+  "median_seconds": 7.757944506593049,
+  "counters": [
+    10531,
+    10584,
+    0,
+    96768
+  ],
+  "scope": "same GPU per seed, one full warmup then 3 repetitions, generation only excluding IO/VAE"
+}

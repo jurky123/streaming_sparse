@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "groups": [
+    {
+      "status": "done",
+      "count": 20
+    }
+  ]
+}

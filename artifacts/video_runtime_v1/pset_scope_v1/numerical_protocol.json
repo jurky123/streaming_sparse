@@ -1,0 +1,7 @@
+{
+  "static_route": true,
+  "reason": "automatic dynamic compilation changed subsequent policy trajectory after a head-only job; static graph shapes are bitwise order-invariant in paired check",
+  "order_check": "order_check/summary.json",
+  "archived": "dynamic_order_dependent",
+  "ranking_uses": "fresh fixed-shape run only"
+}

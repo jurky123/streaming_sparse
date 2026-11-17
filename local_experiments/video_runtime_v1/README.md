@@ -86,3 +86,56 @@ configuration, source hashes, timing scope and optimization-only errors.
 ## 9d4d33d审查收尾
 
 批量入口继承tile72/history360并透传部署参数。[84视频质量结果](../../artifacts/video_runtime_v1/quality_batch_9d4d33d_v1/REPORT.zh.md)已完成；[P2有界实验](../../artifacts/video_runtime_v1/p2_bounded_v1/REPORT.zh.md)无净收益，默认保持完整WORK；[FP32扫描消费验收](../../artifacts/video_runtime_v1/scan_fp32_video_v1/MODULE_DISTANCE.zh.md)已纳入部署默认。
+
+## 两档和集合修正预算（本轮）
+
+当前部署为M16路由入口，Full_Pset开关独立于`mode=stream`：
+
+- 基础档：benchmark命令使用`--no-full-pset --route-m16`。不加载Reader/Phi/B，不分配页面编码缓存。
+- 集合修正档：`--full-pset --pset-steps all --route-m16`，为完整方法默认。
+- 策略实验：`--full-pset --pset-steps last --route-m16`，只在第4次noisy forward修正；clean commit持续维护Reader历史。它改变推理策略，不能称作同算法实现加速。
+- G=2原型：`--reader-vector-g2`，暂不默认开启；满窗口route约2%收益，短视频仅约0.10%，不继续参数筛查。
+
+基础档专用清单可用manifest的`--methods dense c_risk`；worker按清单自动跳过修正器加载。混合清单保留两套图，实际job档位写identity。batch与worker均支持`--pset-steps all/last`，两种策略使用不同结果根目录。
+
+[同口径两档速度、模块增量、优化误差、预算质量及实现位置](../../artifacts/video_runtime_v1/tiers_m16_v1/MODULE_DISTANCE.zh.md)。仅一个固定短视频验收，未重跑84质量清单，不能把末次预算这一条视频的结果推广为稳定质量收益。
+
+## Full_Pset 范围筛选实验
+
+[逐层/head/step的完整排名和五种选择方案](../../artifacts/video_runtime_v1/pset_scope_v1/REPORT.zh.md)：city_walk、seed701/702、9chunks。固定形状重跑104份视频；按层前1/4的平均LPIPS最低，生成相对完整档1.252×。
+
+当前stream命令增加`--full-pset --pset-policy artifacts/video_runtime_v1/pset_scope_v1/presets/top_layers.json`开启层筛选；其他文件为top_heads、top_steps、intersection、additive_quarter。batch/worker也支持该参数，文件SHA写identity。preset优先于`--pset-steps`，并强制static_route=True：实验已验证自动动态编译可能让后续策略依赖此前任务顺序。不开preset时保留既有默认；没有将单场景筛选直接设为全局默认。
+
+## Frozen intersection-policy search and validation
+
+[Search report](../../artifacts/video_runtime_v1/intersection_search_v1/REPORT.zh.md):
+341 policies, city_walk seeds701/702, fixed 7-layer × 3-head × 1-step budget.
+Both selected policies were evaluated alongside the original intersection and
+layer/head/step selections on 5 other prompts × seeds703–706 (140 short videos).
+[Validation report and videos](../../artifacts/video_runtime_v1/intersection_validation_v1/REPORT.zh.md).
+The original intersection has better mean validation LPIPS than either searched
+policy at essentially identical cost; defaults were not changed. Policy files
+are accepted through `--pset-policy`; the frozen exact configurations and hashes
+are in the validation `protocol.json`.
+
+## Three retained deployment tiers
+
+The user selected `base` (C+Risk, no Full_Pset), `intersection` (layers
+3,4,5,8,14,17,27; heads3,4,9; noisy step0), and `step` (all applicable
+layers/heads; noisy step0). These are inference budgets, not distinct kernels.
+The searched variants are retained only as experiment evidence. Full execution
+remains available for research; it is not one of the three retained tiers.
+
+Run any retained tier using accepted defaults and fixed-shape compilation:
+
+```sh
+python -m local_experiments.video_runtime_v1.accepted_tiers \
+  --tier intersection --output artifacts/video_runtime_v1/my_run \
+  --local-assets /tmp/streaming_sparse-0/runtime
+```
+
+Change `--tier` to `base` or `step`. This entry uses a 9-chunk video, warmup,
+three timed repetitions and a separate stage-profile run. For batch generation,
+use `c_risk` for base; use `c_pset` and `--pset-policy` pointing to the tracked
+`presets/intersection.json` or `presets/step.json` for the other two tiers.
+Clean Reader cache maintenance remains enabled in both correction tiers.

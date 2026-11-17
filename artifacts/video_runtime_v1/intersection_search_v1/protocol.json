@@ -1,0 +1,42 @@
+{
+  "initial": {
+    "layers": [
+      3,
+      4,
+      5,
+      8,
+      14,
+      17,
+      27
+    ],
+    "heads": [
+      3,
+      4,
+      9
+    ],
+    "steps": [
+      0
+    ]
+  },
+  "seeds": [
+    701,
+    702
+  ],
+  "case": "city_walk",
+  "chunks": 9,
+  "frames": 105,
+  "resolution": [
+    512,
+    768
+  ],
+  "history_pages": 360,
+  "tile_batch": 72,
+  "static_route": true,
+  "round_limit": 2,
+  "neighbors_per_round": 184,
+  "objective": "mean two-seed LPIPS to cached Dense",
+  "budget_cells": 21,
+  "total_cells": 1392,
+  "acceptance": "strict mean improvement > 1e-6; no seed-specific filtering for primary winner; also retain best candidate non-worse on each seed",
+  "scope": "bounded single-exchange neighborhoods; no global-optimum claim"
+}

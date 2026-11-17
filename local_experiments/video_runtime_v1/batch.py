@@ -12,9 +12,10 @@ def alive(pid):
 
 def worker_command(args,stage):
     command=[sys.executable,'-u','-m','local_experiments.video_runtime_v1.worker','--root',str(args.root),'--stage',stage,'--tile-batch',str(args.tile_batch),'--model-seed',str(args.model_seed),'--history-pages',str(args.history_pages)]
-    for name in ('checkpoint','reader_checkpoint','local_assets'):
-        value=getattr(args,name)
+    for name in ('checkpoint','reader_checkpoint','local_assets','pset_policy'):
+        value=getattr(args,name,None)
         if value:command.extend(['--'+name.replace('_','-'),str(value)])
+    command.extend(['--pset-steps',getattr(args,'pset_steps','all')])
     if args.profile:command.append('--profile')
     if args.validate:command.append('--validate')
     return command
@@ -48,6 +49,6 @@ def run(args):
     finally:lock.close()
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--manifest',required=True);p.add_argument('--gpus',type=int,nargs='+',required=True);p.add_argument('--tile-batch',type=int,default=CURRENT['tile_batch']);p.add_argument('--model-seed',type=int,default=17);p.add_argument('--checkpoint');p.add_argument('--reader-checkpoint');p.add_argument('--history-pages',type=int,default=CURRENT['history_pages']);p.add_argument('--local-assets');p.add_argument('--profile',action='store_true');p.add_argument('--validate',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--manifest',required=True);p.add_argument('--gpus',type=int,nargs='+',required=True);p.add_argument('--tile-batch',type=int,default=CURRENT['tile_batch']);p.add_argument('--pset-policy');p.add_argument('--pset-steps',choices=['all','last'],default='all');p.add_argument('--model-seed',type=int,default=17);p.add_argument('--checkpoint');p.add_argument('--reader-checkpoint');p.add_argument('--history-pages',type=int,default=CURRENT['history_pages']);p.add_argument('--local-assets');p.add_argument('--profile',action='store_true');p.add_argument('--validate',action='store_true');a=p.parse_args()
     if len(set(a.gpus))!=len(a.gpus):raise ValueError('Duplicate GPU')
     run(a)

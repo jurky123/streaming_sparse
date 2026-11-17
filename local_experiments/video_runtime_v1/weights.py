@@ -8,7 +8,7 @@ from ..learned_cache.io import digest
 ROOT=Path(__file__).resolve().parents[2]
 
 @torch.no_grad()
-def load(seed=17,checkpoint=None,source_layer=15,source_head=0,reader_checkpoint=None):
+def load(seed=17,checkpoint=None,source_layer=15,source_head=0,reader_checkpoint=None,include_reader=True):
     base=ROOT/'artifacts/four_gaps_20261031/shared/epoch1.pt'
     pre=ROOT/'artifacts/review_v1_20261102/summary_expand/reef_fish/latest.pt'
     model=Model(str(base));state=torch.load(pre,map_location='cuda',weights_only=False)['model']
@@ -23,6 +23,11 @@ def load(seed=17,checkpoint=None,source_layer=15,source_head=0,reader_checkpoint
             for name in ('pool_k','pool_v','pool_feature'):
                 target=state[f'layers.{l}.{name}'];state[f'layers.{l}.{name}']=saved[f'{prefix}.{name}'].expand_as(target).clone()
         model.load_state_dict(state);placeholder=True
+    if not include_reader:
+        model.eval().requires_grad_(False)
+        identity=dict(seed=seed,summary_sha=digest(path),base_sha=digest(pre),placeholder=placeholder,
+                      broadcast_source=[source_layer,source_head] if placeholder else None,reader_loaded=False)
+        return model,None,None,None,identity
     reader_path=Path(reader_checkpoint) if reader_checkpoint else ROOT/f'artifacts/e48_tail_state_v1/s{seed}/fullset_final.pt'
     reader=LocalReader().cuda();rec=torch.load(reader_path,map_location='cuda',weights_only=False);reader.load_state_dict(rec.get('model',rec))
     phi_path=ROOT/f'artifacts/e27_adaptive_query_v1/s{seed}/selected.pt'

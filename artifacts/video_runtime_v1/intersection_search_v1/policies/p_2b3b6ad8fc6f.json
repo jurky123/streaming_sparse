@@ -1,0 +1,21 @@
+{
+  "name": "p_2b3b6ad8fc6f",
+  "layers": [
+    3,
+    4,
+    8,
+    14,
+    17,
+    25,
+    27
+  ],
+  "heads": [
+    3,
+    4,
+    9
+  ],
+  "steps": [
+    2
+  ],
+  "static_route": true
+}

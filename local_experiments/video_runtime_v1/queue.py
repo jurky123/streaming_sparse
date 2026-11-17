@@ -26,6 +26,8 @@ class Queue:
         with self.transaction():
             for key,spec in rows:
                 for stage in ('generate','postprocess'):self.db.execute('INSERT OR IGNORE INTO jobs (key,spec,stage) VALUES (?,?,?)',(key+'_'+stage,spec,stage))
+    def needs_reader(self):
+        return self.db.execute('SELECT 1 FROM jobs WHERE stage="generate" AND json_extract(spec,"$.method")="c_pset" LIMIT 1').fetchone() is not None
     def bind_identity(self,identity):
         canonical=json.dumps(identity,sort_keys=True)
         with self.transaction():

@@ -1,0 +1,21 @@
+{
+  "name": "intersection",
+  "layers": [
+    5,
+    14,
+    27,
+    3,
+    8,
+    17,
+    4
+  ],
+  "heads": [
+    4,
+    3,
+    9
+  ],
+  "steps": [
+    0
+  ],
+  "static_route": true
+}

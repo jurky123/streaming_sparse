@@ -1,0 +1,37 @@
+{
+  "policy": {
+    "name": "best_mean",
+    "layers": [
+      3,
+      4,
+      8,
+      14,
+      17,
+      25,
+      27
+    ],
+    "heads": [
+      3,
+      4,
+      9
+    ],
+    "steps": [
+      0
+    ]
+  },
+  "seed": 701,
+  "gpu": "6",
+  "seconds": [
+    7.77002165094018,
+    7.741828912869096,
+    7.741654039360583
+  ],
+  "median_seconds": 7.741828912869096,
+  "counters": [
+    10555,
+    10584,
+    0,
+    96768
+  ],
+  "scope": "same GPU per seed, one full warmup, 3 repetitions; generation only, excludes VAE and IO; duplicate policies reuse timing"
+}

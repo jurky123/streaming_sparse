@@ -1,0 +1,24 @@
+{
+  "policy": {
+    "name": "top_steps",
+    "steps": [
+      0
+    ],
+    "seed": 701
+  },
+  "seed": 701,
+  "gpu": "6",
+  "seconds": [
+    8.416575644165277,
+    8.417472975328565,
+    8.414445461705327
+  ],
+  "median_seconds": 8.416575644165277,
+  "counters": [
+    174166,
+    175392,
+    0,
+    400896
+  ],
+  "scope": "same GPU per seed, one full warmup then 3 repetitions, generation only excluding IO/VAE"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "full_pset_default": true,
+  "pset_steps_default": "all",
+  "route_m16_deployed": true,
+  "vector_g2_deployed": false,
+  "video": "city_walk_s701",
+  "chunks": 9,
+  "checks": [
+    "python syntax",
+    "git diff whitespace",
+    "manifest reader capability and CLI forwarding",
+    "paired latent/RGB",
+    "same captured route and Reader contracts"
+  ],
+  "source_sha256": {
+    "deployment.py": "4429eb0876301678f8a78e2d0c09c0dde1f620c8754a61ab526ac2249d851b96",
+    "runtime.py": "a71a37dbb6a7c43c89ea61ed67c1fdb246b3d4c8816920cdb379d932b8e19216",
+    "pipeline_graph.py": "c5bb57554299894b46a884dae99f34a944ee0e051f3e3230cc5ef0e0e5dcb3ee",
+    "weights.py": "85f28b0b4e70bfa0b4ce3687d109ad0697594072262045257a85accb307c3542",
+    "worker.py": "d38080606bb4c7a623141cb238e435314c95e2ed722a0b8ea6a787a1dd25f6f3",
+    "batch.py": "df42fcac9264cb804bd1aea404558c835cb67afd4222568c3d6aa467cb175c9c",
+    "queue.py": "ff2c23eefa056189e8101c9a7ffcef73a587d9f30fc986e0c9c966301af014aa",
+    "manifest.py": "4b88c5c46d70f2c1b42d5cfbc38ebaf7e3f2933e3d646037767b07bf50222db0",
+    "reader_reduce.py": "5a6572ad28c2f4f755299ef9731524a902ca819f0a6a28fb13fda8c210d023a3",
+    "reader_vector_g2.py": "e22c7aee8d386a57e274ca117be2b2485a12f722f9cedb15e86d475c89edc004",
+    "benchmark_hotspots.py": "6d08c353297a579afd3e81659587f1002a52206e2dc16d9dd0b198ad5515daa7",
+    "check_route_m16.py": "f1ebbcdc3bb1d4763c6293c538c03087e1464bd00f36b23fda404ba9a4e6f268",
+    "check_vector_g2.py": "a314eaa95931074ab0c7127640aabff814c83c4960320c341aa0c4c24d4af451",
+    "run_tier_video.py": "f9073243e0152fa64989d78bd16b835342c547b0c22c83c3de8b347029232888",
+    "quality_tiers.py": "cb70f3640365af4023d8aa99c2e372e99a9c2a1d152a85c1e33ca6ac9b7fd56b",
+    "profile_tier_timeline.py": "20217eb582a60ff02a0d46d867dc6678c936c2cda9befc7d7bef43ed697b8f9f",
+    "report_tiers.py": "6a5ea37aaf67a61fbaa1f80fd18b82a12f2cd028da738befa6c8e2925b2bc581"
+  }
+}

@@ -90,13 +90,14 @@ VECTOR_WIDTH=16
 VECTOR_MAXNREG=0
 VECTOR_PACK=False
 WORK_ROWS=0
+VECTOR_GROUP=1
 SCAN_FP32=False
 OUTPUT32=False
 ENDPOINT_DEN=False
 LAYOUT_KIND="a"
 
 @torch.library.custom_op('streaming_sparse::reader_reduce',mutates_args=())
-def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tensor,detail:torch.Tensor,z:torch.Tensor,lm:torch.Tensor,mask:torch.Tensor,mapping:torch.Tensor,candidates:int,shard:int,warps:int,aggregate_float:bool,query_group:int,fma:bool,output_float:bool=False,work_rows:int=0)->tuple[torch.Tensor,torch.Tensor,torch.Tensor]:
+def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tensor,detail:torch.Tensor,z:torch.Tensor,lm:torch.Tensor,mask:torch.Tensor,mapping:torch.Tensor,candidates:int,shard:int,warps:int,aggregate_float:bool,query_group:int,fma:bool,output_float:bool=False,work_rows:int=0,vector_group:int=1)->tuple[torch.Tensor,torch.Tensor,torch.Tensor]:
     h,t,m,p=z.shape[:4];b=h*t
     if aggregate_float and PAGE32:mean=mean.float();detail=detail.float()
     kernel=reader_kernel;launch={}
@@ -119,6 +120,9 @@ def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tenso
             from .reader_chunked import scalar_kernel,vector_kernel
         else:
             from .reader_split import scalar_kernel,vector_kernel
+        if vector_group==2:
+            assert not work_rows and VECTOR_WIDTH==16 and not VECTOR_PACK
+            from .reader_vector_g2 import vector_kernel
         rows=min(work_rows,b*m) if work_rows else b*m
         work=torch.empty((rows,ns,10,shard),device=u.device,dtype=torch.float32)
         uu,cc,aa,mm,dd,zz,ll,mask0,map0=args
@@ -126,7 +130,7 @@ def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tenso
         for first_row in range(0,b*m,rows):
             count=min(rows,b*m-first_row);offset=dict(ROW0=first_row) if work_rows else {}
             first=scalar_kernel[(count,ns)](uu,cc,aa,zz,ll,mask0,map0,work,logs,cand,t,m,p,candidates,shard,ns,num_warps=warps,enable_fp_fusion=fma,**offset)
-            compiled=vector_kernel[(count,ns,16//VECTOR_WIDTH)](vc,mm,dd,mask0,map0,work,state,cand,t,m,p,candidates,shard,ns,VD=VECTOR_WIDTH,VP=VECTOR_PACK,num_warps=VECTOR_WARPS,enable_fp_fusion=fma,**offset,**({"maxnreg":VECTOR_MAXNREG} if VECTOR_MAXNREG else {}))
+            compiled=vector_kernel[(count//vector_group,ns,16//VECTOR_WIDTH)](vc,mm,dd,mask0,map0,work,state,cand,t,m,p,candidates,shard,ns,VD=VECTOR_WIDTH,VP=VECTOR_PACK,num_warps=VECTOR_WARPS,enable_fp_fusion=fma,**offset,**({"maxnreg":VECTOR_MAXNREG} if VECTOR_MAXNREG else {}))
     elif query_group==1:
         compiled=kernel[(b*m,ns)](*args,state,logs,cand,t,m,p,candidates,shard,ns,aggregate_float,num_warps=warps,enable_fp_fusion=fma,**launch)
     else:
@@ -134,11 +138,11 @@ def reader_reduce(u:torch.Tensor,co:torch.Tensor,A:torch.Tensor,mean:torch.Tenso
         from .reader_group import grouped_reader_kernel
         compiled=grouped_reader_kernel[(b*m//query_group,ns)](*args,state,logs,cand,t,m,p,candidates,shard,ns,query_group,num_warps=warps,enable_fp_fusion=fma)
     KERNEL_STATS[(t,p)]=dict(registers=compiled.n_regs,spills=compiled.n_spills,warps=warps,shard=shard,aggregate_float=aggregate_float,query_group=query_group,fma=fma)
-    if SPLIT:KERNEL_STATS[(t,p)].update(vector_maxnreg=VECTOR_MAXNREG,vector_width=VECTOR_WIDTH,vector_warps=VECTOR_WARPS,scalar_registers=first.n_regs,scalar_spills=first.n_spills,intermediate_bytes=work.numel()*work.element_size())
+    if SPLIT:KERNEL_STATS[(t,p)].update(vector_group=vector_group,vector_maxnreg=VECTOR_MAXNREG,vector_width=VECTOR_WIDTH,vector_warps=VECTOR_WARPS,scalar_registers=first.n_regs,scalar_spills=first.n_spills,intermediate_bytes=work.numel()*work.element_size())
     return state,logs,cand
 
 @reader_reduce.register_fake
-def _(u,co,A,mean,detail,z,lm,mask,mapping,candidates,shard,warps,aggregate_float,query_group,fma,output_float=False,work_rows=0):
+def _(u,co,A,mean,detail,z,lm,mask,mapping,candidates,shard,warps,aggregate_float,query_group,fma,output_float=False,work_rows=0,vector_group=1):
     h,t,m,p=z.shape[:4];b=h*t
     dtype=torch.float32 if output_float else torch.float64
     return (u.new_empty((b,m,tr.cdiv(p,shard),3,16),dtype=dtype),u.new_empty((b,m,tr.cdiv(p,shard),4),dtype=dtype),u.new_empty((b,m,candidates,34),dtype=dtype))
@@ -149,7 +153,7 @@ def compact_scores(u,en,z,lm,mask,remove,add):
     mapping=torch.full_like(mask,-1,dtype=torch.int32)
     mapping=mapping.scatter(1,remove,torch.arange(r,device=z.device,dtype=torch.int32)[None].expand(b,-1))
     mapping=mapping.scatter(1,add,torch.arange(r,r+a,device=z.device,dtype=torch.int32)[None].expand(b,-1))
-    state,logs,cand=reader_reduce(u,en['co'],en['A'],en['mean'],en['detail'],z,lm,mask,mapping,r+a,SHARD,WARPS,AGG32,GROUP,FMA,OUTPUT32,WORK_ROWS)
+    state,logs,cand=reader_reduce(u,en['co'],en['A'],en['mean'],en['detail'],z,lm,mask,mapping,r+a,SHARD,WARPS,AGG32,GROUP,FMA,OUTPUT32,WORK_ROWS,VECTOR_GROUP)
     logs=logs.double()
     weights=logs[...,:3].softmax(2)
     merged=(weights[...,None]*state.double()).sum(2)

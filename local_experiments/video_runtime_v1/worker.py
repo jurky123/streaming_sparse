@@ -12,7 +12,7 @@ def generate(queue,key,job,rt,identity,worker):
     from ..rollout_suite import generate_chunk
     out=folder(queue.root,job);out.mkdir(parents=True,exist_ok=True)
     meta=dict(job=job,weights=identity,history_pages=rt.config.history_pages,page=64,query=64,R=4,probes=16,B=16,density=.1,
-              deployment=identity['deployment'],tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')})
+              deployment=identity['deployment']|dict(full_pset=job['method']=='c_pset'),tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')})
     if (out/'identity.json').exists():assert json.loads((out/'identity.json').read_text())==meta,'Generation identity changed; use a new output directory'
     else:atomic(out/'identity.json',meta)
     rt.full_pset=job['method']=='c_pset';rt.sparse=job['method']!='dense';rt.reset()
@@ -65,10 +65,11 @@ def postprocess(queue,key,job,vae,metric,worker):
 def run(args):
     torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     from .deployment import current,configure,load_weights,make_runtime,identity as config_identity
-    deployment=current(model_seed=args.model_seed,checkpoint=args.checkpoint,reader_checkpoint=args.reader_checkpoint,tile_batch=args.tile_batch,history_pages=args.history_pages,profile=args.profile,validate=args.validate,local_assets=args.local_assets)
+    deployment=current(pset_policy=args.pset_policy,pset_steps=args.pset_steps,model_seed=args.model_seed,checkpoint=args.checkpoint,reader_checkpoint=args.reader_checkpoint,tile_batch=args.tile_batch,history_pages=args.history_pages,profile=args.profile,validate=args.validate,local_assets=args.local_assets)
     configure(deployment)
     q=Queue(args.root)
     if args.manifest:q.initialize(args.manifest)
+    deployment.full_pset=q.needs_reader()
     q.recover();worker=f'{socket.gethostname()}:{os.getpid()}'
     gpu=os.environ.get('CUDA_VISIBLE_DEVICES','unset');lock=RunLock(Path(args.root)/'workers'/f'gpu{gpu}')
     rt=None;vae=None;metric=None;identity=None;loaded=0
@@ -83,7 +84,7 @@ def run(args):
                         from ..broad_common import Engine
                         model,reader,phi,B,identity=load_weights(deployment)
                         identity['deployment']=config_identity(deployment)
-                        identity['runtime_code']={name:digest(Path(__file__).parent/name) for name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')}
+                        identity['runtime_code']={name:digest(Path(__file__).parent/name) for name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')}
                         q.bind_identity(dict(weights=identity,deployment=config_identity(deployment)))
                         engine=Engine();engine.wrapper.requires_grad_(False)
                         rt=make_runtime(engine,model,reader,phi,B,deployment);loaded+=1
@@ -105,4 +106,4 @@ def run(args):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--manifest');p.add_argument('--stage',choices=['generate','postprocess'],required=True)
-    p.add_argument('--model-seed',type=int,default=17);p.add_argument('--checkpoint',default=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'));p.add_argument('--reader-checkpoint',default=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'));p.add_argument('--history-pages',type=int,default=360);p.add_argument('--local-assets');p.add_argument('--tile-batch',type=int,default=72);p.add_argument('--profile',action='store_true');p.add_argument('--validate',action='store_true');run(p.parse_args())
+    p.add_argument('--pset-policy');p.add_argument('--pset-steps',choices=['all','last'],default='all');p.add_argument('--model-seed',type=int,default=17);p.add_argument('--checkpoint',default=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'));p.add_argument('--reader-checkpoint',default=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'));p.add_argument('--history-pages',type=int,default=360);p.add_argument('--local-assets');p.add_argument('--tile-batch',type=int,default=72);p.add_argument('--profile',action='store_true');p.add_argument('--validate',action='store_true');run(p.parse_args())

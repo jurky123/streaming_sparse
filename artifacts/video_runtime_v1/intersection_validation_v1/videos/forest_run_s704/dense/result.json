@@ -1,0 +1,27 @@
+{
+  "case": "forest_run",
+  "seed": 704,
+  "method": "dense",
+  "quality": {},
+  "generation_seconds": 8.474646063521504,
+  "decode_seconds": 4.390188368037343,
+  "counters": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "policy": null,
+  "gpu": 3,
+  "order": [
+    "dense",
+    "top_steps",
+    "original",
+    "search_mean",
+    "search_balanced",
+    "top_layers",
+    "top_heads"
+  ],
+  "static_route": true,
+  "timing_scope": "one generation per sample after full route-shape warmup; excludes loading/compilation/VAE/IO; all methods of each sample on same GPU; method order rotated across samples"
+}

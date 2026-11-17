@@ -1,0 +1,27 @@
+{
+  "case": "kitchen_cook",
+  "seed": 706,
+  "method": "dense",
+  "quality": {},
+  "generation_seconds": 8.492953107692301,
+  "decode_seconds": 4.391773425973952,
+  "counters": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "policy": null,
+  "gpu": 4,
+  "order": [
+    "dense",
+    "top_layers",
+    "top_heads",
+    "top_steps",
+    "original",
+    "search_mean",
+    "search_balanced"
+  ],
+  "static_route": true,
+  "timing_scope": "one generation per sample after full route-shape warmup; excludes loading/compilation/VAE/IO; all methods of each sample on same GPU; method order rotated across samples"
+}

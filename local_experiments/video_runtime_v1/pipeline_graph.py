@@ -14,8 +14,9 @@ from .attention import compensate
 CACHED_LOGMASS=False
 
 class BatchGraphs:
-    def __init__(self,risk_function,phi,config,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,probes_only=False,bf16_qk=False,static_route=False):
-        self.probes_only=probes_only;self.compact_reader=compact_reader;self.inline=False;self.projection_float=projection_float;self.risk_function=risk_function;self.phi=phi;self.config=config;self.entries={};self.calls=0;self.pool=torch.cuda.graph_pool_handle()
+    def __init__(self,risk_function,phi,config,compile_route=False,compile_tail=False,action_kernel=False,tensor_math=False,projection_float=False,compact_reader=False,probes_only=False,bf16_qk=False,static_route=False,input_m16=False):
+        assert not input_m16 or probes_only
+        self.input_m16=input_m16;self.probes_only=probes_only;self.compact_reader=compact_reader;self.inline=False;self.projection_float=projection_float;self.risk_function=risk_function;self.phi=phi;self.config=config;self.entries={};self.calls=0;self.pool=torch.cuda.graph_pool_handle()
         if action_kernel:
             from .scores_action import fused_action_scores
             self.score_function=fused_action_scores
@@ -33,13 +34,14 @@ class BatchGraphs:
         if compile_route:
             self.compute=torch.compile(self.compute,fullgraph=True,dynamic=False if static_route else None,options={"triton.cudagraphs":False})
     @torch.no_grad()
-    def get(self,q,summary,encoding,theta,basis,own,full_pset):
-        h,t,n,d=q.shape;p=summary.mean.shape[1];key=(h,t,p,full_pset,q.device,q.dtype)
+    def get(self,q,summary,encoding,theta,basis,own,full_pset,heads=None):
+        h,t,n,d=q.shape;p=summary.mean.shape[1];selected_heads=heads if full_pset else None;key=(h,t,p,full_pset,q.device,q.dtype,n,0 if selected_heads is None else selected_heads.numel())
         if key not in self.entries:
             entry=dict(q=torch.empty_like(q),s=Summary(*(torch.empty_like(getattr(summary,name)) for name in ('keys','mean','detail','stats'))),
                        theta=torch.empty_like(theta),basis=torch.empty_like(basis),own=torch.empty_like(own),
                        en={name:torch.empty_like(v) for name,v in encoding.items()} if full_pset else {},
                        offsets=torch.linspace(0,63,16,device=q.device).round().long())
+            if selected_heads is not None:entry['active_heads']=selected_heads.clone()
             entry['haar']=haar(q).double();entry['haar_float']=haar(q)
             self.stage(entry,summary,encoding,theta,basis);entry['q'].copy_(q);entry['own'].copy_(own)
             stream=torch.cuda.Stream();stream.wait_stream(torch.cuda.current_stream())
@@ -58,6 +60,7 @@ class BatchGraphs:
             torch.cuda.current_stream().wait_stream(stream);tail_graph=torch.cuda.CUDAGraph()
             with torch.cuda.graph(tail_graph,pool=self.pool):tail_out=self.compensate(out[1],entry['s'],entry['basis'],out[2],entry['haar_float'])
             entry.update(full_pset=full_pset,graph=graph,out=out,tail_graph=tail_graph,tail_out=tail_out);self.entries[key]=entry
+        if selected_heads is not None:self.entries[key]['active_heads'].copy_(selected_heads)
         return self.entries[key]
     @torch.no_grad()
     def stage(self,e,s,en,theta,basis):
@@ -66,7 +69,7 @@ class BatchGraphs:
         e['theta'].copy_(theta);e['basis'].copy_(basis)
     def compute(self,e,full_pset):
         q=e['q'];h,t,n,d=q.shape;s=e['s'];p=s.mean.shape[1];en=e['en'];own=e['own'];theta=e['theta'];basis=e['basis']
-        query=q.float();probes=query.index_select(2,e['offsets'])
+        query=q.float();probes=query if self.input_m16 else query.index_select(2,e['offsets'])
         if self.probes_only:
             z=self.dot(probes.flatten(1,2),s.keys.float().flatten(1,2).transpose(1,2)).reshape(h,t,16,p,4)/math.sqrt(d)
             logits=z
@@ -75,6 +78,12 @@ class BatchGraphs:
             z=logits.index_select(2,e['offsets'])
         risk=self.risk_function(probes,z,s,theta);sel=RouteOps.select(risk,own,self.config,check_valid=False);mask=sel['mask'];count=max(1,int(p*.1))
         if full_pset:
+            full_mask=mask;full_risk=risk;full_own=own;full_h=h
+            if 'active_heads' in e:
+                heads=e['active_heads'];h=heads.numel()
+                z=z.index_select(0,heads);probes=probes.index_select(0,heads)
+                risk=risk.index_select(0,heads);mask=mask.index_select(0,heads);own=own.index_select(0,heads)
+                en={k:v.index_select(0,heads) for k,v in en.items()}
             zz=z.double()
             if CACHED_LOGMASS:
                 from .logmass_cached import normalized
@@ -99,6 +108,8 @@ class BatchGraphs:
                 scores=self.score_function(rp.reshape(b,16,p,16),beta.reshape(b,16,p),lm.reshape(b,16,p),center.reshape(b,16,p,16),mask.reshape(b,p),r.reshape(b,-1),a.reshape(b,-1))
             mask,gain,executed=apply_best(mask.reshape(b,p),r.reshape(b,-1),a.reshape(b,-1),scores);mask=mask.reshape(h,t,p)
             stats=torch.stack((executed.sum(),executed.new_full((),b,dtype=torch.int64),(~torch.isfinite(scores)).sum()))
+            if 'active_heads' in e:mask=full_mask.index_copy(0,e['active_heads'],mask)
+            risk=full_risk;own=full_own;h=full_h
         else:stats=torch.zeros(3,device=q.device,dtype=torch.int64)
         ids=risk.masked_fill(~mask,-torch.inf).scatter(-1,own[...,None],torch.inf).topk(count,dim=-1).indices.int()
         return ids,logits,mask,risk,stats
@@ -120,6 +131,6 @@ class BatchGraphs:
     def static_bytes(self):
         total=0
         for e in self.entries.values():
-            tensors=[e['q'],e['theta'],e['basis'],e['own'],e['offsets'],e['haar'],e['haar_float'],*e['en'].values(),*(getattr(e['s'],n) for n in ('keys','mean','detail','stats')),*e['out'],*e['tail_out']]
+            tensors=([e['active_heads']] if 'active_heads' in e else [])+[e['q'],e['theta'],e['basis'],e['own'],e['offsets'],e['haar'],e['haar_float'],*e['en'].values(),*(getattr(e['s'],n) for n in ('keys','mean','detail','stats')),*e['out'],*e['tail_out']]
             total+=sum(v.numel()*v.element_size() for v in tensors)
         return total

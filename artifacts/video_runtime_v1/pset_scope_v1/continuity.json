@@ -1,0 +1,14 @@
+{
+  "base": {
+    "equal": true,
+    "nmse": 0.0
+  },
+  "full": {
+    "equal": false,
+    "nmse": 8.665436741951376e-05
+  },
+  "step_3": {
+    "equal": true,
+    "nmse": 0.0
+  }
+}

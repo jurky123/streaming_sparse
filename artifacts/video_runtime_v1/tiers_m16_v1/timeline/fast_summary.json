@@ -1,0 +1,10 @@
+{
+  "chunk": 8,
+  "kernels": 25107,
+  "gpu_span_us": 973372.2700195312,
+  "gpu_union_busy_us": 945590.5815429688,
+  "gap_us": 27781.6884765625,
+  "max_gap_us": 288.9599609375,
+  "gap_over_100us": 2430.17431640625,
+  "scope": "CPU/CUDA profiler of warmed final chunk; instrumentation changes host dispatch; gaps are not promised recoverable Python time"
+}

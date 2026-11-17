@@ -1,0 +1,31 @@
+{
+  "status": "complete",
+  "individual_videos": 94,
+  "selected_videos": 10,
+  "timing_policies": 14,
+  "seeds": [
+    701,
+    702
+  ],
+  "case": "city_walk",
+  "chunks": 9,
+  "all_scope_counts_verified": true,
+  "static_route": true,
+  "global_default_changed": false,
+  "source_sha256": {
+    "runtime.py": "0e964c79f4a659f4dfb24b8a89e9489a0f6b2a252c4e06f292ac86212fc8757b",
+    "pipeline_graph.py": "72f938c507d802f58313204339820c51bcc1ef568b002035f6f4adc8db596f45",
+    "deployment.py": "45f5302434227c88be5ca403974eea8a362b95503952ade953eaa68d7201a502",
+    "batch.py": "da80f58d5b4a59a312ed182083be0ab18c2ff7ac42a0ed19b07bf103b491bce0",
+    "worker.py": "7f62214615bd925d10613747af406e33624eb95f5974f7673240bdfb7de473d0",
+    "benchmark_hotspots.py": "c7d533a362eba9b38db44d689831824ec95c73803ce28fb4ce3a257bb6e5b5a4",
+    "check_scope.py": "19a38eb3df48590f19be6618aedc725d96a0157420c6d30bfc6c904e309b068a",
+    "check_scope_order.py": "a81da7ed363991f85149d453b618ead5367da8b26a23a672f5a1578d11e4f33d",
+    "scope_experiment.py": "97a67e02ac642cbb0024bcece68ffe5194614e1115b38f377a2f88bde553a174",
+    "scope_timing.py": "e5dc8aa50a73b78013fd24a3b8c5c62bdf80d7bf8384ca62015b403bfb5b346d",
+    "report_scope.py": "e15261b46dd12a9cb2d5f1444a12b4d544b8e70df14a282b2b6e80e90f699e09",
+    "prewarm_scope.py": "5c255c1343b267642a19daefe6a5aa19512974e9bf35e16423f75bb3526d75f7"
+  },
+  "report_links_verified": true,
+  "comparison_videos": 2
+}
