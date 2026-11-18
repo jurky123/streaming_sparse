@@ -8,8 +8,6 @@ from tempfile import TemporaryDirectory
 
 import triton
 from triton.runtime.jit import JITFunction
-from triton.runtime.cache import get_cache_manager
-from triton.compiler.compiler import CompiledKernel, make_backend
 from ..review_v1.tuned_attention import _tail
 
 
@@ -37,18 +35,50 @@ def stagger_copies(text):
     return '\n'.join(lines[:start + 1] + body + lines[end:]) + '\n'
 
 
+def align_coefficients(text):
+    # Each lane reduces both adjacent groups of four representatives locally.
+    # Match both sides of the no-copy 64x64 -> 64x16x4 reshape.
+    shape = 'tt.reshape'
+    mapping = 'tensor<64x64xf32, #blocked7> -> tensor<64x16x4xf32, #blocked6>'
+    if not any(shape in line and mapping in line for line in text.splitlines()):
+        return text
+    layouts = (
+        ('#blocked6', '[4, 1, 4]', '[2, 16, 1]', '[1, 2, 4]', '[8, 4, 1]', '[4, 1, 1]', '[2, 1, 0]'),
+        ('#blocked7', '[4, 4]', '[2, 16]', '[1, 8]', '[8, 4]', '[4, 1]', '[1, 0]'),
+    )
+    result = text
+    for name, size, lanes, new_size, new_lanes, warps, order in layouts:
+        prefix = f'{name} = #triton_gpu.blocked<{{'
+        suffix = f', warpsPerCTA = {warps}, order = {order}}}>'
+        old = prefix + f'sizePerThread = {size}, threadsPerWarp = {lanes}' + suffix
+        new = prefix + f'sizePerThread = {new_size}, threadsPerWarp = {new_lanes}' + suffix
+        if old not in result:
+            return text
+        result = result.replace(old, new)
+    return result
+
+
 class PagePipeline(JITFunction):
+    def __init__(self, fn, *, aligned_coefficients=False):
+        super().__init__(fn)
+        self.aligned_coefficients = aligned_coefficients
+
     def create_binder(self, backend):
         super().create_binder(backend)
         compile_native = self.compile
 
         def compile_page(src, target, options):
             kernel = compile_native(src, target=target, options=options)
-            if target.backend != 'cuda' or target.arch != 80 or triton.__version__ != '3.2.0':
+            if target.backend != 'cuda' or target.arch != 80:
                 return kernel
             scheduled = stagger_copies(kernel.asm['ttgir'])
             if scheduled is None:
                 return kernel
+            if self.aligned_coefficients:
+                scheduled = align_coefficients(scheduled)
+            from triton.runtime.cache import get_cache_manager
+            from triton.compiler.compiler import CompiledKernel, make_backend
+
             key = hashlib.sha256((kernel.hash + scheduled).encode()).hexdigest()
             cache = get_cache_manager(key)
             group = cache.get_group('page.json')
@@ -82,4 +112,8 @@ class PagePipeline(JITFunction):
         self.compile = compile_page
 
 
-page_tail = PagePipeline(_tail.fn)
+if triton.__version__ == "3.2.0":
+    page_tail = PagePipeline(_tail.fn)
+    coeff_tail = PagePipeline(_tail.fn, aligned_coefficients=True)
+else:
+    page_tail = coeff_tail = _tail

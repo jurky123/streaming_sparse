@@ -1,0 +1,243 @@
+{
+  "total_short": 28824,
+  "source_rows": [
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 153,
+      "source": "return tl.dot(high, values) + tl.dot(low, values)",
+      "short": 15777,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 49,
+      "source": "z=tl.dot(q,key)*(1.4426950408889634/math.sqrt(D))",
+      "short": 3040,
+      "excess_shared": 0
+    },
+    {
+      "file": "standard.py",
+      "line": 256,
+      "source": "return a + b",
+      "short": 2456,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 143,
+      "source": "logits = tl.dot(q, k)",
+      "short": 2172,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 23,
+      "source": "t=tl.program_id(0);h=tl.program_id(1);qi=t*BQ+tl.arange(0,BQ);d=tl.arange(0,D);r=tl.arange(0,BR);pages=tl.arange(0,BR//4);rank=tl.arange(0,16)",
+      "short": 1463,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 151,
+      "source": "high = prob.to(values.dtype)",
+      "short": 1182,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 17,
+      "source": "hi=a.to(tl.bfloat16);lo=(a-hi.to(tl.float32)).to(tl.bfloat16)",
+      "short": 429,
+      "excess_shared": 0
+    },
+    {
+      "file": "standard.py",
+      "line": 163,
+      "source": "return core.maximum(a, b)",
+      "short": 395,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 71,
+      "source": "tail=am/safe[:,None]+tl.dot(code,basis,input_precision='tf32x3')",
+      "short": 296,
+      "excess_shared": 1741824
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 180,
+      "source": "column_mass += prob",
+      "short": 258,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 48,
+      "source": "key=tl.load(KEY+(h*hp*4+rep[None,:])*D+d[:,None],rep[None,:]<P*4,0)",
+      "short": 199,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 18,
+      "source": "return tl.dot(hi,b.to(tl.bfloat16))+tl.dot(lo,b.to(tl.bfloat16))",
+      "short": 176,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 177,
+      "source": "prob = tl.exp2(scores - anchor[:, None])",
+      "short": 166,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 56,
+      "source": "mean=tl.load(MEAN+(h*hp+page[:,None])*D+d[None,:],page[:,None]<P,0).to(tl.float32)",
+      "short": 154,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 175,
+      "source": "tokens = tl.load(ids + i).to(tl.int32) * 64 + offsets",
+      "short": 134,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 58,
+      "source": "y=tl.load(DETAIL+((h*hp+page[:,None])*3+1)*8+rank[None,:],(page[:,None]<P)&(rank[None,:]<8),0).to(tl.float32)",
+      "short": 131,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 51,
+      "source": "nm=tl.maximum(mx,tl.max(z,1));fade=tl.exp2(mx-nm);w=tl.exp2(z-nm[:,None]);ww=tl.reshape(w,(BQ,BR//4,4));rr=tl.arange(0,4)",
+      "short": 94,
+      "excess_shared": 2985984
+    },
+    {
+      "file": "standard.py",
+      "line": 267,
+      "source": "return core.reduce(input, axis, _sum_combine, keep_dims=keep_dims)",
+      "short": 46,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 152,
+      "source": "low = (prob - high.to(tl.float32)).to(values.dtype)",
+      "short": 31,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 59,
+      "source": "v=tl.load(DETAIL+((h*hp+page[:,None])*3+2)*8+rank[None,:],(page[:,None]<P)&(rank[None,:]<8),0).to(tl.float32)",
+      "short": 31,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 167,
+      "source": "prob = tl.exp2(scores - anchor[:, None])",
+      "short": 29,
+      "excess_shared": 0
+    },
+    {
+      "file": "standard.py",
+      "line": 184,
+      "source": "return core.reduce(input, axis, _elementwise_max, keep_dims=keep_dims)",
+      "short": 28,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 178,
+      "source": "accum += _anchor_av(prob, tl.load(values + tokens[:, None] * stride + dims[None, :]))",
+      "short": 26,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 77,
+      "source": "tl.store(OUT+(qi[:,None]*H+h)*D+d[None,:],exact*(1.-rho[:,None])+tail*rho[:,None])",
+      "short": 26,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 185,
+      "source": "return accum / total[:, None], anchor + tl.log2(total), total",
+      "short": 19,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 142,
+      "source": "k = tl.load(K + tokens[None, :] * stride + dims[:, None])",
+      "short": 16,
+      "excess_shared": 0
+    },
+    {
+      "file": "standard.py",
+      "line": 222,
+      "source": "return core.minimum(a, b)",
+      "short": 15,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 28,
+      "source": "exact,le,mass=_anchored_exact(q,K,V,IDS+(h*(N//64)+t)*EXACT_COUNT,h,H,D,EXACT_COUNT,QK_SCALE,COLUMN_MASS)",
+      "short": 12,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 24,
+      "source": "q=tl.load(Q+(qi[:,None]*H+h)*D+d[None,:])",
+      "short": 10,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 76,
+      "source": "rho=1./(1.+tl.exp2(le-lt))",
+      "short": 4,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 61,
+      "source": "am=am*fade[:,None]+_av(alpha,mean)",
+      "short": 3,
+      "excess_shared": 0
+    },
+    {
+      "file": "gap_exact_round_kernel.py",
+      "line": 173,
+      "source": "accum = _anchor_av(prob, tl.load(values + tokens[:, None] * stride + dims[None, :]))",
+      "short": 2,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 30,
+      "source": "if tl.min(((mass>=1.)&(mass<1.21e24)).to(tl.int32),0)==0:",
+      "short": 2,
+      "excess_shared": 0
+    },
+    {
+      "file": "tuned_attention.py",
+      "line": 75,
+      "source": "lt=tl.where(den>0,mx+tl.log2(safe)+4.,-float('inf'))",
+      "short": 2,
+      "excess_shared": 0
+    }
+  ]
+}

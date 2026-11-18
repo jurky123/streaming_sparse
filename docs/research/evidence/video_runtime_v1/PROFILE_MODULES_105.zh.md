@@ -52,3 +52,7 @@ city_walk / seed 701，A100-SXM4-40GB，GPU7。base 已启用首页缩放和精�
 ## 精算页预取更新
 
 同卡开关采样，105 帧融合注意力累计 808.57 → 797.19 ms，按当前实现的主矩阵工作量折算为 137.9 TFLOP/s。相同工作量在 Dense 实测有效吞吐下的参考为 528.33 ms，当前差额 268.86 ms。P432 Tensor pipe active 从 45.10% 升至 45.66%。[完整计数与复测](../../../../artifacts/video_runtime_v1/warp_rows_v1/PROGRESS.zh.md)
+
+## 补偿系数布局更新
+
+P432 补偿高低项构造行的额外共享内存 wavefront 从 5,971,968 降到 0。完整融合核在 105 帧设备时间线中累计 797.22 → 774.41 ms。按 109.93 TFLOP 主矩阵工作量折算，有效吞吐为 142.0 TFLOP/s，距 528.33 ms 的 Dense 吞吐参照还有 246.08 ms。[模块、硬件计数与视频验证](../../../../artifacts/video_runtime_v1/coeff_transfer_v1/PROGRESS.zh.md)

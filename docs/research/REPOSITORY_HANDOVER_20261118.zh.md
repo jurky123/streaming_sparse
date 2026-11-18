@@ -271,3 +271,9 @@ CUDA 代表池化已启用。105 帧单视频三档 18 对全部更快，配对�
 ### 精算页 K/V 错开等待已在 base 启用
 
 SM80 上保留 Q64 和双项 BF16 AV，提前下一页 K，推迟对 V 的等待。融合核设备累计从 808.57 降至 797.19 ms，距 Dense 吞吐折算参考仍有 268.86 ms。正常启动路径单视频 8 对全部提速，配对中位节省 11.02 ms。5 prompt × 2 seed 全部 latent 逐位相同。GPU7 正式入口 base 5.03268 s，原生 Dense 6.46920 s，加速 1.28544×。可用 `--no-page-prefetch` 回到上一版。P432 的短 scoreboard 等待升至 19.39%，下一轮可定位概率片段交换和 AV 等待的具体指令。[模块、硬件计数与视频验收](../../artifacts/video_runtime_v1/warp_rows_v1/PROGRESS.zh.md)
+
+P432 指令采样将 49.5% 的短 scoreboard 样本定位到精算双项 AV。仅调整 AV 的 warp 行列分工、概率共享布局和页内累加链均未通过完整融合模块验收，当前继续使用 page_prefetch。[硬件证据和候选测试](../../artifacts/video_runtime_v1/fused_fragments_v1/PROGRESS.zh.md)
+
+base 已启用补偿系数成对布局，四窗口完整融合核提速 1.0275–1.0395×，输出逐位一致。时间线累计 797.22 → 774.41 ms，105 帧单视频 8 对全部提速，配对中位节省 22.35 ms。GPU6 同主干 Dense / base 加速 1.28745×。可用 `--no-aligned-coefficients` 单独回退。[补偿系数布局、质量与验收](../../artifacts/video_runtime_v1/coeff_transfer_v1/PROGRESS.zh.md)
+
+Triton 版本分流已前移，3.2.0 的 page_tail / coeff_tail 与 3.3.0 的原核首次启动均通过 P432 实测。当前部署的精算双项 AV 在本次采样有 15,657 个 short scoreboard 样本，全部指向 A 片段 LDSM。warp 内概率寄存器传递输出逐位一致，但 P432 完整核仅 0.3340×，模块门槛未过。保留补偿系数布局和 K/V 错开预取。[逐 PC 依赖、模块与兼容性](../../artifacts/video_runtime_v1/av_dependency_v1/PROGRESS.zh.md)

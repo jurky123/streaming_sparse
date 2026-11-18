@@ -1,0 +1,15 @@
+{
+  "old": {
+    "nmse": 0.3784089982509613,
+    "mae": 0.320629358291626,
+    "max_abs": 4.6875,
+    "equal_to_prior_base": true
+  },
+  "new": {
+    "nmse": 0.3784089982509613,
+    "mae": 0.320629358291626,
+    "max_abs": 4.6875,
+    "equal_to_prior_base": true
+  },
+  "reference": "/tmp/jzk_pipeline_final_dense/latents.pt"
+}

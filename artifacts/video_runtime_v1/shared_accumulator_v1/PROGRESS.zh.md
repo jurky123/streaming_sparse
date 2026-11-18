@@ -18,3 +18,5 @@ A100 GPU7，432 页真实捕获，43 个精算页。CUDA Graph 预热，交替�
 硬件计数为 GPU5 单独复核的同形状、预热后一次调用。按编译器行信息把 SASS PC 映射到精算 helper 和补偿源码。基线精算 helper 归属的动态 LDL / STL 指令为 1,161,216 / 169,344，候选为 1,168,128 / 27,648。补偿归属的动态 LDL / STL 为 0 / 0 和 3,456 / 0。另有入口及结束等位置的 local 指令，聚合文件单列为 other。补偿归属的动态 warp 指令从 71.84 M 增至 78.21 M；其中 stall_wait 样本占该阶段样本的比例从 28.7% 升至 35.9%。行映射受指令调度影响，采样适合解释趋势，无法从中唯一确定依赖链。资源节省确实发生，但完整核耗时增加。[分阶段计数](counters.json) · [计数归属脚本](counters.py)
 
 编译产物保存在本目录，包括两版的 TTGIR、PTX、cubin、SASS、资源信息和 Nsight Compute 报告。[部署 TTGIR](baseline.ttgir) · [候选 TTGIR](shared.ttgir) · [部署 SASS](baseline.sass) · [候选 SASS](shared.sass)
+
+评审后按两个 cubin 的补偿循环回跳范围复核：原版 0x12900–0x16770 共 1000 条静态指令，候选 0x128f0–0x168e0 共 1024 条，均有 102 条 HMMA，NOP 从 1 条增到 25 条。结合已有完整模块回退，结束共享累加器与其 raw-state 后续。预取版与当前 base 的操作数依赖另用各自的正式 JIT cubin 采样。[操作数依赖复核](../av_dependency_v1/PROGRESS.zh.md)
