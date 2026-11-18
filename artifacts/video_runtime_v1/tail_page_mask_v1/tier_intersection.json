@@ -1,0 +1,22 @@
+{
+  "tier": "intersection",
+  "kernel": "deployed",
+  "seconds": [
+    5.184879852458835,
+    5.204724174924195,
+    5.20887618791312,
+    5.214265200309455,
+    5.21394057571888
+  ],
+  "median_s": 5.20887618791312,
+  "cuda_calls": 0,
+  "direct_commits": 0,
+  "counters": [
+    10531,
+    10584,
+    0,
+    96768
+  ],
+  "video": "city_walk_s701",
+  "frames": 105
+}

@@ -1,0 +1,30 @@
+{
+  "candidate": {
+    "exact": {
+      "instructions": 3744,
+      "sha256": "6a515352c093c9153ab37ef2aa0a63f98cfd443b6741bcab3fa26969547a387f"
+    },
+    "prepare": {
+      "instructions": 840,
+      "sha256": "c10334ba12b848c98c4e6f8e281fe2b57f79e83919963f7c81a184dcd48d55a0"
+    },
+    "commit_tile": {
+      "instructions": 256,
+      "sha256": "9806cdb59155425653dd556b3fd2415b3b15adf9af9e961f5712438965ba8548"
+    }
+  },
+  "release": {
+    "exact": {
+      "instructions": 3744,
+      "sha256": "6a515352c093c9153ab37ef2aa0a63f98cfd443b6741bcab3fa26969547a387f"
+    },
+    "prepare": {
+      "instructions": 840,
+      "sha256": "c10334ba12b848c98c4e6f8e281fe2b57f79e83919963f7c81a184dcd48d55a0"
+    },
+    "commit_tile": {
+      "instructions": 256,
+      "sha256": "9806cdb59155425653dd556b3fd2415b3b15adf9af9e961f5712438965ba8548"
+    }
+  }
+}

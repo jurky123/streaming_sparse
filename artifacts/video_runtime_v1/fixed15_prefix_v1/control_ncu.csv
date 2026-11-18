@@ -1,0 +1,9 @@
+==PROF== Connected to process 3103758 (/usr/bin/python3.10)
+==PROF== Disconnected from process 3103758
+"ID","Process ID","Process Name","Host Name","Kernel Name","Context","Stream","Block Size","Grid Size","Device","CC","Section Name","Metric Name","Metric Unit","Metric Value"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","dram__throughput.avg.pct_of_peak_sustained_elapsed","%","6.18"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","l1tex__t_sectors_pipe_lsu_mem_local_op_ld.sum","sector","8722944"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","sm__pipe_tensor_cycles_active.avg.pct_of_peak_sustained_active","%","48.00"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","sm__warps_active.avg.pct_of_peak_sustained_active","%","12.27"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct","%","12.54"
+"0","3103758","python3.10","127.0.0.1","_tail","1","7","(128, 1, 1)","(72, 12, 1)","0","8.0","Command line profiler metrics","smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct","%","13.08"

@@ -1,5 +1,7 @@
 # 105 帧 base 模块 profile 与理论耗时差距
 
+本文保留历史 10% 结果。当前 15% 首帧锚点 base 的模块耗时、逐窗 Dense 参照与资源计数见[重新测量报告](../../../../artifacts/video_runtime_v1/fixed15_baseline_v1/PROGRESS.zh.md)。
+
 city_walk / seed 701，A100-SXM4-40GB，GPU7。base 已启用首页缩放和精算分母列累加。正式生成预热后 5 次中位数为 5053.12 ms，相对同卡原生 Dense 为 1.27983×；计时截止于最终 latent。
 
 ## 整条视频与实际 Dense 吞吐参照

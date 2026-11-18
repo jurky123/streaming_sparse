@@ -1,0 +1,9 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z11commit_tilePK5uint4S1_PS_S2_S2_S2_iiiii' for 'sm_80'
+ptxas info    : Function properties for _Z11commit_tilePK5uint4S1_PS_S2_S2_S2_iiiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 8320 bytes smem, 420 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z5exactPK13__nv_bfloat16S1_S1_PKiPS_S1_S1_Piii' for 'sm_80'
+ptxas info    : Function properties for _Z5exactPK13__nv_bfloat16S1_S1_PKiPS_S1_S1_Piii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 255 registers, 64 bytes smem, 424 bytes cmem[0]

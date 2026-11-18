@@ -1,0 +1,14 @@
+{
+  "base": {
+    "instructions": 3744,
+    "fmnmx": 94
+  },
+  "lastfull": {
+    "instructions": 4376,
+    "fmnmx": 130
+  },
+  "maxtree": {
+    "instructions": 3760,
+    "fmnmx": 106
+  }
+}

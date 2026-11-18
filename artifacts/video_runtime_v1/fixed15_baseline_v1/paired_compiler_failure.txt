@@ -1,0 +1,11 @@
+/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/lib/python3.10/site-packages/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+Fatal Python error: Segmentation fault
+
+Current thread 0x00007f8e5f18c1c0 (most recent call first):
+  File "/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/lib/python3.10/site-packages/triton/backends/nvidia/compiler.py", line 286 in make_llir
+  File "/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/lib/python3.10/site-packages/triton/backends/nvidia/compiler.py", line 387 in <lambda>
+  File "/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/lib/python3.10/site-packages/triton/compiler/compiler.py", line 279 in compile
+  File "/home/shuchenweng/jzk/streaming_sparse/artifacts/video_runtime_v1/fixed15_baseline_v1/layout_test.py", line 22 in <module>
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, cuda_utils, __triton_launcher (total: 15)

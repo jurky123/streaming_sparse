@@ -1,0 +1,92 @@
+[
+  {
+    "prompt": "kitchen_cook",
+    "seed": 703,
+    "baseline_s": 5.1245738454163074,
+    "candidate_s": 5.13696407712996,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 703,
+    "candidate_s": 5.133723193779588,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.135699438862503,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 703,
+    "baseline_s": 5.1585449781268835,
+    "candidate_s": 5.157653210684657,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 703,
+    "candidate_s": 5.145411894656718,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.153470266610384,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 703,
+    "baseline_s": 5.157386154867709,
+    "candidate_s": 5.151662848889828,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "kitchen_cook",
+    "seed": 704,
+    "candidate_s": 5.1600247686728835,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.168394472450018,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 704,
+    "baseline_s": 5.1644320180639625,
+    "candidate_s": 5.156763999722898,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 704,
+    "candidate_s": 5.169931571930647,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.1855027144774795,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 704,
+    "baseline_s": 5.157993465662003,
+    "candidate_s": 5.153398138470948,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 704,
+    "candidate_s": 5.154778763651848,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.162100479006767,
+    "bitwise": true
+  }
+]

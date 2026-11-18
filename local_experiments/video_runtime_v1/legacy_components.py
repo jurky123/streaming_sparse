@@ -34,7 +34,8 @@ def attention(q,k,v,s,basis,ids,workspace,*,bf16_av=True):
             and not (major or EXACT_FOLD or SINGLE_AV) and count and p<=512):
         out=buf('out',q.shape,q.dtype)
         use_prefetch = (getattr(workspace, "page_prefetch", False) and workspace.column_mass and workspace.anchor_scale
-                        and bf16_av and (n,h,d)==(4608,12,128) and p in (216,288,360,432) and count==p//10)
+                        and bf16_av and (n,h,d)==(4608,12,128) and p in (216,288,360,432)
+                        and count in (p//10, p*15//100))
         kernel = _tail
         if use_prefetch:
             kernel = coeff_tail if getattr(workspace, "aligned_coefficients", False) else page_tail

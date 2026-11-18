@@ -1,0 +1,30 @@
+{
+  "normal": {
+    "measured": {
+      "intercept_us": 59.74788556701087,
+      "exact_page_us": 12.102799955755486,
+      "summary_tile_us": 9.561072766166394,
+      "max_abs_residual_us": 3.22905543846025
+    },
+    "dense_reference": {
+      "intercept_us": -0.11206552476226724,
+      "exact_page_us": 13.08586095563241,
+      "summary_tile_us": 6.957713886382041,
+      "max_abs_residual_us": 0.7774101853145794
+    }
+  },
+  "reverse": {
+    "measured": {
+      "intercept_us": 67.45467146032777,
+      "exact_page_us": 12.155600078403971,
+      "summary_tile_us": 9.216396034378384,
+      "max_abs_residual_us": 0.7094164177312905
+    },
+    "dense_reference": {
+      "intercept_us": 7.074574922690469,
+      "exact_page_us": 13.169039009759839,
+      "summary_tile_us": 6.629071755377153,
+      "max_abs_residual_us": 1.1835771814644431
+    }
+  }
+}

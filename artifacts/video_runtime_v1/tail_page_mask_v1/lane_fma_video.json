@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.170235628262162,
+    "candidate_s": 5.163134044967592,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.177063264884055,
+    "baseline_s": 5.201628959737718,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.205656343139708,
+    "candidate_s": 5.196479411795735,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.198962672613561,
+    "baseline_s": 5.218285222537816,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.215800005942583,
+    "candidate_s": 5.203533209860325,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.1999358190223575,
+    "baseline_s": 5.218885249458253,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.2208040012046695,
+    "candidate_s": 5.202275410294533,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.2032841900363564,
+    "baseline_s": 5.221097974106669,
+    "bitwise": false,
+    "nmse": 0.38708531856536865,
+    "old_dense_nmse": 0.5347827076911926,
+    "new_dense_nmse": 0.5316590666770935
+  }
+]

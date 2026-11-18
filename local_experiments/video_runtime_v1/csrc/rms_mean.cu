@@ -30,9 +30,10 @@ union FourBF16 {
   unsigned short bits[4];
 };
 
-template<bool Rotate>
+template<bool Rotate, bool Pack = false>
 __global__ void rms_row_kernel(const uint2* x, const uint2* weight,
-                               uint2* out, int rows, float epsilon, const double2* freq, int gh, int gw, int start) {
+                               uint2* out, int rows, float epsilon, const double2* freq, int gh, int gw, int start, uint4* packed = nullptr) {
+  __shared__ __align__(16) unsigned short stage[Pack ? 12 : 1][Pack ? 16 : 1][Pack ? 128 : 1];
   const int lane = threadIdx.x;
   const int row = blockIdx.x * blockDim.y + threadIdx.y;
   if (row >= rows) return;
@@ -83,6 +84,24 @@ __global__ void rms_row_kernel(const uint2* x, const uint2* weight,
       }
     }
     out[row * 384 + i * 32 + lane] = result.packed;
+    if constexpr (Pack) {
+      int col = (4*lane) ^ ((threadIdx.y%8)*8);
+      *reinterpret_cast<uint2*>(&stage[i][threadIdx.y][col]) = result.packed;
+    }
+  }
+  if constexpr (Pack) {
+    __syncthreads();
+    // Each warp emits one contiguous 16-column K fragment at a time.
+    int t = threadIdx.y*32 + lane;
+    for (int i=t; i<12*256; i+=512) {
+      int head=i/256, tile=(i%256)/32, quad=lane/8;
+      int r=(quad/2)*8+lane%8, col=tile*16+(quad%2)*8;
+      unsigned addr=__cvta_generic_to_shared(&stage[head][r][col^((r%8)*8)]);
+      uint4 a;
+      asm("ldmatrix.sync.aligned.m8n8.x4.shared.b16 {%0,%1,%2,%3},[%4];"
+          :"=r"(a.x),"=r"(a.y),"=r"(a.z),"=r"(a.w):"r"(addr));
+      packed[(blockIdx.x/4*12+head)*1024+tile*128+(blockIdx.x%4)*32+lane]=a;
+    }
   }
 }
 
@@ -96,4 +115,10 @@ extern "C" void rms_rope(const void* x,const void* weight,void* out,int rows,flo
                          const double2* freq,int gh,int gw,int start,cudaStream_t stream) {
   rms_row_kernel<true><<<(rows+3)/4,dim3(32,4),0,stream>>>(
       (const uint2*)x,(const uint2*)weight,(uint2*)out,rows,epsilon,freq,gh,gw,start);
+}
+
+extern "C" void rms_rope_pack(const void* x,const void* weight,void* out,int rows,float epsilon,
+                              const double2* freq,int gh,int gw,int start,uint4* packed,cudaStream_t stream) {
+  rms_row_kernel<true,true><<<rows/16,dim3(32,16),0,stream>>>(
+      (const uint2*)x,(const uint2*)weight,(uint2*)out,rows,epsilon,freq,gh,gw,start,packed);
 }

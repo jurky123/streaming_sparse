@@ -1,0 +1,58 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.0390827134251595,
+    "candidate_s": 5.041701754555106,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.041750608943403,
+    "baseline_s": 5.048862575553358,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.0509752463549376,
+    "candidate_s": 5.048160578124225,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.050869953818619,
+    "baseline_s": 5.057848770171404,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.058881166391075,
+    "candidate_s": 5.060603299178183,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.064371610991657,
+    "baseline_s": 5.067232637666166,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.0692308051511645,
+    "candidate_s": 5.0623275227844715,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.07051195576787,
+    "baseline_s": 5.069861968047917,
+    "bitwise": true
+  }
+]

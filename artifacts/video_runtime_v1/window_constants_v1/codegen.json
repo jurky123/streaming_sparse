@@ -1,0 +1,42 @@
+{
+  "base": {
+    "instructions": 3840,
+    "hash": "ef5311fa5608a5a395a13f36b847e295e32d3d2a25d582f2c0023b4d97a992b4",
+    "resources": "REG:255 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "rolled": {
+    "instructions": 3840,
+    "hash": "ef5311fa5608a5a395a13f36b847e295e32d3d2a25d582f2c0023b4d97a992b4",
+    "resources": "REG:255 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "auto216": {
+    "instructions": 3872,
+    "hash": "a1d9d3553f030946b5e4da56ce5fdb55a442e12f3a062d99fd518b91635f04a9",
+    "resources": "REG:252 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "auto432": {
+    "instructions": 3880,
+    "hash": "8d83974365e40f31b032f18362ff27fe2ba5489af119e36bd3c99980bbb09aeb",
+    "resources": "REG:254 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "const216": {
+    "instructions": 3872,
+    "hash": "a1d9d3553f030946b5e4da56ce5fdb55a442e12f3a062d99fd518b91635f04a9",
+    "resources": "REG:252 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "const288": {
+    "instructions": 3880,
+    "hash": "802ad07f0a61297ef9a300200e7ea69b22a34d5aeb51626261f06a4b6d6707c5",
+    "resources": "REG:254 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "const360": {
+    "instructions": 3880,
+    "hash": "af99544ccdcf88cea2bbc77c95e73d1f3b369094e315a6619f09af2356d2690a",
+    "resources": "REG:254 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  },
+  "const432": {
+    "instructions": 3880,
+    "hash": "8d83974365e40f31b032f18362ff27fe2ba5489af119e36bd3c99980bbb09aeb",
+    "resources": "REG:254 STACK:0 SHARED:64 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0"
+  }
+}

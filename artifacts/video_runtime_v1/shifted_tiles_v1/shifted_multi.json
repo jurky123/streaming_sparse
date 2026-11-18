@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "kitchen_cook",
+    "seed": 703,
+    "baseline_s": 5.188620704226196,
+    "candidate_s": 5.200307322666049,
+    "bitwise": false,
+    "old_new_nmse": 0.1995663046836853
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 703,
+    "candidate_s": 5.194764413870871,
+    "baseline_s": 5.199882390908897,
+    "bitwise": false,
+    "old_new_nmse": 0.04980355501174927
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 703,
+    "baseline_s": 5.201750743202865,
+    "candidate_s": 5.196119428612292,
+    "bitwise": false,
+    "old_new_nmse": 0.04267704114317894
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 703,
+    "candidate_s": 5.180824425071478,
+    "baseline_s": 5.171549980528653,
+    "bitwise": false,
+    "old_new_nmse": 0.15587086975574493
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 703,
+    "baseline_s": 5.1753998240455985,
+    "candidate_s": 5.1683736853301525,
+    "bitwise": false,
+    "old_new_nmse": 0.19212323427200317
+  },
+  {
+    "prompt": "kitchen_cook",
+    "seed": 704,
+    "candidate_s": 5.175939159467816,
+    "baseline_s": 5.1778009021654725,
+    "bitwise": false,
+    "old_new_nmse": 0.1236393079161644
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 704,
+    "baseline_s": 5.164708077907562,
+    "candidate_s": 5.163625838235021,
+    "bitwise": false,
+    "old_new_nmse": 0.035616591572761536
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 704,
+    "candidate_s": 5.182927483692765,
+    "baseline_s": 5.180319529958069,
+    "bitwise": false,
+    "old_new_nmse": 0.03149887174367905
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 704,
+    "baseline_s": 5.158534489572048,
+    "candidate_s": 5.157609208486974,
+    "bitwise": false,
+    "old_new_nmse": 0.19375236332416534
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 704,
+    "candidate_s": 5.155393370427191,
+    "baseline_s": 5.160115842707455,
+    "bitwise": false,
+    "old_new_nmse": 0.21525296568870544
+  }
+]

@@ -1,0 +1,170 @@
+{
+  "p216_base": {
+    "elapsed_fraction": 0.9242811453079951,
+    "cycles_fraction": 0.9246363733153657,
+    "sm_hz": [
+      1095152050.76,
+      1094731319.86
+    ],
+    "eligible": [
+      0.53,
+      0.42
+    ],
+    "tensor_pct": [
+      68.14,
+      63.27
+    ],
+    "issue_pct": [
+      39.63,
+      32.95
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8938588633097565
+  },
+  "p216_none": {
+    "elapsed_fraction": 1.059990357380203,
+    "cycles_fraction": 0.9153854890644058,
+    "sm_hz": [
+      1214408005.63,
+      1406249931.85
+    ],
+    "eligible": [
+      0.53,
+      0.42
+    ],
+    "tensor_pct": [
+      68.04,
+      62.55
+    ],
+    "issue_pct": [
+      39.62,
+      32.71
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8938588633097565
+  },
+  "p288_base": {
+    "elapsed_fraction": 0.9386961222978196,
+    "cycles_fraction": 0.9389943104987827,
+    "sm_hz": [
+      1095101591.55,
+      1094753827.17
+    ],
+    "eligible": [
+      0.53,
+      0.42
+    ],
+    "tensor_pct": [
+      68.25,
+      64.3
+    ],
+    "issue_pct": [
+      39.67,
+      32.99
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8785881783456698
+  },
+  "p288_none": {
+    "elapsed_fraction": 0.7314048727553113,
+    "cycles_fraction": 0.9403050913087833,
+    "sm_hz": [
+      1407113380.09,
+      1094506016.82
+    ],
+    "eligible": [
+      0.53,
+      0.43
+    ],
+    "tensor_pct": [
+      68.17,
+      64.3
+    ],
+    "issue_pct": [
+      39.64,
+      33.01
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8785881783456698
+  },
+  "p360_base": {
+    "elapsed_fraction": 0.9435793122090322,
+    "cycles_fraction": 0.9487686145384859,
+    "sm_hz": [
+      1094970095.06,
+      1088981139.13
+    ],
+    "eligible": [
+      0.53,
+      0.43
+    ],
+    "tensor_pct": [
+      68.34,
+      65.0
+    ],
+    "issue_pct": [
+      39.69,
+      33.28
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.875092105670585
+  },
+  "p360_none": {
+    "elapsed_fraction": 0.7403308869102537,
+    "cycles_fraction": 0.9510038925386745,
+    "sm_hz": [
+      1406245473.51,
+      1094724182.29
+    ],
+    "eligible": [
+      0.53,
+      0.43
+    ],
+    "tensor_pct": [
+      68.26,
+      65.08
+    ],
+    "issue_pct": [
+      39.67,
+      33.24
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.875092105670585
+  },
+  "p432_base": {
+    "elapsed_fraction": 0.9712347838201775,
+    "cycles_fraction": 0.9676127243874574,
+    "sm_hz": [
+      1090832040.67,
+      1094915348.24
+    ],
+    "eligible": [
+      0.53,
+      0.43
+    ],
+    "tensor_pct": [
+      67.87,
+      65.81
+    ],
+    "issue_pct": [
+      39.7,
+      33.37
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8703939823666355
+  },
+  "p432_none": {
+    "elapsed_fraction": 0.7481958031237101,
+    "cycles_fraction": 0.9618291336799969,
+    "sm_hz": [
+      1407158111.07,
+      1094612081.19
+    ],
+    "eligible": [
+      0.53,
+      0.43
+    ],
+    "tensor_pct": [
+      68.31,
+      65.84
+    ],
+    "issue_pct": [
+      39.69,
+      33.37
+    ],
+    "sparse_over_dense_instructions_per_flop": 0.8703939823666355
+  }
+}

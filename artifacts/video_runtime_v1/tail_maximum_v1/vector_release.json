@@ -1,0 +1,47 @@
+{
+  "base": {
+    "seconds": [
+      5.109660507179797,
+      5.114577605389059,
+      5.118302061222494,
+      5.134477999992669,
+      5.14375676959753
+    ],
+    "median_seconds": 5.118302061222494,
+    "cuda_calls": 812,
+    "commits": 261,
+    "accepted_latent_bitwise": true,
+    "dense_nmse": 0.5535557270050049,
+    "previous_nmse": 0.26032570004463196
+  },
+  "intersection": {
+    "seconds": [
+      5.146661650389433,
+      5.168262278661132,
+      5.1740494249388576,
+      5.176737684756517,
+      5.179988252930343
+    ],
+    "median_seconds": 5.1740494249388576,
+    "cuda_calls": 0,
+    "commits": 0,
+    "accepted_latent_bitwise": true,
+    "dense_nmse": 0.37933868169784546,
+    "previous_nmse": 0.0
+  },
+  "step": {
+    "seconds": [
+      5.827392807230353,
+      5.840958430431783,
+      5.845788353122771,
+      5.860156248323619,
+      5.8713602451607585
+    ],
+    "median_seconds": 5.845788353122771,
+    "cuda_calls": 0,
+    "commits": 0,
+    "accepted_latent_bitwise": true,
+    "dense_nmse": 0.3474922776222229,
+    "previous_nmse": 0.0
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "candidate": {
+    "instructions": 3288,
+    "sha256": "915517646523edfe39faf65084f9fc912c1471dd930d4752b6cfe1cd80c2da37"
+  },
+  "deployed": {
+    "instructions": 3288,
+    "sha256": "915517646523edfe39faf65084f9fc912c1471dd930d4752b6cfe1cd80c2da37"
+  }
+}

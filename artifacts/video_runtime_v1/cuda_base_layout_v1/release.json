@@ -1,0 +1,144 @@
+{
+  "prompt": "city_walk",
+  "seed": 701,
+  "frames": 105,
+  "gpu": "A100-SXM4-40GB GPU 6",
+  "tiers": {
+    "base": {
+      "seconds": [
+        5.255382647737861,
+        5.266779139637947,
+        5.283896895125508,
+        5.280406763777137,
+        5.286316050216556
+      ],
+      "median_s": 5.280406763777137,
+      "speedup_vs_dense": 1.237189304981383,
+      "exact_density": 0.15,
+      "cuda_calls": 812,
+      "direct_commits": 261,
+      "packed_kv_bytes": 4926210048,
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "peak_allocated_bytes": 14037744128,
+      "reference": "cuda_tier_triton",
+      "reference_bitwise": true,
+      "dense_nmse": 0.5575470328330994,
+      "reference_dense_nmse": 0.5575470328330994
+    },
+    "intersection": {
+      "seconds": [
+        5.170786000788212,
+        5.190894293598831,
+        5.20506034232676,
+        5.21555648650974,
+        5.223715850152075
+      ],
+      "median_s": 5.20506034232676,
+      "speedup_vs_dense": 1.2550983743593098,
+      "exact_density": 0.1,
+      "cuda_calls": 0,
+      "direct_commits": 0,
+      "packed_kv_bytes": 0,
+      "counters": [
+        10531,
+        10584,
+        0,
+        96768
+      ],
+      "peak_allocated_bytes": 9519224320,
+      "reference": "resroute_deploy_intersection",
+      "reference_bitwise": true,
+      "dense_nmse": 0.3793386220932007,
+      "reference_dense_nmse": 0.3793386220932007
+    },
+    "step": {
+      "seconds": [
+        5.890382290817797,
+        5.910457582212985,
+        5.915653269737959,
+        5.918929651379585,
+        5.9224922908470035
+      ],
+      "median_s": 5.915653269737959,
+      "speedup_vs_dense": 1.104334969650074,
+      "exact_density": 0.1,
+      "cuda_calls": 0,
+      "direct_commits": 0,
+      "packed_kv_bytes": 0,
+      "counters": [
+        174166,
+        175392,
+        0,
+        400896
+      ],
+      "peak_allocated_bytes": 9746454016,
+      "reference": "resroute_deploy_step",
+      "reference_bitwise": true,
+      "dense_nmse": 0.3474922478199005,
+      "reference_dense_nmse": 0.3474922478199005
+    }
+  },
+  "dense": {
+    "seconds": [
+      6.524570718407631,
+      6.527936359867454,
+      6.532862774096429,
+      6.543633881025016,
+      6.5407834984362125
+    ],
+    "median_s": 6.532862774096429
+  },
+  "paired_video": {
+    "n": 6,
+    "faster": 5,
+    "median_ms": 7.67893623560667,
+    "range_ms": [
+      -5.482109263539314,
+      24.041704833507538
+    ],
+    "all_bitwise": true
+  },
+  "multi_video": {
+    "n": 10,
+    "faster": 9,
+    "median_ms": 10.685239918529987,
+    "range_ms": [
+      -2.1196752786636353,
+      17.456463538110256
+    ],
+    "all_bitwise": true
+  },
+  "release_pairs": {
+    "n": 6,
+    "faster": 6,
+    "median_ms": 12.20147730782628,
+    "range_ms": [
+      5.345032550394535,
+      22.78602309525013
+    ],
+    "all_bitwise": true
+  },
+  "triton_pairs": {
+    "n": 6,
+    "faster": 6,
+    "median_ms": 52.59550688788295,
+    "range_ms": [
+      41.63181874901056,
+      57.18959402292967
+    ],
+    "all_bitwise": true
+  },
+  "device_ms": {
+    "main": 869.9014429999997,
+    "current_kv": 39.75099499999999,
+    "summary": 12.255251999999999,
+    "guard": 12.571472,
+    "clean_kv_commit": 18.917807000000003,
+    "attention_path_ms": 934.4791619999997
+  }
+}

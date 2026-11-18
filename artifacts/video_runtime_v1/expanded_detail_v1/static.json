@@ -1,0 +1,18 @@
+{
+  "control": {
+    "HMMA": 326,
+    "FADD": 434,
+    "F2FP": 128,
+    "LDS": 150,
+    "LDL": 2,
+    "STL": 2
+  },
+  "expanded": {
+    "HMMA": 336,
+    "FADD": 390,
+    "F2FP": 140,
+    "LDS": 155,
+    "LDL": 2,
+    "STL": 2
+  }
+}

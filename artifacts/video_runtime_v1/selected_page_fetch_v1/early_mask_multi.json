@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "kitchen_cook",
+    "seed": 703,
+    "baseline_s": 5.18485358543694,
+    "candidate_s": 5.186192650347948,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 703,
+    "candidate_s": 5.183854058384895,
+    "baseline_s": 5.201565475203097,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 703,
+    "baseline_s": 5.214898425154388,
+    "candidate_s": 5.215850593522191,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 703,
+    "candidate_s": 5.201447311788797,
+    "baseline_s": 5.216272140853107,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 703,
+    "baseline_s": 5.229117394424975,
+    "candidate_s": 5.2208678955212235,
+    "bitwise": true
+  },
+  {
+    "prompt": "kitchen_cook",
+    "seed": 704,
+    "candidate_s": 5.218441494740546,
+    "baseline_s": 5.226680088788271,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 704,
+    "baseline_s": 5.21652686689049,
+    "candidate_s": 5.208439474925399,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 704,
+    "candidate_s": 5.2219023602083325,
+    "baseline_s": 5.231662778183818,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 704,
+    "baseline_s": 5.220391787588596,
+    "candidate_s": 5.209162102080882,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 704,
+    "candidate_s": 5.204340404830873,
+    "baseline_s": 5.214695782400668,
+    "bitwise": true
+  }
+]

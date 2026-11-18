@@ -1,0 +1,74 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.109467003494501,
+    "candidate_s": 5.119830310344696,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.127378539182246,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.1393875274807215,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.142931818962097,
+    "candidate_s": 5.14463378302753,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.145317978225648,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.152702859602869,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.155879350379109,
+    "candidate_s": 5.1502543687820435,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.151294236071408,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.158828883431852,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.156022015027702,
+    "candidate_s": 5.150761307217181,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "bitwise": true
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.150835548527539,
+    "cache_hits": 609,
+    "cache_bytes": 199646208,
+    "baseline_s": 5.154905332252383,
+    "bitwise": true
+  }
+]

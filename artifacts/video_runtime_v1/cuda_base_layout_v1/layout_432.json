@@ -1,0 +1,9 @@
+{
+  "commit_reference_ms": 0.14195199310779572,
+  "commit_direct_ms": 0.1435520052909851,
+  "commit_bitwise": true,
+  "clean_native_ms": 3.7018239498138428,
+  "clean_direct_ms": 14.14182424545288,
+  "clean_nmse": 1.50443463553529e-06,
+  "clean_max": 0.015625
+}

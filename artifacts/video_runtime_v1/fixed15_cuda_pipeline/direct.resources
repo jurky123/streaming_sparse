@@ -1,0 +1,11 @@
+artifacts/video_runtime_v1/fixed15_cuda_pipeline/direct.cu(41): warning #177-D: variable "kv" was declared but never referenced
+      __attribute__((shared)) bf kv[2][64*128];
+                                 ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z5exactPK13__nv_bfloat16S1_S1_PKiPfS4_S4_i' for 'sm_80'
+ptxas info    : Function properties for _Z5exactPK13__nv_bfloat16S1_S1_PKiPfS4_S4_i
+    8 bytes stack frame, 16 bytes spill stores, 16 bytes spill loads
+ptxas info    : Used 255 registers, 412 bytes cmem[0]

@@ -1,0 +1,11 @@
+artifacts/video_runtime_v1/fixed15_cuda_pipeline/rawkey.cu(251): warning #177-D: variable "fk" was declared but never referenced
+              const uint4* fk=reinterpret_cast<const uint4*>(K)+(page*12+h)*1024;
+                           ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z5exactPK13__nv_bfloat16S1_S1_PKiPS_S1_S1_Piii' for 'sm_80'
+ptxas info    : Function properties for _Z5exactPK13__nv_bfloat16S1_S1_PKiPS_S1_S1_Piii
+    24 bytes stack frame, 28 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 255 registers, 64 bytes smem, 424 bytes cmem[0]

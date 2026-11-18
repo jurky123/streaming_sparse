@@ -1,0 +1,18 @@
+{
+  "216": {
+    "comparisons": 179712,
+    "padding_pages": 8
+  },
+  "288": {
+    "comparisons": 235008,
+    "padding_pages": 0
+  },
+  "360": {
+    "comparisons": 304128,
+    "padding_pages": 8
+  },
+  "432": {
+    "comparisons": 359424,
+    "padding_pages": 0
+  }
+}

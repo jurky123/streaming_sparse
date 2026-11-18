@@ -1,6 +1,26 @@
 # 仓库现状与工作交接（2026-11-18）
 
-[当前 105 帧 base 各模块 profile、理论耗时与差距](evidence/video_runtime_v1/PROFILE_MODULES_105.zh.md) · [模块表 CSV](evidence/video_runtime_v1/PROFILE_MODULES_105.csv)
+当前 SM80 base 已启用首页 K/V 预取和补偿 BF16 系数复用，首帧 24 页计入固定 15% 精算预算。105 帧同卡逐调用复核中，两轮完整融合核分别达到 Dense 折算吞吐的 97.65% 和 97.56%，距参照 17.06–17.74 ms。三档正式生成中位数为 base 5.08266 s、intersection 5.14592 s、step 5.85031 s。[最新吞吐复核](../../artifacts/video_runtime_v1/matched_dense_v1/PROGRESS.zh.md) · [正式部署与视频验收](../../artifacts/video_runtime_v1/first_anchor_v1/PROGRESS.zh.md)
+
+此前的 SM80 base 在 K 的 RoPE 核中同时生成打包布局。正式 5 prompt × 2 seed 有 9/10 更快，中位省 7.12 ms，最终 latent 逐位相同。三档同卡 105 帧中位耗时为 5.09330、5.16271、5.85888 秒。融合主核 734.93 ms，距固定 Dense 等吞吐参照 23.79 ms。[模块与视频验收](../../artifacts/video_runtime_v1/rope_pack_v1/PROGRESS.zh.md) · [共享内存交接负结果](../../artifacts/video_runtime_v1/exact_exchange_v1/PROGRESS.zh.md)
+
+用户已接受层内历史摘要复用，作为后续 SM80 base 的对照基线。105 帧准备核累计 39.15 → 35.16 ms，609/812 次命中，新增 190.40 MiB 常驻缓存。正式 5 prompt × 2 seed 有 7/10 更快，中位省 2.82 ms，latent 逐位一致。三档同卡耗时为 5.09600、5.16087、5.87211 秒。[本轮模块、显存与视频验收](../../artifacts/video_runtime_v1/history_summary_v1/PROGRESS.zh.md)
+
+前一版 SM80 base 跳过首个补偿块中 8 个锚点页的代表 QK。主核设备累计 737.93 ms，实际主矩阵工作量 147.143 TFLOP，对应的 Dense 吞吐参照为 711.14 ms。5 prompt × 2 seed 中 8/10 更快，中位省 5.58 ms，latent 逐位一致。三档同卡生成中位数为 5.10644、5.15894、5.84813 秒。[本轮实验与验收](../../artifacts/video_runtime_v1/anchor_half_v1/PROGRESS.zh.md)
+
+上一版 SM80 base 在最后一个精算页预取首个补偿块。105 帧主核同卡累计 747.02 → 741.65 ms，距固定 Dense 参照差 28.74 ms。多输入 9/10 更快，中位省 5.61 ms，latent 逐位一致。三档同卡复测 base、intersection、step 分别为 5.06786、5.12094、5.82411 秒。[实现、对照与正式入口复核](../../artifacts/video_runtime_v1/tail_split_prefetch_v1/PROGRESS.zh.md)
+
+此前的 SM80 base 使用用户接受的页内补偿代表布局和页质量分母，并以每 warp 128 位向量写回相同 BF16 输出。base、intersection、step 的同卡 105 帧中位数为 5.11830、5.17405、5.84579 秒。主核累计 754.18 ms，距固定 Dense 吞吐参照差 41.26 ms。组合版本 8/8 对更快，中位节省 33.95 ms。[正式发布、画质与逐窗吞吐](../../artifacts/video_runtime_v1/tail_maximum_v1/PROGRESS.zh.md)
+
+上一轮 SM80 base 采用了用户接受的按 lane 对齐补偿掩码和均值累加 FMA。city_walk / 701 的 base、intersection、step 实测分别为 5.16462、5.18695、5.86917 秒。正式主核累计 788.51 ms；相对固定 Dense 吞吐折算参照仍差 75.59 ms。[正式发布与对照数据](../../artifacts/video_runtime_v1/tail_page_mask_v1/PROGRESS.zh.md)
+
+上一版 SM80 base 启用了用户接受的向下舍入 anchor 与精算 FMA。city_walk / 701 的 base、intersection、step 正式生成时间依次为 5.16271、5.16782、5.86161 秒。base 的机器码及最终 latent 均与接受的候选一致。[正式验收与逐档误差](../../artifacts/video_runtime_v1/phase_boundary_v1/PROGRESS.zh.md)
+
+上一轮 SM80 base 启用了 warp 协作预读选页偏移和精算循环内补偿掩码构造。正式三档生成时间为 5.22044 / 5.17750 / 5.87950 秒，各档 latent 与上一版逐位一致。[该轮验收与 Dense 吞吐差距](../../artifacts/video_runtime_v1/selected_page_fetch_v1/PROGRESS.zh.md)
+
+当前 SM80 base 已启用用户接受的跨页双项 BF16 AV。首帧 24 页计入固定 15% 总精算预算。clean 提交写两种 K/V 布局，每次稀疏调用用一个 CUDA 核准备当前 72 页 K/V 和补偿摘要。新增 K/V 缓存仍为 4.588 GiB。intersection 和 step 沿用各自的 10% 路由与校正策略。速度验收同时列出三个模式的同口径实测。[上一版三模式速度与融合核差距](../../artifacts/video_runtime_v1/packed_copy_v1/PROGRESS.zh.md) · [跨页双项 AV 的精度验收](../../artifacts/video_runtime_v1/cuda_issue_v1/PROGRESS.zh.md) · [固定 15% 预算](../../artifacts/video_runtime_v1/fixed15_baseline_v1/PROGRESS.zh.md)
+
+[历史 10% base 的 105 帧 profile](evidence/video_runtime_v1/PROFILE_MODULES_105.zh.md) · [模块表 CSV](evidence/video_runtime_v1/PROFILE_MODULES_105.csv)
 
 
 **后续等值优化**：Risk 八维投影与消费合并、分组配对 gather 与初始 one-hot 直接取值已成为本地默认。60 条跨场景稀疏轨迹的 latent 均逐位一致。[验收及目标差距](../../artifacts/video_runtime_v1/risk_group_bundle_v1/PROGRESS.zh.md)。

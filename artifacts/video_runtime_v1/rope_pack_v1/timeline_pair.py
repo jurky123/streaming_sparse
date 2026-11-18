@@ -1,0 +1,21 @@
+"""Reuse the nine-chunk CUDA timeline with the selected K producer."""
+import importlib.util
+from pathlib import Path
+import sys
+from adapter import Switch
+
+root = Path(__file__).resolve().parent
+spec = importlib.util.spec_from_file_location("timeline", root.parent / "history_summary_v1/timeline.py")
+timeline = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(timeline)
+variant = sys.argv.pop(1)
+make_runtime = timeline.make_runtime
+
+def runtime(*args):
+    rt = make_runtime(*args)
+    if variant != 'release':
+        Switch(rt).select(variant == 'shared')
+    return rt
+
+timeline.make_runtime = runtime
+timeline.main()

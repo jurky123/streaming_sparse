@@ -1,0 +1,81 @@
+{
+  "pairs": {
+    "floor_center_video": {
+      "n": 8,
+      "wins": 8,
+      "median_saved_ms": 8.22083605453372,
+      "min_saved_ms": 4.674796015024185,
+      "max_saved_ms": 17.57628656923771,
+      "speedup": 1.0015772100607836
+    },
+    "fused_center_video": {
+      "n": 8,
+      "wins": 0,
+      "median_saved_ms": -7.526603061705828,
+      "min_saved_ms": -15.452340245246887,
+      "max_saved_ms": -1.8045464530587196,
+      "speedup": 0.998560295875573
+    },
+    "late_mask_video": {
+      "n": 8,
+      "wins": 6,
+      "median_saved_ms": 2.0616366527974606,
+      "min_saved_ms": -4.879351705312729,
+      "max_saved_ms": 10.903755202889442,
+      "speedup": 1.0003998913753904
+    },
+    "late_mask_multi": {
+      "n": 10,
+      "wins": 5,
+      "median_saved_ms": 0.7436596788465977,
+      "min_saved_ms": -6.545444019138813,
+      "max_saved_ms": 6.131957285106182,
+      "speedup": 1.0001422682726877
+    }
+  },
+  "device": {
+    "control": {
+      "main_ms": 819.704159,
+      "prepare_ms": 38.789123000000004,
+      "retry_ms": 8.912132999999999,
+      "total_ms": 867.4054150000001,
+      "main_tflops": 179.95516843534767,
+      "total_tflops": 170.05888763099315
+    },
+    "fused_center": {
+      "main_ms": 810.105934,
+      "prepare_ms": 38.805732,
+      "retry_ms": 33.00875700000001,
+      "total_ms": 881.920423,
+      "main_tflops": 182.08729723981997,
+      "total_tflops": 167.25998871669174
+    },
+    "floor_center": {
+      "main_ms": 805.5886479999999,
+      "prepare_ms": 38.780536,
+      "retry_ms": 9.477161,
+      "total_ms": 853.8463449999999,
+      "main_tflops": 183.10833992784865,
+      "total_tflops": 172.7594207831387
+    }
+  },
+  "tiers": {
+    "base": 5.1788974199444056,
+    "intersection": 5.165124439634383,
+    "step": 5.863309235312045
+  },
+  "guard": {
+    "control": {
+      "fallback_tiles": 10,
+      "calls_with_fallback": 9
+    },
+    "fused_center": {
+      "fallback_tiles": 4910,
+      "calls_with_fallback": 84
+    },
+    "floor_center": {
+      "fallback_tiles": 10,
+      "calls_with_fallback": 9
+    }
+  }
+}

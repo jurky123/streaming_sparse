@@ -1,0 +1,52 @@
+{
+  "whole_kernel": {
+    "stall_wait": 58343,
+    "stall_short_sb": 17099,
+    "stall_long_sb": 6539,
+    "Instructions Executed": 223184160
+  },
+  "exact": {
+    "first_pc": "0x8f0",
+    "last_pc": "0x3430",
+    "loop": {
+      "stall_wait": 45087,
+      "stall_short_sb": 11644,
+      "stall_long_sb": 2768,
+      "Instructions Executed": 136111104
+    },
+    "qk_hmma": {
+      "stall_wait": 10774,
+      "stall_short_sb": 771,
+      "stall_long_sb": 0,
+      "Instructions Executed": 14155776
+    },
+    "av_hmma": {
+      "stall_wait": 20100,
+      "stall_short_sb": 3097,
+      "stall_long_sb": 0,
+      "Instructions Executed": 28311552
+    }
+  },
+  "compensation": {
+    "first_pc": "0x53a0",
+    "last_pc": "0x8a80",
+    "loop": {
+      "stall_wait": 11882,
+      "stall_short_sb": 4755,
+      "stall_long_sb": 876,
+      "Instructions Executed": 81466560
+    },
+    "qk_hmma": {
+      "stall_wait": 4007,
+      "stall_short_sb": 2340,
+      "stall_long_sb": 0,
+      "Instructions Executed": 5750784
+    },
+    "av_hmma": {
+      "stall_wait": 282,
+      "stall_short_sb": 38,
+      "stall_long_sb": 0,
+      "Instructions Executed": 3414528
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "events": {
+    "page_us": 12.233333351711432,
+    "block_us": 9.215999643007914,
+    "ref_page_us": 13.25266684095065,
+    "ref_block_us": 7.040479259255032,
+    "offset_us": 57.01689024766289,
+    "max_residual_us": 0.7751087347666044,
+    "full_control_ratio": 1.002079745319328,
+    "ref_offset_us": -2.208777806825108
+  },
+  "fixed_clock": {
+    "page_us": 15.334333333333333,
+    "block_us": 11.505600000000001,
+    "ref_page_us": 16.407,
+    "ref_block_us": 8.716218750000001,
+    "offset_us": 50.28728888888885,
+    "max_residual_us": 1.3955555555555748,
+    "full_control_ratio": 1.0013249180959722,
+    "ref_offset_us": -2.7345
+  }
+}

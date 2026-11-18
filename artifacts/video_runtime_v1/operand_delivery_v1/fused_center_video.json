@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.190533894114196,
+    "candidate_s": 5.205986234359443,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.210735735483468,
+    "baseline_s": 5.208931189030409,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.210420288145542,
+    "candidate_s": 5.22216559201479,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.224389338865876,
+    "baseline_s": 5.21933934930712,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.218153924681246,
+    "candidate_s": 5.225472352467477,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.230163695290685,
+    "baseline_s": 5.222428916953504,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.224529181607068,
+    "candidate_s": 5.234789966605604,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.233958904631436,
+    "baseline_s": 5.22785793337971,
+    "bitwise": false,
+    "nmse": 0.19563092291355133,
+    "old_dense_nmse": 0.5367145538330078,
+    "new_dense_nmse": 0.5450665354728699
+  }
+]

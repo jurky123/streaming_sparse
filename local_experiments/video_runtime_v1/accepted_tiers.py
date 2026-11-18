@@ -16,11 +16,20 @@ def config(tier,**overrides):
         overrides['page_prefetch']=tier=='base' and overrides['column_mass']
     if overrides.get('aligned_coefficients') is None:
         overrides['aligned_coefficients']=tier=='base' and overrides['page_prefetch']
+    if overrides.get('first_frame_fixed15') is None:overrides['first_frame_fixed15']=tier=='base'
+    if overrides.get('cuda_fixed15') is None:
+        dependencies = ('first_frame_fixed15', 'aligned_coefficients', 'page_prefetch', 'column_mass',
+                        'anchor_scale', 'fused_exact_tail', 'tail_merge', 'strided_tail')
+        overrides['cuda_fixed15'] = (tier == 'base' and overrides.get('mode', 'stream') == 'stream'
+                                     and not overrides.get('exact_fold', False)
+                                     and all(overrides.get(key, CURRENT[key]) for key in dependencies))
     return current(full_pset=tier!='base',pset_policy=policy,static_route=True,**overrides)
 
 def main():
     from .benchmark_hotspots import run
     p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--cuda-fixed15',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--first-frame-fixed15',action=argparse.BooleanOptionalAction,default=None)
     p.add_argument('--aligned-coefficients',action=argparse.BooleanOptionalAction,default=None)
     p.add_argument('--page-prefetch',action=argparse.BooleanOptionalAction,default=None)
     p.add_argument('--column-mass',action=argparse.BooleanOptionalAction,default=None)
@@ -48,6 +57,6 @@ def main():
     p.add_argument('--block-graph',action='store_true')
     p.add_argument('--skip-profile',action='store_true')
     a=p.parse_args()
-    run(config(a.tier,aligned_coefficients=a.aligned_coefficients,page_prefetch=a.page_prefetch,column_mass=a.column_mass,anchor_scale=a.anchor_scale,repeated_context=a.repeated_context,radix_select=a.radix_select,channel_major_stats=a.channel_major_stats,residual_norm=a.residual_norm,resident_route=a.resident_route,summary_window=a.summary_window,cached_projection=a.cached_projection,fused_exact_tail=a.fused_exact_tail,scale_in_qk=a.scale_in_qk and a.native_route_qk,native_route_qk=a.native_route_qk,rms_row=a.rms_row,risk_online=a.risk_online,summary_moments=a.summary_moments,native_rope=a.native_rope,exact_fold=a.exact_fold,qk_tile64=a.qk_tile64,rms_mean=a.rms_mean,rms_dataflow=a.rms_dataflow,block_pointwise=a.block_pointwise,grouping_spatial=a.grouping_spatial,grouping_softmax=a.grouping_softmax,grouping_dataflow=a.grouping_dataflow,output=a.output,local_assets=a.local_assets,reps=a.reps,chunks=9,block_graph=a.block_graph,skip_profile=a.skip_profile,capture_route=False))
+    run(config(a.tier,cuda_fixed15=a.cuda_fixed15,first_frame_fixed15=a.first_frame_fixed15,aligned_coefficients=a.aligned_coefficients,page_prefetch=a.page_prefetch,column_mass=a.column_mass,anchor_scale=a.anchor_scale,repeated_context=a.repeated_context,radix_select=a.radix_select,channel_major_stats=a.channel_major_stats,residual_norm=a.residual_norm,resident_route=a.resident_route,summary_window=a.summary_window,cached_projection=a.cached_projection,fused_exact_tail=a.fused_exact_tail,scale_in_qk=a.scale_in_qk and a.native_route_qk,native_route_qk=a.native_route_qk,rms_row=a.rms_row,risk_online=a.risk_online,summary_moments=a.summary_moments,native_rope=a.native_rope,exact_fold=a.exact_fold,qk_tile64=a.qk_tile64,rms_mean=a.rms_mean,rms_dataflow=a.rms_dataflow,block_pointwise=a.block_pointwise,grouping_spatial=a.grouping_spatial,grouping_softmax=a.grouping_softmax,grouping_dataflow=a.grouping_dataflow,output=a.output,local_assets=a.local_assets,reps=a.reps,chunks=9,block_graph=a.block_graph,skip_profile=a.skip_profile,capture_route=False))
 
 if __name__=='__main__':main()

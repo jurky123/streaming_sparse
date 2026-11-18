@@ -16,6 +16,8 @@ def library():
  lib.rms_row.restype=None
  lib.rms_rope.argtypes=[ctypes.c_void_p]*3+[ctypes.c_int,ctypes.c_float,ctypes.c_void_p]+[ctypes.c_int]*3+[ctypes.c_void_p]
  lib.rms_rope.restype=None
+ lib.rms_rope_pack.argtypes=lib.rms_rope.argtypes+[ctypes.c_void_p]
+ lib.rms_rope_pack.restype=None
  return lib
 
 def mean_square(x):
@@ -39,25 +41,27 @@ def row_fused(x, weight, eps):
                    eps, torch.cuda.current_stream(x.device).cuda_stream)
  return out
 
-def row_rope(x,weight,eps,freq,gh,gw,start,out=None):
+def row_rope(x,weight,eps,freq,gh,gw,start,out=None,packed=None):
  assert x.shape==(1,4608,1536) and x.is_contiguous() and weight.is_contiguous()
  assert x.dtype==weight.dtype==torch.bfloat16 and freq.is_contiguous() and freq.dtype==torch.complex128
  if out is None:out=torch.empty_like(x)
  else:assert out.is_contiguous() and out.shape==(1,4608,12,128) and out.dtype==x.dtype and out.device==x.device
- library().rms_rope(x.data_ptr(),weight.data_ptr(),out.data_ptr(),4608,eps,
-                    freq.data_ptr(),gh,gw,start,torch.cuda.current_stream(x.device).cuda_stream)
+ kernel=library().rms_rope if packed is None else library().rms_rope_pack
+ extra=() if packed is None else (packed.data_ptr(),)
+ kernel(x.data_ptr(),weight.data_ptr(),out.data_ptr(),4608,eps,
+                    freq.data_ptr(),gh,gw,start,*extra,torch.cuda.current_stream(x.device).cuda_stream)
  return out.view(1,4608,12,128)
 
-def project_rotary(module,x,grid,freq,start,key_out=None):
+def project_rotary(module,x,grid,freq,start,key_out=None,packed=None):
  frames,gh,gw=grid[0].tolist()
  assert frames*gh*gw==x.shape[1] and 0<=start<=freq.shape[0]-frames
  q=row_rope(module.q(x),module.norm_q.weight,module.norm_q.eps,freq,gh,gw,start)
- k=row_rope(module.k(x),module.norm_k.weight,module.norm_k.eps,freq,gh,gw,start,key_out)
+ k=row_rope(module.k(x),module.norm_k.weight,module.norm_k.eps,freq,gh,gw,start,key_out,packed)
  return q,k
 
 
-def project_cached(module,x,grid,freq,start,key_out,value_out):
- q,k=project_rotary(module,x,grid,freq,start,key_out)
+def project_cached(module,x,grid,freq,start,key_out,value_out,packed=None):
+ q,k=project_rotary(module,x,grid,freq,start,key_out,packed)
  width=x.shape[-1]
  torch.addmm(module.v.bias,x.reshape(-1,width),module.v.weight.T,out=value_out.view(-1,width))
  return q,k,value_out

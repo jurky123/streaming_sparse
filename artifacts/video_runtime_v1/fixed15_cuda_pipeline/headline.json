@@ -1,0 +1,15 @@
+{
+  "device_ms": {
+    "exact(__nv_bfloat16 const*, __nv_bfloat16 const*, __nv_bfloat16 const*, int const*, __nv_bfloat16*, __nv_bfloat16 const*, __nv_bfloat16 const*, int*, int, int)": 866.7659750000001,
+    "pack_range": 51.556585000000005,
+    "encode": 12.275307999999999,
+    "retry": 12.680602000000004
+  },
+  "inclusive_ms": 943.2784700000002,
+  "fused_tflop": 150.28881614438401,
+  "inclusive_tflops": 159.32603247520743,
+  "remaining_ms": 216.93806694227442,
+  "reference_ms": 726.3404030577258,
+  "wall_pairs": 6,
+  "new_cache_gib": 4.587890625
+}

@@ -1,0 +1,5 @@
+========= COMPUTE-SANITIZER
+/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/lib/python3.10/site-packages/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+one full CTA matches baseline
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)

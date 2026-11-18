@@ -1,0 +1,22 @@
+{
+  "candidate": {
+    "exact": {
+      "instructions": 3128,
+      "sha256": "ea4870919803cb4a5791f9fb7aca33b75487f67ff5dbec34653da4dad3a9dc06"
+    },
+    "prepare": {
+      "instructions": 840,
+      "sha256": "c10334ba12b848c98c4e6f8e281fe2b57f79e83919963f7c81a184dcd48d55a0"
+    }
+  },
+  "release": {
+    "exact": {
+      "instructions": 3128,
+      "sha256": "ea4870919803cb4a5791f9fb7aca33b75487f67ff5dbec34653da4dad3a9dc06"
+    },
+    "prepare": {
+      "instructions": 840,
+      "sha256": "c10334ba12b848c98c4e6f8e281fe2b57f79e83919963f7c81a184dcd48d55a0"
+    }
+  }
+}

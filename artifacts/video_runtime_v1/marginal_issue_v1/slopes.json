@@ -1,0 +1,34 @@
+{
+  "gpu__time_duration.sum": {
+    "page": 15.286666666666665,
+    "tile": 11.418666666666667
+  },
+  "smsp__inst_executed.sum": {
+    "page": 614.0859375,
+    "tile": 741.25
+  },
+  "smsp__inst_executed_pipe_alu.sum": {
+    "page": 186.0703125,
+    "tile": 238.5
+  },
+  "smsp__inst_executed_pipe_fma.sum": {
+    "page": 96.0,
+    "tile": 278.0
+  },
+  "smsp__inst_executed_pipe_lsu.sum": {
+    "page": 88.015625,
+    "tile": 72.5
+  },
+  "smsp__inst_executed_pipe_tensor.sum": {
+    "page": 192.0,
+    "tile": 102.0
+  },
+  "smsp__inst_executed_pipe_uniform.sum": {
+    "page": 0.0,
+    "tile": 0.0
+  },
+  "smsp__inst_executed_pipe_xu.sum": {
+    "page": 32.0,
+    "tile": 34.0
+  }
+}

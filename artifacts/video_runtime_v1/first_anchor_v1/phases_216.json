@@ -1,0 +1,21 @@
+{
+  "stages": [
+    "wait_for_first",
+    "prefetch_second_and_mask",
+    "first_qk",
+    "first_anchor",
+    "first_probabilities_and_av"
+  ],
+  "cycles": [
+    2071.7326388888887,
+    1272.4166666666665,
+    1035.6284722222222,
+    263.2083333333333,
+    2396.060185185185
+  ],
+  "bitwise": true,
+  "wall_ms": [
+    0.5539840161800385,
+    0.5732479989528656
+  ]
+}

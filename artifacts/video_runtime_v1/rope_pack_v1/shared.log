@@ -1,0 +1,9 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z14rms_row_kernelILb1EEvPK5uint2S2_PS0_ifPK7double2iiiPj' for 'sm_80'
+ptxas info    : Function properties for _Z14rms_row_kernelILb1EEvPK5uint2S2_PS0_ifPK7double2iiiPj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 49152 bytes smem, 416 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z15rms_mean_kernelPK13__nv_bfloat16Pfi' for 'sm_80'
+ptxas info    : Function properties for _Z15rms_mean_kernelPK13__nv_bfloat16Pfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, 372 bytes cmem[0]

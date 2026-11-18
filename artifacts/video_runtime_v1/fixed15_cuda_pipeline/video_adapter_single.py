@@ -1,0 +1,69 @@
+import ctypes as C
+import torch
+from pack_kernel import pack_range
+from summary_fragments import encode
+from single_retry import retry
+lib=C.CDLL('/tmp/jzk_fixed15_single_cache.so')
+lib.run.argtypes=[C.c_void_p]*8+[C.c_int]*2+[C.c_void_p]
+lib.layout.argtypes=[C.c_void_p]*4+[C.c_int]*4+[C.c_void_p]
+class Packed:
+    def __init__(self,rt,base):
+        self.rt=rt
+        self.base=base
+        self.history={}
+        self.enabled=False
+        self.buffers={}
+        self.calls=0
+        self.stream=torch.cuda.current_stream().cuda_stream
+        self.stores={s.cache['k'].data_ptr():s for s in rt.stores.values()}
+        self.dense=rt.engine.dense
+        rt.engine.dense=self.clean_dense
+        self.scratch=None
+    def layout(self,k,v,dk,dv,start,pages,hist,decode):
+        status=lib.layout(*(x.data_ptr() for x in (k,v,dk,dv)),start,pages,hist,decode,self.stream)
+        assert not status
+    def clean_dense(self,q,k,v,*args,**kwargs):
+        if self.enabled and k.data_ptr() in self.history:
+            pages=k.shape[1]//64
+            if self.scratch is None:self.scratch=tuple(torch.empty((1,432*64,12,128),device=k.device,dtype=k.dtype) for _ in range(2))
+            dk,dv=(x[:,:pages*64] for x in self.scratch)
+            self.layout(k,v,dk,dv,0,pages,pages-72,1)
+            return self.dense(q,dk,dv,*args,**kwargs)
+        return self.dense(q,k,v,*args,**kwargs)
+    def reset(self):
+        self.history.clear()
+        self.calls=0
+    def __call__(self,q,k,v,s,basis,ids,workspace,**options):
+        if not self.enabled:
+            return self.base(q,k,v,s,basis,ids,workspace,**options)
+        p=k.shape[1]//64
+        hist=p-72
+        count=ids.shape[-1]
+        assert count==p*15//100
+        key=k.data_ptr()
+        store=self.stores[key]
+        pk,pv=k,v
+        def pack(a,b):
+            if b>a:self.layout(k,v,k,v,a,b-a,hist,0)
+        if key not in self.history:pack(0,hist)
+        else:
+            commits,start=self.history[key]
+            if commits!=store.commits:
+                assert store.commits==commits+1
+                end=min(start+72,360)
+                pack(start,end)
+                pack(24,24+72-(end-start))
+        self.history[key]=store.commits,store.write
+        pack(hist,p)
+        out=workspace.tensor('probe_out',q.shape,q.device,q.dtype)
+        flags=workspace.tensor('probe_bad',(12,72),q.device,torch.int32)
+        tiles=(p+15)//16
+        summaries=workspace.tensor('probe_packed_summary',(12,tiles,10624),q.device,q.dtype)
+        hp=s.mean.stride(0)//128
+        encode[(12,tiles,42)](s.keys,s.mean,s.detail,summaries,p,hp,tiles,num_warps=4)
+        basis=basis.bfloat16().contiguous()
+        status=lib.run(*(x.data_ptr() for x in (q,pk,pv,ids,out,summaries,basis,flags)),p,count,self.stream)
+        assert not status
+        retry[(72,12)](flags,q,k,v,ids,s.keys,s.mean,s.detail,basis,out,p,hp,count,num_warps=4,num_stages=2,enable_fp_fusion=False)
+        self.calls+=1
+        return out

@@ -1,0 +1,114 @@
+{
+  "rows": [
+    {
+      "chunk": 2,
+      "pages": 216,
+      "count": 32,
+      "calls": 116,
+      "exact_gflop": 86.973087744,
+      "compensation_gflop": 21.403533312,
+      "fused_tflop": 12.571688042496,
+      "dense_tflop": 45.399951802368,
+      "dense_ms": 217.925787,
+      "fused_ms": 93.09888100000006,
+      "reference_ms": 60.34576914322918
+    },
+    {
+      "chunk": 3,
+      "pages": 288,
+      "count": 43,
+      "calls": 116,
+      "exact_gflop": 116.870086656,
+      "compensation_gflop": 27.518828544,
+      "fused_tflop": 16.7491141632,
+      "dense_tflop": 60.533269069824,
+      "dense_ms": 293.6505099999998,
+      "fused_ms": 116.47546999999997,
+      "reference_ms": 81.25095491536453
+    },
+    {
+      "chunk": 4,
+      "pages": 360,
+      "count": 54,
+      "calls": 116,
+      "exact_gflop": 146.767085568,
+      "compensation_gflop": 35.162947584,
+      "fused_tflop": 21.103883845632,
+      "dense_tflop": 75.66658633728,
+      "dense_ms": 366.2155299999999,
+      "fused_ms": 147.301012,
+      "reference_ms": 102.13980016406246
+    },
+    {
+      "chunk": 5,
+      "pages": 432,
+      "count": 64,
+      "calls": 116,
+      "exact_gflop": 173.946175488,
+      "compensation_gflop": 41.278242816,
+      "fused_tflop": 24.966032523264,
+      "dense_tflop": 90.799903604736,
+      "dense_ms": 438.0692160000003,
+      "fused_ms": 169.943809,
+      "reference_ms": 120.45002097916677
+    },
+    {
+      "chunk": 6,
+      "pages": 432,
+      "count": 64,
+      "calls": 116,
+      "exact_gflop": 173.946175488,
+      "compensation_gflop": 41.278242816,
+      "fused_tflop": 24.966032523264,
+      "dense_tflop": 90.799903604736,
+      "dense_ms": 438.10777900000045,
+      "fused_ms": 170.45720200000002,
+      "reference_ms": 120.46062413042547
+    },
+    {
+      "chunk": 7,
+      "pages": 432,
+      "count": 64,
+      "calls": 116,
+      "exact_gflop": 173.946175488,
+      "compensation_gflop": 41.278242816,
+      "fused_tflop": 24.966032523264,
+      "dense_tflop": 90.799903604736,
+      "dense_ms": 439.95508399999994,
+      "fused_ms": 170.46937500000004,
+      "reference_ms": 120.96855282725691
+    },
+    {
+      "chunk": 8,
+      "pages": 432,
+      "count": 64,
+      "calls": 116,
+      "exact_gflop": 173.946175488,
+      "compensation_gflop": 41.278242816,
+      "fused_tflop": 24.966032523264,
+      "dense_tflop": 90.799903604736,
+      "dense_ms": 439.068137,
+      "fused_ms": 170.33454600000007,
+      "reference_ms": 120.72468089822047
+    }
+  ],
+  "total": {
+    "fused_tflop": 150.28881614438401,
+    "dense_tflop": 544.799421628416,
+    "dense_ms": 2632.992043,
+    "fused_ms": 1038.0802950000002,
+    "reference_ms": 726.3404030577258
+  },
+  "whole_generation": [
+    {
+      "route_gflop": 4,
+      "speedup": 1.4291537666528786,
+      "s": 4.527443907989582
+    },
+    {
+      "route_gflop": 5,
+      "speedup": 1.42788044600511,
+      "s": 4.531481282285018
+    }
+  ]
+}

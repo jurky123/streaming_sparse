@@ -1,0 +1,5 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z5exactPK13__nv_bfloat16S1_S1_PKiPfS4_S4_iS1_S1_i' for 'sm_80'
+ptxas info    : Function properties for _Z5exactPK13__nv_bfloat16S1_S1_PKiPfS4_S4_iS1_S1_i
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 212 registers, 436 bytes cmem[0]

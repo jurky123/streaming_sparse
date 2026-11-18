@@ -95,6 +95,16 @@ class VideoRuntime(StreamingRuntime):
         self.clean_group_batch=0
         self.pending_clean=[]
         self.last_sparse_layer=max(self.stores)
+        self.first_frame_fixed15=False
+        self.original_sink_size=engine.wrapper.model.blocks[0].self_attn.sink_size
+
+    def set_first_frame_fixed15(self, enabled):
+        self.first_frame_fixed15=enabled
+        if not enabled and getattr(self, "packed_attention", None) is not None:
+            self.set_cuda_fixed15(False)
+        self.engine.wrapper.model.blocks[0].self_attn.sink_size=1 if enabled else self.original_sink_size
+        for store in self.stores.values():
+            store.sink_pages=24 if enabled else 0
 
     def set_pset_scope(self,layers=None,heads=None,steps=None):
         """Independent deployment scope; change only between videos, then reset."""
@@ -107,6 +117,7 @@ class VideoRuntime(StreamingRuntime):
         self.set_pset_scope(layers=sorted({int(k.split(':')[0]) for k,v in schedule.items() if v}))
         self.pset_schedule={tuple(map(int,k.split(':'))):torch.tensor(v,device=self.offsets.device,dtype=torch.long) for k,v in schedule.items() if v}
     def close(self):
+        self.set_first_frame_fixed15(False)
         if getattr(self,'commit_stream',None) is not None:
             torch.cuda.current_stream().wait_stream(self.commit_stream)
         if hasattr(self,'repeated_context'):self.repeated_context.close()
@@ -124,7 +135,22 @@ class VideoRuntime(StreamingRuntime):
             heads=self.pset_schedule.get((l,step));correct=layer_enabled and heads is not None
             if heads is not None and heads.numel()==12:heads=None
         return correct,heads
+    def set_cuda_fixed15(self, enabled, direct_commit=True):
+        import torch
+        supported = (enabled and self.first_frame_fixed15 and self.tile_batch == 72
+                     and self.config.history_pages == 360
+                     and torch.cuda.get_device_capability(self.counters.device) == (8, 0))
+        if supported and getattr(self, 'packed_attention', None) is None:
+            from .fixed15_attention import PackedAttention
+            self.packed_attention = PackedAttention()
+        elif not supported:
+            self.packed_attention = None
+        writer=self.packed_attention.commit if supported and direct_commit else None
+        for store in self.stores.values():store.packed_writer=writer
+
     def reset(self):
+        if getattr(self, 'packed_attention', None) is not None:
+            self.packed_attention.reset()
         if getattr(self,'commit_stream',None) is not None:
             torch.cuda.current_stream().wait_stream(self.commit_stream)
         if hasattr(self,"pending_clean"):self.pending_clean.clear()
@@ -153,7 +179,15 @@ class VideoRuntime(StreamingRuntime):
         cached=(project_rotary is not None and project_cached is not None
                 and key_window.is_contiguous() and value_window.is_contiguous()
                 and key_window.dtype==value_window.dtype==x.dtype==torch.bfloat16)
-        if cached:
+        packed_k=False
+        packed=getattr(self,'packed_attention',None)
+        if cached and packed is not None and self.sparse and p>72 and self.engine.current['step']!=4:
+            from .rms_mean import project_cached as native_project
+            packed_k=(project_cached is native_project and self.first_frame_fixed15 and self.legacy_attention
+                      and packed.accepts_packed_key())
+        if packed_k:
+            q,k,v=project_cached(module,x,grid_sizes,freqs,start//1536,key_window,value_window,packed.cache(store)[0][p])
+        elif cached:
             q,k,v=project_cached(module,x,grid_sizes,freqs,start//1536,key_window,value_window)
         elif project_rotary is not None:
             q,k=project_rotary(module,x,grid_sizes,freqs,start//1536)
@@ -241,16 +275,34 @@ class VideoRuntime(StreamingRuntime):
                             self.counters[0]+=executed.sum();self.counters[1]+=batch;self.counters[2]+=(~torch.isfinite(score)).sum()
                         ranked=risk.masked_fill(~mask,-torch.inf).scatter(-1,own[...,None],torch.inf)
                         ids=ranked.topk(count,dim=-1).indices.int()
+                    if self.first_frame_fixed15:
+                        count=(p+72)*15//100
+                        rank=risk.clone()
+                        rank.scatter_(2,own[...,None],-torch.inf)
+                        rank[:,:,:24]=-torch.inf
+                        extra=rank.topk(count-25,dim=-1).indices
+                        frame=torch.arange(24,device=q.device).expand(12,t,-1)
+                        ids=torch.cat((own[...,None],frame,extra),dim=-1).int()
+                        if self.validate or not self.legacy_attention:
+                            mask=torch.zeros_like(risk,dtype=torch.bool).scatter_(2,ids.long(),True)
                 with self.timings.stage('attention'):
                     if self.legacy_attention:
                         from .legacy_components import attention
-                        mixed=attention(qq,kh,vh,s,model.basis,ids,self.workspace)
+                        if getattr(self, 'packed_attention', None) is not None and self.first_frame_fixed15:
+                            args=(store,qq,kh,vh,s,model.basis,ids,self.workspace)
+                            mixed=packed(*args,packed_k=True) if packed_k else packed(*args)
+                        else:
+                            mixed=attention(qq,kh,vh,s,model.basis,ids,self.workspace)
                     elif self.stream_attention:
                         from .stream_attention import mixed_attention
                         mixed=mixed_attention(qq,kh,vh,s,self.value_slabs[l][:,:p+72],ids,mask,self.workspace,tail_mode=self.stream_tail_mode,warps=self.stream_warps)
                     else:
                         oe,le=exact(qq,kh,vh,ids,self.workspace)
-                        oa,la=self.batch_graph.tail(entry) if self.graph_batches else compensate(logits,s,model.basis,mask)
+                        if self.graph_batches and self.first_frame_fixed15:
+                            route_output=entry['inline_out'] if entry['inline_out'] is not None else entry['out']
+                            oa,la=self.batch_graph.compensate(route_output[1],s,model.basis,mask,entry['haar_float'])
+                        else:
+                            oa,la=self.batch_graph.tail(entry) if self.graph_batches else compensate(logits,s,model.basis,mask)
                         mixed=merge(oe,le,oa,la)
                     if direct:result=mixed
                     else:result[:,first*64:(first+t)*64].copy_(mixed)
@@ -299,8 +351,14 @@ class VideoRuntime(StreamingRuntime):
 
     def commit_group(self,l,model,kg,vg,order,start,layer_enabled):
         store=self.stores[l]
+        if self.first_frame_fixed15 and start==0:
+            perm=torch.argsort(order.reshape(12,-1)//1536,dim=1,stable=True)
+            gather=perm[...,None].expand(-1,-1,128)
+            kg=kg.flatten(1,2).gather(1,gather).reshape_as(kg)
+            vg=vg.flatten(1,2).gather(1,gather).reshape_as(vg)
+            order=order.reshape(12,-1).gather(1,perm)
         sg=self.summary_graph(model,kg,vg)
-        slots=(torch.arange(72,device=kg.device)+store.write)%self.config.history_pages
+        slots=store.commit_slots(kg.device)
         store.commit(kg,vg,sg,order,start)
         if layer_enabled:self.write_encoding(l,self.encode(l,sg),slots=slots)
         if self.stream_attention and not self.legacy_attention:
@@ -308,12 +366,21 @@ class VideoRuntime(StreamingRuntime):
             self.value_slabs[l].index_copy_(1,slots,full_values(sg,model.basis,self.haar_basis))
     def finish(self):
         result=super().finish()
+        result.update(exact_density=.15 if self.first_frame_fixed15 else self.config.density,
+                      first_frame_exact_pages=24 if self.first_frame_fixed15 else 0)
         extra=sum(v.numel()*v.element_size() for e in self.encodings.values() for v in e.values())
         slabextra=sum(s.bytes() for s in self.slabs.values())-result['summary_bytes']
         extra+=slabextra+self.workspace.bytes()+(self.B.numel()*self.B.element_size() if self.B is not None else 0)
         extra+=sum(x.numel()*x.element_size() for x in self.projected_basis.values())
         extra+=sum(p.numel()*p.element_size() for net in (self.reader,self.phi) if net is not None for p in net.parameters())
         value_bytes=sum(x.numel()*x.element_size() for x in self.value_slabs.values())
+        packed=getattr(self,'packed_attention',None)
+        result['packed_attention_calls']=packed.calls if packed else 0
+        result['direct_layout_commits']=packed.direct_commits if packed else 0
+        result['packed_kv_bytes']=sum(x.numel()*x.element_size() for kv in packed.buffers.values() for x in kv) if packed else 0
+        result['packed_summary_bytes']=sum(x.numel()*x.element_size() for x in packed.packed_summaries.values()) if packed else 0
+        result['packed_summary_hits']=packed.summary_hits if packed else 0
+        extra+=result['packed_kv_bytes']+result['packed_summary_bytes']
         extra+=self.batch_graph.static_bytes()+value_bytes
         text_cache=getattr(self,'repeated_context',None)
         packed_text_bytes=sum(x.numel()*x.element_size() for cache in text_cache.caches
@@ -339,6 +406,9 @@ class VideoRuntime(StreamingRuntime):
             extra_tensor_bytes=extra,workspace_bytes=self.workspace.bytes(),counters=self.counters.cpu().tolist(),validation=self.validation,
             timings=self.timings.finish(),counter_labels=['accepted_swaps','scored_events','nonfinite_scores','encoded_head_pages'],memory_note='Tensor bytes exclude graph pool reservations; CUDA peak counters include graph storage')
         if self.legacy_attention:result['attention']='Previous Page64 direct-LUT exact + full128 mean/rank8 two-term BF16 tail and base2 LSE merge; no representative Value slab'
+        if packed:
+            result['raw_kv']='Native cache plus packed SM80 K/V, refreshed for current and changed history pages'
+            result['attention']='SM80 CUDA Q64 fixed15 dual-BF16 AV, guarded Triton retry'
         result['persistent_bytes']+=extra;result['within_limit']=result['persistent_bytes']<=result['limit_bytes']
         result['status']='engineering_runtime_pending_video_quality'
         return result

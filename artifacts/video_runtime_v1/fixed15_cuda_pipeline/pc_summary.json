@@ -1,0 +1,1238 @@
+{
+  "phase_samples": {
+    "exact": {
+      "stall_barrier": 4269,
+      "stall_branch_resolving": 864,
+      "stall_dispatch": 2785,
+      "stall_drain": 0,
+      "stall_imc": 0,
+      "stall_lg": 699,
+      "stall_long_sb": 7471,
+      "stall_math": 18226,
+      "stall_membar": 0,
+      "stall_mio": 5313,
+      "stall_misc": 709,
+      "stall_no_inst": 877,
+      "stall_not_selected": 5726,
+      "stall_selected": 20337,
+      "stall_short_sb": 7751,
+      "stall_sleep": 0,
+      "stall_tex": 0,
+      "stall_wait": 56577
+    },
+    "edges": {
+      "stall_barrier": 215,
+      "stall_branch_resolving": 30,
+      "stall_dispatch": 70,
+      "stall_drain": 119,
+      "stall_imc": 113,
+      "stall_lg": 137,
+      "stall_long_sb": 2674,
+      "stall_math": 321,
+      "stall_membar": 0,
+      "stall_mio": 222,
+      "stall_misc": 0,
+      "stall_no_inst": 71,
+      "stall_not_selected": 202,
+      "stall_selected": 782,
+      "stall_short_sb": 1006,
+      "stall_sleep": 0,
+      "stall_tex": 0,
+      "stall_wait": 1324
+    },
+    "tail": {
+      "stall_barrier": 1431,
+      "stall_branch_resolving": 323,
+      "stall_dispatch": 1645,
+      "stall_drain": 0,
+      "stall_imc": 0,
+      "stall_lg": 57,
+      "stall_long_sb": 767,
+      "stall_math": 3140,
+      "stall_membar": 0,
+      "stall_mio": 1058,
+      "stall_misc": 12,
+      "stall_no_inst": 422,
+      "stall_not_selected": 2493,
+      "stall_selected": 11892,
+      "stall_short_sb": 3809,
+      "stall_sleep": 0,
+      "stall_tex": 0,
+      "stall_wait": 14091
+    }
+  },
+  "top": {
+    "exact/stall_math": [
+      {
+        "pc": "0x2220",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R72, R160, R36, R72",
+        "samples": 1517
+      },
+      {
+        "pc": "0x2f70",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R48, R108, R50, R40",
+        "samples": 763
+      },
+      {
+        "pc": "0x3090",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R36, R152, R44, R36",
+        "samples": 710
+      },
+      {
+        "pc": "0x23f0",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R40, R152, R54, R40",
+        "samples": 549
+      },
+      {
+        "pc": "0x2530",
+        "line": 309,
+        "instruction": "HMMA.16816.F32.BF16 R72, R140, R32, R72",
+        "samples": 458
+      }
+    ],
+    "exact/stall_not_selected": [
+      {
+        "pc": "0x2220",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R72, R160, R36, R72",
+        "samples": 199
+      },
+      {
+        "pc": "0x3090",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R36, R152, R44, R36",
+        "samples": 99
+      },
+      {
+        "pc": "0x2a90",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R44, R140, R46, R32",
+        "samples": 94
+      },
+      {
+        "pc": "0x2500",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R72, R148, R68, R72",
+        "samples": 82
+      },
+      {
+        "pc": "0x2f70",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R48, R108, R50, R40",
+        "samples": 77
+      }
+    ],
+    "exact/stall_selected": [
+      {
+        "pc": "0xe60",
+        "line": 253,
+        "instruction": "@!P1  BRA 0x7f276747fd50",
+        "samples": 70
+      },
+      {
+        "pc": "0xd10",
+        "line": 257,
+        "instruction": "IADD3 R40, P1, R46, c[0x0][0x170], RZ",
+        "samples": 68
+      },
+      {
+        "pc": "0xcd0",
+        "line": 256,
+        "instruction": "@!PT  LDS RZ, [RZ]",
+        "samples": 67
+      },
+      {
+        "pc": "0xbb0",
+        "line": 256,
+        "instruction": "LEA.HI.X.SX32 R47, R32, R51, 0x1, P1",
+        "samples": 62
+      },
+      {
+        "pc": "0xc20",
+        "line": 256,
+        "instruction": "IADD3.X R33, R37, c[0x0][0x16c], RZ, P1, !PT",
+        "samples": 62
+      }
+    ],
+    "exact/stall_short_sb": [
+      {
+        "pc": "0x1000",
+        "line": 270,
+        "instruction": "HMMA.16816.F32.BF16 R116, R76, R112, RZ",
+        "samples": 1925
+      },
+      {
+        "pc": "0x1480",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R48, R104, R120, R48",
+        "samples": 819
+      },
+      {
+        "pc": "0x3780",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R156, R148, R152, R156",
+        "samples": 759
+      },
+      {
+        "pc": "0x3750",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R156, R152, R160, R156",
+        "samples": 652
+      },
+      {
+        "pc": "0x1340",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R48, R96, R120, R48",
+        "samples": 596
+      }
+    ],
+    "exact/stall_dispatch": [
+      {
+        "pc": "0x26e0",
+        "line": 296,
+        "instruction": "FADD R59, R156, -R59",
+        "samples": 93
+      },
+      {
+        "pc": "0x20c0",
+        "line": 294,
+        "instruction": "FADD R19, R19, R146",
+        "samples": 88
+      },
+      {
+        "pc": "0x23e0",
+        "line": 292,
+        "instruction": "MUFU.EX2 R246, R246",
+        "samples": 81
+      },
+      {
+        "pc": "0x2260",
+        "line": 1153,
+        "instruction": "PRMT R49, RZ, 0x7610, R49",
+        "samples": 78
+      },
+      {
+        "pc": "0x2710",
+        "line": 296,
+        "instruction": "F2FP.BF16.PACK_AB R123, R58, R59",
+        "samples": 70
+      }
+    ],
+    "exact/stall_wait": [
+      {
+        "pc": "0x2ef0",
+        "line": 15,
+        "instruction": "NOP",
+        "samples": 467
+      },
+      {
+        "pc": "0x3860",
+        "line": 15,
+        "instruction": "NOP",
+        "samples": 441
+      },
+      {
+        "pc": "0x2e80",
+        "line": 15,
+        "instruction": "NOP",
+        "samples": 436
+      },
+      {
+        "pc": "0x3380",
+        "line": 15,
+        "instruction": "NOP",
+        "samples": 425
+      },
+      {
+        "pc": "0x3830",
+        "line": 15,
+        "instruction": "NOP",
+        "samples": 423
+      }
+    ],
+    "exact/stall_misc": [
+      {
+        "pc": "0x3300",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R116, R152, R124, R116",
+        "samples": 42
+      },
+      {
+        "pc": "0x2e90",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R52, R148, R50, R52",
+        "samples": 37
+      },
+      {
+        "pc": "0x2530",
+        "line": 309,
+        "instruction": "HMMA.16816.F32.BF16 R72, R140, R32, R72",
+        "samples": 36
+      },
+      {
+        "pc": "0x35f0",
+        "line": 15,
+        "instruction": "HMMA.16816.F32.BF16 R128, R132, R144, R136",
+        "samples": 36
+      },
+      {
+        "pc": "0x3870",
+        "line": 314,
+        "instruction": "FADD R231, R231, R156",
+        "samples": 35
+      }
+    ],
+    "edges/stall_dispatch": [
+      {
+        "pc": "0x99c0",
+        "line": 198,
+        "instruction": "FADD R9, R5, -1",
+        "samples": 2
+      },
+      {
+        "pc": "0xa210",
+        "line": 220,
+        "instruction": "PRMT R36, R16, 0x7610, R36",
+        "samples": 2
+      },
+      {
+        "pc": "0x490",
+        "line": 240,
+        "instruction": "LDG.E R77, [R34.64]",
+        "samples": 1
+      },
+      {
+        "pc": "0x4e0",
+        "line": 240,
+        "instruction": "LDG.E R87, [R34.64+0x50]",
+        "samples": 1
+      },
+      {
+        "pc": "0x600",
+        "line": 240,
+        "instruction": "LDG.E R90, [R32.64+0x70]",
+        "samples": 1
+      }
+    ],
+    "edges/stall_wait": [
+      {
+        "pc": "0x3930",
+        "line": 327,
+        "instruction": "FADD R25, R26, R25",
+        "samples": 108
+      },
+      {
+        "pc": "0x9590",
+        "line": 232,
+        "instruction": "LOP3.LUT R0, R0, 0x1f, RZ, 0xc0, !PT",
+        "samples": 60
+      },
+      {
+        "pc": "0xade0",
+        "line": 218,
+        "instruction": "FADD R17, R17, R20",
+        "samples": 13
+      },
+      {
+        "pc": "0xc720",
+        "line": 73,
+        "instruction": "NOP",
+        "samples": 12
+      },
+      {
+        "pc": "0xbaa0",
+        "line": 218,
+        "instruction": "FADD R21, R21, R16",
+        "samples": 12
+      }
+    ],
+    "edges/stall_not_selected": [
+      {
+        "pc": "0x400",
+        "line": 240,
+        "instruction": "SHF.L.U32 R239, R239, 0x7, RZ",
+        "samples": 6
+      },
+      {
+        "pc": "0x39a0",
+        "line": 327,
+        "instruction": "FADD R14, R14, R13",
+        "samples": 4
+      },
+      {
+        "pc": "0xad90",
+        "line": 73,
+        "instruction": "HMMA.1688.F32.TF32 R16, R12, R20, RZ",
+        "samples": 3
+      },
+      {
+        "pc": "0x5710",
+        "line": 88,
+        "instruction": "LDG.E R78, [R36.64+0xf0]",
+        "samples": 3
+      },
+      {
+        "pc": "0x5740",
+        "line": 88,
+        "instruction": "LDG.E R51, [R8.64+0x10]",
+        "samples": 3
+      }
+    ],
+    "edges/stall_selected": [
+      {
+        "pc": "0x3930",
+        "line": 327,
+        "instruction": "FADD R25, R26, R25",
+        "samples": 37
+      },
+      {
+        "pc": "0x9590",
+        "line": 232,
+        "instruction": "LOP3.LUT R0, R0, 0x1f, RZ, 0xc0, !PT",
+        "samples": 14
+      },
+      {
+        "pc": "0xb900",
+        "line": 218,
+        "instruction": "@P3   FMUL R150, R150, 0.25",
+        "samples": 4
+      },
+      {
+        "pc": "0x5260",
+        "line": 81,
+        "instruction": "@P1   BRA 0x7f2767484520",
+        "samples": 4
+      },
+      {
+        "pc": "0xa830",
+        "line": 1042,
+        "instruction": "F2FP.BF16.PACK_AB R16, RZ, R16",
+        "samples": 4
+      }
+    ],
+    "edges/stall_mio": [
+      {
+        "pc": "0x5170",
+        "line": 342,
+        "instruction": "BAR.RED.AND 0x0, P0",
+        "samples": 8
+      },
+      {
+        "pc": "0x47f0",
+        "line": 340,
+        "instruction": "STS.64 [R4.X4+0xa760], R12",
+        "samples": 5
+      },
+      {
+        "pc": "0x5b0",
+        "line": 240,
+        "instruction": "LDG.E R80, [R32.64+0x20]",
+        "samples": 4
+      },
+      {
+        "pc": "0x5d0",
+        "line": 240,
+        "instruction": "LDG.E R84, [R32.64+0x40]",
+        "samples": 4
+      },
+      {
+        "pc": "0x5f0",
+        "line": 240,
+        "instruction": "LDG.E R88, [R32.64+0x60]",
+        "samples": 4
+      }
+    ],
+    "edges/stall_lg": [
+      {
+        "pc": "0x670",
+        "line": 240,
+        "instruction": "LDG.E R104, [R32.64+0xe0]",
+        "samples": 8
+      },
+      {
+        "pc": "0x5f0",
+        "line": 240,
+        "instruction": "LDG.E R88, [R32.64+0x60]",
+        "samples": 6
+      },
+      {
+        "pc": "0x680",
+        "line": 240,
+        "instruction": "LDG.E R106, [R32.64+0xf0]",
+        "samples": 6
+      },
+      {
+        "pc": "0x630",
+        "line": 240,
+        "instruction": "LDG.E R96, [R32.64+0xa0]",
+        "samples": 5
+      },
+      {
+        "pc": "0x640",
+        "line": 240,
+        "instruction": "LDG.E R98, [R32.64+0xb0]",
+        "samples": 5
+      }
+    ],
+    "exact/stall_mio": [
+      {
+        "pc": "0xd50",
+        "line": 256,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x800], [R42.64]",
+        "samples": 820
+      },
+      {
+        "pc": "0xf40",
+        "line": 268,
+        "instruction": "LDS.128 R68, [R241+0x840]",
+        "samples": 413
+      },
+      {
+        "pc": "0x7b0",
+        "line": 249,
+        "instruction": "LDG.E R32, [R32.64]",
+        "samples": 267
+      },
+      {
+        "pc": "0xe50",
+        "line": 257,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x5800], [R38.64]",
+        "samples": 235
+      },
+      {
+        "pc": "0xd20",
+        "line": 257,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x4000], [R36.64]",
+        "samples": 208
+      }
+    ],
+    "tail/stall_dispatch": [
+      {
+        "pc": "0x6540",
+        "line": 116,
+        "instruction": "IADD3 R128, R122, 0x6, RZ",
+        "samples": 70
+      },
+      {
+        "pc": "0x9330",
+        "line": 179,
+        "instruction": "FADD R161, R86, R161",
+        "samples": 57
+      },
+      {
+        "pc": "0x8ae0",
+        "line": 164,
+        "instruction": "F2FP.BF16.PACK_AB R44, R208, R201",
+        "samples": 55
+      },
+      {
+        "pc": "0x8b30",
+        "line": 179,
+        "instruction": "FADD R148, R93, R148",
+        "samples": 27
+      },
+      {
+        "pc": "0x8be0",
+        "line": 179,
+        "instruction": "FADD R152, R95, R152",
+        "samples": 27
+      }
+    ],
+    "tail/stall_math": [
+      {
+        "pc": "0x8bf0",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R124, R104, R110, R124",
+        "samples": 174
+      },
+      {
+        "pc": "0x6320",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R104, R64, R116, R104",
+        "samples": 126
+      },
+      {
+        "pc": "0x64c0",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R108, R68, R92, R108",
+        "samples": 98
+      },
+      {
+        "pc": "0x6120",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R124, R60, R84, R124",
+        "samples": 91
+      },
+      {
+        "pc": "0x7e90",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R120, R124, R82, RZ",
+        "samples": 85
+      }
+    ],
+    "tail/stall_not_selected": [
+      {
+        "pc": "0x7000",
+        "line": 138,
+        "instruction": "FADD R115, -R190, R37",
+        "samples": 64
+      },
+      {
+        "pc": "0x5c20",
+        "line": 149,
+        "instruction": "IMAD R89, R44, R37, 0x40",
+        "samples": 51
+      },
+      {
+        "pc": "0x7c40",
+        "line": 164,
+        "instruction": "FADD R85, R103, R100",
+        "samples": 47
+      },
+      {
+        "pc": "0x7190",
+        "line": 138,
+        "instruction": "FADD R215, -R190, R111",
+        "samples": 38
+      },
+      {
+        "pc": "0x7610",
+        "line": 139,
+        "instruction": "FADD R120, R115, R120",
+        "samples": 35
+      }
+    ],
+    "tail/stall_selected": [
+      {
+        "pc": "0x5d60",
+        "line": 104,
+        "instruction": "@!PT  LDS RZ, [RZ]",
+        "samples": 30
+      },
+      {
+        "pc": "0x5d40",
+        "line": 104,
+        "instruction": "LEA.HI.X R39, R83, c[0x0][0x18c], R86, 0x4, P1",
+        "samples": 29
+      },
+      {
+        "pc": "0x5d90",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81], [R36.64]",
+        "samples": 29
+      },
+      {
+        "pc": "0x72f0",
+        "line": 138,
+        "instruction": "MUFU.EX2 R249, R249",
+        "samples": 28
+      },
+      {
+        "pc": "0x5db0",
+        "line": 102,
+        "instruction": "ISETP.GE.AND P1, PT, R80, 0x330, PT",
+        "samples": 27
+      }
+    ],
+    "tail/stall_short_sb": [
+      {
+        "pc": "0x5fc0",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R104, R48, R108, RZ",
+        "samples": 507
+      },
+      {
+        "pc": "0x6020",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R124, R48, R44, RZ",
+        "samples": 416
+      },
+      {
+        "pc": "0x6120",
+        "line": 47,
+        "instruction": "HMMA.16816.F32.BF16 R124, R60, R84, R124",
+        "samples": 333
+      },
+      {
+        "pc": "0x5f50",
+        "line": 117,
+        "instruction": "HMMA.16816.F32.BF16 R80, R48, R44, RZ",
+        "samples": 209
+      },
+      {
+        "pc": "0x7650",
+        "line": 157,
+        "instruction": "SEL R118, R85, R114, !P0",
+        "samples": 161
+      }
+    ],
+    "tail/stall_wait": [
+      {
+        "pc": "0x5f80",
+        "line": 117,
+        "instruction": "NOP",
+        "samples": 182
+      },
+      {
+        "pc": "0x5980",
+        "line": 102,
+        "instruction": "@P1   BRA 0x7f2767485010",
+        "samples": 150
+      },
+      {
+        "pc": "0x9570",
+        "line": 94,
+        "instruction": "@P0   CALL.REL.NOINC 0x7f2767488790",
+        "samples": 138
+      },
+      {
+        "pc": "0x5c00",
+        "line": 102,
+        "instruction": "@!P1  BRA 0x7f2767485010",
+        "samples": 132
+      },
+      {
+        "pc": "0x5af0",
+        "line": 102,
+        "instruction": "@!P1  BRA 0x7f2767484de0",
+        "samples": 113
+      }
+    ],
+    "tail/stall_misc": [
+      {
+        "pc": "0x5f90",
+        "line": 117,
+        "instruction": "HMMA.16816.F32.BF16 R80, R52, R36, R80",
+        "samples": 12
+      }
+    ],
+    "tail/stall_no_inst": [
+      {
+        "pc": "0x58f0",
+        "line": 95,
+        "instruction": "ISETP.NE.AND P0, PT, RZ, UR4, PT",
+        "samples": 216
+      },
+      {
+        "pc": "0x5c30",
+        "line": 104,
+        "instruction": "IADD3 R37, P1, R85, R80, RZ",
+        "samples": 27
+      },
+      {
+        "pc": "0x5be0",
+        "line": 104,
+        "instruction": "BSYNC B1",
+        "samples": 27
+      },
+      {
+        "pc": "0x5900",
+        "line": 99,
+        "instruction": "UIADD3 UR6, UR4, 0x1, URZ",
+        "samples": 21
+      },
+      {
+        "pc": "0x9000",
+        "line": 50,
+        "instruction": "F2FP.BF16.PACK_AB R92, R215, R164",
+        "samples": 13
+      }
+    ],
+    "tail/stall_mio": [
+      {
+        "pc": "0x5de0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x1000], [R44.64]",
+        "samples": 122
+      },
+      {
+        "pc": "0x5ef0",
+        "line": 116,
+        "instruction": "LDS.128 R100, [R183+UR7+0xa00]",
+        "samples": 87
+      },
+      {
+        "pc": "0x5df0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x1800], [R46.64]",
+        "samples": 74
+      },
+      {
+        "pc": "0x5f40",
+        "line": 116,
+        "instruction": "LDS.128 R112, [R183+UR7+0x600]",
+        "samples": 67
+      },
+      {
+        "pc": "0x5dc0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x800], [R38.64]",
+        "samples": 58
+      }
+    ],
+    "edges/stall_branch_resolving": [
+      {
+        "pc": "0x98f0",
+        "line": 65,
+        "instruction": "@P3   FMUL R0, R0, 0.25",
+        "samples": 6
+      },
+      {
+        "pc": "0x4a70",
+        "line": 340,
+        "instruction": "@P3   FMUL R185, R185, 0.25",
+        "samples": 6
+      },
+      {
+        "pc": "0x3df0",
+        "line": 327,
+        "instruction": "FADD R12, R12, R11",
+        "samples": 5
+      },
+      {
+        "pc": "0x5330",
+        "line": 82,
+        "instruction": "BAR.SYNC 0x0",
+        "samples": 3
+      },
+      {
+        "pc": "0xd240",
+        "line": 345,
+        "instruction": "BRA 0x7f276748c440",
+        "samples": 3
+      }
+    ],
+    "edges/stall_math": [
+      {
+        "pc": "0x400",
+        "line": 240,
+        "instruction": "SHF.L.U32 R239, R239, 0x7, RZ",
+        "samples": 14
+      },
+      {
+        "pc": "0xb090",
+        "line": 73,
+        "instruction": "HMMA.1688.F32.TF32 R20, R12, R16, RZ",
+        "samples": 11
+      },
+      {
+        "pc": "0xcd70",
+        "line": 73,
+        "instruction": "HMMA.1688.F32.TF32 R20, R12, R16, RZ",
+        "samples": 11
+      },
+      {
+        "pc": "0xca40",
+        "line": 73,
+        "instruction": "HMMA.1688.F32.TF32 R20, R12, R16, RZ",
+        "samples": 9
+      },
+      {
+        "pc": "0xb710",
+        "line": 73,
+        "instruction": "HMMA.1688.F32.TF32 R16, R8, R16, R20",
+        "samples": 8
+      }
+    ],
+    "edges/stall_short_sb": [
+      {
+        "pc": "0xa650",
+        "line": 65,
+        "instruction": "FMUL R23, R5, R41",
+        "samples": 80
+      },
+      {
+        "pc": "0xc010",
+        "line": 220,
+        "instruction": "FMUL R27, R46, R27",
+        "samples": 73
+      },
+      {
+        "pc": "0xc340",
+        "line": 220,
+        "instruction": "FMUL R27, R46, R27",
+        "samples": 68
+      },
+      {
+        "pc": "0xb320",
+        "line": 220,
+        "instruction": "FMUL R26, R46, R26",
+        "samples": 63
+      },
+      {
+        "pc": "0xc9a0",
+        "line": 220,
+        "instruction": "FMUL R27, R46, R27",
+        "samples": 62
+      }
+    ],
+    "edges/stall_long_sb": [
+      {
+        "pc": "0x5700",
+        "line": 88,
+        "instruction": "LDG.E R76, [R36.64+0xe0]",
+        "samples": 458
+      },
+      {
+        "pc": "0xad30",
+        "line": 1153,
+        "instruction": "PRMT R20, RZ, 0x5410, R16",
+        "samples": 181
+      },
+      {
+        "pc": "0xc380",
+        "line": 1153,
+        "instruction": "PRMT R16, RZ, 0x5410, R16",
+        "samples": 178
+      },
+      {
+        "pc": "0xb9f0",
+        "line": 1153,
+        "instruction": "PRMT R16, RZ, 0x5410, R16",
+        "samples": 142
+      },
+      {
+        "pc": "0xd040",
+        "line": 1153,
+        "instruction": "PRMT R16, RZ, 0x5410, R16",
+        "samples": 138
+      }
+    ],
+    "edges/stall_no_inst": [
+      {
+        "pc": "0x0",
+        "line": 227,
+        "instruction": "MOV R1, c[0x0][0x28]",
+        "samples": 52
+      },
+      {
+        "pc": "0x9590",
+        "line": 232,
+        "instruction": "LOP3.LUT R0, R0, 0x1f, RZ, 0xc0, !PT",
+        "samples": 4
+      },
+      {
+        "pc": "0x180",
+        "line": 242,
+        "instruction": "CS2R R200, SRZ",
+        "samples": 3
+      },
+      {
+        "pc": "0x300",
+        "line": 242,
+        "instruction": "CS2R R30, SRZ",
+        "samples": 3
+      },
+      {
+        "pc": "0x3de0",
+        "line": 336,
+        "instruction": "BSYNC B0",
+        "samples": 2
+      }
+    ],
+    "edges/stall_barrier": [
+      {
+        "pc": "0x5340",
+        "line": 94,
+        "instruction": "CS2R R34, SRZ",
+        "samples": 79
+      },
+      {
+        "pc": "0x5180",
+        "line": 342,
+        "instruction": "B2R.RESULT RZ, P0",
+        "samples": 62
+      },
+      {
+        "pc": "0x3970",
+        "line": 328,
+        "instruction": "FADD R10, R25, R10",
+        "samples": 56
+      },
+      {
+        "pc": "0x5260",
+        "line": 81,
+        "instruction": "@P1   BRA 0x7f2767484520",
+        "samples": 18
+      }
+    ],
+    "tail/stall_branch_resolving": [
+      {
+        "pc": "0x5bf0",
+        "line": 104,
+        "instruction": "ISETP.GE.U32.AND P1, PT, R10, 0x180, PT",
+        "samples": 113
+      },
+      {
+        "pc": "0x5e20",
+        "line": 107,
+        "instruction": "LDGDEPBAR",
+        "samples": 109
+      },
+      {
+        "pc": "0x58f0",
+        "line": 95,
+        "instruction": "ISETP.NE.AND P0, PT, RZ, UR4, PT",
+        "samples": 32
+      },
+      {
+        "pc": "0x5c30",
+        "line": 104,
+        "instruction": "IADD3 R37, P1, R85, R80, RZ",
+        "samples": 30
+      },
+      {
+        "pc": "0x5be0",
+        "line": 104,
+        "instruction": "BSYNC B1",
+        "samples": 25
+      }
+    ],
+    "tail/stall_long_sb": [
+      {
+        "pc": "0x5940",
+        "line": 97,
+        "instruction": "BAR.SYNC 0x0",
+        "samples": 378
+      },
+      {
+        "pc": "0x5c30",
+        "line": 104,
+        "instruction": "IADD3 R37, P1, R85, R80, RZ",
+        "samples": 209
+      },
+      {
+        "pc": "0x5b00",
+        "line": 104,
+        "instruction": "IADD3 R37, P1, R11, R85, RZ",
+        "samples": 128
+      },
+      {
+        "pc": "0x5eb0",
+        "line": 116,
+        "instruction": "LDS.128 R44, [R183+UR7]",
+        "samples": 29
+      },
+      {
+        "pc": "0x5b80",
+        "line": 104,
+        "instruction": "IADD3 R37, P1, R12, R85, RZ",
+        "samples": 14
+      }
+    ],
+    "tail/stall_barrier": [
+      {
+        "pc": "0x5950",
+        "line": 99,
+        "instruction": "@P1   BRA 0x7f2767485020",
+        "samples": 1431
+      }
+    ],
+    "tail/stall_lg": [
+      {
+        "pc": "0x5de0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x1000], [R44.64]",
+        "samples": 15
+      },
+      {
+        "pc": "0x5d90",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81], [R36.64]",
+        "samples": 11
+      },
+      {
+        "pc": "0x5e20",
+        "line": 107,
+        "instruction": "LDGDEPBAR",
+        "samples": 11
+      },
+      {
+        "pc": "0x5dc0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x800], [R38.64]",
+        "samples": 9
+      },
+      {
+        "pc": "0x5df0",
+        "line": 104,
+        "instruction": "LDGSTS.E.BYPASS.128 [R81+0x1800], [R46.64]",
+        "samples": 6
+      }
+    ],
+    "edges/stall_imc": [
+      {
+        "pc": "0x20",
+        "line": 242,
+        "instruction": "ISETP.LE.AND P0, PT, RZ, c[0x0][0x1a4], PT",
+        "samples": 65
+      },
+      {
+        "pc": "0x0",
+        "line": 227,
+        "instruction": "MOV R1, c[0x0][0x28]",
+        "samples": 35
+      },
+      {
+        "pc": "0x460",
+        "line": 240,
+        "instruction": "LEA R32, P0, R4, c[0x0][0x160], 0x1",
+        "samples": 10
+      },
+      {
+        "pc": "0x30",
+        "line": 242,
+        "instruction": "ULDC.64 UR8, c[0x0][0x118]",
+        "samples": 3
+      }
+    ],
+    "exact/stall_branch_resolving": [
+      {
+        "pc": "0xe80",
+        "line": 260,
+        "instruction": "LDGDEPBAR",
+        "samples": 271
+      },
+      {
+        "pc": "0xb20",
+        "line": 244,
+        "instruction": "ISETP.GE.U32.AND P1, PT, R36, 0x180, PT",
+        "samples": 237
+      },
+      {
+        "pc": "0xb50",
+        "line": 256,
+        "instruction": "IADD3 R37, P1, R49, R44, RZ",
+        "samples": 97
+      },
+      {
+        "pc": "0x1b90",
+        "line": 303,
+        "instruction": "LDS.128 R32, [R241+0x4040]",
+        "samples": 88
+      },
+      {
+        "pc": "0xb10",
+        "line": 257,
+        "instruction": "BSYNC B1",
+        "samples": 79
+      }
+    ],
+    "exact/stall_no_inst": [
+      {
+        "pc": "0xb10",
+        "line": 257,
+        "instruction": "BSYNC B1",
+        "samples": 284
+      },
+      {
+        "pc": "0x1b90",
+        "line": 303,
+        "instruction": "LDS.128 R32, [R241+0x4040]",
+        "samples": 267
+      },
+      {
+        "pc": "0x6a0",
+        "line": 244,
+        "instruction": "ISETP.GE.AND P0, PT, R4, RZ, PT",
+        "samples": 233
+      },
+      {
+        "pc": "0xb50",
+        "line": 256,
+        "instruction": "IADD3 R37, P1, R49, R44, RZ",
+        "samples": 45
+      },
+      {
+        "pc": "0xe80",
+        "line": 260,
+        "instruction": "LDGDEPBAR",
+        "samples": 11
+      }
+    ],
+    "exact/stall_lg": [
+      {
+        "pc": "0xdf0",
+        "line": 256,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x1000], [R32.64]",
+        "samples": 134
+      },
+      {
+        "pc": "0xe20",
+        "line": 257,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x5000], [R34.64]",
+        "samples": 132
+      },
+      {
+        "pc": "0xe40",
+        "line": 256,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x1800], [R36.64]",
+        "samples": 123
+      },
+      {
+        "pc": "0xe50",
+        "line": 257,
+        "instruction": "LDGSTS.E.BYPASS.128 [R45+0x5800], [R38.64]",
+        "samples": 112
+      },
+      {
+        "pc": "0xe80",
+        "line": 260,
+        "instruction": "LDGDEPBAR",
+        "samples": 78
+      }
+    ],
+    "exact/stall_long_sb": [
+      {
+        "pc": "0x830",
+        "line": 251,
+        "instruction": "IMAD R34, R32, 0xc, R3",
+        "samples": 3425
+      },
+      {
+        "pc": "0xb50",
+        "line": 256,
+        "instruction": "IADD3 R37, P1, R49, R44, RZ",
+        "samples": 1280
+      },
+      {
+        "pc": "0xd70",
+        "line": 256,
+        "instruction": "IADD3 R32, P2, R34, c[0x0][0x168], RZ",
+        "samples": 1155
+      },
+      {
+        "pc": "0x6f0",
+        "line": 246,
+        "instruction": "BAR.SYNC 0x0",
+        "samples": 677
+      },
+      {
+        "pc": "0xea0",
+        "line": 268,
+        "instruction": "SHF.L.U32 R32, R4, 0xf, RZ",
+        "samples": 584
+      }
+    ],
+    "exact/stall_barrier": [
+      {
+        "pc": "0x700",
+        "line": 248,
+        "instruction": "@P1   BRA 0x7f2767480080",
+        "samples": 4269
+      }
+    ],
+    "edges/stall_drain": [
+      {
+        "pc": "0xd240",
+        "line": 345,
+        "instruction": "BRA 0x7f276748c440",
+        "samples": 119
+      }
+    ]
+  }
+}

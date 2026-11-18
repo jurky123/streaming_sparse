@@ -1,0 +1,216 @@
+{
+  "exact": {
+    "relative_range": [
+      "0x8f0",
+      "0x3400"
+    ],
+    "stalls": {
+      "stall_wait": 36175,
+      "stall_math": 15731,
+      "stall_short_sb": 7197,
+      "stall_barrier": 4344,
+      "stall_long_sb": 3116,
+      "stall_mio": 3047,
+      "stall_no_inst": 917,
+      "stall_dispatch": 852,
+      "stall_branch_resolving": 839,
+      "stall_lg": 399,
+      "stall_drain": 0,
+      "stall_imc": 0,
+      "stall_membar": 0,
+      "stall_misc": 0,
+      "stall_not_selected": 0,
+      "stall_selected": 0,
+      "stall_sleeping": 0,
+      "stall_tex": 0
+    },
+    "consumer": {
+      "HMMA": 45605,
+      "LDS": 6662,
+      "BRA": 5453,
+      "IADD3": 3082,
+      "LDGSTS": 1599,
+      "SHF": 1542,
+      "F2FP": 1321,
+      "MUFU": 1166,
+      "FADD": 876,
+      "ISETP": 874,
+      "BAR": 670,
+      "PRMT": 620,
+      "FFMA": 609,
+      "BSYNC": 595,
+      "LDGDEPBAR": 411,
+      "IMNMX": 326,
+      "LEA": 309,
+      "CALL": 277,
+      "SHFL": 151,
+      "DEPBAR": 114,
+      "LOP3": 95,
+      "FMUL": 88,
+      "S2R": 82,
+      "FMNMX": 39,
+      "MOV": 30,
+      "SEL": 19,
+      "LDG": 1,
+      "ATOMS": 1,
+      "BSSY": 0
+    },
+    "hot": [
+      [
+        4443,
+        "0x950",
+        "@P1   BRA 0x7f9e574645c0"
+      ],
+      [
+        3000,
+        "0x12c0",
+        "LDS.128 R32, [R16+0x1040]"
+      ],
+      [
+        2555,
+        "0x1460",
+        "HMMA.16816.F32.BF16 R28, R84, R136, R28"
+      ],
+      [
+        2000,
+        "0x2730",
+        "HMMA.16816.F32.BF16 R168, R152, R64, R168"
+      ],
+      [
+        1983,
+        "0x25a0",
+        "HMMA.16816.F32.BF16 R156, R28, R166, R156"
+      ],
+      [
+        1316,
+        "0x1560",
+        "HMMA.16816.F32.BF16 R28, R88, R140, R28"
+      ],
+      [
+        1204,
+        "0x2d00",
+        "HMMA.16816.F32.BF16 R60, R148, R20, R60"
+      ],
+      [
+        1069,
+        "0xd90",
+        "IADD3 R23, P1, R35, R32, RZ"
+      ],
+      [
+        1038,
+        "0x2ad0",
+        "HMMA.16816.F32.BF16 R72, R116, R20, R72"
+      ],
+      [
+        952,
+        "0x1450",
+        "HMMA.16816.F32.BF16 R36, R84, R20, R36"
+      ]
+    ]
+  },
+  "tail": {
+    "relative_range": [
+      "0x52f0",
+      "0x7d90"
+    ],
+    "stalls": {
+      "stall_wait": 8022,
+      "stall_short_sb": 3030,
+      "stall_math": 2540,
+      "stall_barrier": 1552,
+      "stall_mio": 1488,
+      "stall_long_sb": 1222,
+      "stall_lg": 475,
+      "stall_dispatch": 256,
+      "stall_no_inst": 217,
+      "stall_branch_resolving": 143,
+      "stall_drain": 0,
+      "stall_imc": 0,
+      "stall_membar": 0,
+      "stall_misc": 0,
+      "stall_not_selected": 0,
+      "stall_selected": 0,
+      "stall_sleeping": 0,
+      "stall_tex": 0
+    },
+    "consumer": {
+      "HMMA": 7701,
+      "BRA": 1673,
+      "LDS": 1556,
+      "FADD": 1373,
+      "LDGSTS": 1038,
+      "MUFU": 962,
+      "FMNMX": 802,
+      "LOP3": 667,
+      "LEA": 540,
+      "MOV": 487,
+      "FFMA": 475,
+      "SHF": 297,
+      "LDGDEPBAR": 267,
+      "ISETP": 256,
+      "BAR": 185,
+      "IADD3": 139,
+      "SHFL": 110,
+      "CALL": 96,
+      "F2FP": 82,
+      "FMUL": 69,
+      "DEPBAR": 55,
+      "BSYNC": 44,
+      "PRMT": 38,
+      "IMAD": 33,
+      "BSSY": 0
+    },
+    "hot": [
+      [
+        1600,
+        "0x5350",
+        "@P1   BRA 0x7f9e57468ac0"
+      ],
+      [
+        1136,
+        "0x57e0",
+        "HMMA.16816.F32.BF16 R112, R40, R84, RZ"
+      ],
+      [
+        645,
+        "0x6d60",
+        "HMMA.16816.F32.BF16 R96, R108, R72, RZ"
+      ],
+      [
+        633,
+        "0x55e0",
+        "LOP3.LUT R31, R16, 0x1, RZ, 0xc0, !PT"
+      ],
+      [
+        487,
+        "0x53e0",
+        "LEA R82, P1, R72, c[0x0][0x188], 0x4"
+      ],
+      [
+        420,
+        "0x5d90",
+        "HMMA.16816.F32.BF16 R112, R64, R96, R112"
+      ],
+      [
+        355,
+        "0x5710",
+        "HMMA.16816.F32.BF16 R128, R40, R84, RZ"
+      ],
+      [
+        348,
+        "0x6730",
+        "FADD R78, R146, R143"
+      ],
+      [
+        327,
+        "0x5920",
+        "HMMA.16816.F32.BF16 R128, R52, R80, R128"
+      ],
+      [
+        320,
+        "0x6270",
+        "FMNMX R16, R113, R72, !PT"
+      ]
+    ]
+  }
+}

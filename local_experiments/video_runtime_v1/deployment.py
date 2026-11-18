@@ -5,11 +5,19 @@ from pathlib import Path
 import os
 from .weights import ROOT,load
 
-CURRENT=dict(aligned_coefficients=False,page_prefetch=False,column_mass=False,anchor_scale=False,repeated_context=True,radix_select=True,channel_major_stats=True,residual_norm=True,resident_route=True,summary_window=True,cached_projection=True,fused_exact_tail=True,rechecked_mass=True,group_radix=True,strided_tail=True,direct_risk_bound=True,cuda_pool=True,page_route=True,rms_rope=True,projected_route_inputs=True,group_feature_bundle=True,layernorm_mod=True,rounded_ffn=True,contiguous_commit=True,exact_group_direction='root',selected_tie_order=True,direct_output=True,clean_stream_width=4,tail_merge=True,inline_risk_projection=True,group_gathers=True,scale_in_qk=True,native_route_qk=True,rms_row=True,risk_online=False,summary_moments=True,native_rope=True,exact_fold=False,qk_tile64=True,rms_mean=True,rms_dataflow=True,block_pointwise=True,grouping_spatial=True,grouping_softmax=False,grouping_dataflow=True,mode='stream',full_pset=True,pset_steps='all',pset_policy=None,route_m16=True,reader_vector_g2=False,model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True,scan_fp32=True)
+CURRENT=dict(cuda_fixed15=False,first_frame_fixed15=False,aligned_coefficients=False,page_prefetch=False,column_mass=False,anchor_scale=False,repeated_context=True,radix_select=True,channel_major_stats=True,residual_norm=True,resident_route=True,summary_window=True,cached_projection=True,fused_exact_tail=True,rechecked_mass=True,group_radix=True,strided_tail=True,direct_risk_bound=True,cuda_pool=True,page_route=True,rms_rope=True,projected_route_inputs=True,group_feature_bundle=True,layernorm_mod=True,rounded_ffn=True,contiguous_commit=True,exact_group_direction='root',selected_tie_order=True,direct_output=True,clean_stream_width=4,tail_merge=True,inline_risk_projection=True,group_gathers=True,scale_in_qk=True,native_route_qk=True,rms_row=True,risk_online=False,summary_moments=True,native_rope=True,exact_fold=False,qk_tile64=True,rms_mean=True,rms_dataflow=True,block_pointwise=True,grouping_spatial=True,grouping_softmax=False,grouping_dataflow=True,mode='stream',full_pset=True,pset_steps='all',pset_policy=None,route_m16=True,reader_vector_g2=False,model_seed=17,checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/C_s17/deployment.pt'),reader_checkpoint=str(ROOT/'artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt'),tile_batch=72,history_pages=360,stream_tail_mode=4,stream_warps=8,bf16_qk=True,split_summary=True,fused_risk=False,static_route=False,moment_scores=True,late_reader=True,blocked_scores=True,packed_scores=True,reader_page32=False,lazy_scores=False,reader_split=True,reader_layout=True,reader_layout_kind='a',scan_exclude=True,projected_risk=True,cached_logmass=True,legacy_components='rope,attention',profile=False,validate=False,local_assets=None,reader_output32=True,coeff_bf16=True,endpoint_den=True,cached_endpoints=True,scan_fp32=True)
 
 def current(**overrides):return SimpleNamespace(**(CURRENT|overrides))
 def identity(a):
     result={k:getattr(a,k,v) for k,v in CURRENT.items() if k!='local_assets'}
+    if result['cuda_fixed15']:
+        from ..learned_cache.io import digest
+        for name in ('fixed15_attention.py', 'fixed15_layout.py', 'csrc/fixed15_attention.cu'):
+            result[name] = digest(Path(__file__).parent/name)
+    if result['first_frame_fixed15']:
+        from ..learned_cache.io import digest
+        result['page_store_sha']=digest(ROOT/'local_experiments/review_v1/runtime.py')
+        result['video_runtime_sha']=digest(Path(__file__).parent/'runtime.py')
     if result['fused_exact_tail']:
         from ..learned_cache.io import digest
         result['exact_kernel_sha']=digest(ROOT/'local_experiments/gap_exact_round_kernel.py')
@@ -17,6 +25,7 @@ def identity(a):
     if result['page_prefetch']:
         from ..learned_cache.io import digest
         result['page_prefetch_sha']=digest(Path(__file__).parent/'page_prefetch.py')
+        result['attention_dispatch_sha']=digest(Path(__file__).parent/'legacy_components.py')
     if result['repeated_context']:
         from ..learned_cache.io import digest
         result['native_cross_attention_sha']=digest(ROOT/'wan/modules/model.py')
@@ -147,4 +156,6 @@ def make_runtime(engine,model,reader,phi,B,a):
         rt.summary_graph=partial(build,cuda_pool=getattr(a,'cuda_pool',CURRENT['cuda_pool']))
     from .backbone_ops import install
     for name,patch in install(engine,a).items():setattr(rt,name,patch)
+    rt.set_first_frame_fixed15(getattr(a,'first_frame_fixed15',False))
+    rt.set_cuda_fixed15(getattr(a,"cuda_fixed15",False))
     return rt

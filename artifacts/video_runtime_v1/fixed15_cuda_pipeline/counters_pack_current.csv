@@ -1,0 +1,10 @@
+==PROF== Connected to process 3109989 (/usr/bin/python3.10)
+==PROF== Disconnected from process 3109989
+"ID","Process ID","Process Name","Host Name","Kernel Name","Context","Stream","Block Size","Grid Size","Device","CC","Section Name","Metric Name","Metric Unit","Metric Value"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","dram__bytes.sum","byte","46298752"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","dram__throughput.avg.pct_of_peak_sustained_elapsed","%","67.64"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","gpu__time_duration.sum","nsecond","44064"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","sm__pipe_tensor_cycles_active.avg.pct_of_peak_sustained_active","%","0"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","sm__warps_active.avg.pct_of_peak_sustained_active","%","89.92"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct","%","83.54"
+"0","3109989","python3.10","127.0.0.1","pack_pages","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct","%","1.34"

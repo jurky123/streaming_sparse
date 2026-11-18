@@ -1,0 +1,15 @@
+==PROF== Connected to process 3170967 (/usr/bin/python3.10)
+==PROF== Disconnected from process 3170967
+"ID","Process ID","Process Name","Host Name","Kernel Name","Context","Stream","Block Size","Grid Size","Device","CC","Section Name","Metric Name","Metric Unit","Metric Value"
+"0","3170967","python3.10","127.0.0.1","pack_range","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","dram__bytes_read.sum","byte","28336384"
+"0","3170967","python3.10","127.0.0.1","pack_range","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","dram__bytes_write.sum","byte","17972864"
+"0","3170967","python3.10","127.0.0.1","pack_range","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum","sector","1768863"
+"0","3170967","python3.10","127.0.0.1","pack_range","1","7","(128, 1, 1)","(72, 12, 16)","0","8.0","Command line profiler metrics","smsp__inst_executed.sum","inst","5529600"
+"1","3170967","python3.10","127.0.0.1","encode","1","7","(128, 1, 1)","(12, 27, 42)","0","8.0","Command line profiler metrics","dram__bytes_read.sum","byte","6891648"
+"1","3170967","python3.10","127.0.0.1","encode","1","7","(128, 1, 1)","(12, 27, 42)","0","8.0","Command line profiler metrics","dram__bytes_write.sum","byte","0"
+"1","3170967","python3.10","127.0.0.1","encode","1","7","(128, 1, 1)","(12, 27, 42)","0","8.0","Command line profiler metrics","l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum","sector","528750"
+"1","3170967","python3.10","127.0.0.1","encode","1","7","(128, 1, 1)","(12, 27, 42)","0","8.0","Command line profiler metrics","smsp__inst_executed.sum","inst","5390064"
+"2","3170967","python3.10","127.0.0.1","prepare(const uint4 *, const uint4 *, uint4 *, uint4 *, const uint4 *, const uint4 *, const unsigned short *, uint4 *, int, int)","1","7","(128, 1, 1)","(5076, 1, 1)","0","8.0","Command line profiler metrics","dram__bytes_read.sum","byte","35211520"
+"2","3170967","python3.10","127.0.0.1","prepare(const uint4 *, const uint4 *, uint4 *, uint4 *, const uint4 *, const uint4 *, const unsigned short *, uint4 *, int, int)","1","7","(128, 1, 1)","(5076, 1, 1)","0","8.0","Command line profiler metrics","dram__bytes_write.sum","byte","16591616"
+"2","3170967","python3.10","127.0.0.1","prepare(const uint4 *, const uint4 *, uint4 *, uint4 *, const uint4 *, const uint4 *, const unsigned short *, uint4 *, int, int)","1","7","(128, 1, 1)","(5076, 1, 1)","0","8.0","Command line profiler metrics","l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum","sector","1107648"
+"2","3170967","python3.10","127.0.0.1","prepare(const uint4 *, const uint4 *, uint4 *, uint4 *, const uint4 *, const uint4 *, const unsigned short *, uint4 *, int, int)","1","7","(128, 1, 1)","(5076, 1, 1)","0","8.0","Command line profiler metrics","smsp__inst_executed.sum","inst","3620484"

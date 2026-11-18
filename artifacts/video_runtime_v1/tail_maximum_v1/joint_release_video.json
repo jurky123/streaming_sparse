@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.117909238673747,
+    "candidate_s": 5.080095355398953,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.079494666308165,
+    "baseline_s": 5.118586810305715,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.126182110980153,
+    "candidate_s": 5.091655877418816,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.096777270548046,
+    "baseline_s": 5.126070374622941,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.128289765678346,
+    "candidate_s": 5.094914139248431,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.098762350156903,
+    "baseline_s": 5.13062624912709,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.133099544793367,
+    "candidate_s": 5.093438914977014,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.103832168504596,
+    "baseline_s": 5.128524862229824,
+    "bitwise": false,
+    "nmse": 0.26032572984695435,
+    "old_dense_nmse": 0.5316590666770935,
+    "new_dense_nmse": 0.5535556077957153
+  }
+]

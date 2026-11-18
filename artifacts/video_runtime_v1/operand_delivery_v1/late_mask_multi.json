@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "kitchen_cook",
+    "seed": 703,
+    "baseline_s": 5.164095197804272,
+    "candidate_s": 5.170640641823411,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 703,
+    "candidate_s": 5.164542850106955,
+    "baseline_s": 5.1696858471259475,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 703,
+    "baseline_s": 5.186495500616729,
+    "candidate_s": 5.190969141200185,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 703,
+    "candidate_s": 5.176130594685674,
+    "baseline_s": 5.18226255197078,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 703,
+    "baseline_s": 5.195088628679514,
+    "candidate_s": 5.192678727209568,
+    "bitwise": true
+  },
+  {
+    "prompt": "kitchen_cook",
+    "seed": 704,
+    "candidate_s": 5.19580730330199,
+    "baseline_s": 5.195273139514029,
+    "bitwise": true
+  },
+  {
+    "prompt": "forest_run",
+    "seed": 704,
+    "baseline_s": 5.2070152116939425,
+    "candidate_s": 5.207424273714423,
+    "bitwise": true
+  },
+  {
+    "prompt": "portrait_turn",
+    "seed": 704,
+    "candidate_s": 5.22289383225143,
+    "baseline_s": 5.224790213629603,
+    "bitwise": true
+  },
+  {
+    "prompt": "reef_fish",
+    "seed": 704,
+    "baseline_s": 5.215758629143238,
+    "candidate_s": 5.21379080414772,
+    "bitwise": true
+  },
+  {
+    "prompt": "tennis_match",
+    "seed": 704,
+    "candidate_s": 5.213447201065719,
+    "baseline_s": 5.2118787709623575,
+    "bitwise": true
+  }
+]

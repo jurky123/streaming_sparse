@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.100243151187897,
+    "candidate_s": 5.109211137518287,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.117483614012599,
+    "baseline_s": 5.127750061452389,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.139804873615503,
+    "candidate_s": 5.13937512319535,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.136043436825275,
+    "baseline_s": 5.134795902296901,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.141184277832508,
+    "candidate_s": 5.14432442933321,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.138772374019027,
+    "baseline_s": 5.140596369281411,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "baseline_s": 5.140207849442959,
+    "candidate_s": 5.145655639469624,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "candidate_s": 5.141373934224248,
+    "baseline_s": 5.152298567816615,
+    "bitwise": false,
+    "old_new_nmse": 0.29320231080055237,
+    "base_dense_nmse": 0.5535556077957153,
+    "new_dense_nmse": 0.574700117111206
+  }
+]

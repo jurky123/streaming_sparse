@@ -1,0 +1,16 @@
+{
+  "base": {
+    "LDG": 99,
+    "LDL": 0,
+    "STL": 0,
+    "MOV": 99,
+    "HMMA": 396
+  },
+  "candidate": {
+    "LDG": 67,
+    "LDL": 0,
+    "STL": 0,
+    "MOV": 100,
+    "HMMA": 396
+  }
+}

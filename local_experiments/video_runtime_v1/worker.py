@@ -11,12 +11,18 @@ from ..learned_cache.io import atomic,digest,RunLock
 def generate(queue,key,job,rt,identity,worker):
     from ..rollout_suite import generate_chunk
     out=folder(queue.root,job);out.mkdir(parents=True,exist_ok=True)
+    rt.set_first_frame_fixed15(job['method']=='c_risk')
     rt.workspace.anchor_scale=job['method']=='c_risk'
     rt.workspace.column_mass=rt.workspace.anchor_scale
     rt.workspace.page_prefetch=rt.workspace.column_mass
     rt.workspace.aligned_coefficients=rt.workspace.page_prefetch
-    meta=dict(job=job,weights=identity,history_pages=rt.config.history_pages,page=64,query=64,R=4,probes=16,B=16,density=.1,
-              deployment=identity['deployment']|dict(full_pset=job['method']=='c_pset',anchor_scale=rt.workspace.anchor_scale,column_mass=rt.workspace.column_mass,page_prefetch=rt.workspace.page_prefetch,aligned_coefficients=rt.workspace.aligned_coefficients),tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','backbone_ops.py','native_rope.py','summary_moments.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','grouping_dataflow.py','group_softmax.py','block_pointwise.py','rms_dataflow.py','rms_mean.py','tensor_bmm.py','exact_fold.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','risk_online.py','logmass_cached.py','legacy_components.py','page_prefetch.py')})
+    rt.set_cuda_fixed15(rt.first_frame_fixed15)
+    meta=dict(job=job,weights=identity,history_pages=rt.config.history_pages,page=64,query=64,R=4,probes=16,B=16,density=.15 if rt.first_frame_fixed15 else .1,
+              deployment=identity['deployment']|dict(cuda_fixed15=rt.packed_attention is not None,first_frame_fixed15=rt.first_frame_fixed15,full_pset=job['method']=='c_pset',anchor_scale=rt.workspace.anchor_scale,column_mass=rt.workspace.column_mass,page_prefetch=rt.workspace.page_prefetch,aligned_coefficients=rt.workspace.aligned_coefficients),tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','backbone_ops.py','native_rope.py','summary_moments.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','grouping_dataflow.py','group_softmax.py','block_pointwise.py','rms_dataflow.py','rms_mean.py','tensor_bmm.py','exact_fold.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','risk_online.py','logmass_cached.py','legacy_components.py','page_prefetch.py')})
+    if rt.first_frame_fixed15:
+        for name in ('fixed15_attention.py','fixed15_layout.py','csrc/fixed15_attention.cu'):
+            meta['code'][name]=digest(Path(__file__).parent/name)
+        meta['code']['review_v1/runtime.py']=digest(Path(__file__).parents[1]/'review_v1/runtime.py')
     if (out/'identity.json').exists():assert json.loads((out/'identity.json').read_text())==meta,'Generation identity changed; use a new output directory'
     else:atomic(out/'identity.json',meta)
     rt.full_pset=job['method']=='c_pset';rt.sparse=job['method']!='dense';rt.reset()

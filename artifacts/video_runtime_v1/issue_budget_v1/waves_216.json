@@ -1,0 +1,111 @@
+{
+  "p": 216,
+  "bitwise": true,
+  "instrumented_over_base": 1.0286644115166248,
+  "samples": [
+    {
+      "span_us": 710.656,
+      "mean_start_lag_us": 0.512,
+      "mean_finish_slack_us": 5.632,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    },
+    {
+      "span_us": 711.68,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 5.888,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 1.024
+    },
+    {
+      "span_us": 712.704,
+      "mean_start_lag_us": 1.024,
+      "mean_finish_slack_us": 6.912,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 1.024
+    },
+    {
+      "span_us": 711.68,
+      "mean_start_lag_us": 0.256,
+      "mean_finish_slack_us": 6.912,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 1.024
+    },
+    {
+      "span_us": 710.656,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 5.888,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 1.024
+    },
+    {
+      "span_us": 710.656,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 5.632,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    },
+    {
+      "span_us": 709.632,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 5.376,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    },
+    {
+      "span_us": 711.68,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 6.4,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    },
+    {
+      "span_us": 712.704,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 7.68,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 2.048
+    },
+    {
+      "span_us": 711.68,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 7.168,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 1.024
+    },
+    {
+      "span_us": 710.656,
+      "mean_start_lag_us": 0.0,
+      "mean_finish_slack_us": 5.376,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    },
+    {
+      "span_us": 711.68,
+      "mean_start_lag_us": 0.768,
+      "mean_finish_slack_us": 6.4,
+      "min_ctas": 8,
+      "max_ctas": 8,
+      "last_sm_margin_us": 0.0
+    }
+  ],
+  "medians": {
+    "span_us": 711.68,
+    "mean_start_lag_us": 0.0,
+    "mean_finish_slack_us": 6.144,
+    "min_ctas": 8.0,
+    "max_ctas": 8.0,
+    "last_sm_margin_us": 0.512
+  }
+}

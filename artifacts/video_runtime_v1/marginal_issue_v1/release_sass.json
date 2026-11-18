@@ -1,0 +1,26 @@
+{
+  "_Z16prepare_packed_kILb0EEvPK5uint4S2_PS0_S3_S2_S2_PKtS3_ii": {
+    "instructions": 776,
+    "sha256": "322260aebb1bf0a8be8e4a91654bef86a93f17fef3f5a36cafc163ddb522dcc4"
+  },
+  "_Z16prepare_packed_kILb1EEvPK5uint4S2_PS0_S3_S2_S2_PKtS3_ii": {
+    "instructions": 784,
+    "sha256": "a4695ff20dc0fc1613a76701baf984d4e5dec9c31ee7c691437e6b9affc22e90"
+  },
+  "_Z15prepare_currentPK5uint4S1_PS_S2_S1_S1_PKtS2_ii": {
+    "instructions": 832,
+    "sha256": "fbf14200fd1bc19f77cc1683a260527eda596643526af1f85ba91a4a56674b0c"
+  },
+  "_Z7preparePK5uint4S1_PS_S2_S1_S1_PKtS2_ii": {
+    "instructions": 824,
+    "sha256": "d607eae2bda0d4268c0df3d089946d3ef445281c0cf8be867b4e95f443d622c7"
+  },
+  "_Z11commit_tilePK5uint4S1_PS_S2_S2_S2_iiiii": {
+    "instructions": 256,
+    "sha256": "9806cdb59155425653dd556b3fd2415b3b15adf9af9e961f5712438965ba8548"
+  },
+  "_Z5exactPK13__nv_bfloat16S1_S1_PKiPS_S1_S1_Piii": {
+    "instructions": 3736,
+    "sha256": "698f02ef9476cfa44629d2c3f53bed55230d6cf69b4ac416a3d90a1c147ec72a"
+  }
+}

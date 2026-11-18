@@ -1,0 +1,106 @@
+{
+  "video": "city_walk / 701",
+  "frames": 105,
+  "device": "A100-SXM4-40GB GPU 7",
+  "warmup": 1,
+  "repetitions": 5,
+  "tiers": {
+    "base": {
+      "median_s": 5.1671637780964375,
+      "seconds": [
+        5.151061971671879,
+        5.165625258348882,
+        5.1671637780964375,
+        5.18231575191021,
+        5.191561876796186
+      ],
+      "reference_bitwise": true,
+      "dense_nmse": 0.5367145538330078,
+      "cuda_calls": 812,
+      "packed_commits": 261
+    },
+    "intersection": {
+      "median_s": 5.212990895844996,
+      "seconds": [
+        5.172671469859779,
+        5.198272865265608,
+        5.214471089653671,
+        5.213400322012603,
+        5.212990895844996
+      ],
+      "reference_bitwise": true,
+      "dense_nmse": 0.3793386220932007,
+      "cuda_calls": 0,
+      "packed_commits": 0
+    },
+    "step": {
+      "median_s": 5.874565157108009,
+      "seconds": [
+        5.850363336503506,
+        5.867912040092051,
+        5.8746983502060175,
+        5.874565157108009,
+        5.877929686568677
+      ],
+      "reference_bitwise": true,
+      "dense_nmse": 0.3474922478199005,
+      "cuda_calls": 0,
+      "packed_commits": 0
+    }
+  },
+  "release_pairs": {
+    "n": 8,
+    "faster": 7,
+    "median_gain_ms": 12.900101952254772,
+    "gain_range_ms": [
+      -2.7285562828183174,
+      17.92276930063963
+    ],
+    "control_bitwise": true
+  },
+  "release_multi": {
+    "n": 10,
+    "faster": 10,
+    "median_gain_ms": 11.904840357601643,
+    "gain_range_ms": [
+      3.410712815821171,
+      16.93053636699915
+    ],
+    "control_bitwise": true
+  },
+  "installed_pairs": {
+    "n": 8,
+    "faster": 8,
+    "median_gain_ms": 11.103435419499874,
+    "gain_range_ms": [
+      3.2391073182225227,
+      18.49606353789568
+    ],
+    "control_bitwise": true
+  },
+  "combined_pairs": {
+    "n": 6,
+    "faster": 6,
+    "median_gain_ms": 57.56568303331733,
+    "gain_range_ms": [
+      51.76556669175625,
+      70.41699904948473
+    ],
+    "control_bitwise": false
+  },
+  "device_ms": {
+    "exact(": 823.23939,
+    "prepare(": 38.867813,
+    "retry": 8.544399999999998
+  },
+  "attention_path_ms": 870.6516029999999,
+  "work": {
+    "current_qk_av_tflop": 147.510433677312,
+    "matched_dense_ms": 712.9142739873048,
+    "remaining_ms": 157.7373290126951,
+    "main_tflops": 179.1829150416527,
+    "path_tflops": 169.4253283047272,
+    "extra_tf32_projection_tflop": 0.183911841792,
+    "p432_tensor_instructions": 51743232
+  }
+}

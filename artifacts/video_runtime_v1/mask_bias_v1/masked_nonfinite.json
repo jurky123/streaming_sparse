@@ -1,0 +1,8 @@
+{
+  "page": 360,
+  "baseline_bitwise": true,
+  "candidate_nan": 8192,
+  "elements": 8192,
+  "baseline_flag": 0,
+  "candidate_flag": 0
+}

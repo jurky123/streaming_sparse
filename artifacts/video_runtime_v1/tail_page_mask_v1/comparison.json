@@ -1,0 +1,66 @@
+{
+  "pairs": {
+    "lane_mask_video": {
+      "pairs": 8,
+      "faster": 7,
+      "median_saved_ms": 5.466530565172434,
+      "min_saved_ms": -2.5885719805955887,
+      "max_saved_ms": 15.426896512508392,
+      "all_bitwise": true
+    },
+    "lane_mask_multi": {
+      "pairs": 10,
+      "faster": 8,
+      "median_saved_ms": 9.790156502276659,
+      "min_saved_ms": -10.732674039900303,
+      "max_saved_ms": 13.507582247257233,
+      "all_bitwise": true
+    },
+    "lane_fma_video": {
+      "pairs": 8,
+      "faster": 8,
+      "median_saved_ms": 18.17118749022484,
+      "min_saved_ms": 7.101583294570446,
+      "max_saved_ms": 24.565694853663445,
+      "all_bitwise": false
+    }
+  },
+  "device": {
+    "control": {
+      "ms": {
+        "main": 805.4597789999999,
+        "prepare": 38.781760000000006,
+        "guard": 9.354360999999999
+      },
+      "total_ms": 853.5958999999999,
+      "main_tflops": 183.13763622453953,
+      "total_tflops": 172.8101083896959,
+      "main_gap_ms": 92.54577899999992,
+      "total_gap_ms": 140.68189999999993
+    },
+    "lane_fma": {
+      "ms": {
+        "main": 794.9405759999999,
+        "prepare": 38.791845,
+        "guard": 7.460333999999999
+      },
+      "total_ms": 841.1927549999998,
+      "main_tflops": 185.5610399738861,
+      "total_tflops": 175.35814368729322,
+      "main_gap_ms": 82.02657599999986,
+      "total_gap_ms": 128.27875499999982
+    },
+    "release": {
+      "ms": {
+        "main": 788.5059140000001,
+        "prepare": 38.775121,
+        "guard": 7.374746999999999
+      },
+      "total_ms": 834.655782,
+      "main_tflops": 187.07532484023955,
+      "total_tflops": 176.73153793595836,
+      "main_gap_ms": 75.59191400000009,
+      "total_gap_ms": 121.74178200000006
+    }
+  }
+}

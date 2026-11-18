@@ -1,6 +1,20 @@
+# Accepted summary_moments=True: reuse pool group means/variance/value spread in rep statistics; three tiers bitwise. risk_online=False: online-probability prototype has no video speed gain and changes trajectories. See post_rope_round1/ and post_rope_round2/ MODULE_DISTANCE.zh.md.
+# Accepted native_rope=True: single-input FP64 RoPE; native Dense shares pointwise/RMS/RoPE optimizations. All tested outputs bitwise. See artifacts/video_runtime_v1/fair_dense_v1/MODULE_DISTANCE.zh.md.
+# Accepted qk_tile64=True: M1152/K128 output tile64x64, original four K32 partial sums preserved. Four page counts, three route branches and all three short-video tiers bitwise. See artifacts/video_runtime_v1/qk_tiles_v1/MODULE_DISTANCE.zh.md. Disable with --no-qk-tile64.
+# Accepted rms_mean=True: fixed PyTorch D1536 reduction tree, BF16 square input, no FP32 square array. 56 mean/output contracts and three-tier latent/counters bitwise. See artifacts/video_runtime_v1/rms_mean_v1/MODULE_DISTANCE.zh.md. --no-rms-mean selects preceding RMS dataflow; --no-rms-dataflow selects original model RMS.
+# Accepted rms_dataflow=True: original FP32 mean/eps/rsqrt retained, BF16 rounding preserved; 40 module contracts and 3-tier short-video latent/counters bitwise. See artifacts/video_runtime_v1/rms_dataflow_v1/MODULE_DISTANCE.zh.md. Disable with --no-rms-dataflow.
+# Accepted block_pointwise=True: preserve intermediate BF16 rounding; three-tier 9-chunk latent/counters bitwise. See artifacts/video_runtime_v1/block_pointwise_v1/MODULE_DISTANCE.zh.md. Disable with accepted_tiers --no-block-pointwise. Whole-block graph remains OFF.
+Clean grouping now uses grouping_dataflow + grouping_spatial by default.
+Stable FP32 spatial softmax preserves the original per-column reduction order.
+For the previous dataflow baseline: --no-grouping-spatial.
+For the original grouping: --no-grouping-spatial --no-grouping-dataflow.
+Experimental contiguous softmax remains disabled; never enable both variants.
+
+SM80 fixed-15 base uses early first-page K/V copy and reuses rounded compensation coefficients. Current 105-frame matched attention and tier timings are in artifacts/video_runtime_v1/matched_dense_v1/PROGRESS.zh.md.
+
 Retained user-selected tiers: base / intersection / step.
 Use python -m local_experiments.video_runtime_v1.accepted_tiers --tier NAME --output FRESH_PATH --local-assets /tmp/streaming_sparse-0/runtime
-base: C+Risk, Full_Pset off.
+base: C+Risk, Full_Pset off. Permanent 24-page first-frame anchor included in the fixed 15% exact budget (32/43/54/64 pages). On SM80 the exact softmax anchor uses a downward-rounded scaled maximum of the first selected page. FMA centers each logit before exp2. The compensation summary places all four representatives of each page in one lane. The denominator reuses their FP32 page mass. Each warp writes the final BF16 values in 128-bit vectors using the inactive summary slot. See artifacts/video_runtime_v1/tail_maximum_v1/PROGRESS.zh.md. The compensation page mask is lane-aligned, and the full-mean accumulator uses one FP32 FMA per output element. See artifacts/video_runtime_v1/tail_page_mask_v1/PROGRESS.zh.md. See artifacts/video_runtime_v1/phase_boundary_v1/PROGRESS.zh.md. Both BF16 AV terms accumulate across selected pages. Warps cooperatively preload selected page offsets and build the compensation mask during exact attention. See artifacts/video_runtime_v1/selected_page_fetch_v1/PROGRESS.zh.md. A single CUDA kernel packs the current K/V and the compensation summary. Clean commits write native and packed history together. --no-cuda-fixed15 selects the Triton control. See artifacts/video_runtime_v1/packed_copy_v1/PROGRESS.zh.md.
 intersection: layers3,4,5,8,14,17,27; heads3,4,9; noisy step0.
 step: all applicable layers/heads, noisy step0.
 All tiers use static route compilation and current accepted kernels.

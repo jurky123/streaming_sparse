@@ -1,0 +1,29 @@
+{
+  "ms": [
+    0.9742079973220825,
+    1.0310400128364563,
+    1.4619519710540771
+  ],
+  "exact_speedup": 0.9455752681880191,
+  "guard_pass": true,
+  "outputs": [
+    {
+      "bitwise": true,
+      "nmse": 0.0,
+      "max_abs": 0.0,
+      "changed": 0
+    },
+    {
+      "bitwise": true,
+      "nmse": 0.0,
+      "max_abs": 0.0,
+      "changed": 0
+    },
+    {
+      "bitwise": true,
+      "nmse": 0.0,
+      "max_abs": 0.0,
+      "changed": 0
+    }
+  ]
+}

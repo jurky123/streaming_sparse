@@ -1,0 +1,86 @@
+{
+  "216": {
+    "mean_current_pages_per_query_tile": 6.459490776062012,
+    "min": 1,
+    "max": 8,
+    "share": 0.20185908675193787,
+    "distinct_current_pages_per_head": [
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72
+    ],
+    "mean_query_tiles_per_current_page": 6.459490776062012
+  },
+  "288": {
+    "mean_current_pages_per_query_tile": 14.560185432434082,
+    "min": 1,
+    "max": 19,
+    "share": 0.3386089503765106,
+    "distinct_current_pages_per_head": [
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72
+    ],
+    "mean_query_tiles_per_current_page": 14.560185432434082
+  },
+  "360": {
+    "mean_current_pages_per_query_tile": 21.54513931274414,
+    "min": 1,
+    "max": 30,
+    "share": 0.39898404479026794,
+    "distinct_current_pages_per_head": [
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72
+    ],
+    "mean_query_tiles_per_current_page": 21.54513931274414
+  },
+  "432": {
+    "mean_current_pages_per_query_tile": 26.689815521240234,
+    "min": 1,
+    "max": 40,
+    "share": 0.41702836751937866,
+    "distinct_current_pages_per_head": [
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72,
+      72
+    ],
+    "mean_query_tiles_per_current_page": 26.689815521240234
+  }
+}
