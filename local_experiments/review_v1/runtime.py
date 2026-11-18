@@ -20,13 +20,29 @@ class PageStore:
     def reset(self):self.n=0;self.write=0;self.commits=0;self.token_ids.fill_(-1)
     @torch.no_grad()
     def commit(self,k,v,summary,order,start):
+        c=self.config
+        end=self.write+c.current_pages
+        if getattr(self,'contiguous_commit',False) and end<=c.history_pages:
+            pages=slice(self.write,end)
+            tokens=slice(self.write*64,end*64)
+            self.cache['k'][0,tokens].copy_(k.flatten(1,2).transpose(0,1))
+            self.cache['v'][0,tokens].copy_(v.flatten(1,2).transpose(0,1))
+            for name in ('keys','mean','detail','stats'):
+                getattr(self.summary,name)[:,pages].copy_(getattr(summary,name))
+            self.token_ids[:,pages].copy_((order+start).reshape_as(self.token_ids[:,pages]))
+        else:
+            self.commit_indexed(k,v,summary,order,start)
+        self.write=end%c.history_pages
+        self.n=min(c.history_pages,self.n+c.current_pages)
+        self.commits+=1
+
+    def commit_indexed(self,k,v,summary,order,start):
         c=self.config;slots=(torch.arange(c.current_pages,device=k.device)+self.write)%c.history_pages
         ids=(slots[:,None]*64+torch.arange(64,device=k.device)).flatten()
         self.cache['k'][0].index_copy_(0,ids,k.flatten(1,2).transpose(0,1))
         self.cache['v'][0].index_copy_(0,ids,v.flatten(1,2).transpose(0,1))
         for name in ('keys','mean','detail','stats'):getattr(self.summary,name).index_copy_(1,slots,getattr(summary,name))
         self.token_ids.index_copy_(1,slots,(order+start).reshape(12,72,64))
-        self.write=(self.write+c.current_pages)%c.history_pages;self.n=min(c.history_pages,self.n+c.current_pages);self.commits+=1
 
 class GroupingOps:
     @staticmethod

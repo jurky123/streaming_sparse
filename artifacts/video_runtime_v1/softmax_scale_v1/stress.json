@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "finite": true,
+    "equal": true
+  },
+  "anchor": {
+    "finite": false,
+    "equal": false
+  },
+  "anchor_guard": {
+    "finite": false,
+    "equal": false
+  },
+  "anchor_guard_named": {
+    "finite": true,
+    "equal": true
+  },
+  "anchor_repair": {
+    "finite": true,
+    "equal": true
+  }
+}

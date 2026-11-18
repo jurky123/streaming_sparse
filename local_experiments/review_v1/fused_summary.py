@@ -27,7 +27,7 @@ def _pool(K,V,BANK,GV,GATE,WK,WV,WF,PK,PV,P:tl.constexpr,KH:tl.constexpr,KP:tl.c
  tl.store(PK+(row*4+r[:,None])*128+d[None,:],pk)
  tl.store(PV+(row*4+r[:,None])*128+d[None,:],pv)
 @tr.jit
-def _features(K,V,BANK,GV,GATE,FEAT,P:tl.constexpr,KH:tl.constexpr,KP:tl.constexpr,KT:tl.constexpr,VH:tl.constexpr,VP:tl.constexpr,VT:tl.constexpr,CHEAP:tl.constexpr):
+def _features(K,V,BANK,GV,GATE,FEAT,P:tl.constexpr,KH:tl.constexpr,KP:tl.constexpr,KT:tl.constexpr,VH:tl.constexpr,VP:tl.constexpr,VT:tl.constexpr,CHEAP:tl.constexpr,PROJECT:tl.constexpr=False,WF=None,SAVE_PAGE:tl.constexpr=False,PAGE_OUT=None):
  row=tl.program_id(0);h=row//P;p=row%P;t=tl.arange(0,64);d=tl.arange(0,128);f=tl.arange(0,32);r=tl.arange(0,4)
  k=tl.load(K+h*KH+p*KP+t[:,None]*KT+d[None,:]).to(tl.float32)
  v=tl.load(V+h*VH+p*VP+t[:,None]*VT+d[None,:]).to(tl.float32)
@@ -40,7 +40,15 @@ def _features(K,V,BANK,GV,GATE,FEAT,P:tl.constexpr,KH:tl.constexpr,KP:tl.constex
   mean=tl.sum(prob*vp,0);resp=prob*64.*(vp-mean[None,:])
   rrms=tl.maximum(lib.sqrt_rn(tl.sum(tl.sum(resp*resp,0),0)/2048.),1.e-6)
   gate=.1*lib.tanh(tl.load(GATE+h*32+f));feat=feat+gate[None,:]*(resp/rrms)
- tl.store(FEAT+(row*64+t[:,None])*32+f[None,:],feat)
+ if SAVE_PAGE:
+  tl.store(PAGE_OUT+row*257+d,km)
+  tl.store(PAGE_OUT+row*257+128+d,tl.sum(v,0)/64.)
+  tl.store(PAGE_OUT+row*257+256,tl.max(lib.sqrt_rn(tl.sum(v*v,1)),0))
+ if PROJECT:
+  wf=tl.load(WF+(h*4+t[:,None]//16)*32+f[None,:])
+  tl.store(FEAT+row*64+t,tl.sum(feat*wf,1))
+ else:
+  tl.store(FEAT+(row*64+t[:,None])*32+f[None,:],feat)
 @tr.jit
 def _pool_features(K,V,FEAT,WK,WV,WF,PK,PV,P:tl.constexpr,KH:tl.constexpr,KP:tl.constexpr,KT:tl.constexpr,VH:tl.constexpr,VP:tl.constexpr,VT:tl.constexpr):
  row=tl.program_id(0);h=row//P;p=row%P;t=tl.arange(0,64);d=tl.arange(0,128);f=tl.arange(0,32);r=tl.arange(0,4)

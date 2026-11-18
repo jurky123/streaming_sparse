@@ -1,0 +1,46 @@
+{
+  "base": {
+    "seconds": [
+      5.050011890940368,
+      5.090421593748033,
+      5.0765657387673855,
+      5.078389964066446,
+      5.085966529324651
+    ],
+    "median": 5.078389964066446,
+    "gpu": 7,
+    "anchor_scale": true,
+    "reference_equal": true
+  },
+  "off": {
+    "seconds": [
+      5.063230376690626,
+      5.079151789657772
+    ],
+    "median": 5.071191083174199,
+    "gpu": 5,
+    "anchor_scale": false,
+    "reference_equal": true
+  },
+  "dense": {
+    "seconds": [
+      6.444641778245568,
+      6.461736122146249,
+      6.482899527065456,
+      6.472791662439704,
+      6.475648802705109
+    ],
+    "median": 6.472791662439704,
+    "gpu": 7,
+    "anchor_scale": false,
+    "reference_equal": true
+  },
+  "tiers": {
+    "base": true,
+    "intersection": false,
+    "step": false
+  },
+  "speedup": 1.2745755462340886,
+  "target_seconds": 4.622300057442981,
+  "remaining_seconds": 0.4560899066234647
+}

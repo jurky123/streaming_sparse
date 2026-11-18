@@ -1,0 +1,9 @@
+{
+  "launch": 27,
+  "pages": 216,
+  "bad": 558456,
+  "baseline_finite": true,
+  "repair_finite": true,
+  "repair_max_abs": 0.015625,
+  "repair_nmse": 1.7853237777032405e-09
+}

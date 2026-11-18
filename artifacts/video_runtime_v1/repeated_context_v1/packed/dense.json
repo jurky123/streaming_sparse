@@ -1,0 +1,62 @@
+[
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "old_s": 6.5123083628714085,
+    "new_s": 6.473754437640309,
+    "bitwise": true,
+    "max_abs": 0.0,
+    "counters": {
+      "0": [],
+      "1": []
+    }
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "new_s": 6.470715116709471,
+    "old_s": 6.521319173276424,
+    "bitwise": true,
+    "max_abs": 0.0,
+    "counters": {
+      "1": [],
+      "0": []
+    }
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "old_s": 6.520750869996846,
+    "new_s": 6.47493389248848,
+    "bitwise": true,
+    "max_abs": 0.0,
+    "counters": {
+      "0": [],
+      "1": []
+    }
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "new_s": 6.473981583490968,
+    "old_s": 6.536150965839624,
+    "bitwise": true,
+    "max_abs": 0.0,
+    "counters": {
+      "1": [],
+      "0": []
+    }
+  },
+  {
+    "prompt": "city_walk",
+    "seed": 701,
+    "old_s": 6.537497763521969,
+    "new_s": 6.479681961238384,
+    "bitwise": true,
+    "max_abs": 0.0,
+    "counters": {
+      "0": [],
+      "1": []
+    }
+  }
+]

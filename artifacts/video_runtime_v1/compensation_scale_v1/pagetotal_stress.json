@@ -1,0 +1,20 @@
+[
+  {
+    "case": "masked_first",
+    "finite": true,
+    "nmse": 4.580338053283839e-10,
+    "max_abs": 0.0078125
+  },
+  {
+    "case": "large_positive",
+    "finite": true,
+    "nmse": 0.0,
+    "max_abs": 0.0
+  },
+  {
+    "case": "large_negative",
+    "finite": true,
+    "nmse": 0.0,
+    "max_abs": 0.0
+  }
+]

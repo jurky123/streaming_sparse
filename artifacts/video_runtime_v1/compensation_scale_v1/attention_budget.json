@@ -1,0 +1,89 @@
+{
+  "chunks": [
+    {
+      "chunk": 2,
+      "pages": 216,
+      "displaced_dense_ms": 216.89133099999987,
+      "fused_ms": 72.44097799999999,
+      "dense_flops": 45399951802368,
+      "main_fused_flops": 9103636168704.0,
+      "dense_effective_tflops": 209.32119136826188,
+      "fused_effective_tflops": 125.66970270202594,
+      "at_dense_rate_ms": 43.49123043489581
+    },
+    {
+      "chunk": 3,
+      "pages": 288,
+      "displaced_dense_ms": 291.3153430000001,
+      "fused_ms": 90.06906900000006,
+      "dense_flops": 60533269069824,
+      "main_fused_flops": 12019952517120.0,
+      "dense_effective_tflops": 207.79293135213953,
+      "fused_effective_tflops": 133.4526119851421,
+      "at_dense_rate_ms": 57.84582006184898
+    },
+    {
+      "chunk": 4,
+      "pages": 360,
+      "displaced_dense_ms": 364.04936900000024,
+      "fused_ms": 115.78813799999998,
+      "dense_flops": 75666586337280,
+      "main_fused_flops": 15428889870336.0,
+      "dense_effective_tflops": 207.84704707805702,
+      "fused_effective_tflops": 133.25104053695037,
+      "at_dense_rate_ms": 74.2319416476563
+    },
+    {
+      "chunk": 5,
+      "pages": 432,
+      "displaced_dense_ms": 436.88635100000045,
+      "fused_ms": 132.18914299999997,
+      "dense_flops": 90799903604736,
+      "main_fused_flops": 18345206218752.0,
+      "dense_effective_tflops": 207.83415045331986,
+      "fused_effective_tflops": 138.7799769512993,
+      "at_dense_rate_ms": 88.26848801671015
+    },
+    {
+      "chunk": 6,
+      "pages": 432,
+      "displaced_dense_ms": 435.94569000000024,
+      "fused_ms": 132.332032,
+      "dense_flops": 90799903604736,
+      "main_fused_flops": 18345206218752.0,
+      "dense_effective_tflops": 208.28260420406028,
+      "fused_effective_tflops": 138.6301256127617,
+      "at_dense_rate_ms": 88.07843693359379
+    },
+    {
+      "chunk": 7,
+      "pages": 432,
+      "displaced_dense_ms": 436.8234580000001,
+      "fused_ms": 133.00067200000004,
+      "dense_flops": 90799903604736,
+      "main_fused_flops": 18345206218752.0,
+      "dense_effective_tflops": 207.8640740139372,
+      "fused_effective_tflops": 137.93318441843658,
+      "at_dense_rate_ms": 88.25578111935765
+    },
+    {
+      "chunk": 8,
+      "pages": 432,
+      "displaced_dense_ms": 436.31765799999994,
+      "fused_ms": 132.903478,
+      "dense_flops": 90799903604736,
+      "main_fused_flops": 18345206218752.0,
+      "dense_effective_tflops": 208.10503984859585,
+      "fused_effective_tflops": 138.03405670656713,
+      "at_dense_rate_ms": 88.15358932248263
+    }
+  ],
+  "total": {
+    "displaced_dense_ms": 2618.2292000000007,
+    "fused_ms": 808.72351,
+    "dense_flops": 544799421628416,
+    "main_fused_flops": 109933303431168.0,
+    "at_dense_rate_ms": 528.3252875365454,
+    "estimated_difference_ms": 280.39822246345466
+  }
+}

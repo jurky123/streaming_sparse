@@ -21,13 +21,23 @@ class BlockGraphs:
                                  e=torch.empty_like(kwargs['e']),context=torch.empty_like(kwargs['context']))
         buf=self.buffers[l];buf['x'].copy_(x)
         for name in ('e','context'):buf[name].copy_(kwargs[name])
-        key=(l,chunk)
+        correct,heads=self.runtime.correction_scope(l,cur['step'])
+        # Head tensors are immutable between scope changes; retain them with the graph.
+        cross=kwargs['crossattn_cache']
+        if 'cross' not in buf:
+            buf['cross']=dict(k=torch.empty_like(cross['k']),v=torch.empty_like(cross['v']),is_init=True)
+            buf['cross_source']=None
+        if buf['cross_source'] is None or any(buf['cross_source'][i] is not cross[n] for i,n in enumerate(('k','v'))):
+            for name in ('k','v'):buf['cross'][name].copy_(cross[name])
+            buf['cross_source']=(cross['k'],cross['v'])
+        key=(l,chunk,self.runtime.sparse,correct,None if heads is None else heads.data_ptr())
         if key not in self.entries:
-            static=dict(kwargs,e=buf['e'],context=buf['context'])
+            static=dict(kwargs,e=buf['e'],context=buf['context'],crossattn_cache=buf['cross'])
             def call():buf['out'].copy_(self.original[l](buf['x'],**static))
             # Initialize nested route/tail graphs before the outer capture.
             call()
-            self.runtime.batch_graph.inline=True;self.runtime.inline_summary=True
+            previous_inline=self.runtime.batch_graph.inline
+            self.runtime.batch_graph.inline=True
             try:
                 stream=torch.cuda.Stream();stream.wait_stream(torch.cuda.current_stream())
                 with torch.cuda.stream(stream):
@@ -36,10 +46,10 @@ class BlockGraphs:
                 graph=torch.cuda.CUDAGraph()
                 with torch.cuda.graph(graph,pool=self.pool):call()
             finally:
-                self.runtime.batch_graph.inline=False;self.runtime.inline_summary=False
-            self.entries[key]=graph
+                self.runtime.batch_graph.inline=previous_inline
+            self.entries[key]=(graph,heads)
         self.engine.current['layer']=l
-        self.entries[key].replay()
+        self.entries[key][0].replay()
         return buf['out']
     def close(self):
         for l,fn in self.original.items():self.engine.wrapper.model.blocks[l].forward=fn

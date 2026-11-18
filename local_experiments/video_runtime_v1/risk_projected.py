@@ -20,10 +20,17 @@ def sum4(x,M:tl.constexpr,P:tl.constexpr,SEQ:tl.constexpr):
     else:return tl.sum(x,2)
 
 @tr.jit
-def kernel(U,QN,PROB,ST,TH,C,OUT,T:tl.constexpr,M:tl.constexpr,P:tl.constexpr,BP:tl.constexpr,SEQ:tl.constexpr=False,FSEQ:tl.constexpr=False,LIB:tl.constexpr=False,PER:tl.constexpr=False):
+def kernel(U,QN,PROB,ST,TH,C,OUT,T:tl.constexpr,M:tl.constexpr,P:tl.constexpr,BP:tl.constexpr,SEQ:tl.constexpr=False,FSEQ:tl.constexpr=False,LIB:tl.constexpr=False,PER:tl.constexpr=False,INLINE_U:tl.constexpr=False):
     b=tl.program_id(0);head=b//T;p=tl.program_id(1)*BP+tl.arange(0,BP);m=tl.arange(0,M);r=tl.arange(0,4)
     base=ST+((head*P+p[None,:,None])*4+r[None,None,:])*12
-    u=tl.load(U+((b*M+m[:,None,None])*P+p[None,:,None])*4+r[None,None,:],p[None,:,None]<P,0)
+    if INLINE_U:
+        u=tl.full((M,BP,4),0,tl.float32)
+        for g in tl.static_range(8):
+            q2=tl.load(U+(b*M+m)*8+g)
+            variance=tl.load(base+g,p[None,:,None]<P,0).to(tl.float32)
+            u=tl.fma(q2[:,None,None],variance,u)
+    else:
+        u=tl.load(U+((b*M+m[:,None,None])*P+p[None,:,None])*4+r[None,None,:],p[None,:,None]<P,0)
     u=tl.maximum(u,0)
     norm=tl.load(QN+b*M+m)
     beta=norm[:,None,None]*tl.load(base+8,p[None,:,None]<P,0).to(tl.float32)
@@ -48,18 +55,21 @@ def reduce(u:torch.Tensor,qn:torch.Tensor,prob:torch.Tensor,stats:torch.Tensor,t
     h,t,m,p=prob.shape[:4]
     u,qn,prob,stats,theta,c=[x.contiguous() for x in (u,qn,prob,stats,theta,c)]
     out=torch.empty((h,t,m,p) if PER_PROBE else (h,t,p),device=prob.device,dtype=torch.float32)
-    compiled=kernel[(h*t,tr.cdiv(p,PAGE_BLOCK))](u,qn,prob,stats,theta,c,out,t,m,p,PAGE_BLOCK,SUM_SEQ,FEATURE_SEQ,SQRT_LIB,PER_PROBE,num_warps=WARPS,enable_fp_fusion=False)
+    compiled=kernel[(h*t,tr.cdiv(p,PAGE_BLOCK))](u,qn,prob,stats,theta,c,out,t,m,p,PAGE_BLOCK,SUM_SEQ,FEATURE_SEQ,SQRT_LIB,PER_PROBE,u.ndim==4,num_warps=WARPS,enable_fp_fusion=False)
     KERNEL_STATS[p]=dict(registers=compiled.n_regs,spills=compiled.n_spills,page_block=PAGE_BLOCK,warps=WARPS)
     return out
 
 @reduce.register_fake
 def _(u,qn,prob,stats,theta,c):return prob.new_empty(prob.shape[:4] if PER_PROBE else (prob.shape[0],prob.shape[1],prob.shape[3]))
 
-def risk(probes,z,summary,theta):
+def risk(probes,z,summary,theta,inline_u=False):
     h,t,m,d=probes.shape;q=probes.bfloat16().float()
     prob=z.flatten(-2).softmax(-1).reshape_as(z)
     q2=q.square().reshape(h,t,m,8,16).sum(-1)/d;qn=q.norm(dim=-1)/(d**.5)
     bp=summary.stats[:,:,1,11].float();c=bp+bp.amax(-1,keepdim=True)
-    u=torch.einsum("htmg,hprg->htmpr",q2,summary.stats.float()[...,:8])
+    u=q2 if inline_u else torch.einsum("htmg,hprg->htmpr",q2,summary.stats.float()[...,:8])
     out=reduce(u,qn,prob,summary.stats,theta,c)
     return out.mean(2) if PER_PROBE else out
+
+def risk_inline(probes,z,summary,theta):
+    return risk(probes,z,summary,theta,inline_u=True)

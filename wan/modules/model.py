@@ -171,6 +171,7 @@ class WanT2VCrossAttention(WanSelfAttention):
         # compute query, key, value
         q = self.norm_q(self.q(x)).view(b, -1, n, d)
 
+        compact = crossattn_cache.get('repeated_context') if crossattn_cache is not None else None
         if crossattn_cache is not None:
             if not crossattn_cache["is_init"]:
                 crossattn_cache["is_init"] = True
@@ -178,6 +179,8 @@ class WanT2VCrossAttention(WanSelfAttention):
                 v = self.v(context).view(b, -1, n, d)
                 crossattn_cache["k"] = k
                 crossattn_cache["v"] = v
+                if compact is not None:
+                    crossattn_cache["packed_text"] = compact.prepare(k, v)
             else:
                 k = crossattn_cache["k"]
                 v = crossattn_cache["v"]
@@ -186,7 +189,12 @@ class WanT2VCrossAttention(WanSelfAttention):
             v = self.v(context).view(b, -1, n, d)
 
         # compute attention
-        x = flash_attention(q, k, v, k_lens=context_lens)
+        packed = crossattn_cache.get("packed_text") if compact is not None and compact.enabled else None
+        if (packed is not None and context_lens is None and q.shape == (1,4608,12,128)
+                and q.dtype == torch.bfloat16 and q.is_contiguous()):
+            x = compact.apply(q, packed)
+        else:
+            x = flash_attention(q, k, v, k_lens=context_lens)
 
         # output
         x = x.flatten(2)

@@ -11,8 +11,10 @@ from ..learned_cache.io import atomic,digest,RunLock
 def generate(queue,key,job,rt,identity,worker):
     from ..rollout_suite import generate_chunk
     out=folder(queue.root,job);out.mkdir(parents=True,exist_ok=True)
+    rt.workspace.anchor_scale=job['method']=='c_risk'
+    rt.workspace.column_mass=rt.workspace.anchor_scale
     meta=dict(job=job,weights=identity,history_pages=rt.config.history_pages,page=64,query=64,R=4,probes=16,B=16,density=.1,
-              deployment=identity['deployment']|dict(full_pset=job['method']=='c_pset'),tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')})
+              deployment=identity['deployment']|dict(full_pset=job['method']=='c_pset',anchor_scale=rt.workspace.anchor_scale,column_mass=rt.workspace.column_mass),tile_batch=rt.tile_batch,code={p.name:digest(p) for p in Path(__file__).parent.glob('*.py') if p.name in ('deployment.py','backbone_ops.py','native_rope.py','summary_moments.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','grouping_dataflow.py','group_softmax.py','block_pointwise.py','rms_dataflow.py','rms_mean.py','tensor_bmm.py','exact_fold.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','risk_online.py','logmass_cached.py','legacy_components.py')})
     if (out/'identity.json').exists():assert json.loads((out/'identity.json').read_text())==meta,'Generation identity changed; use a new output directory'
     else:atomic(out/'identity.json',meta)
     rt.full_pset=job['method']=='c_pset';rt.sparse=job['method']!='dense';rt.reset()
@@ -84,7 +86,7 @@ def run(args):
                         from ..broad_common import Engine
                         model,reader,phi,B,identity=load_weights(deployment)
                         identity['deployment']=config_identity(deployment)
-                        identity['runtime_code']={name:digest(Path(__file__).parent/name) for name in ('deployment.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','logmass_cached.py','legacy_components.py')}
+                        identity['runtime_code']={name:digest(Path(__file__).parent/name) for name in ('deployment.py','backbone_ops.py','native_rope.py','summary_moments.py','runtime.py','scores.py','attention.py','page.py','pipeline_graph.py','weights.py','worker.py','reader_reduce.py','reader_split.py','reader_vector_g2.py','grouping_dataflow.py','group_softmax.py','block_pointwise.py','rms_dataflow.py','rms_mean.py','tensor_bmm.py','exact_fold.py','endpoint_den.py','scores_moments.py','scores_packed.py','exclude_scan.py','risk_projected.py','risk_online.py','logmass_cached.py','legacy_components.py')}
                         q.bind_identity(dict(weights=identity,deployment=config_identity(deployment)))
                         engine=Engine();engine.wrapper.requires_grad_(False)
                         rt=make_runtime(engine,model,reader,phi,B,deployment);loaded+=1

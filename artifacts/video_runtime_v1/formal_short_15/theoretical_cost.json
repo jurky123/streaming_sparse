@@ -1,0 +1,29 @@
+{
+  "assumptions": "Dominant FLOPs, FMA=2. Equal effective throughput across precisions assumed. Extra routing modeled as 4-5 GFLOP/layer, a planning estimate, not an exact operation census. Omitted summary/commit and memory costs make estimates optimistic.",
+  "saturated_pages": 432,
+  "dense_attention_gflop": 782.757789696,
+  "sparse_main_gflop": {
+    "exact": 77.913391104,
+    "representative_qk": 24.461180928,
+    "full_mean": 6.115295232,
+    "detail_weight": 0.573308928,
+    "detail_av": 1.146617856,
+    "detail_reconstruction": 0.113246208
+  },
+  "main_attention_speedup": 7.09514338872137,
+  "attention_with_route_speedup": [
+    6.787523013253849,
+    6.846894448775986
+  ],
+  "unchanged_per_layer_gflop": 398.62665216,
+  "generation_dominant_flop_speedup": {
+    "9": [
+      1.5544206319522103,
+      1.5559297580031646
+    ],
+    "21": [
+      1.684761961104046,
+      1.6865889694094873
+    ]
+  }
+}

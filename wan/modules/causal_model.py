@@ -113,7 +113,19 @@ class CausalWanSelfAttention(nn.Module):
             v = self.v(x).view(b, s, n, d)
             return q, k, v
 
-        q, k, v = qkv_fn(x)
+        project_rotary = getattr(self, 'project_normalized_rotary', None)
+        fused_qk = (project_rotary is not None and kv_cache is not None and
+                    x.shape == (1, 4608, 1536) and not torch.is_grad_enabled())
+        project_cached = getattr(self, 'project_cached_rotary', None) if fused_qk else None
+        if project_cached is not None and not (
+                kv_cache["k"].is_contiguous() and kv_cache["v"].is_contiguous()
+                and kv_cache["k"].dtype == kv_cache["v"].dtype == x.dtype == torch.bfloat16):
+            project_cached = None
+        if fused_qk:
+            if project_cached is None:
+                v = self.v(x).view(b, s, n, d)
+        else:
+            q, k, v = qkv_fn(x)
 
         if kv_cache is None:
             # if it is teacher forcing training?
@@ -193,16 +205,19 @@ class CausalWanSelfAttention(nn.Module):
         else:
             frame_seqlen = math.prod(grid_sizes[0][1:]).item()
             current_start_frame = current_start // frame_seqlen
-            roped_query = causal_rope_apply(
-                q, grid_sizes, freqs, start_frame=current_start_frame).type_as(v)
-            roped_key = causal_rope_apply(
-                k, grid_sizes, freqs, start_frame=current_start_frame).type_as(v)
+            if fused_qk and project_cached is None:
+                roped_query, roped_key = project_rotary(self, x, grid_sizes, freqs, current_start_frame)
+            elif not fused_qk:
+                roped_query = causal_rope_apply(
+                    q, grid_sizes, freqs, start_frame=current_start_frame).type_as(v)
+                roped_key = causal_rope_apply(
+                    k, grid_sizes, freqs, start_frame=current_start_frame).type_as(v)
 
-            current_end = current_start + roped_query.shape[1]
+            current_end = current_start + s
             sink_tokens = self.sink_size * frame_seqlen
             # If we are using local attention and the current KV cache size is larger than the local attention size, we need to truncate the KV cache
             kv_cache_size = kv_cache["k"].shape[1]
-            num_new_tokens = roped_query.shape[1]
+            num_new_tokens = s
             if self.local_attn_size != -1 and (current_end > kv_cache["global_end_index"].item()) and (
                     num_new_tokens + kv_cache["local_end_index"].item() > kv_cache_size):
                 # Calculate the number of new tokens added in this step
@@ -217,15 +232,18 @@ class CausalWanSelfAttention(nn.Module):
                 # Insert the new keys/values at the end
                 local_end_index = kv_cache["local_end_index"].item() + current_end - \
                     kv_cache["global_end_index"].item() - num_evicted_tokens
-                local_start_index = local_end_index - num_new_tokens
-                kv_cache["k"][:, local_start_index:local_end_index] = roped_key
-                kv_cache["v"][:, local_start_index:local_end_index] = v
             else:
                 # Assign new keys/values directly up to current_end
                 local_end_index = kv_cache["local_end_index"].item() + current_end - kv_cache["global_end_index"].item()
-                local_start_index = local_end_index - num_new_tokens
-                kv_cache["k"][:, local_start_index:local_end_index] = roped_key
-                kv_cache["v"][:, local_start_index:local_end_index] = v
+            local_start_index = local_end_index - num_new_tokens
+            key_window = kv_cache["k"][:, local_start_index:local_end_index]
+            value_window = kv_cache["v"][:, local_start_index:local_end_index]
+            if project_cached is None:
+                key_window.copy_(roped_key)
+                value_window.copy_(v)
+            else:
+                roped_query, _, _ = project_cached(
+                    self, x, grid_sizes, freqs, current_start_frame, key_window, value_window)
             x = attention(
                 roped_query,
                 kv_cache["k"][:, max(0, local_end_index - self.max_attention_size):local_end_index],

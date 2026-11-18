@@ -1,3 +1,7 @@
+两轮优化收尾：`summary_moments=True`已通过三档短视频逐位验收；`risk_online=False`保持关闭。详细代码位置、profile、理论流量与误差见`artifacts/video_runtime_v1/post_rope_round{1,2}/MODULE_DISTANCE.zh.md`。
+
+当前 `native_rope=True`，原生Dense测速共用逐元素/RMS/RoPE优化；详见 `artifacts/video_runtime_v1/fair_dense_v1/MODULE_DISTANCE.zh.md`。
+
 # Video runtime v1
 
 Current accepted baseline: full-coverage `C_s17/deployment.pt` and
@@ -139,3 +143,102 @@ three timed repetitions and a separate stage-profile run. For batch generation,
 use `c_risk` for base; use `c_pset` and `--pset-policy` pointing to the tracked
 `presets/intersection.json` or `presets/step.json` for the other two tiers.
 Clean Reader cache maintenance remains enabled in both correction tiers.
+
+### Clean grouping dataflow optimization
+
+Accepted defaults now remove the unused final feature gathers and borrow
+CUDA Graph grouping outputs until the next replay. Three retained tiers passed
+bitwise latent comparison on the fixed 9-chunk acceptance video. The alternative
+continuous-axis FP32 softmax (`--grouping-softmax`) remains experimental: it is
+faster but changes the reduction tree and can change hard grouping and video
+trajectories. Use `--no-grouping-spatial --no-grouping-dataflow` in `accepted_tiers`
+to reproduce the original grouping baseline. See [module and video report](../../artifacts/video_runtime_v1/grouping_dataflow_v1/MODULE_DISTANCE.zh.md).
+
+### Stable spatial softmax (accepted)
+
+`grouping_spatial=True` is now shared by benchmark, retained tiers and workers.
+The CUDA kernel preserves PyTorch 2.6's per-column FP32 accumulation and
+32-thread reduction, distributing four columns per CTA. Softmax is 4.697×
+faster and the complete grouping is 1.182× faster; all three short-video tiers
+have bitwise-identical latents and correction counters.
+[Acceptance, operation counts and source locations](../../artifacts/video_runtime_v1/group_softmax_v1/MODULE_DISTANCE.zh.md).
+
+For the previous accepted grouping, use `--no-grouping-spatial` in
+`accepted_tiers` or `benchmark_hotspots`. To reproduce the original grouping,
+also pass `--no-grouping-dataflow`. The trajectory-changing layout prototype
+requires `--no-grouping-spatial --grouping-softmax`. Both softmax variants
+cannot be enabled together. The custom CUDA kernel targets A100/sm80 and is
+compiled with NVCC during warmup into the fast `/tmp` cache; source SHA is
+recorded in deployment identity and `.cu` is included in benchmark snapshots.
+
+### Tail lifetime screening (not deployed)
+
+[Bounded experiments and Nsight counters](../../artifacts/video_runtime_v1/tail_liveness_v1/MODULE_DISTANCE.zh.md)
+cover sequential mean/detail consumption, split mean/detail kernels, BQ32, and
+paired BF16 conversion. None improves the full-window tail consistently; the
+accepted tail remains unchanged. Hardware counters point to shared-memory
+layout conversions, not saturated HBM or Tensor Cores. Source-correlated
+wavefront evidence is retained for the next structural implementation.
+
+### Tail IR layout experiment (not deployed)
+
+[Controlled TTGIR edits and hardware results](../../artifacts/video_runtime_v1/tail_layout_v1/MODULE_DISTANCE.zh.md)
+confirm bitwise outputs on the captured P432 input. Pairing adjacent BF16
+values removes most shared-store bank conflicts but adds shared-load conflicts;
+steady tail speedup is only 1.010×, about 2ms for the tested full-window calls
+in a short video. The accepted runtime does not depend on these IR rewrites.
+
+### Complete-block capture (explicit experiment)
+
+`accepted_tiers --block-graph` preserves the current summary and separates
+correction/head branches. Fixed cross-attention K/V buffers support resets and
+new prompts. [Three-tier acceptance](../../artifacts/video_runtime_v1/block_retained_v1/MODULE_DISTANCE.zh.md)
+shows bitwise latent/counter equality and 1.010–1.014× warm generation speedup.
+Extra capture cost needs roughly 457–1131 subsequent short videos to amortize,
+so this is not a deployment default.
+
+### Accepted block pointwise fusion
+
+`block_pointwise=True` is shared by the three retained tiers and resident workers.
+Two modulation and two gated residual expressions retain their intermediate
+BF16 rounding while eliminating large temporary tensors. LayerNorm and GEMMs
+are unchanged. [Module and video acceptance](../../artifacts/video_runtime_v1/block_pointwise_v1/MODULE_DISTANCE.zh.md)
+shows bitwise latent/counter equality and 1.032–1.037× generation speedups.
+Use `accepted_tiers --no-block-pointwise` for the previous implementation.
+
+### Accepted RMSNorm dataflow
+
+`rms_dataflow=True` preserves the original FP32 mean, epsilon addition and rsqrt,
+while fusing the pointwise stages before and after them. Intermediate BF16
+rounding before the learned weight multiplication remains explicit.
+[Contracts, profile and three-tier acceptance](../../artifacts/video_runtime_v1/rms_dataflow_v1/MODULE_DISTANCE.zh.md)
+show bitwise square/mean/output and video latent/counter equality; generation
+speedup is 1.077–1.087×. Disable with `--no-rms-dataflow` in accepted_tiers or
+benchmark_hotspots. The resident worker uses the shared deployment default.
+
+### Accepted fixed-order square/mean fusion
+
+`rms_mean=True` removes the FP32 square array while reproducing the current
+PyTorch D1536 mean tree (four accumulators and increasing warp offsets).
+[Provenance, contracts and three-tier acceptance](../../artifacts/video_runtime_v1/rms_mean_v1/MODULE_DISTANCE.zh.md)
+show bitwise mean/output and video latent/counter equality; generation speedup
+is 1.027–1.032× over the preceding RMS dataflow implementation.
+Use `--no-rms-mean` for that preceding path, or `--no-rms-dataflow` to disable
+all RMS replacements. The CUDA source hash is part of deployment identity.
+
+### Accepted M16 QK tiling
+
+`qk_tile64=True` uses a 64×64 output tile for M1152/K128, preserving all four
+K32 partial-dot additions. Other shapes retain 32×64.
+[Bounded candidates, complete-route and video results](../../artifacts/video_runtime_v1/qk_tiles_v1/MODULE_DISTANCE.zh.md)
+show bitwise outputs and 1.0025–1.0054× generation speedup; the QK module alone
+is 1.33–1.35× faster. Use `--no-qk-tile64` for the previous output tiling.
+
+### Exact AV accumulator prototype (not deployed)
+
+`--exact-fold` changes the FP32 accumulation order while retaining both AV
+products. [Bounded trials and paired short-video differences](../../artifacts/video_runtime_v1/exact_pipeline_v1/MODULE_DISTANCE.zh.md)
+show 1.09–1.12× exact-kernel speedup, but only 0.5–0.7% generation improvement
+and noticeable trajectory differences (LPIPS 0.141–0.237 versus the same-tier
+original implementation). It remains off. These are implementation differences,
+not evidence of quality regression relative to Dense.

@@ -1,0 +1,14 @@
+{
+  "baseline": {
+    "finite": true,
+    "equal": true
+  },
+  "mass64": {
+    "finite": true,
+    "equal": true
+  },
+  "release": {
+    "finite": true,
+    "equal": true
+  }
+}

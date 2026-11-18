@@ -1,0 +1,32 @@
+[
+  {
+    "case": 432,
+    "prototype_equal": true,
+    "finite": true,
+    "baseline_equal": false
+  },
+  {
+    "case": 360,
+    "prototype_equal": true,
+    "finite": true,
+    "baseline_equal": false
+  },
+  {
+    "case": 288,
+    "prototype_equal": true,
+    "finite": true,
+    "baseline_equal": false
+  },
+  {
+    "case": 216,
+    "prototype_equal": true,
+    "finite": true,
+    "baseline_equal": false
+  },
+  {
+    "case": "stress",
+    "prototype_equal": true,
+    "finite": true,
+    "baseline_equal": true
+  }
+]
