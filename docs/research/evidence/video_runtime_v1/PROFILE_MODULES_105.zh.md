@@ -12,6 +12,8 @@ city_walk / seed 701，A100-SXM4-40GB，GPU7。base 已启用首页缩放和精�
 
 绝对差为实测减参考，相对差为绝对差除以参考。融合核这行是设备累计时间；前两行是整条视频墙钟时间。
 
+4156.44 ms 使用旧模型的逻辑 FLOP 口径，精算 AV 按一项计，补偿均值和细节也未计入双项 AV 及细节列填充。528.33 ms 按当前融合核的双项 AV、窗口和列填充折算。保留旧模型的公共主干、每层 route 4 GFLOP、细节系数与重建等假设，仅将融合矩阵乘替换为当前计数，整条主项加速比为 1.49543×，同卡 Dense 折算约 4324.59 ms。896.69 ms 差额包含上述计数差异，项目验收线仍为 4618.25 ms。[旧模型](../../../../local_experiments/video_runtime_v1/theoretical_cost.py) · [当前融合主项](../../../../artifacts/video_runtime_v1/compensation_scale_v1/compare_timelines.py)
+
 ## 分模块 GPU 累计时间
 
 | 模块 | 实测 ms | 理论参考 ms | 绝对差 ms | 相对差 % | 理论口径 |
@@ -46,3 +48,7 @@ city_walk / seed 701，A100-SXM4-40GB，GPU7。base 已启用首页缩放和精�
 此行来自同形状 Risk 核的独立 NCU 运行。整条视频还包含其他页数及归一化，不能按满窗口结果直接外推。
 
 [模块表 CSV](PROFILE_MODULES_105.csv) · [逐核明细 CSV](PROFILE_KERNELS_105.csv) · [计算口径与逐段数据](../../../../artifacts/video_runtime_v1/compensation_scale_v1/attention_budget.json) · [部署计时](../../../../artifacts/video_runtime_v1/anchor_accum_v1/deployment.json) · [NVIDIA A100 规格](https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/)
+
+## 精算页预取更新
+
+同卡开关采样，105 帧融合注意力累计 808.57 → 797.19 ms，按当前实现的主矩阵工作量折算为 137.9 TFLOP/s。相同工作量在 Dense 实测有效吞吐下的参考为 528.33 ms，当前差额 268.86 ms。P432 Tensor pipe active 从 45.10% 升至 45.66%。[完整计数与复测](../../../../artifacts/video_runtime_v1/warp_rows_v1/PROGRESS.zh.md)

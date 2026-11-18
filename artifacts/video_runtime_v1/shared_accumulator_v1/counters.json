@@ -1,0 +1,71 @@
+{
+  "baseline": {
+    "other": {
+      "# Samples": 23573,
+      "stall_long_sb": 1187,
+      "stall_short_sb": 6600,
+      "stall_wait": 4416,
+      "Instructions Executed": 34864128,
+      "STL": 79488,
+      "LDL": 221184
+    },
+    "exact": {
+      "# Samples": 92990,
+      "stall_long_sb": 13222,
+      "stall_short_sb": 9293,
+      "stall_wait": 38224,
+      "Instructions Executed": 102947328,
+      "STL": 169344,
+      "LDL": 1161216
+    },
+    "tail": {
+      "# Samples": 49606,
+      "stall_long_sb": 6991,
+      "stall_short_sb": 6645,
+      "stall_wait": 14244,
+      "Instructions Executed": 71839872
+    },
+    "kernel": {
+      "l1tex__t_sectors_pipe_lsu_mem_local_op_ld.sum": "5529600",
+      "l1tex__t_sectors_pipe_lsu_mem_local_op_st.sum": "995328",
+      "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "13.11",
+      "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct": "13.50",
+      "sm__warps_active.avg.pct_of_peak_sustained_active": "12.27"
+    }
+  },
+  "shared": {
+    "other": {
+      "# Samples": 23225,
+      "stall_long_sb": 926,
+      "stall_short_sb": 7158,
+      "stall_wait": 3677,
+      "Instructions Executed": 29593728,
+      "STL": 58752,
+      "LDL": 48384
+    },
+    "exact": {
+      "# Samples": 93601,
+      "stall_long_sb": 13060,
+      "stall_short_sb": 9788,
+      "stall_wait": 38146,
+      "Instructions Executed": 102809088,
+      "STL": 27648,
+      "LDL": 1168128
+    },
+    "tail": {
+      "# Samples": 54879,
+      "stall_long_sb": 6816,
+      "stall_short_sb": 6260,
+      "stall_wait": 19695,
+      "Instructions Executed": 78209280,
+      "LDL": 3456
+    },
+    "kernel": {
+      "l1tex__t_sectors_pipe_lsu_mem_local_op_ld.sum": "4879872",
+      "l1tex__t_sectors_pipe_lsu_mem_local_op_st.sum": "345600",
+      "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct": "12.25",
+      "smsp__warp_issue_stalled_short_scoreboard_per_warp_active.pct": "13.60",
+      "sm__warps_active.avg.pct_of_peak_sustained_active": "12.21"
+    }
+  }
+}

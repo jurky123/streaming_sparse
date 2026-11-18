@@ -263,3 +263,11 @@ CUDA 代表池化已启用。105 帧单视频三档 18 对全部更快，配对�
 ### 补偿缩放验收与暂停点
 
 单视频 3/8 对更快，配对节省中位数 -0.79 ms，加速比中位数 0.99984×；5 prompt × 2 seed 3/10 对更快，配对节省中位数 -1.77 ms，加速比中位数 0.99965×。本轮候选未通过视频速度验收，base 保留已接受的精算分母列累加。 同卡时间线显示融合核实测 808.72 ms，若按各段对应 Dense 的有效吞吐折算约为 528.33 ms。本轮结束按用户要求暂停，已验收部署仍为 1.27983×。[实验与逐段估算](../../artifacts/video_runtime_v1/compensation_scale_v1/PROGRESS.zh.md)
+
+### 6135662 融合注意力评审与实验结论
+
+评审定位到精算结果和补偿均值两个跨阶段存活的 128 维向量，提出用 `mx=le−4、den=1、am=exact` 接续状态，删除尾部独立合并。P432 完整融合核在 16 对交替测量中全部变慢，中位耗时从 1.14291 增至 1.17696 ms，加速比 0.97101×。spill 槽从 72 降至 26，输出 NMSE 为 1.08e−9。按评审约定在模块阶段结束此候选。随后验证精算页的 warp 分工和共享内存流水，获益的 K/V 调度见下节。[候选、原始计时和计数](../../artifacts/video_runtime_v1/shared_accumulator_v1/PROGRESS.zh.md) · [双项 AV 与理论时间口径修正](evidence/video_runtime_v1/PROFILE_MODULES_105.zh.md)
+
+### 精算页 K/V 错开等待已在 base 启用
+
+SM80 上保留 Q64 和双项 BF16 AV，提前下一页 K，推迟对 V 的等待。融合核设备累计从 808.57 降至 797.19 ms，距 Dense 吞吐折算参考仍有 268.86 ms。正常启动路径单视频 8 对全部提速，配对中位节省 11.02 ms。5 prompt × 2 seed 全部 latent 逐位相同。GPU7 正式入口 base 5.03268 s，原生 Dense 6.46920 s，加速 1.28544×。可用 `--no-page-prefetch` 回到上一版。P432 的短 scoreboard 等待升至 19.39%，下一轮可定位概率片段交换和 AV 等待的具体指令。[模块、硬件计数与视频验收](../../artifacts/video_runtime_v1/warp_rows_v1/PROGRESS.zh.md)

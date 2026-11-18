@@ -1,0 +1,10 @@
+{
+  "baseline": {
+    "finite": true,
+    "equal": true
+  },
+  "scheduled": {
+    "finite": true,
+    "equal": true
+  }
+}

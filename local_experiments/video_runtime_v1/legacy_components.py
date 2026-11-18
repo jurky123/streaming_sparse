@@ -3,6 +3,7 @@ import torch
 EXACT_FOLD=False
 SINGLE_AV=False
 from .exact_fold import exact_fold
+from .page_prefetch import page_tail
 import triton as tr
 from ..review_v1.fused_route import _normalizer,_risk
 from ..review_v1.tuned_attention import _tail,_merge
@@ -32,7 +33,10 @@ def attention(q,k,v,s,basis,ids,workspace,*,bf16_av=True):
     if (getattr(workspace,'fused_exact_tail',False) and workspace.tail_merge and workspace.strided_tail
             and not (major or EXACT_FOLD or SINGLE_AV) and count and p<=512):
         out=buf('out',q.shape,q.dtype)
-        _tail[(n//64,h)](q,s.keys,s.mean,s.detail,None,None,None,None,p,n,h,d,
+        use_prefetch = (getattr(workspace, "page_prefetch", False) and workspace.column_mass and workspace.anchor_scale
+                        and bf16_av and (n,h,d)==(4608,12,128) and p in (216,288,360,432) and count==p//10)
+        kernel = page_tail if use_prefetch else _tail
+        kernel[(n//64,h)](q,s.keys,s.mean,s.detail,None,None,None,None,p,n,h,d,
                           HEAD_PAGES=s.mean.stride(0)//d,BQ=64,BR=64,BF16_AV=bf16_av,MERGE=True,
                           BASIS=basis.bfloat16().contiguous(),OUT=out,K=k,V=v,IDS=lut,
                           EXACT_COUNT=count,QK_SCALE=d**-.5,ANCHOR_SCALE=getattr(workspace,"anchor_scale",False),COLUMN_MASS=getattr(workspace,"column_mass",False),num_warps=4,num_stages=2,enable_fp_fusion=False)

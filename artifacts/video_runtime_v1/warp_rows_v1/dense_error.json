@@ -1,0 +1,21 @@
+{
+  "prior_base": {
+    "nmse": 0.3784089982509613,
+    "mae": 0.320629358291626,
+    "max_abs": 4.6875,
+    "same_as_control": true
+  },
+  "control": {
+    "nmse": 0.3784089982509613,
+    "mae": 0.320629358291626,
+    "max_abs": 4.6875,
+    "same_as_control": true
+  },
+  "prefetch": {
+    "nmse": 0.3784089982509613,
+    "mae": 0.320629358291626,
+    "max_abs": 4.6875,
+    "same_as_control": true
+  },
+  "reference": "/tmp/jzk_mass_release_dense/latents.pt"
+}
