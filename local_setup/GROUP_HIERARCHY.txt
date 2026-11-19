@@ -1,0 +1,41 @@
+分层K3→V2双页内方案实验
+
+结果：artifacts/group_hierarchy_178f95a8。
+隔离环境：/tmp/group_response_178f95a8。
+运行依赖和模型：/tmp/streaming_sparse-0/runtime。
+快速结果及原始QKV：/tmp/group_hierarchy_results；完成后全部复制到源码artifacts，包含QKV。
+所有原baseline模块来自178f95a8。不要从有历史改动的源码cwd直接启动实验模块。
+
+六条件：
+G-ORDER 原序切页/子组。
+G-K 外层KKKKK，页内K，旧方案。
+G-K-joint 外层KKKKK，页内原联合。
+G-KVR 外层和页内原联合。
+G-K3-V2 外层KKKVV，页内原联合。
+G-K3-V2-Kinner 外层KKKVV，页内K。
+这两套页内方案来自用户后续要求，分别做严格的同页内对照。
+全部五级因子[3,3,2,2,2]，页内[2,2]，Config.page_order；G-ORDER不排序。
+只在完整chunk上计算一次K/V响应，不在256-token组内重算。模型pool_feature_fn从不修改。
+
+新增阶段复现：
+python local_setup/prepare_group_hierarchy.py
+python local_setup/run_group_hierarchy.py
+队列每GPU一进程，已完成result.json自动跳过。当前完整结果请勿覆盖。
+局部QKV已经保存，不必再次生成。四个case的restoration/*.json证明完整baseline latent逐位相同；restored_controls/*.reuse证明旧局部对照指标相同。
+
+局部评价（隔离环境cwd）：
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/tmp/group_response_178f95a8 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.group_hierarchy.evaluate_saved --case horse_field --seed 101
+另外3case为horse_field seed303、traffic_crossing seed101/303。全部读取原始QKV，验证SHA256后对六组计算3个面板。
+每事件两个tile、每tile全部64Queries、12heads；页级logZ误差与全局logZ误差分别记录。
+
+视频模块：local_experiments.group_hierarchy.run
+参数--case --seed --group --level；level为Dense、L3、L2_1、L2_8、L2_15、L2_22、L2_29。
+每个组先完成自己Dense。本轮总计6×4×7=168条视频记录，包含24个Dense、120个L2和24个L3。
+36条兼容旧结果复用，132条新运行；复用视频与latent有来源及一致性检查。
+
+成本：空闲GPU执行local_experiments.group_hierarchy.cost。
+同一真实horse_field/seed101/clean chunk5，layer1/15/29，预热3次、交错10次，记录group/summary/write/total。
+预验证：local_experiments.group_hierarchy.preflight。
+验收：python local_setup/report_group_hierarchy.py；python local_setup/audit_group_hierarchy.py。
+图表：用运行环境Python执行local_setup/visualize_group_hierarchy.py。
+训练：本轮明确不训练、不适配。

@@ -1,4 +1,30 @@
+> **2026-11-18 当前入口：** [仓库现状与工作交接](REPOSITORY_HANDOVER_20261118.zh.md)。包含最新三档基线、已完成质量验证、两轮优化验收、代码地图、复现和暂停点。下文保留各阶段历史记录。
+
+**按用户要求完成额外两轮后暂停**：第一轮 [摘要统计复用](../../artifacts/video_runtime_v1/post_rope_round1/MODULE_DISTANCE.zh.md) 已部署，模块1.17–1.20×、三档生成1.00765/1.00952/1.00953×，latent和计数逐位一致。第二轮 [Risk在线概率](../../artifacts/video_runtime_v1/post_rope_round2/MODULE_DISTANCE.zh.md) 不部署：隔离Risk1.17–1.37×，完整路由只有1.003–1.010×，新拆出的缩放kernel抵消收益；视频无稳定提速且base/intersection轨迹变化，step逐位一致。`summary_moments=True`、`risk_online=False`。三档继续保留base/原交集/step0；下一步如重启，先处理缩放与归一化生产消费边界，不重复扩大参数筛查。
+
+**共享主干Dense参照已修正，单输入RoPE已验收**：见 [报告](../../artifacts/video_runtime_v1/fair_dense_v1/MODULE_DISTANCE.zh.md)。三档相对同卡原生Dense为1.0679/1.0496/0.9532×；公共优化也给Dense使用。9个模块时间位置和三档latent/计数均逐位一致，native_rope=True。
+
 # streaming_sparse 当前状况交接
+
+**精算运行acc复用原型结束，不部署**：[报告](../../artifacts/video_runtime_v1/exact_pipeline_v1/MODULE_DISTANCE.zh.md)。旧stages/warps/BQ筛查已核对，本轮仅fold、V晚加载、组合。基线252寄存器/64KiB shared/12.44%实际occupancy；fold237寄存器、occupancy不变，SM计算49.93→54.65%。四窗口精算1.09–1.12×、LSE逐位一致，但attention NMSE最高2.03e-10；生成仅1.0053–1.0070×，闭环latent NMSE0.352/0.129/0.160，LPIPS0.237/0.141/0.163（均对原实现，不是Dense）。PSNR/SSIM/RGB差和并排视频已记录。old输出与上轮基线一致，前两个dense chunk两边一致，chunk2起放大。属于FP32累加顺序舍入差，不是新增量化；exact_fold默认False，不需用户立即确认。V晚加载无净收益，也不接入。下一步核对Dense参照是否共享当前主干优化，避免把共有RMS/逐元素收益只计给稀疏法，再继续按profile排序。
+
+**M16 QK输出分块64×64已默认部署**：[详细报告](../../artifacts/video_runtime_v1/qk_tiles_v1/MODULE_DISTANCE.zh.md)。`qk_tile64=True`，仅M1152/K128生效，其余形状保留32×64；四段K32 partial-dot累加不变。仅试64×64及32×128，前者四页面数1.33–1.35×，全部输出逐位一致。完整路由base/3head/full分别1.060/1.024/1.010×，ids/logits/mask/risk/stats五项一致；三档9chunks生成6.525176→6.490291、6.563108→6.534768、7.230393→7.212070s（1.00537/1.00434/1.00254×），latent/计数逐位一致。实际profile QK116次17.967→13.114ms；通用Kernel的另一类是Risk，不能合并归因。QK写95.55MB输出仍存在，理论距离按流量和算术一起判断；后续不继续铺开QK参数扫描，优先检查精算kernel的实际执行/访存瓶颈并对照旧实验。
+
+**保持PyTorch归约树的平方/mean融合已默认部署**：[详细报告](../../artifacts/video_runtime_v1/rms_mean_v1/MODULE_DISTANCE.zh.md)。`rms_mean=True`，D1536连续BF16且rows>=16；按PyTorch2.6源码及实际block32×16配置复现4累加器、每lane12轮、1/2/4/8/16递增shuffle，再乘FP32(1/1536)。56组均值/输出契约逐位一致，三档9chunks各5次：6.720880→6.514171、6.757513→6.580493、7.422067→7.224309s（1.03173/1.02690/1.02737×），latent及计数逐位一致。新RMS区间14.137ms/chunk，上轮35.844ms；消除FP32平方数组后每元素大数组读写14→6字节。CUDA30寄存器、0shared/local，源码SHA记入identity，NVCC缓存位于快速/tmp；--no-rms-mean回到上轮，--no-rms-dataflow回到原模型。新profile下GEMM/attention占主导，后续按实际计算/数据流收益排序，不继续宣称归一化还有此前的大块差额。
+
+**RMSNorm两侧数据流融合已默认部署**：[详细报告](../../artifacts/video_runtime_v1/rms_dataflow_v1/MODULE_DISTANCE.zh.md)。`rms_dataflow=True`，保留原PyTorch FP32 mean、epsilon、rsqrt；融合BF16转FP32平方和最后缩放/舍入/权重乘法，归约树完全不变。40组平方/mean/输出契约逐位一致，主模块2.77–2.89×；大数组读写每元素36→14字节。三档9chunks各5次生成7.295404→6.713650、7.341971→6.764375、7.998991→7.424317s（1.08665/1.08539/1.07740×），latent及计数逐位一致。新profile完整chunk RMS约35.844ms；按原单step外推差约0.567s/视频，与实测0.575–0.582s一致。deployment和worker共享默认；accepted_tiers/benchmark可--no-rms-dataflow，block_pointwise保持True，整块图仍关闭。下一步仅在能复现原归约树的前提下评估省去剩余FP32平方数组，不把已有零误差证明套到新归约。
+
+**主干调制/残差融合已设为三档共同默认**：[详细报告](../../artifacts/video_runtime_v1/block_pointwise_v1/MODULE_DISTANCE.zh.md)。`block_pointwise=True`，原归一化和GEMM不变，融合两次调制及两次门控残差；显式保留BF16中间舍入，禁止FMA。32组模块契约逐位一致，模块调制4.30–4.35×、残差1.79–1.90×；每block大数组逻辑读写254.804→141.558MB。三档9chunks各5次：7.556663→7.288720、7.599844→7.345043、8.249977→7.997748s（1.03676/1.03469/1.03154×），latent及逻辑计数逐位一致。统一deployment/worker接入，accepted_tiers与benchmark保留--no-block-pointwise；整块图继续默认关闭。新profile显示FP32平方/转换/乘法仍较多，下一步优先归因Q/K RMSNorm，先尝试保留原mean归约树、只消除其前后中间张量；不能直接更换归约实现后沿用本轮零误差结论。
+
+**整块图原型已验收，保留显式开关、不设默认**：[详细报告](../../artifacts/video_runtime_v1/block_retained_v1/MODULE_DISTANCE.zh.md)。保留split summary并隔离实际修正/head分支；修复reset后cross-attention K/V重新分配导致旧图指针失效，固定图缓冲并在源改变时更新。真实P432 block及混合scope/变化文本KV输出逐位一致；三档9chunks各5次生成7.57169→7.47044、7.58998→7.51250、8.26361→8.17053s（1.01355/1.01031/1.01139×），latent及GPU逻辑计数均逐位一致。首次冷运行12.04→58.31、17.89→86.31、18.13→123.38s，约需457/883/1131个后续视频摊平，不适合当前20视频批量默认开启。入口accepted_tiers --block-graph；旧默认保持。下一步针对共有主干逐元素操作的重复读写做归因和模块隔离，不能将图收益或约3% timeline空隙当作全部可回收Python开销。
+
+**补偿IR布局原型已收敛，不接入默认**：[报告](../../artifacts/video_runtime_v1/tail_layout_v1/MODULE_DISTANCE.zh.md)。直接编辑最终TTGIR，仅改布局描述符；未改IR重编译控制与原JIT逐位一致。phase1回退，blocked减少8KiB shared/约一半store冲突但无时延收益；paired输出一致，稳态0.450048→0.445645ms（1.00988×）。store冲突955万→69万，但load冲突5万→305万，仍255寄存器；9chunks已测P432范围仅约2ms潜在收益，不值得部署内部IR依赖，未跑新视频验收。稳定softmax基线chunk8 timeline空隙约3.06%；下一步可做保留摘要实现、按三档分支隔离key的完整block图捕获原型，不直接启用旧inline_summary开关。
+
+**补偿生命周期筛查完成，默认kernel不变**：[模块距离及硬件计数报告](../../artifacts/video_runtime_v1/tail_liveness_v1/MODULE_DISTANCE.zh.md)。真实P432输入及216/288/360前缀上，late加载仅奇数半块P略有收益，满432页0.932×；均值/detail拆分0.613×；BQ32为0.589×；高低项inline生成0.981×，均不接入，未启动失败原型的视频验收。Nsight硬件计数纠正此前occupancy=0估计：实际12.26%，DRAM3.76%、L2命中93.96%、L1/TEX79.41%。约955万shared-store bank conflict；源行/SASS关联的excessive wavefront集中于BF16高低项准备（597万）与softmax/reshape（299万）。下一步针对Triton共享布局转换，不再重复这四类筛查；当前稳定softmax和三档基线保持。
+
+**保持归约顺序的softmax已默认部署**：[详细报告](../../artifacts/video_runtime_v1/group_softmax_v1/MODULE_DISTANCE.zh.md)。对照PyTorch2.6原spatial softmax，保留32线程逐列累加和归约树，4列/CTA及线程重排使12CTA→96CTA，softmax0.507→0.108ms（4.697×），完整分组相对已接受dataflow基线2.536→2.145ms（1.182×）。三档短视频生成7.622→7.523、7.717→7.622、8.355→8.266s，latent/计数均逐位一致；783个真实clean事件相同输入逐位一致。grouping_spatial默认true，grouping_softmax连续布局原型仍false，二者互斥。CUDA源码和实现入口见报告，NVCC12.2编译、sm80目标、快速缓存及源码SHA。上一轮舍入导致的排序轨迹变化未带入部署。
+
+**三档共有clean分组优化已验收**：[模块工作量、profile、速度和误差报告](../../artifacts/video_runtime_v1/grouping_dataflow_v1/MODULE_DISTANCE.zh.md)。去掉balanced末级无用特征gather、借用图输出、仅复制实际分组参数；分组2.646→2.540ms（1.042×），三档生成分别7.655→7.626、7.732→7.714、8.376→8.355s，latent均逐位一致，默认启用grouping_dataflow。连续维FP32 softmax原型分组1.255×、视频1.016–1.019×，但基础/step轨迹变化，默认关闭；相对未优化版LPIPS0.080009/0.025983，原交集逐位一致。261个clean同输入事件审计分别1/5个排序不同，证明FP32归约舍入经硬排序放大。原softmax仅12CTA、约6%occupancy；后续考虑保留原32线程归约树、增加列分块CTA。推送2b657a7仍待本机认证恢复。
 
 **用户确定保留三档并恢复优化**：基础档C+Risk（关闭Full_Pset）、原交集、按step选择（step0）。入口为`local_experiments.video_runtime_v1.accepted_tiers --tier base|intersection|step`，均使用当前已验收算子及固定形状编译。两版搜索结果不部署；下一轮分别profile三档，优先评估共有路径的理论工作量和实际耗时，再做模块隔离优化与短视频验收。
 

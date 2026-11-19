@@ -1,0 +1,62 @@
+{
+  "experiment": "E42",
+  "seeds": [
+    17,
+    29
+  ],
+  "mixture": 0.5,
+  "weight": "0.5*m^2+0.5*sum(m^2)*alpha_true^2/sum(alpha_true^2), separately per Query; detached",
+  "local_scale": "unchanged E29 train-only scale",
+  "unchanged": [
+    "C",
+    "phi",
+    "B16",
+    "Reader 51157",
+    "beta loss",
+    "gain/listwise set loss",
+    "Adam reset lr1e-4 betas(.9,.999) eps1e-8",
+    "global norm clip1",
+    "M16",
+    "Risk",
+    "Medium512",
+    "count/own",
+    "original E39 state schedule"
+  ],
+  "train_updates": 2304,
+  "checkpoint": "final epoch1; epoch0 saved only",
+  "baseline": "reuse E39-T0 only after provenance and 16-step numerical prefix replay",
+  "prefix": "16 disposable T0 updates per seed for contract verification, not a new baseline",
+  "head9_events": {
+    "17": [
+      "data/city_walk_s701/c2_l15_s0_h9_t10.pt",
+      "data/fabric_dance_s706/c2_l1_s2_h9_t7.pt",
+      "data/flower_wind_s705/c5_l15_s2_h9_t31.pt",
+      "data/forest_run_s702/c5_l29_s0_h9_t36.pt",
+      "data/reef_fish_s703/c8_l1_s0_h9_t32.pt",
+      "data/robot_work_s704/c8_l29_s2_h9_t55.pt",
+      "data/toy_train_s708/c2_l1_s2_h9_t45.pt",
+      "data/waterfall_s707/c5_l15_s0_h9_t55.pt"
+    ],
+    "29": [
+      "data/city_walk_s701/c2_l15_s0_h9_t10.pt",
+      "data/fabric_dance_s706/c2_l1_s2_h9_t7.pt",
+      "data/flower_wind_s705/c5_l15_s2_h9_t31.pt",
+      "data/forest_run_s702/c5_l29_s0_h9_t36.pt",
+      "data/reef_fish_s703/c8_l1_s0_h9_t32.pt",
+      "data/robot_work_s704/c8_l29_s2_h9_t55.pt",
+      "data/toy_train_s708/c2_l1_s2_h9_t45.pt",
+      "data/waterfall_s707/c5_l15_s0_h9_t55.pt"
+    ]
+  },
+  "worst_events": [
+    "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+    "data/reef_fish_s703/c5_l29_s0_h9_t37.pt"
+  ],
+  "preflight_gate": "Both seeds: event-mean old-underestimated subset shares of local loss and gradient L2 increase for all/harmful/oracle endpoint roles; weight conservation and finite gradients. No coefficient adjustment.",
+  "mechanism_gate": "Both seeds T1 vs T0: train net gain up and H_loss down, dev net gain up; record tail and trajectories separately",
+  "deployment_gate": "both seed recoveries >=20%; both dev trajectories positive; Set>Independent and no-op; mean relative gain nonnegative; harm count, P10, worst absolute harm improve vs E29",
+  "test": "sealed regardless of diagnostic progress; no automatic unsealing",
+  "raw_KV": false,
+  "teacher_input": false,
+  "mix_search": false
+}

@@ -1,0 +1,67 @@
+当前比较：DASA / PISA / Sol-Attn / SVG-EAR / LightForcing / Forcing-KV / summary_pretrained / Dense。
+
+结果：artifacts/comparison_20261113/
+  REPORT.zh.txt：结论与协议限制
+  summary.csv / summary.json：只汇总完成的测试
+  manifest.json / environment.json：版本、协议、运行环境
+  每个场景/方法/result.json：两轮耗时与质量
+  quality.json：前/中/后段指标
+  video.mp4：480帧生成视频
+  rep*.peers.json：计时期间GPU进程记录
+  *.compatibility.patch：部署补丁
+
+当前本地运行副本：/tmp/streaming_sparse-0/runtime
+独立依赖：/tmp/streaming_sparse_baselines_deps（Triton 3.6，PISA/Sol-Attn）；
+/tmp/svg_flashinfer_pinned（SVG-EAR锁定FlashInfer 0.2.10）。
+SVG-EAR源码的cuVS导入改为可选，实际使用官方PyTorch Euclidean k-means路径。
+
+后续按用户要求启用8张A100并行；每个方法配同物理GPU上的Dense基准。
+额外Dense位于device_runs/gpuN/场景/dense，输出与初始Dense逐位核验。
+result.json中的paired_dense记录配对路径；汇总计算使用此路径。
+仅在现有运行已结束、GPU空闲时继续未完成测试：
+  /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python local_setup/continue_comparison.py --gpu 0 --cases horse_field
+  /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python local_setup/continue_comparison.py --gpu 1 --cases traffic_crossing
+指定方法：追加 --methods lightforcing svgear
+指定场景：追加 --cases horse_field
+已存在result.json的项目会跳过，不重复运行。
+
+同步中间结果：
+  rsync -a /tmp/streaming_sparse-0/runtime/artifacts/comparison_20261113/ artifacts/comparison_20261113/
+生成汇总：
+  python3 local_setup/report_comparison.py
+
+计时：完整长视频预热后两次测量，包含完整clean cache commit；生成与VAE分开计时。
+排除模型加载、首次内核编译、视频编码、质量指标计算。
+NVIDIA PID与容器PID不同，通过空闲GPU上新建唯一CUDA上下文映射，持续检查是否出现其他进程。
+
+相同窗口不等于相同内存：ours改为360历史页，摘要占用额外记录；
+Forcing-KV保留原生更少KV；DASA有额外复用特征。PISA/Sol-Attn的Query填充成本计入时间。
+这些是相同Self-Forcing骨干的推理迁移测试，没有复现各论文的专门微调权重或整段视频配置。
+
+完整验收（未完成任一项目时返回非零）：
+  python3 local_setup/audit_comparison.py
+  python3 local_setup/report_comparison.py
+  /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python local_setup/plot_comparison.py
+验收覆盖16组正式结果、两轮计时、同输入/权重/场景GPU、独占GPU记录、
+480帧512×768/16fps视频以及三段有限质量指标。
+指标口径：PSNR在原始512×768像素计算；LPIPS及SSIM缩放至256×384。
+窗口使用从0开始的半开区间[21,101)、[200,280)、[400,480)，各80帧。
+SVG-EAR如果两轮不逐位一致，会保存rep1.repeatability.json及rep1.quality.json；
+quality.json及主表固定使用第0轮视频，不能将其解读为两轮平均质量。
+
+临时依赖重建（使用上述本地Python）：
+  python -m pip install --no-deps --target /tmp/streaming_sparse_baselines_deps triton==3.6.0
+  python -m pip install loguru==0.8.0
+SVG-EAR需要其官方子模块svg/kernels/3rdparty/flashinfer，固定提交
+2f62643a8b73b5dd81dc8ca40f92e6e82dbf7c6a，并初始化该子模块的cutlass/spdlog。
+  TORCH_CUDA_ARCH_LIST=8.0 CUDA_HOME=/usr/local/cuda-12.2 MAX_JOBS=2 python -m pip install --no-build-isolation --no-deps --target /tmp/svg_flashinfer_pinned external_baselines/Sparse-VideoGen/svg/kernels/3rdparty/flashinfer
+本机使用其FlashInfer 0.2.10版本；通用PyPI旧版本不包含所需VariableBlockSparseAttentionWrapper。
+首次重建本地缓存后，还需复制新增适配入口stream_eval_kernels.py、svg_ear_stream.py至
+本地runtime/local_experiments，并把DASA/LightForcing/Forcing-KV源码复制至runtime/external_baselines。
+PISA、Sana和Sparse-VideoGen内核适配入口目前引用工作区external_baselines的绝对路径。
+DASA主缓存local_attn_size已统一为18；它额外保存3帧clean KV，故总KV内存较大。
+此前15帧主缓存结果归档于excluded/dasa_main_cache_15，不参与正式汇总。
+
+并行入口（每卡一进程，先确保对应卡空闲；自动运行同卡Dense）：
+  python local_setup/parallel_comparison.py --gpu 2 --jobs horse_field/pisa traffic_crossing/lightforcing
+其他GPU同样调用，不能给多个控制器分配同一张卡或同一个测试项目。

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "seed": 17,
+  "events": 20,
+  "optimizer_steps": 2304,
+  "optimizer_reset_and_settings_verified": true,
+  "T0_unchanged": true,
+  "initial_matches_E29": true,
+  "final_epoch": 1,
+  "weight_gate": true,
+  "raw_KV": false,
+  "test": false,
+  "max_score_error": 5.4804919825436615e-12,
+  "max_gain_error": 3.034555939862571e-11,
+  "gain_tolerance": {
+    "rtol": 1e-05,
+    "atol": 1e-09
+  }
+}

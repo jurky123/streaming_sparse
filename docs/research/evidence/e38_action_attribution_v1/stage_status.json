@@ -1,0 +1,8 @@
+{
+  "B": "complete",
+  "A": "complete",
+  "C": "not_started_gate_failed",
+  "D": "proposal_diagnostic_complete_threshold_calibration_not_started",
+  "test": "sealed",
+  "training": false
+}

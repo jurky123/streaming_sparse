@@ -1,0 +1,17 @@
+update,event,local_loss_error,quality_loss_error,set_loss_error,loss_error,gradnorm_error,gain_scale_error
+0,data/waterfall_s707/c5_l1_s0_h6_t33.pt,0.0,0.0,0.0,0.0,0.0,0.0
+1,data/toy_train_s708/c2_l15_s2_h6_t31.pt,0.0,0.0,0.0,0.0,0.0,0.0
+2,data/waterfall_s707/c2_l15_s2_h3_t30.pt,0.0,0.0,0.0,0.0,0.0,0.0
+3,data/toy_train_s708/c8_l15_s0_h9_t23.pt,0.0,0.0,0.0,0.0,0.0,0.0
+4,data/reef_fish_s703/c2_l29_s2_h3_t12.pt,0.0,0.0,0.0,0.0,0.0,0.0
+5,data/reef_fish_s703/c2_l29_s2_h6_t12.pt,0.0,0.0,0.0,0.0,0.0,0.0
+6,data/waterfall_s707/c2_l29_s0_h6_t38.pt,0.0,0.0,0.0,0.0,0.0,0.0
+7,data/flower_wind_s705/c2_l15_s2_h9_t64.pt,0.0,0.0,0.0,0.0,0.0,0.0
+8,data/city_walk_s701/c2_l1_s2_h6_t2.pt,0.0,0.0,0.0,0.0,0.0,0.0
+9,data/forest_run_s702/c8_l1_s2_h0_t9.pt,0.0,0.0,0.0,0.0,0.0,0.0
+10,data/reef_fish_s703/c2_l1_s0_h0_t26.pt,0.0,0.0,0.0,0.0,0.0,0.0
+11,data/toy_train_s708/c5_l1_s2_h3_t12.pt,0.0,0.0,0.0,0.0,0.0,0.0
+12,data/waterfall_s707/c5_l15_s2_h9_t33.pt,0.0,0.0,0.0,0.0,0.0,0.0
+13,data/fabric_dance_s706/c8_l1_s0_h0_t71.pt,0.0,0.0,0.0,0.0,0.0,0.0
+14,data/flower_wind_s705/c2_l1_s0_h0_t28.pt,0.0,0.0,0.0,0.0,0.0,0.0
+15,data/waterfall_s707/c8_l1_s0_h6_t0.pt,0.0,0.0,0.0,0.0,0.0,0.0

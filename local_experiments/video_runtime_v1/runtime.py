@@ -275,7 +275,7 @@ class VideoRuntime(StreamingRuntime):
                             self.counters[0]+=executed.sum();self.counters[1]+=batch;self.counters[2]+=(~torch.isfinite(score)).sum()
                         ranked=risk.masked_fill(~mask,-torch.inf).scatter(-1,own[...,None],torch.inf)
                         ids=ranked.topk(count,dim=-1).indices.int()
-                    if self.first_frame_fixed15:
+                    if self.first_frame_fixed15 and not self.batch_graph.anchor_policy:
                         count=(p+72)*15//100
                         rank=risk.clone()
                         rank.scatter_(2,own[...,None],-torch.inf)
@@ -368,6 +368,10 @@ class VideoRuntime(StreamingRuntime):
         result=super().finish()
         result.update(exact_density=.15 if self.first_frame_fixed15 else self.config.density,
                       first_frame_exact_pages=24 if self.first_frame_fixed15 else 0)
+        if self.batch_graph.anchor_policy=='chunk_history10':
+            window=self.config.history_pages+72
+            result.update(exact_density=(96+(window-96)//10)/window,
+                          current_exact_pages=72,other_history_density=.1)
         extra=sum(v.numel()*v.element_size() for e in self.encodings.values() for v in e.values())
         slabextra=sum(s.bytes() for s in self.slabs.values())-result['summary_bytes']
         extra+=slabextra+self.workspace.bytes()+(self.B.numel()*self.B.element_size() if self.B is not None else 0)

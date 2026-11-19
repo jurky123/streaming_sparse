@@ -1,0 +1,23 @@
+{
+  "per_seed": [
+    {
+      "seed": 17,
+      "gain_better_than_T0": false,
+      "harm_lower_than_T0": true,
+      "explanatory_metric_improved": true,
+      "mechanism_pass": false,
+      "online_gate_pass": false
+    },
+    {
+      "seed": 29,
+      "gain_better_than_T0": true,
+      "harm_lower_than_T0": true,
+      "explanatory_metric_improved": true,
+      "mechanism_pass": true,
+      "online_gate_pass": false
+    }
+  ],
+  "mechanism_pass": false,
+  "online_pass": false,
+  "test_accessed": false
+}

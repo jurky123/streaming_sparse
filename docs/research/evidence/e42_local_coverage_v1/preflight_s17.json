@@ -1,0 +1,19 @@
+{
+  "seed": 17,
+  "events": 1152,
+  "head9_events": [
+    "data/city_walk_s701/c2_l15_s0_h9_t10.pt",
+    "data/fabric_dance_s706/c2_l1_s2_h9_t7.pt",
+    "data/flower_wind_s705/c5_l15_s2_h9_t31.pt",
+    "data/forest_run_s702/c5_l29_s0_h9_t36.pt",
+    "data/reef_fish_s703/c8_l1_s0_h9_t32.pt",
+    "data/robot_work_s704/c8_l29_s2_h9_t55.pt",
+    "data/toy_train_s708/c2_l1_s2_h9_t45.pt",
+    "data/waterfall_s707/c5_l15_s0_h9_t55.pt",
+    "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+    "data/reef_fish_s703/c5_l29_s0_h9_t37.pt"
+  ],
+  "weights_unchanged": true,
+  "max_weight_error": 4.440892098500626e-16,
+  "finite": true
+}

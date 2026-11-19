@@ -1,0 +1,13 @@
+{
+  "artifacts/four_gaps_20261031/shared/epoch1.pt": "52644afe3a48d2240a12ff82917d47d91e8fa7e0ddf19ddc85eedabd8db62a94",
+  "artifacts/review_v1_20261102/summary_expand/reef_fish/latest.pt": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+  "artifacts/e24_joint_representatives_v1/fit.pt": "9e013f23efdf50a174be1e9a0a863c2b070bb70ef6c37884f2cd86737aefb8b0",
+  "artifacts/e27_adaptive_query_v1/s17/selected.pt": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+  "artifacts/full_coverage_v1/training/C_s17/deployment.pt": "c1cba52d857c2bcce994e5566e7503a5dfdad652a8d5683a07a6b126d46fb96b",
+  "artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt": "656a9db173f2c16b24c4e337c552df2f88d93256624c312f6b7818be92f6fb87",
+  "reproduction/vbench_current/jobs.tsv": "67ef029e8b1fba7066fc8d9d5fd981d316744c9a83fdf198a03e8bc99095c864",
+  "reproduction/vbench_current/info.json": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+  "reproduction/vbench_current/prompts.json": "0a1eb6eabca40dba98b59538db908e865f0e8cf13e828eabcad83b7af633cc21",
+  "reproduction/vbench_current/policies.npz": "48fec9bb8089767be8a1b4802572a52c2519a6f0fe162a4aa24ded4d89d6cc19",
+  "reproduction/vbench_current/vbench.patch": "7103b15254f2c9b6db54abef08afd6e2dc13ca850e9399f5d2a2e356b7554568"
+}

@@ -1,0 +1,285 @@
+{
+  "passed": true,
+  "development_events_checked": 1152,
+  "development_policy_decisions_checked": 2304,
+  "independent_longdouble_checks": [
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error": 1.0842021724855044e-18,
+      "old_new_score_error": 5.480491996096189e-12
+    },
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error": 1.9058241313221758e-21,
+      "old_new_score_error": 2.1141942363467336e-18
+    },
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error": 9.335712753079844e-27,
+      "old_new_score_error": 1.245940797657998e-22
+    },
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error": 2.15485181781494e-18,
+      "old_new_score_error": 2.7382154703381456e-12
+    },
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error": 5.7480045080515326e-27,
+      "old_new_score_error": 9.822769774067204e-25
+    },
+    {
+      "seed": 17,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error": 2.259070309624964e-28,
+      "old_new_score_error": 7.251461876281211e-25
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error": 6.505213034913027e-19,
+      "old_new_score_error": 6.724287467986534e-12
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error": 1.6940658945086007e-21,
+      "old_new_score_error": 2.222614453595284e-18
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error": 6.573923049852726e-27,
+      "old_new_score_error": 9.512577044359818e-23
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error": 2.8189256484623115e-18,
+      "old_new_score_error": 2.7262911166895526e-12
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error": 4.577088068632929e-29,
+      "old_new_score_error": 1.0307445914234993e-24
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error": 2.087114805584418e-28,
+      "old_new_score_error": 1.9538191356151932e-25
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error": 5.421010862427522e-19,
+      "old_new_score_error": 6.851330267010347e-12
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error": 4.683910218581519e-23,
+      "old_new_score_error": 4.662069341687669e-18
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error": 1.8909828622107357e-28,
+      "old_new_score_error": 7.806517030969199e-23
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error": 6.505213034913027e-19,
+      "old_new_score_error": 2.6909350398993115e-12
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error": 6.421969873542495e-27,
+      "old_new_score_error": 4.417968168035963e-25
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error": 8.709497710183103e-26,
+      "old_new_score_error": 1.5009814215821236e-25
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error": 4.336808689942018e-19,
+      "old_new_score_error": 8.885090498631301e-12
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error": 2.419503291717606e-23,
+      "old_new_score_error": 4.391018798566293e-18
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error": 6.516430911376607e-29,
+      "old_new_score_error": 4.8596860987490376e-23
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error": 1.1655173354219173e-18,
+      "old_new_score_error": 5.162953228734623e-12
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error": 2.820250921503004e-27,
+      "old_new_score_error": 2.245685048772484e-24
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error": 2.4165964970540476e-26,
+      "old_new_score_error": 1.0786252929267939e-25
+    }
+  ],
+  "decomposition_numpy_checks": [
+    {
+      "seed": 17,
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error16": 0.0,
+      "error64": 0.0
+    },
+    {
+      "seed": 17,
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error16": 2.3132274671877113e-26,
+      "error64": 3.1927839762763447e-25
+    },
+    {
+      "seed": 17,
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error16": 4.858259847569306e-22,
+      "error64": 1.5973182631203306e-22
+    },
+    {
+      "seed": 17,
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error16": 1.4094628242311558e-18,
+      "error64": 1.0842021724855044e-18
+    },
+    {
+      "seed": 17,
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error16": 6.938893903907228e-18,
+      "error64": 3.469446951953614e-18
+    },
+    {
+      "seed": 17,
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error16": 1.7422491651898145e-23,
+      "error64": 4.3814723071168185e-24
+    },
+    {
+      "seed": 29,
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "error16": 1.734723475976807e-18,
+      "error64": 0.0
+    },
+    {
+      "seed": 29,
+      "event": "data/kitchen_cook_s701/c2_l29_s2_h9_t46.pt",
+      "error16": 3.8764895292696416e-26,
+      "error64": 4.349993401643351e-24
+    },
+    {
+      "seed": 29,
+      "event": "data/kitchen_cook_s701/c8_l29_s2_h9_t52.pt",
+      "error16": 6.099450506794164e-20,
+      "error64": 1.3664080216489824e-20
+    },
+    {
+      "seed": 29,
+      "event": "data/snow_ski_s702/c2_l15_s0_h0_t11.pt",
+      "error16": 3.3610267347050637e-18,
+      "error64": 7.589415207398531e-19
+    },
+    {
+      "seed": 29,
+      "event": "data/snow_ski_s702/c5_l29_s0_h9_t0.pt",
+      "error16": 3.193401043908449e-19,
+      "error64": 4.336808689942018e-19
+    },
+    {
+      "seed": 29,
+      "event": "data/snow_ski_s702/c8_l29_s2_h9_t53.pt",
+      "error16": 1.2976395859425622e-22,
+      "error64": 2.844725825358147e-23
+    }
+  ],
+  "first_update_checks": [
+    {
+      "seed": 17,
+      "group": "T0",
+      "loss": 118.0932184278478,
+      "margin": 5.0317975521192166e-05
+    },
+    {
+      "seed": 17,
+      "group": "T1",
+      "loss": 117.46910414299182,
+      "margin": 5.0317975521192166e-05
+    },
+    {
+      "seed": 29,
+      "group": "T0",
+      "loss": 0.6386794963944955,
+      "margin": 0.08015042975342102
+    },
+    {
+      "seed": 29,
+      "group": "T1",
+      "loss": 0.09447264573869027,
+      "margin": 0.08015042975342102
+    }
+  ],
+  "protocol_sources_unchanged": [
+    "local_experiments/e39_action_margin/core.py",
+    "local_experiments/e29_local_reader/core.py",
+    "local_experiments/e30_beta_diagnostics/run.py",
+    "artifacts/e38_action_attribution_v1/protocol.json"
+  ],
+  "initials_equal_E29": true,
+  "schedule_matched": true,
+  "summary_phi_frozen": true,
+  "test_accessed": false
+}

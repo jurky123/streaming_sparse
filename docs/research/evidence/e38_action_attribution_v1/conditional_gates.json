@@ -1,0 +1,30 @@
+{
+  "C_pass": false,
+  "D_pass": false,
+  "seeds": [
+    {
+      "seed": 17,
+      "C_beta_mean": 0.0006289179313594453,
+      "C_response_mean": 0.00037042255117599257,
+      "C_endpoint_beta_rejection": 0.21052631578947367,
+      "C_pass": false,
+      "D_pass": true,
+      "D_gain_conditional_auc": {
+        "rho": 0.6313131313131313,
+        "pi_positive": 0.5336687306501547
+      }
+    },
+    {
+      "seed": 29,
+      "C_beta_mean": 0.0004024362369435661,
+      "C_response_mean": 0.00033038053394835105,
+      "C_endpoint_beta_rejection": 0.23076923076923078,
+      "C_pass": false,
+      "D_pass": false,
+      "D_gain_conditional_auc": {
+        "rho": 0.6310916179337231,
+        "pi_positive": 0.5694444444444444
+      }
+    }
+  ]
+}

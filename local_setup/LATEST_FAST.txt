@@ -1,0 +1,31 @@
+最新算法高效适配（summary_pretrained / no_downstream）
+
+入口：local_experiments/stream_eval_latest_fast.py
+并行复测：local_setup/run_latest_fast_comparison.py
+数值检查：local_setup/check_latest_fast.py
+
+保持不变：summary_pretrained checkpoint、360历史页、每chunk3 latent帧、
+分组规则、SummaryOps的完整均值与零和细节公式、风险特征/系数/选页规则、
+四步去噪、所有clean cache commit、Dense路径及VAE。
+当前加速入口仅支持正式配置中的固定密度选择；动态阈值明确拒绝，不静默回退。
+
+复用并适配：
+- gap_exact_round_kernel._attn_fwd：新增默认关闭的HIGH_PRECISION_AV选项；
+  最新路径开启双BF16项AV累加、保持FP32中间输出；原调用默认行为不变。
+- gap_route_staging.stage：显式刷新每次Graph调用的输入和参数。
+- high_sparse_runtime._budget_mask：从相同选页ID构建尾部排除mask。
+- 新fast_attention._tail/_merge：在已有在线归一化/补偿结构上，实现完整128维
+  页均值与Haar零和rank8细节；没有用旧算法的投影均值、gain或center替换。
+- 新fast_route.GraphRoute：捕获原FP32 RouteOps.features及原分数归约。
+  不是GainVector64路由；Graph缓存按形状，输入和theta每次刷新。
+
+检查：随机/训练权重下8、216、432页；Graph分数逐位一致。
+实际模型9chunk，层1/15/29、chunk2/5/8、step0/3，共18处检查。
+attention允许FP32归约顺序改变，以NMSE<=2e-5及实模型最大绝对误差<=0.05验收；
+实际NMSE约1e-8。不能据此宣称完整视频逐位相同。
+105帧同输入对照显示浮点差异会在生成中放大，需同时查看画面差异和完整质量指标。
+
+测试结果：artifacts/comparison_20261113/场景/ours_latest_fast/
+原FP32参考路径保存在同目录ours/；GainVector64试跑已排除归档，不用于最新算法比较。
+完整预热后两轮测量；包括所有Graph输入搬运、kernel、缓存维护和VAE，
+排除加载、JIT/Graph首次捕获、编码与质量计算。额外Graph工作区仍反映在峰值显存。

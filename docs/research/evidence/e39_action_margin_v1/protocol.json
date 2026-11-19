@@ -1,0 +1,56 @@
+{
+  "experiment": "E39",
+  "status": "registered_before_execution",
+  "seeds": [
+    17,
+    29
+  ],
+  "stages": [
+    "A fixed E38 action-pair telescoping decomposition",
+    "B T0/T1 matched continuation"
+  ],
+  "train_trajectories": 8,
+  "dev_trajectories": 2,
+  "test": "sealed",
+  "events_per_seed": 288,
+  "updates_per_arm": 2304,
+  "epochs": 2,
+  "main_checkpoint": 1,
+  "initial": "E29 selected same per seed",
+  "optimizer": "new Adam states both arms: lr1e-4 betas .9/.999 eps1e-8 wd0 clipnorm1",
+  "optimizer_reset_reason": "E29 checkpoint contains no optimizer state",
+  "frozen": [
+    "C summary",
+    "adaptive phi",
+    "B16",
+    "Risk",
+    "page identities"
+  ],
+  "reader_parameters": 51157,
+  "query_count": 16,
+  "candidates": 512,
+  "states": "original getstate 60/20/20 with seed RNG shared across arms",
+  "T0": "original local+quality+gainHuber+.1listwise",
+  "T1": "same local+quality, replace setloss with max cost-augmented margin over predicted top4 incl noop plus true best and noop",
+  "loss_weight": 1,
+  "scale": "original train fit floors and event gain RMS; no dev scales",
+  "tie_rule": "stable index ties; no-op if maximum real gain <=0",
+  "training_arithmetic": "unchanged E29 reconstruct+safe_predictions for both arms",
+  "evaluation_arithmetic": "E30 separately normalized local_scores",
+  "A_basis": "same frozen original B16 coordinates as E38 M11; no refit or QR change between M16 and Q64; full target from cached true Q64 gains",
+  "A_norm": "E38 norm64",
+  "A_raw_attention_recomputed": false,
+  "train_monitor": "48 train events fixed sorted files every24; before, epoch0, epoch1; no updates from monitor",
+  "no_hyperparameter_search": true,
+  "no_gate": true,
+  "no_extra_online_information": true,
+  "mechanism_gate": "both seeds T1 executed gain >T0 and harm_loss<T0 with at least one fixed margin / top8 / conditional improvement",
+  "deployment_gate": "both seeds recovery>=.20; both dev trajectories gain>0; Set>Independent; mean relative>=0; harm count lower and P10 higher than E29; worst absolute harm no worse than E29; also mechanism gate",
+  "test_execution": "never automatic in this experiment",
+  "sources": {
+    "local_experiments/e39_action_margin/core.py": "a220c016795ab082c26aebd7caf80fe603ff6dd86398329eda8dbc8a2ea79cde",
+    "local_experiments/e29_local_reader/core.py": "eff77ff64685e5866da9f2f8551b80aea25e155c7a11a3bdfc02985e4c7aaad2",
+    "local_experiments/e30_beta_diagnostics/run.py": "05a99fe9652a28675bfc740eb058e574f5584e27b24a3b7c5c55601d7588e18e",
+    "artifacts/e38_action_attribution_v1/protocol.json": "93fb4db6b95b683ea60bc201516b3af493fa01a2ac98be10e8dc2c4f2c875227"
+  }
+}

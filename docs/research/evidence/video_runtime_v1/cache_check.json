@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "chunks": 41,
+  "layers": [
+    1,
+    15,
+    29
+  ],
+  "head_pages": 12168,
+  "all_338_surviving_slots_verified": true,
+  "raw_KV_summary_rebuild_exact": true,
+  "reader_phi_projection_rebuild_exact": true,
+  "ring_write": 248
+}

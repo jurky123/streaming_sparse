@@ -1,0 +1,38 @@
+{
+  "stage": "next_full_pset_adaptation",
+  "authorization": "User confirmed next stage uses four training GPUs",
+  "current_C_training": "continue existing two single-GPU seeds without mid-run DDP migration",
+  "training": {
+    "mode": "synchronous_data_parallel",
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "seeds": {
+      "17": [
+        0,
+        1
+      ],
+      "29": [
+        2,
+        3
+      ]
+    }
+  },
+  "validation_and_cache_gpus": [
+    4,
+    5
+  ],
+  "video_and_runtime_gpus": [
+    6,
+    7
+  ],
+  "performance_test_policy": {
+    "videos": 1,
+    "prefer_isolated_module_timing": true
+  },
+  "training_protocol": "Record effective batch, Adam update count, learning rate and checkpoint provenance for the new stage; do not label it a bitwise continuation of the current serial run",
+  "status": "approved_allocation_plan; next-stage distributed trainer not yet launched"
+}

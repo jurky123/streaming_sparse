@@ -1,0 +1,48 @@
+第三轮优化：历史KV搬运、选页同步、clean分组和精确attention发射参数
+
+最终推荐路径：local_experiments/stream_eval_latest_rope.py
+复测：python local_setup/run_latest_rope_comparison.py
+最终更快tail路径：local_experiments/stream_eval_latest_rope_tail.py
+复测：python local_setup/run_latest_rope_tail_comparison.py
+仅缓存/图优化的中间对照：stream_eval_latest_cached.py / cached_tail.py
+
+共同保持：最新summary_pretrained/no_downstream算法、权重、分组/选页公式、
+固定密度0.1、16 probes、历史360页、每chunk3 latent帧、完整clean commit及VAE。
+CachedLatestRuntime继承上一推荐StableLatestRuntime；CachedTailLatestRuntime
+在上一更快tail候选的attention上使用相同执行优化，二者分别与各自前版对照。
+
+1. KV scratch复用：原cache已分配历史+当前容量；把当前K/V写入[p,p+72)页，
+   直接读取前缀view，消除每层对[0,p)历史的重复cat复制。
+   不改已提交的[0,p)历史，clean commit仍按原分组、环形槽和位置更新。
+2. 选页图：原RouteOps.select的topk(128)、并列分数处理、保护页、counts、
+   mask、overflow和residual全部保持。全页有效且own由P-72+arange(72)构造，
+   所以该路径省去每次GPU→CPU断言；普通参考入口保留断言。
+3. 分组图：捕获原GroupingOps.group，包括原特征、幂迭代和稳定排序。
+   每次刷新K/V和模型参数、保留stride、clone输出，页序常量提前分配。
+   未采用近似的旧分组kernel，未减少分组次数或clean commit。
+4. 精确attention：沿用仓库page64 kernel及双BF16项AV/FP32累加；
+   仅num_stages从3调为2，num_warps仍为4。旧入口默认3，避免影响历史结果。
+   随机ID、四种历史长度、真实模型检查逐位相同；8/2 warps候选未采用。
+
+检查入口：check_cached_ops.py、tune_exact_launch.py、check_exact_launch_interleaved.py、
+check_exact_stages.py；真实模型--smoke --validate --chunks 9。
+新增cache27处、group9处、selection18处检查，加上原summary27处、attention/route18处。
+完整latent/视频等价：verify_stable_rollout.py --method ... --reference ...
+  --output-name equivalence_vs_previous.json。
+
+正式计时：相同512×768、41 chunks/480帧、输入embedding/噪声、seed101，
+完整预热后各两轮生成+VAE；包括所有搬运和图重放，不含加载、JIT、编码/指标。
+推荐路径沿用GPU0/1；更快tail路径用GPU3/5并与同卡已校准Dense配对，
+不同卡绝对秒数不直接解释为严格同卡加速，参考配对比值。
+峰值显存包含所有图工作区；group/selection图池保留量另外报告。
+
+结果：artifacts/comparison_20261113/KERNEL_OPTIMIZATION3.zh.txt
+原始profile、输入检查、源码快照：integration_checks/kernel_optimization3/
+
+5. Q/K RoPE融合：保留原FP64乘法/加减及最终FP32/BF16转换，直接索引原频率表，
+   不再为每个head和token展开频率，避免FP64大中间张量、cat和stack。
+   start_frame作为运行时参数，41个chunk共用一个编译版本。
+   kernel仅用于已验证的batch1、12 heads、128 head dim、BF16 Q/K、complex128频率，
+   网格维度仍由实际CPU grid_sizes读取，所有位置使用原时间/空间频率分区。
+   覆盖41个时间起点及27处真实模型Q/K逐位检查；完整视频最终再检查。
+   新入口为RopeLatestRuntime和RopeTailLatestRuntime；前述cache中间结果完整保留。

@@ -1,0 +1,8 @@
+{
+  "input_capture": "complete",
+  "phi_diagnostic": "complete",
+  "scale_descriptive": "complete",
+  "conditional_probe": "not_started",
+  "reader_training": false,
+  "test": "sealed"
+}

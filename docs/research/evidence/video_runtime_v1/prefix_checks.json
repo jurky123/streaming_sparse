@@ -1,0 +1,38 @@
+[
+  {
+    "run": "pilot",
+    "folder": "artifacts/video_runtime_v1/pilot/videos/city_walk_s701/chunks9",
+    "method": "c_risk",
+    "first_two_chunks_bitwise_equal": true
+  },
+  {
+    "run": "pilot",
+    "folder": "artifacts/video_runtime_v1/pilot/videos/city_walk_s701/chunks9",
+    "method": "c_pset",
+    "first_two_chunks_bitwise_equal": true
+  },
+  {
+    "run": "pilot",
+    "folder": "artifacts/video_runtime_v1/pilot/videos/kitchen_cook_s701/chunks9",
+    "method": "c_risk",
+    "first_two_chunks_bitwise_equal": true
+  },
+  {
+    "run": "pilot",
+    "folder": "artifacts/video_runtime_v1/pilot/videos/kitchen_cook_s701/chunks9",
+    "method": "c_pset",
+    "first_two_chunks_bitwise_equal": true
+  },
+  {
+    "run": "long_pilot",
+    "folder": "artifacts/video_runtime_v1/long_pilot/videos/city_walk_s701/chunks41",
+    "method": "c_risk",
+    "first_two_chunks_bitwise_equal": true
+  },
+  {
+    "run": "long_pilot",
+    "folder": "artifacts/video_runtime_v1/long_pilot/videos/city_walk_s701/chunks41",
+    "method": "c_pset",
+    "first_two_chunks_bitwise_equal": true
+  }
+]

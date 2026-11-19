@@ -1,0 +1,17 @@
+update,event,local_loss_error,quality_loss_error,set_loss_error,loss_error,gradnorm_error,gain_scale_error
+0,data/fabric_dance_s706/c5_l29_s2_h9_t54.pt,0.0,0.0,0.0,0.0,0.0,0.0
+1,data/toy_train_s708/c8_l1_s0_h9_t1.pt,0.0,0.0,0.0,0.0,0.0,0.0
+2,data/forest_run_s702/c2_l1_s0_h9_t25.pt,0.0,0.0,0.0,0.0,0.0,0.0
+3,data/flower_wind_s705/c5_l1_s0_h9_t67.pt,0.0,0.0,0.0,0.0,0.0,0.0
+4,data/flower_wind_s705/c8_l15_s0_h9_t56.pt,0.0,0.0,0.0,0.0,0.0,0.0
+5,data/city_walk_s701/c2_l29_s2_h9_t46.pt,0.0,0.0,0.0,0.0,0.0,0.0
+6,data/waterfall_s707/c5_l15_s0_h9_t55.pt,0.0,0.0,0.0,0.0,0.0,0.0
+7,data/robot_work_s704/c2_l1_s0_h0_t27.pt,0.0,0.0,0.0,0.0,0.0,0.0
+8,data/waterfall_s707/c8_l15_s2_h0_t36.pt,0.0,0.0,0.0,0.0,0.0,0.0
+9,data/reef_fish_s703/c2_l1_s2_h9_t40.pt,0.0,0.0,0.0,0.0,0.0,0.0
+10,data/flower_wind_s705/c8_l1_s0_h0_t70.pt,0.0,0.0,0.0,0.0,0.0,0.0
+11,data/fabric_dance_s706/c8_l15_s2_h3_t71.pt,0.0,0.0,0.0,0.0,0.0,0.0
+12,data/city_walk_s701/c8_l1_s2_h6_t44.pt,0.0,0.0,0.0,0.0,0.0,0.0
+13,data/flower_wind_s705/c8_l15_s0_h3_t56.pt,0.0,0.0,0.0,0.0,0.0,0.0
+14,data/forest_run_s702/c8_l29_s0_h0_t3.pt,0.0,0.0,0.0,0.0,0.0,0.0
+15,data/waterfall_s707/c8_l29_s0_h0_t44.pt,0.0,0.0,0.0,0.0,0.0,0.0

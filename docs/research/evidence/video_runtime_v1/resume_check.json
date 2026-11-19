@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "bitwise_equal": true,
+  "prefix": 2,
+  "total_chunks": 3,
+  "cache_rebuilt": "raw KV + immutable summaries + Reader/Phi encodings"
+}

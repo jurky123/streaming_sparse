@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "E49_fixtures": [
+    {
+      "file": "reference_input_17_01.npz",
+      "event": "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+      "model": "E29",
+      "max_abs": 1.9651164376299768e-19,
+      "action": 0,
+      "old_raw_gain": 4.919020681183366e-11,
+      "new_raw_gain": 4.9190206811771675e-11
+    },
+    {
+      "file": "reference_input_17_02.npz",
+      "event": "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+      "model": "T0",
+      "max_abs": 1.1519648082658485e-19,
+      "action": 0,
+      "old_raw_gain": 5.150859577312263e-11,
+      "new_raw_gain": 5.150859577320335e-11
+    },
+    {
+      "file": "reference_input_17_03.npz",
+      "event": "data/forest_run_s702/c8_l29_s0_h9_t39.pt",
+      "model": "Full_Pset",
+      "max_abs": 3.1933142111487123e-19,
+      "action": 0,
+      "old_raw_gain": 2.6074195187590596e-11,
+      "new_raw_gain": 2.607419518770978e-11
+    },
+    {
+      "file": "reference_input_17_04.npz",
+      "event": "data/forest_run_s702/c8_l29_s2_h9_t53.pt",
+      "model": "Full_Pset",
+      "max_abs": 2.4881592825595072e-20,
+      "action": 32,
+      "old_raw_gain": 1.570740738682268e-20,
+      "new_raw_gain": 1.5707407399554246e-20
+    },
+    {
+      "file": "reference_input_17_05.npz",
+      "event": "data/city_walk_s701/c2_l15_s0_h0_t10.pt",
+      "model": "Full_Pset",
+      "max_abs": 2.8102520310824275e-16,
+      "action": 105,
+      "old_raw_gain": 0.13152966220020068,
+      "new_raw_gain": 0.13152966220020074
+    },
+    {
+      "file": "reference_input_17_06.npz",
+      "event": "data/snow_ski_s702/c8_l29_s0_h9_t3.pt",
+      "model": "Full_Pset",
+      "max_abs": 1.069602617437238e-23,
+      "action": 32,
+      "old_raw_gain": 2.8149635661540445e-24,
+      "new_raw_gain": 2.8149483374754976e-24
+    },
+    {
+      "file": "reference_input_17_07.npz",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "model": "Full_Pset",
+      "max_abs": 2.0816681711721685e-16,
+      "action": 194,
+      "old_raw_gain": 0.11126162498700712,
+      "new_raw_gain": 0.11126162498700722
+    },
+    {
+      "file": "reference_input_29_01.npz",
+      "event": "data/reef_fish_s703/c5_l29_s0_h9_t37.pt",
+      "model": "E29",
+      "max_abs": 7.813878938420921e-20,
+      "action": 65,
+      "old_raw_gain": 1.0500086316369698e-13,
+      "new_raw_gain": 1.0500086313486672e-13
+    },
+    {
+      "file": "reference_input_29_02.npz",
+      "event": "data/reef_fish_s703/c5_l29_s0_h9_t37.pt",
+      "model": "T0",
+      "max_abs": 4.1504614415460717e-20,
+      "action": 65,
+      "old_raw_gain": -3.5625503758745077e-13,
+      "new_raw_gain": -3.5625503760880586e-13
+    },
+    {
+      "file": "reference_input_29_03.npz",
+      "event": "data/reef_fish_s703/c5_l29_s0_h9_t37.pt",
+      "model": "Full_Pset",
+      "max_abs": 2.8587361969832636e-20,
+      "action": 65,
+      "old_raw_gain": -1.1584491391610256e-13,
+      "new_raw_gain": -1.1584491391748596e-13
+    },
+    {
+      "file": "reference_input_29_04.npz",
+      "event": "data/fabric_dance_s706/c2_l29_s2_h9_t51.pt",
+      "model": "Full_Pset",
+      "max_abs": 5.551115123125783e-17,
+      "action": 1,
+      "old_raw_gain": 1.4339845788132154e-19,
+      "new_raw_gain": 1.4339845797644734e-19
+    },
+    {
+      "file": "reference_input_29_05.npz",
+      "event": "data/city_walk_s701/c2_l15_s0_h0_t10.pt",
+      "model": "Full_Pset",
+      "max_abs": 1.8041124150158794e-16,
+      "action": 251,
+      "old_raw_gain": 0.107462980926502,
+      "new_raw_gain": 0.107462980926502
+    },
+    {
+      "file": "reference_input_29_06.npz",
+      "event": "data/snow_ski_s702/c8_l29_s0_h9_t3.pt",
+      "model": "Full_Pset",
+      "max_abs": 6.410980619530986e-20,
+      "action": 32,
+      "old_raw_gain": 9.907215852617416e-23,
+      "new_raw_gain": 9.907233711712914e-23
+    },
+    {
+      "file": "reference_input_29_07.npz",
+      "event": "data/kitchen_cook_s701/c2_l15_s0_h0_t10.pt",
+      "model": "Full_Pset",
+      "max_abs": 1.4224732503009818e-16,
+      "action": 194,
+      "old_raw_gain": 0.10996262906270009,
+      "new_raw_gain": 0.10996262906270005
+    }
+  ],
+  "dominant_remove_passed": true,
+  "cached_reader_max_abs": 9.5367431640625e-07,
+  "risk_overlap": 1.0,
+  "risk_relative_max_abs": 1.7225029580458795e-07,
+  "attention_nmse": 2.9207938290198854e-09,
+  "attention_max_abs": 0.00390625,
+  "original_candidate_pool_exact": true,
+  "no_op_exact": true,
+  "identity": {
+    "seed": 17,
+    "summary_sha": "a21bb2136f848554d9af963b7ae10544c31f4584557056207c016421404e3c5a",
+    "reader_sha": "03b5367318b05ce1537baff1820c1e9495cdb6c793afc7f2b6dda30f80e35c6e",
+    "phi_sha": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+    "B16_sha": "9e013f23efdf50a174be1e9a0a863c2b070bb70ef6c37884f2cd86737aefb8b0",
+    "base_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+    "placeholder": true,
+    "broadcast_source": [
+      15,
+      0
+    ],
+    "quality_status": "engineering substitute; not full-coverage quality validated"
+  }
+}

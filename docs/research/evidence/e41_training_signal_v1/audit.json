@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "independent_events": 20,
+  "true_gain_max_absolute_difference": 6.471483588121885e-06,
+  "true_gain_tolerance": {
+    "rtol": 1e-05,
+    "atol": 1e-09
+  },
+  "gain_note": "Original incremental true gains suffer cancellation on one extreme audited action; direct positive-mixture recomputation confirms sign and magnitude. Original training labels retained.",
+  "partition_events": 2880,
+  "max_partition_sum_error": 2.1074369360718492e-07,
+  "partition_tolerance": 1e-06,
+  "no_optimizer": true,
+  "test_accessed": false,
+  "raw_KV_read": false,
+  "limitations": [
+    "Parameter gradients are frozen final-checkpoint snapshots, not historic Adam updates.",
+    "Actual mass weighting and all mean reductions retained.",
+    "Global clipping cannot change component ratios within an event."
+  ],
+  "all_input_hashes_match_E40": true,
+  "reader_checkpoint_matches_E40": true
+}

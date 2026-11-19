@@ -1,0 +1,49 @@
+{
+  "coverage_preflight": true,
+  "mechanism": false,
+  "deployment": false,
+  "seeds": [
+    {
+      "seed": 17,
+      "mechanism": false,
+      "checks": {
+        "train_gain_up": true,
+        "train_harm_down": true,
+        "dev_gain_up": false
+      },
+      "deployment": false,
+      "deployment_checks": {
+        "recovery20": false,
+        "Set_beats_Independent": true,
+        "Set_beats_noop": true,
+        "positive_dev_trajectories": true,
+        "nonnegative_mean": false,
+        "harm_count_improves": true,
+        "p10_improves": false,
+        "worst_improves": false
+      }
+    },
+    {
+      "seed": 29,
+      "mechanism": false,
+      "checks": {
+        "train_gain_up": true,
+        "train_harm_down": false,
+        "dev_gain_up": true
+      },
+      "deployment": false,
+      "deployment_checks": {
+        "recovery20": false,
+        "Set_beats_Independent": true,
+        "Set_beats_noop": true,
+        "positive_dev_trajectories": true,
+        "nonnegative_mean": true,
+        "harm_count_improves": false,
+        "p10_improves": true,
+        "worst_improves": false
+      }
+    }
+  ],
+  "test": "sealed",
+  "further_training": false
+}

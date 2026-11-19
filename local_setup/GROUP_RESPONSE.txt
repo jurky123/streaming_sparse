@@ -1,0 +1,43 @@
+独立分组实验交接
+
+完成结果：artifacts/group_response_178f95a8/CONCLUSIONS.zh.txt
+完整协议：同目录protocol.json；严格验收：final_audit.json。
+源算法提交178f95a8，summary_pretrained，338历史页；不是上一轮360页或融合kernel版本。
+
+重建环境（源码工作目录）：
+python local_setup/prepare_group_response.py
+依赖和大模型复用/tmp/streaming_sparse-0/runtime的快速本地缓存。
+实际推理cwd必须为/tmp/group_response_178f95a8；不要从有历史改动的源码工作目录启动实验模块。
+
+独立预验证：
+cd /tmp/group_response_178f95a8
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/tmp/group_response_178f95a8 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.group_response.preflight
+
+源码目录中运行八卡队列：
+python local_setup/run_group_response.py
+它只跳过已有result.json的完成项；失败项重跑。输出/tmp/group_response_results并在结束后同步回源码artifacts。
+需要重新从零执行时使用新的输出目录配置；不要删除或覆盖本次原始结果。
+手动单个单元（隔离环境cwd）：
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/tmp/group_response_178f95a8 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.group_response.run --case horse_field --seed 101 --group G-KVR --level L3 --collect
+先运行对应--level Dense以建立同分组缓存协议参照。--collect仅用于G-KVR L3基线，生成120事件同状态局部比较。
+L2仅layer15稀疏；L3 layer1–29；clean全Dense。9chunk原始闭环，禁止重放另一候选的未来mask。
+
+独立成本测试（空闲GPU，隔离环境cwd）：
+CUDA_VISIBLE_DEVICES=7 PYTHONPATH=/tmp/group_response_178f95a8 /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.group_response.cost
+所有候选使用同一真实clean KV；3预热+10交错试验，单支跳过无用分支并验证特征逐位一致。
+旧视频运行时K单支计算过未使用的V中间量，数值不受影响；该原始插桩不用于公平成本判断。
+
+完成后在源码目录：
+python local_setup/report_group_response.py
+python local_setup/audit_group_response.py
+运行环境Python执行local_setup/visualize_group_response.py
+python local_setup/conclude_group_response.py
+
+异常与恢复：旧消融入口即使no_downstream也读取center元数据，已从原checkpoint补齐；不改变输出公式。
+G-VR极端分母相对误差使FP32统计溢出，使用FP64 expm1后重跑失败事件；不截断、不删除样本。
+全部120事件与48视频现已完成；条件适配未触发、未运行。仅在后续触发时按adaptation_protocol.json的1,392次更新预算执行，冻结与适配结果必须分开。
+
+core.py：独立grouping_feature_fn；模型原group_features（用于pool）从不替换。
+baseline_runtime.py：指定提交原forward，仅增加观测回调和commit计时委托。
+local.py：只重分完整存活chunk；部分chunk原样保留；检查token/KV双射和Dense排列数值不变；各分区独立计算mass/risk选页。
+原始源码718文件的git blob逐一匹配证据：baseline_source_audit.json。

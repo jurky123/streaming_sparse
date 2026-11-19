@@ -1,0 +1,37 @@
+"""Final third-round report, including incremental and full-output checks."""
+import json,statistics,hashlib,datetime
+from pathlib import Path
+root=Path(__file__).resolve().parents[1];r=root/'artifacts/comparison_20261113';c=r/'integration_checks/kernel_optimization3'
+def read(p):return json.loads(p.read_text())
+audit=read(r/'audit.json');assert audit['passed'] and audit['completed']==32
+agg={x['method']:x for x in read(r/'aggregate.json')['rows']};cases=['horse_field','traffic_crossing'];old=agg['ours_latest_stable'];new=agg['ours_latest_rope'];fast=agg['ours_latest_rope_tail']
+smoke=read(c/'smoke_rope/smoke.json')['storage'];kv=read(c/'kv_checks.json');group=read(c/'grouping_checks.json');sel=read(c/'selection_checks.json');rope=read(c/'rope_checks.json');exact=read(c/'exact_launch_interleaved.json')
+equivalence={m:{case:read(r/case/m/'equivalence_vs_previous.json') for case in cases} for m in ['ours_latest_cached','ours_latest_cached_tail','ours_latest_rope','ours_latest_rope_tail']}
+assert all(x['bitwise_equal'] and x['video_sha256_equal'] for mm in equivalence.values() for x in mm.values())
+accept=dict(status='validated_same_output_on_both_complete_cases',implementation='RopeLatestRuntime',algorithm='summary_pretrained/no_downstream',algorithm_and_checkpoint_match=True,history_pages=360,unit_tests_passed=9,checks={n:len(smoke[n]) for n in ['validation','summary_validation','cache_validation','group_validation','selection_validation','rope_validation']},rope_position_checks=len(rope['rows']),equivalence=equivalence['ours_latest_rope'],repetitions_bitwise_equal=True,mean_total_seconds=new['total_seconds'],speedup_vs_previous=old['total_seconds']/new['total_seconds'],reduction_percent=(1-new['total_seconds']/old['total_seconds'])*100,scope='Both tested 480-frame videos and complete latents match the preceding recommendation; not a universal proof for every input')
+(r/'latest_rope_acceptance.json').write_text(json.dumps(accept,indent=2))
+(r/'latest_rope_tail_acceptance.json').write_text(json.dumps(dict(status='validated_same_output_as_preceding_faster_tail_on_both_cases',implementation='RopeTailLatestRuntime',equivalence=equivalence['ours_latest_rope_tail'],repetitions_bitwise_equal=True,mean_total_seconds=fast['total_seconds'],speedup_vs_same_gpu_cached_tail=agg['ours_latest_cached_tail']['total_seconds']/fast['total_seconds'],paired_dense_speedup_geomean=fast['speedup_geomean'],scope='Same output as preceding faster-tail candidate, not the stable recommendation; GPUs 3/5 paired with their own Dense runs'),indent=2))
+lines=['最新算法第三轮优化：缓存/执行图/精确attention/RoPE','',f"推荐ours_latest_rope：平均 {old['total_seconds']:.3f} → {new['total_seconds']:.3f} 秒，快 {accept['speedup_vs_previous']:.3f} 倍，耗时减少 {accept['reduction_percent']:.2f}%。",'两个场景的完整123 latent帧逐位一致，480帧编码视频SHA256与本轮开始时的ours_latest_stable完全相同；各两轮输出也逐位一致。',f"更快tail路径ours_latest_rope_tail平均 {fast['total_seconds']:.3f} 秒，与它自己的原始候选ours_latest_optimized完整视频相同。它保留了早先的tail数值差异，不等同于推荐路径。",'', '统一配置与计时：','最新summary_pretrained/no_downstream权重、相同Self-Forcing、保存的embedding/噪声、seed101；512×768、每chunk3 latent帧、15帧历史/360页、41 chunks、480输出帧。','风险公式、分组、密度0.1、16 probes、选页、clean commit和VAE不变；继续使用本地模型缓存。','每场景完整预热后两轮；计时包含生成、所有搬运、执行图重放、缓存维护和VAE，不含加载、JIT、编码和指标。','推荐与cache中间路径沿用GPU0/1；更快tail的两个阶段均在GPU3/5，与同卡Dense配对，校准Dense latent与原Dense逐位相同。','不同物理卡的原始秒数不直接作为严格同卡加速比，跨卡比较使用配对Dense比值。','','本轮实质改动：','1. 原缓存本来就有历史+当前容量，把当前KV写入已提交历史之后的scratch，避免每层复制整段历史；原环形提交逻辑保持。','2. 原始选页运算进入CUDA Graph，保留topk(128)和并列值规则；全页有效且保护页索引由合法区间构造，省去逐层GPU→CPU断言同步。','3. 原始历史分组（特征、幂迭代、稳定排序）进入CUDA Graph；每次刷新输入和参数，输出独立clone。','4. 原仓库page64精确attention只把流水级数3改为2，保持4 warps及原数学运算；不同warps产生变化或更慢，未采用。','5. 将Q/K RoPE融合到一个kernel，直接索引原频率表，保留FP64计算及最后的FP32/BF16转换，消除大中间张量与重复cat/stack；时间起点为运行时参数，41个chunk共用编译版本。','','局部微基准（各自同卡真实输入，不能相加当作端到端收益）：']
+x=next(x for x in kv['rows'] if x['history_pages']==360);lines.append(f"满历史KV：{x['cat_ms']:.4f} → {x['reuse_ms']:.4f} ms")
+x=next(x for x in group['rows'] if not x['changed']);lines.append(f"历史分组：{x['previous_ms']:.4f} → {x['graph_ms']:.4f} ms")
+x=next(x for x in sel['rows'] if x['pages']==432 and not x['tied']);lines.append(f"选页：{x['previous_ms']:.4f} → {x['graph_ms']:.4f} ms")
+med={stage:statistics.median(x['device_ms'] for x in exact if x['stages']==stage and x['repeat']>0) for stage in [2,3]};lines.append(f"精确attention交错复测（预热后GPU事件）：{med[3]:.4f} → {med[2]:.4f} ms")
+lines.append(f"Q/K RoPE：{rope['previous_ms']:.4f} → {rope['fused_ms']:.4f} ms；全部41个实际时间起点逐位一致。")
+lines+=['','各阶段两场景平均耗时，含VAE（秒）/峰值显存GiB：']
+for m in ['dense','ours','ours_latest_fast','ours_latest_fused','ours_latest_stable','ours_latest_cached','ours_latest_rope','ours_latest_optimized','ours_latest_cached_tail','ours_latest_rope_tail']:lines.append(f"{m}: {agg[m]['total_seconds']:.3f} / {agg[m]['peak_gib']:.3f}")
+lines+=['','最终版本逐场景两轮：']
+for m in ['ours_latest_rope','ours_latest_rope_tail']:
+ for case in cases:
+  reps=read(r/case/m/'result.json')['repetitions'];lines.append(m+'/'+case+': '+', '.join(f"rep{x['rep']} 生成{x['generation_seconds']:.3f}+VAE{x['decode_seconds']:.3f}={x['total_generation_vae_seconds']:.3f}" for x in reps))
+lines+=['','正确性与质量：','原有9项算子测试通过；真实模型attention/route18处、summary27处、cache27处、group9处、selection18处、RoPE27处检查通过。','选页覆盖四种历史长度及全并列分数；分组与摘要覆盖修改输入/权重后的刷新。KV覆盖0至360历史页，完整视频覆盖多次环形cache周转。','完整视频和latent逐位/哈希一致，意味着本轮在这两个场景没有新增质量变化；不是对任意输入的普遍证明。','推荐路径仍有上一轮已存在的长视频退化；更快tail路径保留其原有数值漂移，不能仅因更快便宣称质量更好。','32组完整结果审计通过；全部质量指标、同卡Dense配对和原始视频见REPORT.zh.txt、summary.csv。','','Profile与剩余空间：','clean_before/clean_after单独覆盖历史分组和commit；noisy_after为cache阶段；noisy_rope/clean_rope为最终阶段。','profile_summary.json只计cat=kernel事件，避免把CPU/GPU标注区间重复累加。执行图收益主要包括CPU发射和同步减少，所以不以纯kernel时间替代端到端结果。','剩余主要成本是backbone GEMM、精确/摘要attention、每chunk的Dense clean前向及公共VAE解码。原始profile保留，不把公共VAE单独加速后与旧基线直接混比。','','复现：local_setup/CACHED_KERNEL.txt；run_latest_rope_comparison.py / run_latest_rope_tail_comparison.py。','完整等价证据：各场景/方法/equivalence_vs_previous.json；源码与原始profile：integration_checks/kernel_optimization3/。']
+(r/'KERNEL_OPTIMIZATION3.zh.txt').write_text('\n'.join(lines)+'\n')
+m=read(r/'manifest.json');m.update(status='complete',completed=32,expected=32,audit_passed=True,finished_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat())
+hashes={str(p.relative_to(c/'code')):hashlib.sha256(p.read_bytes()).hexdigest() for p in (c/'code').rglob('*') if p.is_file()}
+for key in ['latest_stable','latest_optimized']:
+ if key in m:m[key]['recommended']=False
+m['latest_rope']=dict(implementation='RopeLatestRuntime',recommended=True,code_sha256=hashes,acceptance='latest_rope_acceptance.json',report='KERNEL_OPTIMIZATION3.zh.txt',checks='integration_checks/kernel_optimization3')
+m['latest_rope_tail']=dict(implementation='RopeTailLatestRuntime',recommended=False,acceptance='latest_rope_tail_acceptance.json',same_output_as='ours_latest_optimized',paired_gpu_policy='GPU3 horse / GPU5 traffic with same-card Dense')
+for name in ['KERNEL_OPTIMIZATION3.zh.txt','latest_rope_acceptance.json','latest_rope_tail_acceptance.json']:
+ if name not in m['outputs']:m['outputs'].append(name)
+(r/'manifest.json').write_text(json.dumps(m,indent=2));(r/'status.json').write_text(json.dumps(dict(status='complete',completed=32,expected=32,audit_passed=True,latest_rope_rollout_equivalence=True,latest_rope_tail_equivalent_to_previous_tail=True,scope='Both complete tested cases; tail path differs from stable path'),indent=2))
+print(json.dumps({k:v for k,v in accept.items() if k!='equivalence'},indent=2))

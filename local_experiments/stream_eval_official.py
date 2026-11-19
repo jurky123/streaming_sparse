@@ -61,12 +61,15 @@ def module_file(name,path):
 
 @torch.no_grad()
 def main():
+    from local_experiments.stream_eval_common import identify_gpu_process
+    identify_gpu_process()
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--method',choices=['lightforcing','forcingkv','dasa','dense'],required=True)
     p.add_argument('--inputs',required=True)
     p.add_argument('--output',required=True)
     p.add_argument('--chunks',type=int,default=41)
     p.add_argument('--research-config',help='Optional local research hook; never used by official baseline runs')
+    p.add_argument('--smoke',action='store_true')
     a=p.parse_args()
     inputs_path=Path(a.inputs).resolve();out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=True)
     assert not (out/'result.json').exists(), 'Completed method must be skipped by controller'
@@ -92,7 +95,7 @@ def main():
     config.independent_first_frame=False;config.context_noise=0;config.num_frame_per_block=3
     config.height=512;config.width=768;config.num_frames=min(480,a.chunks*12-3)
     config.output_folder=str(out);config.num_output_frames=a.chunks*3
-    config.model_kwargs.local_attn_size=15 if a.method=='dasa' else 18
+    config.model_kwargs.local_attn_size=18
     config.model_kwargs.timestep_shift=5.
     if a.method=='dense':config.model_kwargs.sink_size=0
     if a.method=='forcingkv':
@@ -157,7 +160,7 @@ def main():
         return value
     torch.randn_like=saved_randn
     rows=[];calls=[];current={};chunk_started={};layer_number=[0]
-    cap=18*1536*12*128*2*2*30
+    cap=(21 if a.method=='dasa' else 18)*1536*12*128*2*2*30
     def storage():
         kv=[];extra=[]
         if pipeline.kv_cache1 is not None:
@@ -178,7 +181,7 @@ def main():
             torch.cuda.synchronize();chunk_started[start//3]=time.perf_counter()
     def after(module,args,kwargs,result):
         st=storage()
-        # DASA reserves 15 main-cache frames + up to 3 cached clean-KV frames.
+        # Equal 18-frame main cache; DASA additionally stores up to 3 clean-KV frames.
         assert st['self_kv_storage_bytes']<=cap,(a.method,current,st,cap)
         rows.append(dict(current,**st))
         if current['timestep']==0:
@@ -233,7 +236,11 @@ def main():
         if a.method=='lightforcing':causal.sparse_attention=original_sparse
         save(out/'warm_audit.json',dict(max_self_kv_storage_bytes=max(r['self_kv_storage_bytes'] for r in rows),max_auxiliary_bytes=max(r['auxiliary_bytes'] for r in rows),calls=len(calls),max_attended_tokens=max(r['k_tokens'] for r in calls),history_cap_frames=15,current_frames=3))
     metadata=dict(method=a.method,checkpoint_sha256=digest(checkpoint),inputs_sha256=digest(inputs_path),height=512,width=768,chunks=41,frames=480,fps=16,history_chunk_cap=5,config=OmegaConf.to_container(config),pipeline_sha256=digest(code/'pipeline'/file),causal_sha256=digest(causal.__file__),benchmark_script_sha256=digest(__file__),scope='Original complete upstream pipeline, common native VAE; native cache/position policy retained; no added rebase. Same base checkpoint; method-specific fine-tuning not reproduced.')
-    try:benchmark(a.method,out,generate,metadata,after_warm,storage)
+    try:
+        if a.smoke:
+            latent=generate();assert torch.isfinite(latent).all()
+            save(out/'smoke.json',dict(status='passed',shape=list(latent.shape),storage=storage(),sparse_calls=sum(bool(c['sparse']) for c in calls)))
+        else:benchmark(a.method,out,generate,metadata,after_warm,storage)
     finally:torch.randn_like=original_randn
 
 if __name__=='__main__':main()

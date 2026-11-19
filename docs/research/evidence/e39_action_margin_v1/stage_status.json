@@ -1,0 +1,8 @@
+{
+  "A": "complete",
+  "training": "complete_2304_each_arm_seed",
+  "main_checkpoint": "epoch1",
+  "test": "sealed",
+  "mechanism_pass": false,
+  "online_pass": false
+}

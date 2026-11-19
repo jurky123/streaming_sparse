@@ -1,0 +1,53 @@
+{
+  "experiment": "E40",
+  "phase": "full train statistics and development confirmation",
+  "seeds": [
+    17,
+    29
+  ],
+  "model": "original E29 not E39 continued",
+  "no_training": true,
+  "test": "sealed",
+  "raw_KV_allowed": true,
+  "collision": "same previously verified raw+summary identity; exact numeric equality of all four FP32 tanh outputs, normalize signed zero; no rounding",
+  "saturation_thresholds": [
+    1.0,
+    0.999,
+    0.99
+  ],
+  "target_range_descriptive_thresholds": [
+    1e-06,
+    0.1,
+    1.0
+  ],
+  "weights": "original mass squared; stable log weights per physical group; report global mass weighted and page/trajectory equal separately",
+  "current_pages": "within event only, never share coefficients across noisy contexts",
+  "history_identity": "reuse E28 verified token/raw/summary hashes",
+  "near_phi": "nearest other event query within same history identity, descriptive only",
+  "causality": "neither saturation correlation nor collision beta SSE is an Oracle decision bound",
+  "preactivation": "not invert saturated tanh as if true preactivation",
+  "conditional_scale_probe": "not authorized by default, no training",
+  "source_sha": "8146d0c3a5130f2270ffeeb9bea1bc84e24c2dcfcfd999b58b8aaf2861c2c46e",
+  "authorization": "User: \u5141\u8bb8\u91cd\u5efa",
+  "raw_KV_scope": "offline frozen C summary reconstruction only; no raw attention, new capture or online probes",
+  "scale_diagnostic": "four original RMS, inversion via output block RMS, same-query normalized-input nearest page versus fixed cyclic control; descriptive only",
+  "scale_thresholds": "per-seed layer/head training-only logscale p10/p90 and pair distance quartiles",
+  "sources": {
+    "local_experiments/e40_reader_scale/full.py": "db61445f096e121299ee17274d8af3e1874cb68e90ed76bab28cd7f09dfa38dc",
+    "local_experiments/e40_reader_scale/cached.py": "ec463ec845106e6195d0b7e9e0f5d40ed71fcd74b1f5a7818e61c2f0538cce00",
+    "local_experiments/e40_reader_scale/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_experiments/e40_reader_scale/audit.py": "d5a8e3cac6b83b1166e0bfff6f5583c9114694339bf14e6e62a8b8baa944d3bb",
+    "local_experiments/e40_reader_scale/report.py": "c7482484ca51a39581d5b387ca1992c0d0ea1779e5a27c315198cb78306c0053"
+  },
+  "analysis_completion_note": "Before final aggregation, implement requested tile/step/chunk and strict-past nearest-query strata; no threshold/model changes; initial cached dev pilot had only other-event stratum",
+  "near_phi_scopes": [
+    "other_event",
+    "same_chunk_step_other_tile",
+    "same_chunk_other_step",
+    "other_chunk",
+    "strict_past_chunk"
+  ],
+  "postprocessing_fixes": [
+    "Remove duplicate seed/split keyword in report metadata aggregation; no changes to collection, thresholds or models"
+  ]
+}

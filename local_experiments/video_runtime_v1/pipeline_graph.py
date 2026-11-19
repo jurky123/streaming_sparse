@@ -28,6 +28,7 @@ class BatchGraphs:
         self.reuse_selected_ids = False
         self.fixed_page_sets = False
         self.radix_select = False
+        self.anchor_policy = None
         self.partial_mass = False
         self.direct_risk_bound = False
         self.matched_probabilities = False
@@ -99,7 +100,7 @@ class BatchGraphs:
     def compute(self,e,full_pset):
         q=e['q'];h,t,n,d=q.shape;s=e['s'];p=s.mean.shape[1];en=e['en'];own=e['own'];theta=e['theta'];basis=e['basis']
         query=q.float();probes=query if self.input_m16 else query.index_select(2,e['offsets'])
-        if (self.partial_mass and self.probes_only and self.input_m16 and self.reuse_selected_ids=='ties'
+        if (not self.anchor_policy and self.partial_mass and self.probes_only and self.input_m16 and self.reuse_selected_ids=='ties'
                 and self.fixed_page_sets and not full_pset and p in (216,288,360,432)):
             from .risk_partial_mass import score
             from .fixed_page_select import select
@@ -130,19 +131,31 @@ class BatchGraphs:
             z=logits.index_select(2,e['offsets'])
         if self.matched_probabilities and p in (216,288,360,432) and (not full_pset or 'active_heads' in e):
             from .risk_online import bounded_risk, matched_risk
-            risk_fn=bounded_risk if self.direct_risk_bound else matched_risk
+            risk_fn=bounded_risk if self.direct_risk_bound and not self.anchor_policy else matched_risk
             risk=risk_fn(probes,z,s,theta)
         else:
             risk=self.risk_function(probes,z,s,theta)
         count=max(1,int(p*.1))
         fixed=self.fixed_page_sets and self.config.density==.1 and self.config.id_capacity==128 and p in (216,288,360,432)
-        if fixed:
+        if self.anchor_policy:
+            page=torch.arange(p,device=q.device)
+            protected=(page<24) | (page==own[...,None])
+            if self.anchor_policy=='chunk_history10':
+                protected=protected | (page>=p-72)
+                extra=(p-96)//10
+                count=96+extra
+            else:
+                count=p*15//100
+                extra=count-25
+            picked=risk.masked_fill(protected,-torch.inf).topk(extra,dim=-1).indices
+            mask=protected.scatter(-1,picked,True)
+        elif fixed:
             from .fixed_page_select import select
             selected,mask=select(risk,own)
         else:
             sel=RouteOps.select(risk,own,self.config,check_valid=False)
             selected,mask=sel['ids'],sel['mask']
-        if self.reuse_selected_ids and not full_pset and self.config.density==.1 and p in (216,288,360,432):
+        if not self.anchor_policy and self.reuse_selected_ids and not full_pset and self.config.density==.1 and p in (216,288,360,432):
             stats=torch.zeros(3,device=q.device,dtype=torch.int64)
             if fixed and count>32:
                 return selected,logits,mask,risk,stats
@@ -167,6 +180,12 @@ class BatchGraphs:
             else:
                 lm=zz.logsumexp(-1);lm=lm-lm.logsumexp(-1,keepdim=True)
             r,a=candidate_pool(risk,mask,own);b=h*t
+            if self.anchor_policy:
+                pinned=protected.index_select(0,heads) if 'active_heads' in e else protected
+                # Keep the compiled reader's 16 distinct removal slots. Only the
+                # first extra slots can be eligible in a small window.
+                r=risk.masked_fill(~(mask & ~pinned),torch.inf).argsort(dim=-1,stable=True)[...,:r.shape[-1]]
+
             if self.compact_reader:
                 from .reader_reduce import compact_scores
                 scores=compact_scores(self.phi.query(probes),en,z,lm,mask,r,a)
@@ -182,6 +201,8 @@ class BatchGraphs:
                     approx=en['mean'][:,None,None]+torch.einsum('htmpa,hpak->htmpk',contrast,en['detail'])
                     center=approx-(lm.exp()[...,None]*approx).sum(-2,keepdim=True)
                 scores=self.score_function(rp.reshape(b,16,p,16),beta.reshape(b,16,p),lm.reshape(b,16,p),center.reshape(b,16,p,16),mask.reshape(b,p),r.reshape(b,-1),a.reshape(b,-1))
+            if self.anchor_policy:
+                scores=scores.masked_fill((pinned | ~mask).gather(-1,r).reshape(b,-1,1),-1e30)
             mask,gain,executed=apply_best(mask.reshape(b,p),r.reshape(b,-1),a.reshape(b,-1),scores);mask=mask.reshape(h,t,p)
             stats=torch.stack((executed.sum(),executed.new_full((),b,dtype=torch.int64),(~torch.isfinite(scores)).sum()))
             if 'active_heads' in e:mask=full_mask.index_copy(0,e['active_heads'],mask)

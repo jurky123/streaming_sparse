@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "baseline_reused": true,
+  "prefix_updates_discarded": 16,
+  "source_code_sha": "a220c016795ab082c26aebd7caf80fe603ff6dd86398329eda8dbc8a2ea79cde",
+  "T0_sha": "cce089472ff5eeb07cb9d85a3e41d902b24cb66d6efbf8f07cd26ede53335be9",
+  "schedule_sha": "501dfb5e5970a6a37018285e8df74b669a61dd4cce854a057a3ea5cf9632b8c2",
+  "initial_sha": "0dfdd406dc8f61f7e7e9ea49ef7571cfe9fb3c806edfffdb7b1de2f4217650d5",
+  "C_sha": "a21bb2136f848554d9af963b7ae10544c31f4584557056207c016421404e3c5a",
+  "phi_sha": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+  "prefix_max_error": 0.0,
+  "raw_KV": false,
+  "test": false
+}

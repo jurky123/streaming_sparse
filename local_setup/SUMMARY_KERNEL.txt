@@ -1,0 +1,41 @@
+第四轮：latest summary kernel 复测
+
+算法与权重保持summary_pretrained/no_downstream。不是旧GainVector64。
+主入口：local_experiments.stream_eval_latest_summary
+快速tail入口：local_experiments.stream_eval_latest_summary_tail
+完整对照入口：local_experiments.stream_eval_latest_rope（上一轮输出路径）。
+
+准备：依赖及模型位于 /tmp/streaming_sparse-0/runtime；所有正式推理cwd使用该目录。
+Python=/tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python
+PYTHONPATH=/tmp/streaming_sparse-0/runtime
+
+源码仓库运行：
+python local_setup/run_latest_summary_comparison.py
+python local_setup/run_latest_summary_tail_comparison.py
+两个runner分别用GPU0/1和GPU3/5，已有完整结果会跳过；勿让其他任务共享对应GPU。
+复测使用新输出目录，勿覆盖历史测量。每组完整预热、两轮计时、输出重复性验证、GPU独占检查与质量指标。
+
+数值验证（runtime目录）：
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=/tmp/streaming_sparse-0/runtime /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python -m local_experiments.stream_eval_latest_summary --inputs artifacts/comparison_20261113/horse_field/shared_inputs.pt --output /tmp/summary_validation_new --smoke --validate --chunks 41
+包含早、中、晚45组真实summary抽检，阈值2e-7；本次最大7.45e-9。
+
+内核检查与诊断脚本：
+local_setup/check_three_term_summary.py
+local_setup/stress_summary4.py
+local_setup/profile_summary_model.py
+微基准复用round2真实输入快照，生成结果位于/tmp/latest_kernel_optimization4。
+
+直接视频漂移：
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=/tmp/streaming_sparse-0/runtime /tmp/streaming_sparse-0/runtime/streaming_sparse/.venv/bin/python local_setup/quality_latest_reference.py --case horse_field --method ours_latest_summary --reference ours_latest_rope
+另外场景traffic_crossing；tail版本与ours_latest_rope_tail比较。
+
+结果归档顺序（所有runner退出后）：
+python local_setup/report_comparison.py
+python local_setup/audit_comparison.py
+python local_setup/report_summary_kernels.py
+用运行环境Python生成local_setup/plot_comparison.py与contact_comparison.py。
+最后源码artifacts/comparison_20261113同步回runtime，防止后续runner用旧清单覆盖。
+
+实现说明：split_summary.py默认保留TF32x3特征候选，正式SummaryLatestRuntime显式启用three_term_features=True。
+旧fused_summary.py里的两核/三核实现和exact_query_kernel.py仅为调优候选，不是正式路径。
+此次改变浮点顺序，不保证生成视频逐位相同；按真实完整质量指标评估。

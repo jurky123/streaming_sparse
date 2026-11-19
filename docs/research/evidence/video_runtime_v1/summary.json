@@ -1,0 +1,849 @@
+{
+  "component_benchmark": {
+    "rows": [
+      {
+        "component": "512_swaps",
+        "batch": 1,
+        "baseline": {
+          "gpu_ms_median": 6.553152084350586,
+          "wall_ms_median": 6.619155406951904,
+          "gpu_ms": [
+            6.553152084350586,
+            6.503551959991455,
+            6.588863849639893,
+            6.588992118835449,
+            6.506752014160156
+          ],
+          "peak_extra_bytes": 7092736
+        },
+        "optimized": {
+          "gpu_ms_median": 2.292736053466797,
+          "wall_ms_median": 2.3245057091116905,
+          "gpu_ms": [
+            2.297856092453003,
+            2.2855679988861084,
+            2.292736053466797,
+            2.279423952102661,
+            2.297856092453003
+          ],
+          "peak_extra_bytes": 6827520
+        },
+        "speedup": 2.847553947063186,
+        "scope": "old local_scores includes its Independent diagnostic; Set-only reference separately below"
+      },
+      {
+        "component": "512_swaps_set_only",
+        "batch": 1,
+        "baseline": {
+          "gpu_ms_median": 5.907455921173096,
+          "wall_ms_median": 5.9388745576143265,
+          "gpu_ms": [
+            5.951488018035889,
+            5.907455921173096,
+            5.914624214172363,
+            5.892096042633057,
+            5.859327793121338
+          ],
+          "peak_extra_bytes": 5302272
+        },
+        "optimized": {
+          "gpu_ms_median": 2.292736053466797,
+          "wall_ms_median": 2.3245057091116905,
+          "gpu_ms": [
+            2.297856092453003,
+            2.2855679988861084,
+            2.292736053466797,
+            2.279423952102661,
+            2.297856092453003
+          ],
+          "peak_extra_bytes": 6827520
+        },
+        "speedup": 2.554897815193522
+      },
+      {
+        "component": "512_swaps",
+        "batch": 24,
+        "baseline": {
+          "gpu_ms_median": 156.880615234375,
+          "wall_ms_median": 156.91160131245852,
+          "gpu_ms": [
+            156.9956817626953,
+            156.60240173339844,
+            156.82003784179688,
+            159.17202758789062,
+            156.880615234375
+          ],
+          "peak_extra_bytes": 7186944
+        },
+        "optimized": {
+          "gpu_ms_median": 2.5681920051574707,
+          "wall_ms_median": 2.59951688349247,
+          "gpu_ms": [
+            2.6060800552368164,
+            2.5681920051574707,
+            2.564095973968506,
+            2.569216012954712,
+            2.5620479583740234
+          ],
+          "peak_extra_bytes": 165245952
+        },
+        "speedup": 60.36183196534836,
+        "scope": "old local_scores includes its Independent diagnostic; Set-only reference separately below"
+      },
+      {
+        "component": "512_swaps_set_only",
+        "batch": 24,
+        "baseline": {
+          "gpu_ms_median": 140.5122528076172,
+          "wall_ms_median": 140.5421970412135,
+          "gpu_ms": [
+            140.732421875,
+            140.91981506347656,
+            139.87942504882812,
+            140.1016387939453,
+            140.5122528076172
+          ],
+          "peak_extra_bytes": 5396480
+        },
+        "optimized": {
+          "gpu_ms_median": 2.5681920051574707,
+          "wall_ms_median": 2.59951688349247,
+          "gpu_ms": [
+            2.6060800552368164,
+            2.5681920051574707,
+            2.564095973968506,
+            2.569216012954712,
+            2.5620479583740234
+          ],
+          "peak_extra_bytes": 165245952
+        },
+        "speedup": 54.06473715700359
+      },
+      {
+        "component": "512_swaps",
+        "batch": 72,
+        "baseline": {
+          "gpu_ms_median": 479.2430114746094,
+          "wall_ms_median": 479.27729319781065,
+          "gpu_ms": [
+            476.32440185546875,
+            481.2964172363281,
+            479.2430114746094,
+            480.4137268066406,
+            473.6852111816406
+          ],
+          "peak_extra_bytes": 7383552
+        },
+        "optimized": {
+          "gpu_ms_median": 5.115903854370117,
+          "wall_ms_median": 5.150832235813141,
+          "gpu_ms": [
+            5.115903854370117,
+            5.1220479011535645,
+            5.115903854370117,
+            5.1179518699646,
+            5.112832069396973
+          ],
+          "peak_extra_bytes": 492851200
+        },
+        "speedup": 93.04851551278472,
+        "scope": "old local_scores includes its Independent diagnostic; Set-only reference separately below"
+      },
+      {
+        "component": "512_swaps_set_only",
+        "batch": 72,
+        "baseline": {
+          "gpu_ms_median": 421.17938232421875,
+          "wall_ms_median": 421.2148683145642,
+          "gpu_ms": [
+            418.7924499511719,
+            421.2490234375,
+            423.37689208984375,
+            421.17938232421875,
+            421.0411376953125
+          ],
+          "peak_extra_bytes": 5593088
+        },
+        "optimized": {
+          "gpu_ms_median": 5.115903854370117,
+          "wall_ms_median": 5.150832235813141,
+          "gpu_ms": [
+            5.115903854370117,
+            5.1220479011535645,
+            5.115903854370117,
+            5.1179518699646,
+            5.112832069396973
+          ],
+          "peak_extra_bytes": 492851200
+        },
+        "speedup": 81.77607987033745
+      },
+      {
+        "component": "page_readout",
+        "heads": 12,
+        "tiles": 6,
+        "pages": 410,
+        "baseline": {
+          "gpu_ms_median": 5.516287803649902,
+          "wall_ms_median": 5.548717454075813,
+          "gpu_ms": [
+            5.673984050750732,
+            5.516287803649902,
+            5.4231038093566895,
+            5.384191989898682,
+            5.699584007263184,
+            5.421055793762207,
+            5.538815975189209
+          ],
+          "peak_extra_bytes": 73920512
+        },
+        "optimized": {
+          "gpu_ms_median": 0.5160959959030151,
+          "wall_ms_median": 0.5464358255267143,
+          "gpu_ms": [
+            0.5212159752845764,
+            0.5150719881057739,
+            0.5160959959030151,
+            0.5140479803085327,
+            0.5724160075187683,
+            0.5150719881057739,
+            0.5406720042228699
+          ],
+          "peak_extra_bytes": 72648704
+        },
+        "encode_once": {
+          "gpu_ms_median": 0.6266880035400391,
+          "wall_ms_median": 0.6559528410434723,
+          "gpu_ms": [
+            0.6287360191345215,
+            0.6236159801483154,
+            0.6266880035400391,
+            0.6594560146331787,
+            0.6758400201797485,
+            0.6215680241584778,
+            0.6215680241584778
+          ],
+          "peak_extra_bytes": 42872832
+        },
+        "speedup": 10.154380798014763,
+        "scope": "baseline encodes every tile; optimized cache hit + batch readout; encode_once reported separately"
+      },
+      {
+        "component": "attention_full_mean_rank8",
+        "heads": 12,
+        "tiles": 6,
+        "pages": 410,
+        "count": 41,
+        "baseline": {
+          "gpu_ms_median": 10.917887687683105,
+          "wall_ms_median": 10.949724353849888,
+          "gpu_ms": [
+            10.898431777954102,
+            10.958847999572754,
+            10.900480270385742,
+            10.891263961791992,
+            10.963968276977539,
+            10.918911933898926,
+            10.917887687683105
+          ],
+          "peak_extra_bytes": 94102016
+        },
+        "optimized": {
+          "gpu_ms_median": 1.4540799856185913,
+          "wall_ms_median": 1.4895740896463394,
+          "gpu_ms": [
+            1.4540799856185913,
+            1.5912959575653076,
+            1.4479360580444336,
+            1.4612480401992798,
+            1.4499839544296265,
+            1.5503360033035278,
+            1.4499839544296265
+          ],
+          "peak_extra_bytes": 121694720
+        },
+        "speedup": 7.3509095183372954,
+        "scope": "includes Q64 summary QK in both; native KV resident before timing; no history repacking in optimized path"
+      },
+      {
+        "component": "KV_update_one_tensor",
+        "baseline": {
+          "gpu_ms_median": 0.23449599742889404,
+          "wall_ms_median": 0.2592923119664192,
+          "gpu_ms": [
+            0.23654399812221527,
+            0.23449599742889404,
+            0.23244799673557281,
+            0.23449599742889404,
+            0.23244799673557281,
+            0.23449599742889404,
+            0.2314240038394928
+          ],
+          "peak_extra_bytes": 80609280
+        },
+        "optimized": {
+          "gpu_ms_median": 0.03174399957060814,
+          "wall_ms_median": 0.056566670536994934,
+          "gpu_ms": [
+            0.03788800165057182,
+            0.03379200026392937,
+            0.03174399957060814,
+            0.030719999223947525,
+            0.03174399957060814,
+            0.030719999223947525,
+            0.030719999223947525
+          ],
+          "peak_extra_bytes": 0
+        },
+        "speedup": 4.58383549013797,
+        "history_pages": 338,
+        "current_pages": 72
+      }
+    ],
+    "identity": {
+      "seed": 17,
+      "summary_sha": "a21bb2136f848554d9af963b7ae10544c31f4584557056207c016421404e3c5a",
+      "reader_sha": "03b5367318b05ce1537baff1820c1e9495cdb6c793afc7f2b6dda30f80e35c6e",
+      "phi_sha": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+      "B16_sha": "9e013f23efdf50a174be1e9a0a863c2b070bb70ef6c37884f2cd86737aefb8b0",
+      "base_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+      "placeholder": true,
+      "broadcast_source": [
+        15,
+        0
+      ],
+      "quality_status": "engineering substitute; not full-coverage quality validated"
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch": "2.6.0+cu124",
+    "scope": "warmed component wall/CUDA-event medians; not an end-to-end video speedup",
+    "source": {
+      "page.py": "aef4467ec4f66deb5195650a65398c6b06c683626a5c4c300ae1708295e74fb2",
+      "scores.py": "92277f53bb2845ab9f1125f81d5417dfe1ec90eab71426a9ba226eb014433043",
+      "validate.py": "25602d33eb3c23db0a13d40d659e63424f739f5f91010ebd8eb8dddebb67d384",
+      "runtime.py": "a7902bd61ef25f1c14c74b227bd2617f17f3131b953f3362d9d24a4b1bb468f9",
+      "batch.py": "06ab4a06ed1aa81128a010b50d35b6151e70dfe630f1682ab77369ec2bdfee75",
+      "benchmark.py": "9414e3a7100084f611021374d1be0ac416d8aeb7ed2f090a368434700ece681c",
+      "weights.py": "b6da885a3b22822dbf1fea4dd666332269c42b6f2d507c73e3dcd204b10bbc91",
+      "__init__.py": "93e8237f9fc1180086f53815a83ec9430eb2a1ad545e6db397fddd22f094f4e2",
+      "worker.py": "85d9141eec68d2005b6ac6bdb6832abcc8be367d0779e0b6f130cfcc9d2f8c59",
+      "queue.py": "5b53a8634f0aa8a6052fdddb72b9728cc1c65669c37faf15b14405db685c066a",
+      "attention.py": "64a25c183c26cb1742472837be84dcee014fa98a8fba2d33faa81b8911635f9a"
+    }
+  },
+  "video_benchmark": {
+    "case": "city_walk",
+    "seed": 701,
+    "chunks": 9,
+    "weights": {
+      "seed": 17,
+      "summary_sha": "a21bb2136f848554d9af963b7ae10544c31f4584557056207c016421404e3c5a",
+      "reader_sha": "03b5367318b05ce1537baff1820c1e9495cdb6c793afc7f2b6dda30f80e35c6e",
+      "phi_sha": "c4a982dfcb04a7819bc39c6426a47be7f21918bdb7e8873a1164a67c0e66dc09",
+      "B16_sha": "9e013f23efdf50a174be1e9a0a863c2b070bb70ef6c37884f2cd86737aefb8b0",
+      "base_sha": "f3b651d318a61ca2d750cfffb75ff48d1de263dc0cb79d2370d3a59637ae2d83",
+      "placeholder": true,
+      "broadcast_source": [
+        15,
+        0
+      ],
+      "quality_status": "engineering substitute; not full-coverage quality validated"
+    },
+    "rows": [
+      {
+        "method": "reference",
+        "warm_seconds": 26.27959148120135,
+        "warm_chunks": 3,
+        "repetitions": [
+          {
+            "seconds": 244.56959677673876,
+            "peak_allocated": 8475293696,
+            "peak_reserved": 8805941248
+          }
+        ],
+        "median_seconds": 244.56959677673876
+      },
+      {
+        "method": "optimized",
+        "warm_seconds": 5.402345769107342,
+        "warm_chunks": 3,
+        "repetitions": [
+          {
+            "seconds": 25.456209260970354,
+            "peak_allocated": 8859870720,
+            "peak_reserved": 9741271040
+          }
+        ],
+        "median_seconds": 25.456209260970354
+      }
+    ],
+    "speedup": 9.607463321403264,
+    "latent_nmse": 0.18034282326698303,
+    "latent_max_abs": 4.046875,
+    "scope": "C+Risk old StreamingRuntime versus new VideoRuntime; same resident engine, same frozen placeholder weights/noise; matched short warmup followed by complete generation, no VAE or file IO inside timing; optimized first timed run may capture remaining page-count graph shapes",
+    "source": {
+      "check_resume.py": "53094052ed2bdc3158ad1d5d07b42b55b3d3f84a9bb38d3f8fc8c5893b8d5c02",
+      "manifest.py": "a0b904130eb4c65ccf579f03ca6a2b736ee9dad2eb01c41559baf647d246c7b0",
+      "page.py": "aef4467ec4f66deb5195650a65398c6b06c683626a5c4c300ae1708295e74fb2",
+      "scores.py": "92277f53bb2845ab9f1125f81d5417dfe1ec90eab71426a9ba226eb014433043",
+      "validate.py": "25602d33eb3c23db0a13d40d659e63424f739f5f91010ebd8eb8dddebb67d384",
+      "benchmark_video.py": "7b7020d57473d3386a9575c55c6cd220d7d7b45f25256986a601b9569253e62b",
+      "pipeline_graph.py": "7e4497adaa671892bf9460bdc0fae7b3a3c723dff5a38eefc4a052facc591387",
+      "runtime.py": "8ee32c879a9918b88a0a75d2a51b273309a02dc048416963981af764411e80bc",
+      "batch.py": "ce86226b5d20a88d376790598259de3e742cc6cec930842a7cccba8e40dca603",
+      "benchmark.py": "9414e3a7100084f611021374d1be0ac416d8aeb7ed2f090a368434700ece681c",
+      "weights.py": "b6da885a3b22822dbf1fea4dd666332269c42b6f2d507c73e3dcd204b10bbc91",
+      "__init__.py": "93e8237f9fc1180086f53815a83ec9430eb2a1ad545e6db397fddd22f094f4e2",
+      "worker.py": "c383178979c8686abd8b9a12876716baf45cade211f80e79b9c029dcede45b43",
+      "queue.py": "5b53a8634f0aa8a6052fdddb72b9728cc1c65669c37faf15b14405db685c066a",
+      "attention.py": "2f35c2abec3ff930ff28e59e460c027cf5f081139f7fc2d59acb1143f7d849a7"
+    }
+  },
+  "videos": [
+    {
+      "run": "pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 9,
+        "method": "c_pset",
+        "noise_seed": 701
+      },
+      "generation_seconds": 84.0113426586613,
+      "peak_allocated": 9544081920,
+      "module_times": {
+        "attention": {
+          "milliseconds": 10867.8176009655,
+          "calls": 10237
+        },
+        "clean_commit": {
+          "milliseconds": 1219.0382180213928,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 1526.298601269722,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 64440.94356775284,
+          "calls": 9744
+        }
+      },
+      "counters": [
+        697597,
+        701568,
+        0,
+        927072
+      ],
+      "decode_seconds": 4.304565328173339,
+      "encode_seconds": 1.7191629447042942,
+      "quality": {
+        "early": {
+          "lpips": 0.34666091622784734,
+          "ssim": 0.4881237577646971,
+          "psnr": 15.945493895800343,
+          "window": [
+            21,
+            101
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/pilot/videos/city_walk_s701/chunks9/c_pset/video.mp4"
+    },
+    {
+      "run": "pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 9,
+        "method": "c_risk",
+        "noise_seed": 701
+      },
+      "generation_seconds": 24.991783036850393,
+      "peak_allocated": 8847145472,
+      "module_times": {
+        "attention": {
+          "milliseconds": 10405.018733978271,
+          "calls": 10237
+        },
+        "clean_commit": {
+          "milliseconds": 1160.6087827682495,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 1156.0447750091553,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 6671.260675311089,
+          "calls": 9744
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 4.307714493945241,
+      "encode_seconds": 1.7949230233207345,
+      "quality": {
+        "early": {
+          "lpips": 0.33973879776895044,
+          "ssim": 0.48323479369282724,
+          "psnr": 16.083831509753445,
+          "window": [
+            21,
+            101
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/pilot/videos/city_walk_s701/chunks9/c_risk/video.mp4"
+    },
+    {
+      "run": "pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 9,
+        "method": "dense",
+        "noise_seed": 701
+      },
+      "generation_seconds": 11.151837102137506,
+      "peak_allocated": 8631714816,
+      "module_times": {
+        "attention": {
+          "milliseconds": 3388.745693564415,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 1750.5280413627625,
+          "calls": 261
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 4.661774329841137,
+      "encode_seconds": 1.8435432985424995,
+      "quality": {},
+      "video": "artifacts/video_runtime_v1/pilot/videos/city_walk_s701/chunks9/dense/video.mp4"
+    },
+    {
+      "run": "pilot",
+      "job": {
+        "case": "kitchen_cook",
+        "chunks": 9,
+        "method": "c_pset",
+        "noise_seed": 701
+      },
+      "generation_seconds": 82.89942724537104,
+      "peak_allocated": 9714392064,
+      "module_times": {
+        "attention": {
+          "milliseconds": 10399.807560622692,
+          "calls": 10237
+        },
+        "clean_commit": {
+          "milliseconds": 1220.9162373542786,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 1334.383595585823,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 63826.16794538498,
+          "calls": 9744
+        }
+      },
+      "counters": [
+        698642,
+        701568,
+        0,
+        927072
+      ],
+      "decode_seconds": 4.328865494579077,
+      "encode_seconds": 1.4911149693652987,
+      "quality": {
+        "early": {
+          "lpips": 0.2796789058484137,
+          "ssim": 0.549720111861825,
+          "psnr": 14.957111283734548,
+          "window": [
+            21,
+            101
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/pilot/videos/kitchen_cook_s701/chunks9/c_pset/video.mp4"
+    },
+    {
+      "run": "pilot",
+      "job": {
+        "case": "kitchen_cook",
+        "chunks": 9,
+        "method": "c_risk",
+        "noise_seed": 701
+      },
+      "generation_seconds": 29.011655915528536,
+      "peak_allocated": 8847222272,
+      "module_times": {
+        "attention": {
+          "milliseconds": 12394.27491313219,
+          "calls": 10237
+        },
+        "clean_commit": {
+          "milliseconds": 1160.6098055839539,
+          "calls": 261
+        },
+        "summary_and_encoding": {
+          "milliseconds": 1367.2263448238373,
+          "calls": 812
+        },
+        "route_and_correction": {
+          "milliseconds": 8488.915958404541,
+          "calls": 9744
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 4.309786446392536,
+      "encode_seconds": 1.5296474201604724,
+      "quality": {
+        "early": {
+          "lpips": 0.27018426754511893,
+          "ssim": 0.5595329243689775,
+          "psnr": 15.083362964120745,
+          "window": [
+            21,
+            101
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/pilot/videos/kitchen_cook_s701/chunks9/c_risk/video.mp4"
+    },
+    {
+      "run": "pilot",
+      "job": {
+        "case": "kitchen_cook",
+        "chunks": 9,
+        "method": "dense",
+        "noise_seed": 701
+      },
+      "generation_seconds": 11.09830327052623,
+      "peak_allocated": 8631714816,
+      "module_times": {
+        "attention": {
+          "milliseconds": 3385.655280292034,
+          "calls": 1305
+        },
+        "clean_commit": {
+          "milliseconds": 1914.001395702362,
+          "calls": 261
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 4.665986183099449,
+      "encode_seconds": 1.4755587801337242,
+      "quality": {},
+      "video": "artifacts/video_runtime_v1/pilot/videos/kitchen_cook_s701/chunks9/dense/video.mp4"
+    },
+    {
+      "run": "long_pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 41,
+        "method": "c_pset",
+        "noise_seed": 701
+      },
+      "generation_seconds": 469.78751266002655,
+      "peak_allocated": 9544081920,
+      "module_times": {
+        "attention": {
+          "milliseconds": 63990.89110738039,
+          "calls": 55709
+        },
+        "clean_commit": {
+          "milliseconds": 5555.574833869934,
+          "calls": 1189
+        },
+        "summary_and_encoding": {
+          "milliseconds": 7677.140905499458,
+          "calls": 4524
+        },
+        "route_and_correction": {
+          "milliseconds": 366146.3144698143,
+          "calls": 54288
+        }
+      },
+      "counters": [
+        3895508,
+        3908736,
+        0,
+        4936032
+      ],
+      "decode_seconds": 19.942297196947038,
+      "encode_seconds": 6.727330443449318,
+      "quality": {
+        "early": {
+          "lpips": 0.34666091622784734,
+          "ssim": 0.4881237577646971,
+          "psnr": 15.945493895800343,
+          "window": [
+            21,
+            101
+          ]
+        },
+        "middle": {
+          "lpips": 0.6560719564557076,
+          "ssim": 0.14310387372970582,
+          "psnr": 10.211454365611853,
+          "window": [
+            200,
+            280
+          ]
+        },
+        "late": {
+          "lpips": 0.6230672098696232,
+          "ssim": 0.0758470873348415,
+          "psnr": 9.352125746137045,
+          "window": [
+            400,
+            480
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/long_pilot/videos/city_walk_s701/chunks41/c_pset/video.mp4"
+    },
+    {
+      "run": "long_pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 41,
+        "method": "c_risk",
+        "noise_seed": 701
+      },
+      "generation_seconds": 145.53740723617375,
+      "peak_allocated": 8847222272,
+      "module_times": {
+        "attention": {
+          "milliseconds": 64174.509566783905,
+          "calls": 55709
+        },
+        "clean_commit": {
+          "milliseconds": 5870.415943622589,
+          "calls": 1189
+        },
+        "summary_and_encoding": {
+          "milliseconds": 6618.964862108231,
+          "calls": 4524
+        },
+        "route_and_correction": {
+          "milliseconds": 42259.608644753695,
+          "calls": 54288
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 19.923321827314794,
+      "encode_seconds": 6.670501798391342,
+      "quality": {
+        "early": {
+          "lpips": 0.33973879776895044,
+          "ssim": 0.48323479369282724,
+          "psnr": 16.083831509753445,
+          "window": [
+            21,
+            101
+          ]
+        },
+        "middle": {
+          "lpips": 0.6549245372414589,
+          "ssim": 0.16815266404300927,
+          "psnr": 10.486439700077002,
+          "window": [
+            200,
+            280
+          ]
+        },
+        "late": {
+          "lpips": 0.6321531765162944,
+          "ssim": 0.0857851861976087,
+          "psnr": 9.195086661759424,
+          "window": [
+            400,
+            480
+          ]
+        }
+      },
+      "video": "artifacts/video_runtime_v1/long_pilot/videos/city_walk_s701/chunks41/c_risk/video.mp4"
+    },
+    {
+      "run": "long_pilot",
+      "job": {
+        "case": "city_walk",
+        "chunks": 41,
+        "method": "dense",
+        "noise_seed": 701
+      },
+      "generation_seconds": 50.91956445015967,
+      "peak_allocated": 8631714816,
+      "module_times": {
+        "attention": {
+          "milliseconds": 19778.604010283947,
+          "calls": 5945
+        },
+        "clean_commit": {
+          "milliseconds": 5864.998942375183,
+          "calls": 1189
+        }
+      },
+      "counters": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decode_seconds": 20.347834710031748,
+      "encode_seconds": 6.18015053216368,
+      "quality": {},
+      "video": "artifacts/video_runtime_v1/long_pilot/videos/city_walk_s701/chunks41/dense/video.mp4"
+    }
+  ],
+  "cache_check": {
+    "passed": true,
+    "chunks": 41,
+    "layers": [
+      1,
+      15,
+      29
+    ],
+    "head_pages": 12168,
+    "all_338_surviving_slots_verified": true,
+    "raw_KV_summary_rebuild_exact": true,
+    "reader_phi_projection_rebuild_exact": true,
+    "ring_write": 248
+  },
+  "resume_check": {
+    "passed": true,
+    "bitwise_equal": true,
+    "prefix": 2,
+    "total_chunks": 3,
+    "cache_rebuilt": "raw KV + immutable summaries + Reader/Phi encodings"
+  },
+  "single_video_speed_policy": true
+}

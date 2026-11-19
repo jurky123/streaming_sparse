@@ -206,3 +206,7 @@ streaming_sparse/v08/runs/seed0/F-K/recovery.json
 第819次更新为冻结对照点，保存于 `migration/routerslim_runs/20261023_035515/baseline.pt`。Profile、逐项消融、完整网络输出/梯度/AdamW检查与说明见该目录的 `REPORT.md`、`baseline_profile/profile_breakdown.csv` 和 `deployment_audit.json`。
 
 新代码放在 `migration/routerslim/`，不改科学源码和原 `migration/runtime/` 适配器。只有验收通过并生成 `migration/routerslim_deployment.json` 后，原 `./start_training.sh` 才会选择 R1 入口；入口校验代码、证据 SHA，并从原 optimizer/sampler 状态继续。当前实际启用方差等权预聚合和权重为零时的 Attention 辅助分支停算。内容投影前移通过正确性检查但训练实测较慢，默认关闭。Soft Gate、校准辅助项、完整残差范数、历史保留率与2000更新预算保持原协议。
+
+## 当前 VBench 队列
+
+2026-11-19 的五档生成、原始权重、10% intersection 首帧重定位、固定任务和评分环境见 [VBench 跨机器复现说明](reproduction/vbench_current/README.zh.md)。

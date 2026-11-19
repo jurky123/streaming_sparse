@@ -1,0 +1,41 @@
+第二轮 kernel / 执行调优（最新 summary_pretrained/no_downstream）
+
+执行优化入口（保留上一轮attention）：local_experiments/stream_eval_latest_stable.py
+执行优化复测：python local_setup/run_latest_stable_comparison.py
+更快tail候选入口：local_experiments/stream_eval_latest_optimized.py
+候选复测：python local_setup/run_latest_optimized_comparison.py
+真实输入捕获：local_setup/capture_next_hotspots.py
+候选微基准与数值检查：local_setup/tune_next_hotspots.py
+随机 attention 检查：local_setup/check_optimized_attention.py
+完整模型热点：local_setup/profile_optimized_model.py
+
+本轮包含三项优化：
+1. 72 query tiles 的16个probes合成一次路由调用，替换9次8-tile调用。
+   每个probe/page的计算不变，整批输出与原9批融合路由逐位对照。
+2. GraphSummary捕获原始SummaryOps.build（cheap及full各一图），保留输入stride，
+   每次刷新K、V和全部模型参数，结果clone防止后续重放覆盖。
+   固定Haar常量提前分配，避免捕获中的CPU→GPU常量创建；公式和精度不变。
+3. 保留仓库page64精确attention核；摘要tail采用64×64分块，
+   对FP32概率/对比系数做高低两项BF16分解，分别与原BF16摘要做Tensor Core乘法，
+   FP32累加，再按原完整128维均值和零和rank8细节公式归一化合并。
+   改变浮点乘加顺序和近似，不宣称逐位等价；没有改KV或摘要存储精度。
+
+保持：最新权重、四项风险公式、分组、选页、密度0.1、16 probes、
+每chunk3 latent帧、历史15 latent帧/360页、clean commit、Dense首段及VAE。
+仅用于推理和上述固定配置；训练/动态阈值不进入优化路径。
+
+数值门槛：参考attention NMSE<=2e-5、最大绝对差<=0.05；
+摘要四张量逐位相同；路由合批逐位相同；原FP32路由分数/选页门槛继承上一轮。
+实模型9 chunks，18处attention/route检查、27处cheap/full摘要检查。
+候选分块中256代表项方案较慢或超共享内存上限，未采用，记录保留。
+
+测量：相同GPU0/1、保存输入、两场景、完整预热后各两轮41 chunks/480帧，
+包含图输入/权重搬运、kernel、缓存维护及VAE；不含加载、JIT/首次捕获、编码和指标。
+新增CUDA Graph池和整批路由临时空间纳入峰值显存；静态图buffer及池保留量另报。
+保留上一轮ours_latest_fused，不覆盖其速度、视频或原始证据。
+完整结果：artifacts/comparison_20261113/KERNEL_OPTIMIZATION2.zh.txt
+证据：artifacts/comparison_20261113/integration_checks/kernel_optimization2/
+
+StableLatestRuntime只启用前两项，attention直接调用上一轮FusedLatestRuntime实现。
+完整latent和编码视频逐位/哈希比较：local_setup/verify_stable_rollout.py。
+推荐选择与最终速度以KERNEL_OPTIMIZATION2.zh.txt中的完整复测结果为准。

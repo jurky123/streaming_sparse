@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "criteria": [
+    {
+      "seed": 17,
+      "role": "all",
+      "passed": true,
+      "old": {
+        "seed": 17,
+        "role": "all",
+        "status": "under10",
+        "arm": "T0",
+        "events": 968,
+        "true_mass_share": 0.10106204717632923,
+        "weight_share": 0.00029089161446488863,
+        "loss_share": 0.0007032825585205431,
+        "gradient_l2_share": 0.0004311466366379536,
+        "loss_sum": 47.737383516796235,
+        "weight_top1_share": 0.5427393525017252,
+        "weight_top5_share": 0.8207898181877804
+      },
+      "new": {
+        "seed": 17,
+        "role": "all",
+        "status": "under10",
+        "arm": "T1",
+        "events": 968,
+        "true_mass_share": 0.10106204717632923,
+        "weight_share": 0.05135788881606059,
+        "loss_share": 0.09036559693067239,
+        "gradient_l2_share": 0.06696951682554901,
+        "loss_sum": 49.40244843946124,
+        "weight_top1_share": 0.4960600881570798,
+        "weight_top5_share": 0.80792609087119
+      }
+    },
+    {
+      "seed": 17,
+      "role": "harmful_predicted_endpoint",
+      "passed": true,
+      "old": {
+        "seed": 17,
+        "role": "harmful_predicted_endpoint",
+        "status": "under10",
+        "arm": "T0",
+        "events": 90,
+        "true_mass_share": 0.01447048658958154,
+        "weight_share": 2.452167108173321e-05,
+        "loss_share": 5.4467328059643e-05,
+        "gradient_l2_share": 4.05308205811446e-05,
+        "loss_sum": 115.18561552712652,
+        "weight_top1_share": 0.748923632250908,
+        "weight_top5_share": 0.935962533402031
+      },
+      "new": {
+        "seed": 17,
+        "role": "harmful_predicted_endpoint",
+        "status": "under10",
+        "arm": "T1",
+        "events": 90,
+        "true_mass_share": 0.01447048658958154,
+        "weight_share": 0.008304917035506851,
+        "loss_share": 0.009888499083110118,
+        "gradient_l2_share": 0.00920014385290038,
+        "loss_sum": 117.59281045683971,
+        "weight_top1_share": 0.6685819947501375,
+        "weight_top5_share": 0.9327758743572221
+      }
+    },
+    {
+      "seed": 17,
+      "role": "oracle_endpoint",
+      "passed": true,
+      "old": {
+        "seed": 17,
+        "role": "oracle_endpoint",
+        "status": "under10",
+        "arm": "T0",
+        "events": 467,
+        "true_mass_share": 0.005902812089840742,
+        "weight_share": 2.5238876761801542e-05,
+        "loss_share": 5.148503255996703e-05,
+        "gradient_l2_share": 3.460609490097477e-05,
+        "loss_sum": 95.17527122273313,
+        "weight_top1_share": 0.668629340478268,
+        "weight_top5_share": 0.9001810857390774
+      },
+      "new": {
+        "seed": 17,
+        "role": "oracle_endpoint",
+        "status": "under10",
+        "arm": "T1",
+        "events": 467,
+        "true_mass_share": 0.005902812089840742,
+        "weight_share": 0.003316789553272176,
+        "loss_share": 0.0057524156063921816,
+        "gradient_l2_share": 0.004344833188915298,
+        "loss_sum": 98.32456081603891,
+        "weight_top1_share": 0.5880518637225439,
+        "weight_top5_share": 0.8893762676166763
+      }
+    },
+    {
+      "seed": 29,
+      "role": "all",
+      "passed": true,
+      "old": {
+        "seed": 29,
+        "role": "all",
+        "status": "under10",
+        "arm": "T0",
+        "events": 968,
+        "true_mass_share": 0.09953912902987297,
+        "weight_share": 0.0002757999823468873,
+        "loss_share": 0.0006921269858966634,
+        "gradient_l2_share": 0.0004164728696061065,
+        "loss_sum": 47.80929632001908,
+        "weight_top1_share": 0.5425958108910423,
+        "weight_top5_share": 0.8208392207638012
+      },
+      "new": {
+        "seed": 29,
+        "role": "all",
+        "status": "under10",
+        "arm": "T1",
+        "events": 968,
+        "true_mass_share": 0.09953912902987297,
+        "weight_share": 0.050378531274724525,
+        "loss_share": 0.08882517990185156,
+        "gradient_l2_share": 0.0656989263983856,
+        "loss_sum": 49.180472086245736,
+        "weight_top1_share": 0.4981943953836164,
+        "weight_top5_share": 0.8079462754840372
+      }
+    },
+    {
+      "seed": 29,
+      "role": "harmful_predicted_endpoint",
+      "passed": true,
+      "old": {
+        "seed": 29,
+        "role": "harmful_predicted_endpoint",
+        "status": "under10",
+        "arm": "T0",
+        "events": 103,
+        "true_mass_share": 0.012133308671426963,
+        "weight_share": 2.1563928105818574e-05,
+        "loss_share": 4.623866746178609e-05,
+        "gradient_l2_share": 3.528816409741485e-05,
+        "loss_sum": 134.1838229139928,
+        "weight_top1_share": 0.7683706611901922,
+        "weight_top5_share": 0.9442152176308792
+      },
+      "new": {
+        "seed": 29,
+        "role": "harmful_predicted_endpoint",
+        "status": "under10",
+        "arm": "T1",
+        "events": 103,
+        "true_mass_share": 0.012133308671426963,
+        "weight_share": 0.006921024822137674,
+        "loss_share": 0.00688588357531779,
+        "gradient_l2_share": 0.007117117742843849,
+        "loss_sum": 134.8426968700128,
+        "weight_top1_share": 0.6900056023483294,
+        "weight_top5_share": 0.9411298508416839
+      }
+    },
+    {
+      "seed": 29,
+      "role": "oracle_endpoint",
+      "passed": true,
+      "old": {
+        "seed": 29,
+        "role": "oracle_endpoint",
+        "status": "under10",
+        "arm": "T0",
+        "events": 465,
+        "true_mass_share": 0.014776063751187674,
+        "weight_share": 2.1072206520712252e-05,
+        "loss_share": 5.725315078700957e-05,
+        "gradient_l2_share": 3.1141467130083244e-05,
+        "loss_sum": 95.07446717860321,
+        "weight_top1_share": 0.6715115924818492,
+        "weight_top5_share": 0.9029672307494825
+      },
+      "new": {
+        "seed": 29,
+        "role": "oracle_endpoint",
+        "status": "under10",
+        "arm": "T1",
+        "events": 465,
+        "true_mass_share": 0.014776063751187674,
+        "weight_share": 0.007795625511307652,
+        "loss_share": 0.009827666517911574,
+        "gradient_l2_share": 0.008578360010807895,
+        "loss_sum": 97.6151145212167,
+        "weight_top1_share": 0.5963184296061004,
+        "weight_top5_share": 0.8921570412083003
+      }
+    }
+  ],
+  "no_weight_search": true
+}

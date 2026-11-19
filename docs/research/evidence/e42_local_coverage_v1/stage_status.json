@@ -1,0 +1,11 @@
+{
+  "preflight": "passed",
+  "T0": "reused",
+  "T1_updates_per_seed": 2304,
+  "final_epoch": 1,
+  "mechanism": false,
+  "deployment": false,
+  "test": "sealed",
+  "followup_training": false,
+  "online_cost_change": 0
+}

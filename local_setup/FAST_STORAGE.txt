@@ -1,0 +1,29 @@
+本地存储运行入口
+
+仓库保留在 LeoFS，运行副本默认位于 /tmp/streaming_sparse-${UID}/runtime。
+缓存包含已追踪源码、Python虚拟环境、Self-Forcing checkpoint、Wan diffusion/VAE
+以及发布的稀疏权重。没有改动原始模型或历史实验。
+
+从仓库根目录使用：
+  CUDA_VISIBLE_DEVICES=0 bash local_setup/run_fast.sh reproduction/run_quality.py --case horse_field --variant summary_pretrained
+  CUDA_VISIBLE_DEVICES=1 bash local_setup/run_fast.sh reproduction/run_quality.py --case traffic_crossing --variant summary_pretrained
+
+首次复制约18 GiB，后续启动复用缓存；Git HEAD更新后自动重新同步。
+本地修改源码或更新依赖后，显式刷新：
+  bash local_setup/run_fast.sh --refresh -m unittest local_experiments.review_v1.test_ops
+可通过 STREAMING_SPARSE_CACHE 指定其他本地缓存位置。
+
+计算和中间产物位于本地缓存。启动的Python退出时（包括普通错误退出），
+脚本将本地 artifacts 增量同步回原仓库 artifacts，不删除原目录已有文件。
+运行中如需手动保存、或进程遭强制终止，可执行：
+  rsync -a /tmp/streaming_sparse-${UID}/runtime/artifacts/ artifacts/
+/tmp是临时缓存，容器重建可能清空；原始模型及同步后的结果仍保存在仓库。
+入口用于采用预存文本embedding的质量复现；未缓存T5/tokenizer，文本编码的demo
+仍使用原入口，或另外缓存所需资产。
+
+2026-11-13本机实测（含OS页缓存和并发任务影响）：
+  5.3 GiB checkpoint顺序读取+SHA256：LeoFS 9.22秒，本地4.19秒。
+  Python启动并导入torch/lpips：LeoFS 41.04秒，本地3.86秒。
+  checkpoint复制前后SHA256一致。
+这些是读取和启动测量，不代表模型计算或端到端推理加速比。
+原始测量记录保存在 local_setup/results/streaming_sparse_*_benchmark.json。

@@ -1,0 +1,30 @@
+最新算法 kernel 优化：三阶段风险路由融合
+
+正式入口：local_experiments/stream_eval_latest_fused.py
+两场景复测：python local_setup/run_latest_fused_comparison.py
+微基准/选页检查：local_setup/check_fused_route.py
+真实输入捕获：local_setup/profile_latest_hotspots.py
+完整模型热点：local_setup/profile_fused_model.py
+
+算法仍为 summary_pretrained/no_downstream；权重、16 probes、固定10%密度、
+360历史页、分组、四项风险公式、theta、选页及clean commit均沿用最新算法。
+attention仍为上一版仓库page64精确核 + full128均值/零和rank8细节补偿。
+旧GraphRoute版本保留为ours_latest_fast；新结果为ours_latest_fused。
+
+融合路由分三步：
+1. BF16 QK、FP32累加，一次计算代表key logits，消除参考实现两遍小SGEMM。
+2. FP32全局log-normalizer、query分组二阶统计、norm及页面范数上界。
+3. 融合四项风险、theta加权及16 probes平均，直接输出选页分数。
+保持FP32计算，不引入新量化。全局归约顺序与原分块logaddexp有浮点差异，
+BF16 tensor core QK的FP32累加顺序也不同，因此不宣称逐位等价。
+仅支持已验证的16 probes、128 head dim、BF16部署摘要和固定密度路径；
+不支持动态阈值，不静默回退到旧算法。
+
+模型与输入沿用/tmp/streaming_sparse-0/runtime本地缓存，计时不含加载和JIT。
+正式基准每场景完整预热，再两轮41 chunks/480帧生成及VAE，使用原物理GPU0/1，
+记录GPU独占检查。质量指标相对于相同输入Dense；另存相对于上一版的视频漂移。
+
+结果和profile：artifacts/comparison_20261113/KERNEL_OPTIMIZATION.zh.txt
+原始trace、输入和检查记录：integration_checks/kernel_optimization/
+后续热点以model_after.trace.json为准。GPU record_function区间包含空隙，
+不能将其与具体kernel累加；profile_summary.json仅统计cat=kernel事件。
