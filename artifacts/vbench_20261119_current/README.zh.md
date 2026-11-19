@@ -45,3 +45,5 @@ imaging_quality 逐视频值除以 100。各维度保留自身量纲。覆盖列
 | temporal_style | 0 / 390 | — | — | — | — | — |
 
 jobs.sqlite 保存任务与评分进度，timings.csv、scores.csv 和 dimension_summary.csv 提供逐条计时、逐视频评分及覆盖率。scores.tar.gz 包含登记批次的原始任务清单与结果。新机器按 reproduction/vbench_current/README.zh.md 准备环境与队列，恢复 videos/ 和此 jobs.sqlite 后启动 launch.py 即可续评。
+
+本轮全部 MP4 已转存至 LeoFS 共享盘 /home/shuchenweng/jzk/vbench_archives/20261119_current/videos.tar（31,709,798,400 字节）。videos.csv 记录归档内逐视频路径与字节数，已与源文件大小核对。videos.tar.sha256 可供迁移后校验。共享盘同目录的 run-records.tar.gz 保留运行日志。
