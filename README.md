@@ -42,6 +42,19 @@ python reproduction/vbench_current/status.py
 
 队列共 5,760 条视频。每档含 768 条短视频（80 帧）和 384 条长视频（480 帧），均为 768×512、16 fps。生成与 VAE 解码分别计时；评分单独执行。东京 `long_0/701` 和猛犸 `long_1/702` 会核验完整 BF16 latent 的 SHA-256，用于检查实现一致性。长视频后段的画质结合成片中的接缝、颜色和背景连续性以及 VBench 分项结果判断。[复现命令与依赖](reproduction/vbench_current/README.zh.md) · [权重加载](local_experiments/video_runtime_v1/weights.py) · [权重与输入指纹](reproduction/vbench_current/files.json) · [评分入口](reproduction/vbench_current/score_batch.py)
 
+## 项目训练权重
+
+当前 10% 条件预算 intersection 加载原始训练权重。摘要和路由参数来自 [C 部署权重](artifacts/full_coverage_v1/training/C_s17/deployment.pt)，换页打分使用 [Full_Pset LocalReader](artifacts/full_coverage_v1/training/Full_Pset_s17/selected.pt)、[查询映射 AdaptivePhi](artifacts/e27_adaptive_query_v1/s17/selected.pt) 和 [B 投影](artifacts/e24_joint_representatives_v1/fit.pt)。加载器还会读取两份初始化文件。六份文件随 Git 克隆取得，复现入口会校验 SHA-256。[加载代码](local_experiments/video_runtime_v1/weights.py) · [部署文件清单](reproduction/vbench_current/files.json)
+
+以下是另行保存的消融权重，可用于同预算的训练前后对照。每组目录包含 summary.pt 和 reader.pt；补偿方向缩放实验单独保存完整摘要权重。
+
+| 训练口径 | 10% 非锚点预算 | 15% 非锚点预算 |
+|---|---|---|
+| 固定配额下两阶段重训练 | [摘要与 Reader](reproduction/vbench_current/history/rebased_retrain_v1/budget_11) | [摘要与 Reader](reproduction/vbench_current/history/rebased_retrain_v1/budget_21) |
+| 条件预算表下两阶段微调 | [摘要与 Reader](reproduction/vbench_current/history/conditional_budget_v1/budget_10) | [摘要与 Reader](reproduction/vbench_current/history/conditional_budget_v1/budget_15) |
+
+原 B 策略的方向缩放候选及九份消融文件的指纹也已归档。[方向缩放候选](reproduction/vbench_current/history/intersection_b_tune01/candidate.pt) · [消融权重 SHA-256](reproduction/vbench_current/experimental-weights.json)
+
 ## 历史版本与其他实验
 
 - 2026-11-02 三场景比较使用当时的 GapGainVector64Runtime。[对照报告](docs/streaming_evaluation_20261102/report.zh.md) · [源码说明](docs/SOURCE_RELEASE_20261102.md)
