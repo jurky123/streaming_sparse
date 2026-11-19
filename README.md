@@ -1,71 +1,49 @@
 # Streaming KV Sparse Routing / SlimAV
 
-## 当前实现与流式方法评测（2026-11-02）
+本项目在 Self-Forcing 1.3B 的流式视频生成中使用页级稀疏注意力。每个查询块选择一部分 KV 页，读取原始 K/V 做精算；其余页通过学习得到的摘要参与注意力。当前 VBench 队列的 **intersection** 使用**原始稀疏模块权重、首帧锚点重定位和 10% 非锚点条件预算**。复现这条路径应从队列 worker 进入：它先创建 intersection 运行时，再调用 `queue_policy.attach(rt, engine, 10)` 安装预算表和重定位逻辑。[生成入口](reproduction/vbench_current/worker.py) · [条件策略](reproduction/vbench_current/queue_policy.py) · [新机器运行说明](reproduction/vbench_current/README.zh.md)
 
-已加入 `local_experiments/` 的稀疏路由、KV分组/学习聚合、未选中页补偿、Triton优化及流式评测代码。
-当前通过端到端验收的版本为 `GapGainVector64Runtime`；历史重排候选未获得端到端收益，未接入。
+## 五档方法实际执行什么
 
-- [三场景流式方法比较（Markdown）](docs/streaming_evaluation_20261102/report.zh.md)：同骨干、512×768、30秒、最多5个历史chunk；比较Dense、当前实现、LightForcing、Forcing-KV和DASA。
-- [本次源码发布与复现说明](docs/SOURCE_RELEASE_20261102.md)：依赖、检查点需求和测量限制。
-- [外部基线固定版本与兼容补丁](external_baselines/README.md)。
+下表使用代码中的层、头和去噪步编号，均从 0 开始。Full_Pset 指路由选页后的换页纠偏。表中的纠偏范围只决定哪些位置允许换页；其余稀疏层头仍执行选页、精算与摘要补偿。
 
-只上传代码、文本报告和精简结果；模型权重、视频、原始输入和GPU trace未上传。
-三场景平均当前实现30.657秒、Dense38.897秒，逐场景几何平均加速1.269×；质量存在取舍，详见报告。
+| 队列方法 | 窗口与精算预算 | 选页与注意力实现 |
+|---|---|---|
+| Dense | 原生 18 个 latent 帧滑窗，窗内全部精算 | 同一优化主干的 `dense_native`，用作速度对照 |
+| LightForcing | 上游短视频配置为 21 帧窗，长视频配置为 12 帧窗 | 同一 Self-Forcing EMA，运行上游 BF16 稀疏管线；A100 启用 RoPE、scale-shift 优化，worker 检查底层稀疏核调用 |
+| base | 按全窗页数取 15% 向下取整，包含首帧 24 页及查询自身页；满窗 64/432 页 | 按风险补足名额，无 Full_Pset；A100 部署预设启用 SM80 固定预算 CUDA 融合核 |
+| intersection | 固定首帧 24 页并重定位；其余页用 10% **平均**预算，按窗口、层、步、头查表 | 去噪步 0，在层 3、4、5、8、14、17、27 的头 3、4、9 上做分区纠偏；精算与补偿走 Triton 融合路径 |
+| step | 按全窗页数取约 10%，满窗 43/432 页，保留查询自身页 | 去噪步 0 对所有稀疏层、所有头开放 Full_Pset；其余去噪步沿用风险选页，走 Triton 融合路径 |
 
-## 历史源码与实验（Opt30–Opt32，2026-10-26）
+base 的 15% 和 intersection 的 10% 使用不同的分母。首帧时间重定位和条件预算表由 intersection 的队列入口安装。[部署预设与内核开关](local_experiments/video_runtime_v1/accepted_tiers.py) · [intersection 纠偏范围](local_experiments/video_runtime_v1/presets/intersection.json) · [step 纠偏范围](local_experiments/video_runtime_v1/presets/step.json) · [LightForcing 适配](reproduction/vbench_current/light.py)
 
-本次更新包含至 Opt32 的路由、稀疏 attention、分组/聚合训练、动作选择与视频评测源码。
-**本次不上传原始实验数据、视频、checkpoint 或运行日志。** 关键汇总数字见
-[实验总结](docs/EXPERIMENT_SUMMARY.txt)，源码范围及外部依赖见
-[源码发布说明](docs/SOURCE_RELEASE.txt)。
+## 一个 chunk 如何生成
 
-主要入口位于 `migration/unified_router/opt30`、`opt31`、`opt32`；本地状态通过
-`opt30_status.sh`、`opt31_status.sh`、`opt32_status.sh` 查看。实验资产不在 Git 中，
-新克隆不能直接恢复本机已经完成的训练。CUDA 后端依赖可通过
-`bash migration/fetch_sparse_backend.sh` 获取。
+1. **生成与缓存。** 每个 chunk 含 3 个 latent 帧，每帧 1,536 个 token。依次执行 4 个去噪步，再以 clean latent 做一次 Dense 前向并提交 KV。前两个 chunk 使用 Dense；从第三个 chunk 开始，层 1–29 的去噪注意力可走稀疏路径，层 0 保留 Dense。[生成循环](local_experiments/rollout_suite.py) · [运行时分支与提交](local_experiments/video_runtime_v1/runtime.py)
+2. **分组与摘要。** 每页 64 个 token，当前 chunk 共 72 页，满窗共 432 页。历史 KV 在 clean 提交时分组，并保存每页 4 个代表 K、V 均值、低秩细节和路由统计；当前 chunk 的摘要随去噪输入重算。[历史页分组](local_experiments/video_runtime_v1/grouping_dataflow.py) · [摘要计算](local_experiments/video_runtime_v1/summary_moments.py)
+3. **选页与纠偏。** 每头、每 64 个查询 token 构成一个查询块。路由使用其中 16 个查询位置估计各页风险，生成精算页表。在启用 Full_Pset 的位置，LocalReader 给候选换页打分；intersection 只允许同分区内的合法交换，保护首帧和查询自身页，保持当前与历史的配额。[条件路由图](reproduction/vbench_current/graph.py) · [候选池与填充修正](reproduction/vbench_current/quota_pool.py) · [Reader 打分](local_experiments/video_runtime_v1/reader_reduce.py)
+4. **精算与补偿。** 精算页读取原始 token 计算 QK 和双项 BF16 AV。其余页计算查询与代表 K 的注意力，用 V 均值和 rank-8 细节近似输出，再按两部分的 softmax 质量合并。[注意力分派](local_experiments/video_runtime_v1/legacy_components.py) · [Triton 融合核](local_experiments/review_v1/tuned_attention.py) · [base 的 CUDA 融合核](local_experiments/video_runtime_v1/csrc/fixed15_attention.cu)
 
-以下内容描述仓库已有的 **v0.8 历史迁移快照**；其中已追踪的旧权重不是本次新上传的训练权重。
-最新全层稀疏方法、实际速度与质量限制以以上实验总结为准。
+## Intersection 的预算和首帧位置
 
-## v0.8 历史快照
+设当前窗口有 W 页。首个 latent 帧的 24 页固定精算，当前 chunk 有 72 页，其余历史有 H = W − 24 − 72 页。若表项给当前 A 页、给历史 B 页，则当前精算比例 p = A/72，历史精算比例 q = B/H，实际精算页数为 **24 + A + B**。查询自身页计入 A。离线标定在平均预算约束下选择离散表项；同一层、同一步的各头共享总页数，A 和 B 可以因头而异。达到满窗后复用同一张表。[配额计算](reproduction/vbench_current/quota_counts.py) · [部署预算表](reproduction/vbench_current/policies.npz) · [标定与跨 prompt、seed 验证](reproduction/vbench_current/history/conditional_budget_v1/RESULTS.zh.md)
 
-基于 Self-Forcing 1.3B 的离线路由与骨干局部 LoRA 共适应实验。
+例如，读取 `10_window_step_layer_head` 的满窗、层 3、去噪步 0 表项，头 0 的当前/历史配额为 18/2 页，头 3 为 8/12 页。两者都精算 44 页，其中 24 页属于首帧。这个例子说明为什么不能把 10% 写成每次调用都固定精算 64 页。
 
-**本仓库按要求不包含数据、公共骨干权重或 Python 虚拟环境。** 包含基础代码、历史代码依赖、固定协议/Prompt/split、v0.8 校准及 Router warm-start、当前训练 checkpoint、来源审计和重建工具。
+从第 7 个 chunk 首次滚窗起，运行时每个 chunk 都从保存的原始首帧 K 重新施加时间 RoPE，使当前 3 帧到锚点的相对距离保持为 15、16、17。同时刷新首帧页摘要及对应层的纠偏编码。首帧固定精算从首次稀疏时起生效，时间重定位从首次滚窗起生效。[锚点保护](reproduction/vbench_current/anchor_policy.py) · [时间旋转和摘要刷新](reproduction/vbench_current/phase.py)
 
-## 从这里开始
+## 运行与核验
 
-1. 阅读 **[重建与继续实验说明](REBUILD.md)**。
-2. `bash migration/bootstrap.sh` 重建 Python 3.10 环境。
-3. `streaming_sparse/.venv/bin/python migration/download_models.py --full` 下载并校验原 revision 的模型资产。
-4. 在单 GPU 上重新采集 Replay；需要原始完整审计和后续 seed 校准时，再重新采集旧 QKV。
-5. 验证数据身份，完成新机器审计后，选择严格恢复或明确记录的新数据继续训练。
+按复现说明准备模型、环境和独立工作目录后，从仓库根目录运行：
 
-## 当前研究范围
+~~~bash
+python -u reproduction/vbench_current/launch.py
+python reproduction/vbench_current/status.py
+~~~
 
-- 保留每个原始 Query 独立 Mask；历史 Page64，训练 Keep20%，当前段原可见 KV 全保留。
-- 只有原编号层 **4/14/24 的全部12Heads**进行历史稀疏，其余27层Dense。
-- 四个原生 diffusion steps 全执行；历史 context/cache-write 前向Dense。
-- F/A/J × K/V 共六组、三个训练seed的计划尚未完成；当前迁移恢复点属于 **F-K / seed0**，具体 update 见 [inventory.json](migration/inventory.json)。
-- 现有两视频 PSNR/LPIPS 属于 update620 的三层稀疏评估，见 [结果补充](migration/two_video_results/FOLLOWUP_REPORT.txt)。没有全30层稀疏结果。
-- 当前算法实现用常规 masked SDPA，没有稀疏 Kernel；不能把逻辑连接删除率视为加速比。
+队列共 5,760 条视频。每档含 768 条短视频（80 帧）和 384 条长视频（480 帧），均为 768×512、16 fps。生成与 VAE 解码分别计时；评分单独执行。东京 `long_0/701` 和猛犸 `long_1/702` 会核验完整 BF16 latent 的 SHA-256，用于检查实现一致性。长视频后段的画质结合成片中的接缝、颜色和背景连续性以及 VBench 分项结果判断。[复现命令与依赖](reproduction/vbench_current/README.zh.md) · [权重加载](local_experiments/video_runtime_v1/weights.py) · [权重与输入指纹](reproduction/vbench_current/files.json) · [评分入口](reproduction/vbench_current/score_batch.py)
 
-## 目录
+## 历史版本与其他实验
 
-| 路径 | 内容 |
-|---|---|
-| `streaming_sparse/v08/` | v0.8 原始科学实现、执行优化器及配置 |
-| `streaming_sparse/v08/runs/seed0/` | calibration、warmstart_K/V、F-K 的 checkpoint 与训练记录 |
-| `streaming_sparse/v02` … `v07`、`capture/` 等 | 保留运行所需历史模块/配置；不含其数据或旧训练产物 |
-| `migration/` | 下载、校验、重采集、继续训练工具及锁定依赖 |
-| `migration/origin_reports/` | 原机器来源记录；不是新机器的活动审计或调度状态 |
-| `migration/inventory.json` | 文件SHA256、源码身份、checkpoint恢复点 |
-| `README_SELF_FORCING.md` | 原 Self-Forcing 项目说明 |
-
-这是某次训练边界的静态快照，原机器后续继续训练不会自动同步到本仓库。
-
-原项目许可证保留于 [LICENSE](LICENSE)。
-
-## Published trained weights and reproduction
-
-The trained sparse-module checkpoints, exact prompt embeddings, SHA256 manifests, and restoration/run commands are available in [reproduction/weights_20261113](reproduction/weights_20261113/README.md). The selected configuration retains summary pretraining and excludes downstream distillation. Published assets include the other reported ablation checkpoints; base Wan/Self-Forcing weights are fetched separately at pinned revisions.
+- 2026-11-02 三场景比较使用当时的 GapGainVector64Runtime。[对照报告](docs/streaming_evaluation_20261102/report.zh.md) · [源码说明](docs/SOURCE_RELEASE_20261102.md)
+- 早期 v0.8 的三层稀疏、Router/LoRA 训练，以及 Opt30–Opt32 的实验有各自的协议和权重。[迁移与继续训练](REBUILD.md) · [Opt 实验总结](docs/EXPERIMENT_SUMMARY.txt) · [11 月 13 日权重发布](reproduction/weights_20261113/README.md)
+- [Self-Forcing 原项目说明](README_SELF_FORCING.md) · [许可证](LICENSE)
