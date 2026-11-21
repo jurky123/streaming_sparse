@@ -18,7 +18,12 @@ def run(case):
     for b in engine.wrapper.model.blocks:b.self_attn.sink_size=1
     rt=make_runtime(engine,*load_weights(cfg)[:4],cfg)
     rt.sparse_clean=True
-    gen=attach(rt,engine,10);scope(rt,dict(name='old'));install(rt,case)
+    if case.startswith('refit_'):
+        from policy import attach as attach_refit
+        gen=attach_refit(rt,engine,10,case)
+    else:
+        gen=attach(rt,engine,10)
+    scope(rt,dict(name='old'));install(rt,case)
     vae=native_vae();metric=lpips.LPIPS(net='alex').eval().requires_grad_(False)
     for p in CASES:
         emb=torch.load(embpath(p),weights_only=True).cuda()

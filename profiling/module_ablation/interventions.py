@@ -1,11 +1,15 @@
 import torch
 
 def install(rt,case):
+    case=case.removeprefix("refit_")
     if case=='no_tail':
         rt.packed_attention=SelectedOnly(rt.packed_attention)
     if case=='whole_window':
         from whole_window import install as install_window
         install_window(rt)
+    if case in ('NN','NG','GN','GG'):
+        from profiling.page_factorial.cells import install as configure_pages
+        configure_pages(rt,case)
     if case=='set_off':
         rt.set_pset_schedule({})
     if case=='mean_tail':

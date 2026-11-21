@@ -18,6 +18,9 @@ def attach(rt,engine,index,case):
     policy=np.load(dest/'policies.npz')[f'{index}_window_step_layer_head']
     clean=np.load(Path(__file__).resolve().parents[1]/'clean_forward/policies.npz')[f'{index}_window_step_layer_head']
     policy=np.concatenate([policy,clean],axis=1)
+    if case.startswith('refit_'):
+        fitted=np.load(Path(__file__).resolve().parents[1]/'page_factorial/calibration'/case[6:]/'table.npy')
+        policy=np.concatenate([fitted,np.repeat(fitted[-1:],len(policy)-len(fitted),axis=0)])
     schedule=np.empty((*policy.shape,2),dtype=np.int64)
     for c in range(2,41): schedule[c-2]=np.asarray(counts(min(432,72*(c+1))))[policy[c-2]]
     if case=='uniform':
