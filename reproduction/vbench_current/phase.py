@@ -9,10 +9,17 @@ def set_phase(rt,canonical,offset):
     for l,cache in enumerate(rt.engine.cache):
         cache['k'][0,:1536].copy_(k[l])
         if l in rt.stores:
+            packed=getattr(rt,'packed_attention',None)
+            if packed is not None:
+                from local_experiments.video_runtime_v1.fixed15_layout import pack_range
+                store=rt.stores[l]
+                pk,pv=packed.cache(store)
+                pack_range[(24,12,16)](cache['k'],cache['v'],pk,pv,0)
+                packed.summary_versions.pop(store,None)
             def grouped(x):
                 return x.transpose(0,1).reshape(12,24,64,128)
             summary=rt.summary_graph(rt.model[l],grouped(k[l]),grouped(cache['v'][0,:1536]))
             for field in ('keys','stats','detail','mean'):
                 getattr(rt.stores[l].summary,field)[:,:24].copy_(getattr(summary,field))
-            if l in rt.pset_layers:
+            if rt.full_pset and (rt.pset_layers is None or l in rt.pset_layers):
                 rt.write_encoding(l,rt.encode(l,summary),start=0)

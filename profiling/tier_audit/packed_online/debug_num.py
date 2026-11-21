@@ -1,0 +1,34 @@
+import ctypes,torch,triton
+from debug_num_tail import _tail
+from local_experiments.video_runtime_v1.fixed15_layout import pack_range
+from local_experiments.high_sparse_runtime import _budget_mask
+def rand(*shape):
+    return torch.randn(shape,device='cuda',dtype=torch.bfloat16)
+lib=ctypes.CDLL('/tmp/tier_num.so')
+fn=lib.launch_online
+fn.argtypes=[ctypes.c_void_p]*6+[ctypes.c_int,ctypes.c_void_p]
+torch.manual_seed(701)
+q=rand(1,4608,12,128)
+for p,count in [(216,1),(216,2),(216,33)]:
+    k,v=[rand(1,p*64,12,128) for _ in range(2)]
+    pk,pv=torch.empty_like(k),torch.empty_like(v)
+    pack_range[(p,12,16)](k,v,pk,pv,0)
+    keys,mean,detail,basis=rand(12,p,4,128),rand(12,p,128),rand(12,p,3,8),rand(12,128,8)
+    ids=torch.rand(12,72,p,device='cuda').argsort(-1)[...,:count].int().contiguous()
+    out=torch.empty_like(q)
+    exact=torch.empty_like(q,dtype=torch.float)
+    lse=torch.empty(12,4608,device='cuda')
+    bits=torch.empty(12,72,16,device='cuda',dtype=torch.uint32)
+    _budget_mask[(72,12)](ids,bits,72,count,triton.next_power_of_2(count))
+    args=q,keys,mean,detail
+    kw=dict(HEAD_PAGES=p,BQ=64,BR=64,BF16_AV=True,MERGE=True,BASIS=basis,OUT=out,num_warps=4,num_stages=2,enable_fp_fusion=False)
+    def baseline():
+        _tail[(72,12)](*args,None,None,None,None,p,4608,12,128,EXACT=exact,ELSE=lse,K=k,V=v,IDS=ids,EXACT_COUNT=count,QK_SCALE=128**-.5,**kw)
+    def read():
+        assert not fn(*(x.data_ptr() for x in (q,pk,pv,ids,exact,lse)),count,torch.cuda.current_stream().cuda_stream)
+    def tail():
+        _tail[(72,12)](*args,bits,None,None,None,p,4608,12,128,EXACT=exact,ELSE=lse,**kw)
+    baseline()
+    ref,le=exact.clone(),lse.clone()
+    read()
+    print(count,'exact difference', (ref!=exact).float().mean().item(),'lse difference',(le!=lse).float().mean().item(), 'max', (ref-exact).abs().max().item(), (le-lse).abs().max().item(),flush=True)

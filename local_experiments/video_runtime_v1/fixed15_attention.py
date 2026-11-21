@@ -24,6 +24,7 @@ def library():
             tmp.replace(binary)
     lib=ctypes.CDLL(str(binary))
     lib.run.argtypes = [ctypes.c_void_p] * 8 + [ctypes.c_int] * 2 + [ctypes.c_void_p]
+    lib.run_variable.argtypes = lib.run.argtypes[:-1] + [ctypes.c_bool, ctypes.c_void_p]
     lib.commit_fixed15.argtypes = [ctypes.c_void_p] * 6 + [ctypes.c_int] * 5 + [ctypes.c_void_p]
     lib.prepare_fixed15.argtypes = [ctypes.c_void_p] * 8 + [ctypes.c_int] * 2 + [ctypes.c_void_p]
     lib.prepare_current_fixed15.argtypes = lib.prepare_fixed15.argtypes
@@ -32,7 +33,8 @@ def library():
 
 
 class PackedAttention:
-    def __init__(self):
+    def __init__(self, variable=False):
+        self.variable = variable
         self.pack_rotary_keys = True
         self.buffers = {}
         self.history = {}
@@ -42,7 +44,7 @@ class PackedAttention:
         self.captured = False
         self.calls = 0
         self.direct_commits = 0
-        self.kernel = library().run
+        self.kernel = library().run_variable if variable else library().run
         self.prepare_kernel = library().prepare_fixed15
 
     def accepts_packed_key(self):
@@ -130,11 +132,12 @@ class PackedAttention:
             self.summary_versions[store] = version
         basis = basis.bfloat16().contiguous()
         args = (q, pk, pv, ids, out, packed, basis, flags)
-        status = self.kernel(*(x.data_ptr() for x in args), pages, ids.shape[-1], stream)
+        mode = (bool(store.sink_pages),) if self.variable else ()
+        status = self.kernel(*(x.data_ptr() for x in args), pages, ids.shape[-1], *mode, stream)
         if status:
             raise RuntimeError(f'fixed15 attention launch returned {status}')
         retry[(72, 12)](flags, q, k, v, ids, summary.keys, summary.mean, summary.detail,
-                        basis, out, pages, stride, ids.shape[-1], num_warps=4,
+                        basis, out, pages, stride, ids.shape[-1], ORIGINAL=not self.variable, num_warps=4,
                         num_stages=2, enable_fp_fusion=False)
         self.calls += 1
         return out

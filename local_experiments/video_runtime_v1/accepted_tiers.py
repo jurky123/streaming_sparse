@@ -3,10 +3,12 @@ import argparse
 from pathlib import Path
 from .deployment import CURRENT,current
 
-TIERS=('base','intersection','step')
+TIERS=('base','intersection','step','intersection_fast','step_fast')
 
 def config(tier,**overrides):
     if tier not in TIERS:raise ValueError(tier)
+    overrides.setdefault('cuda_variable',tier.endswith('_fast'))
+    tier=tier.removesuffix('_fast')
     policy=None if tier=='base' else str(Path(__file__).parent/'presets'/f'{tier}.json')
     if overrides.get('anchor_scale') is None:
         overrides['anchor_scale']=tier=='base'

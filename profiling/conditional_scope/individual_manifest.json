@@ -1,0 +1,648 @@
+[
+  {
+    "name": "base",
+    "seed": 701
+  },
+  {
+    "name": "base",
+    "seed": 702
+  },
+  {
+    "name": "full",
+    "seed": 701
+  },
+  {
+    "name": "full",
+    "seed": 702
+  },
+  {
+    "name": "layer_01",
+    "layers": [
+      1
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_01",
+    "layers": [
+      1
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_02",
+    "layers": [
+      2
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_02",
+    "layers": [
+      2
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_03",
+    "layers": [
+      3
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_03",
+    "layers": [
+      3
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_04",
+    "layers": [
+      4
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_04",
+    "layers": [
+      4
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_05",
+    "layers": [
+      5
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_05",
+    "layers": [
+      5
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_06",
+    "layers": [
+      6
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_06",
+    "layers": [
+      6
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_07",
+    "layers": [
+      7
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_07",
+    "layers": [
+      7
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_08",
+    "layers": [
+      8
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_08",
+    "layers": [
+      8
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_09",
+    "layers": [
+      9
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_09",
+    "layers": [
+      9
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_10",
+    "layers": [
+      10
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_10",
+    "layers": [
+      10
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_11",
+    "layers": [
+      11
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_11",
+    "layers": [
+      11
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_12",
+    "layers": [
+      12
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_12",
+    "layers": [
+      12
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_13",
+    "layers": [
+      13
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_13",
+    "layers": [
+      13
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_14",
+    "layers": [
+      14
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_14",
+    "layers": [
+      14
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_15",
+    "layers": [
+      15
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_15",
+    "layers": [
+      15
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_16",
+    "layers": [
+      16
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_16",
+    "layers": [
+      16
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_17",
+    "layers": [
+      17
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_17",
+    "layers": [
+      17
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_18",
+    "layers": [
+      18
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_18",
+    "layers": [
+      18
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_19",
+    "layers": [
+      19
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_19",
+    "layers": [
+      19
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_20",
+    "layers": [
+      20
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_20",
+    "layers": [
+      20
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_21",
+    "layers": [
+      21
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_21",
+    "layers": [
+      21
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_22",
+    "layers": [
+      22
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_22",
+    "layers": [
+      22
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_23",
+    "layers": [
+      23
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_23",
+    "layers": [
+      23
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_24",
+    "layers": [
+      24
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_24",
+    "layers": [
+      24
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_25",
+    "layers": [
+      25
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_25",
+    "layers": [
+      25
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_26",
+    "layers": [
+      26
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_26",
+    "layers": [
+      26
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_27",
+    "layers": [
+      27
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_27",
+    "layers": [
+      27
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_28",
+    "layers": [
+      28
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_28",
+    "layers": [
+      28
+    ],
+    "seed": 702
+  },
+  {
+    "name": "layer_29",
+    "layers": [
+      29
+    ],
+    "seed": 701
+  },
+  {
+    "name": "layer_29",
+    "layers": [
+      29
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_00",
+    "heads": [
+      0
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_00",
+    "heads": [
+      0
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_01",
+    "heads": [
+      1
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_01",
+    "heads": [
+      1
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_02",
+    "heads": [
+      2
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_02",
+    "heads": [
+      2
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_03",
+    "heads": [
+      3
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_03",
+    "heads": [
+      3
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_04",
+    "heads": [
+      4
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_04",
+    "heads": [
+      4
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_05",
+    "heads": [
+      5
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_05",
+    "heads": [
+      5
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_06",
+    "heads": [
+      6
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_06",
+    "heads": [
+      6
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_07",
+    "heads": [
+      7
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_07",
+    "heads": [
+      7
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_08",
+    "heads": [
+      8
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_08",
+    "heads": [
+      8
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_09",
+    "heads": [
+      9
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_09",
+    "heads": [
+      9
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_10",
+    "heads": [
+      10
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_10",
+    "heads": [
+      10
+    ],
+    "seed": 702
+  },
+  {
+    "name": "head_11",
+    "heads": [
+      11
+    ],
+    "seed": 701
+  },
+  {
+    "name": "head_11",
+    "heads": [
+      11
+    ],
+    "seed": 702
+  },
+  {
+    "name": "step_0",
+    "steps": [
+      0
+    ],
+    "seed": 701
+  },
+  {
+    "name": "step_0",
+    "steps": [
+      0
+    ],
+    "seed": 702
+  },
+  {
+    "name": "step_1",
+    "steps": [
+      1
+    ],
+    "seed": 701
+  },
+  {
+    "name": "step_1",
+    "steps": [
+      1
+    ],
+    "seed": 702
+  },
+  {
+    "name": "step_2",
+    "steps": [
+      2
+    ],
+    "seed": 701
+  },
+  {
+    "name": "step_2",
+    "steps": [
+      2
+    ],
+    "seed": 702
+  },
+  {
+    "name": "step_3",
+    "steps": [
+      3
+    ],
+    "seed": 701
+  },
+  {
+    "name": "step_3",
+    "steps": [
+      3
+    ],
+    "seed": 702
+  }
+]

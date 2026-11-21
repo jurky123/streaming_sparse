@@ -10,6 +10,7 @@ from ..review_v1.ops import Summary,RouteOps,haar
 from .page import read
 from .scores import candidate_pool,fused_grouped_scores as grouped_scores,apply_best
 from .attention import compensate
+from quota_mask import quota_mask
 
 CACHED_LOGMASS=False
 
@@ -139,10 +140,14 @@ class BatchGraphs:
         count=max(1,int(p*.1))
         fixed=self.fixed_page_sets and self.config.density==.1 and self.config.id_capacity==128 and p in (216,288,360,432)
         if self.anchor_policy:
-            curr=self.current_slots[:,None,None]
-            cr=risk[..., -72:].scatter(-1,(own-p+72)[...,None],torch.inf).argsort(dim=-1,descending=True,stable=True).argsort(dim=-1)
-            hr=risk[...,24:-72].argsort(dim=-1,descending=True,stable=True).argsort(dim=-1)
-            mask=torch.cat((torch.ones_like(risk[...,:24],dtype=torch.bool),hr<(self.n-curr),cr<curr),dim=-1)
+            if p==72:
+                # The first frame belongs to this chunk. Count it only once.
+                page=torch.arange(p,device=q.device)
+                ranked=risk.masked_fill(page<24,-torch.inf).scatter(-1,own[...,None],torch.inf)
+                ids=ranked[...,24:].topk(self.n,dim=-1).indices+24
+                mask=torch.zeros_like(risk,dtype=torch.bool).scatter_(-1,ids,True) | (page<24)
+            else:
+                mask=quota_mask(risk,own,self.current_slots,self.n)
             count=24+self.n
         elif fixed:
             from .fixed_page_select import select

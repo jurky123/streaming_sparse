@@ -75,7 +75,7 @@ __device__ __forceinline__ void project(C& c,A a,B b){
         :"r"(a.v[0]),"r"(a.v[1]),"r"(a.v[2]),"r"(a.v[3]),"r"(b.v[0]),"r"(b.v[1]));
 }
 __device__ __forceinline__ void tail(const bf* Q,const bf* KEY,const bf* MEAN,const bf* DETAIL,const int* ids,
-                     bf* out,const bf* basis,const float* exact,const float* le,uint4* sm,int p,int hp,int count,const unsigned* mask){
+                     bf* out,const bf* basis,const float* exact,const float* le,uint4* sm,int p,int hp,int count,const unsigned* mask,bool has_anchor){
     int h=blockIdx.y,t=blockIdx.x,l=threadIdx.x%32,w=threadIdx.x/32,g=l/4,z=l%4,row=t*64+w*16+g;
     A q[8];C am[16]={},ac={};float mx[2]={-1e30f,-1e30f},den[2]={};
     #pragma unroll
@@ -181,7 +181,11 @@ __device__ __forceinline__ void tail(const bf* Q,const bf* KEY,const bf* MEAN,co
         }
     };
     // Pages 16..23 are exact. Their 32 representatives occupy QK fragments 0..3.
-    compute_tile(1,std::true_type{});
+    if(has_anchor)compute_tile(1,std::true_type{});
+    else {
+        compute_tile(0,std::false_type{});
+        compute_tile(1,std::false_type{});
+    }
     for(int step=2;step<tiles;step++)compute_tile(step,std::false_type{});
     // The opposite summary slot is free after the final tile's CTA barrier.
     unsigned* stage_words=reinterpret_cast<unsigned*>(slab[1-(tiles%2)]);
@@ -241,6 +245,7 @@ __device__ __forceinline__ void copy_page(uint4 (&target)[2][1024],
         asm volatile("cp.async.cg.shared.global [%0],[%1],16;"::"r"(av),"l"(fv+m));
     }
 }
+template<bool has_anchor, bool variable>
 __global__ void exact(const bf* Q,const bf* K,const bf* V,const int* ids,
                       bf* O,const bf* summaries,const bf* basis,int* bad,int p,int count) {
     extern __shared__ uint4 pool[];
@@ -257,7 +262,7 @@ __global__ void exact(const bf* Q,const bf* K,const bf* V,const int* ids,
     copy_page(slots[count&1], K, V, (list[0]*12+h)*1024);
     asm volatile("cp.async.commit_group;":::"memory");
     // A Q64 selects 32..64 pages. Each lane retains up to two uint4 offsets.
-    int first_offset=(list[l]*12+h)*1024;
+    int first_offset=(!variable || l<count)?(list[l]*12+h)*1024:0;
     int second_offset=l+32<count?(list[l+32]*12+h)*1024:0;
     A q[8];
     #pragma unroll
@@ -272,9 +277,10 @@ __global__ void exact(const bf* Q,const bf* K,const bf* V,const int* ids,
         __syncthreads();
         if(step+1<count){
             int offset=__shfl_sync(0xffffffff,(step+1)<32?first_offset:second_offset,(step+1)%32);
+            if(variable && step+1>=64)offset=(list[step+1]*12+h)*1024;
             int slot=(step+1+count)&1;
             copy_page(slots[slot], K, V, offset);
-        }else{
+        }else if(has_anchor){
             // On the last iteration exact reads slot 1, so slot 0 is reusable.
             constexpr int words=summary_words;
             const uint4* first=reinterpret_cast<const uint4*>(summaries)+(h*((p+15)/16)+1)*words;
@@ -369,25 +375,42 @@ __global__ void exact(const bf* Q,const bf* K,const bf* V,const int* ids,
     }
     int valid=__syncthreads_and(all_ok);
     if(!threadIdx.x)bad[h*72+t]=!valid;
-    if(valid)tailops::tail(Q,summaries,nullptr,nullptr,ids,O,basis,E,L,pool,p,p,count,mask);
+    if(valid && !has_anchor){
+        const uint4* first=reinterpret_cast<const uint4*>(summaries)+h*((p+15)/16)*summary_words;
+        for(int i=threadIdx.x;i<summary_words;i+=128){
+            unsigned addr=__cvta_generic_to_shared(pool+summary_words+i);
+            asm volatile("cp.async.cg.shared.global [%0],[%1],16;"::"r"(addr),"l"(first+i));
+        }
+        asm volatile("cp.async.commit_group;":::"memory");
+    }
+    if(valid)tailops::tail(Q,summaries,nullptr,nullptr,ids,O,basis,E,L,pool,p,p,count,mask,has_anchor);
     else asm volatile("cp.async.wait_group 0;":::"memory");
 }
-extern "C" int run(const bf*q,const bf*k,const bf*v,const int*ids,bf*out,const bf*summaries,const bf*basis,int*bad,int p,int count,cudaStream_t stream){
+template<bool has_anchor,bool variable>
+int launch(const bf*q,const bf*k,const bf*v,const int*ids,bf*out,const bf*summaries,const bf*basis,int*bad,int p,int count,cudaStream_t stream){
     constexpr int bytes=2656*16+(8192+64)*4;
     static thread_local int configured=-1;
     int device;
     auto status=cudaGetDevice(&device);
     if(status!=cudaSuccess)return status;
     if(configured!=device){
-        status=cudaFuncSetAttribute(exact,cudaFuncAttributeMaxDynamicSharedMemorySize,bytes);
+        status=cudaFuncSetAttribute(exact<has_anchor,variable>,cudaFuncAttributeMaxDynamicSharedMemorySize,bytes);
         if(status!=cudaSuccess)return status;
         configured=device;
     }
-    exact<<<dim3(72,12),128,bytes,stream>>>(q,k,v,ids,out,summaries,basis,bad,p,count);
+    exact<has_anchor,variable><<<dim3(72,12),128,bytes,stream>>>(q,k,v,ids,out,summaries,basis,bad,p,count);
     return cudaGetLastError();
 }
 
 
+
+extern "C" int run(const bf*q,const bf*k,const bf*v,const int*ids,bf*out,const bf*summaries,const bf*basis,int*bad,int p,int count,cudaStream_t stream){
+    return launch<true,false>(q,k,v,ids,out,summaries,basis,bad,p,count,stream);
+}
+extern "C" int run_variable(const bf*q,const bf*k,const bf*v,const int*ids,bf*out,const bf*summaries,const bf*basis,int*bad,int p,int count,bool has_anchor,cudaStream_t stream){
+    if(has_anchor)return launch<true,true>(q,k,v,ids,out,summaries,basis,bad,p,count,stream);
+    return launch<false,true>(q,k,v,ids,out,summaries,basis,bad,p,count,stream);
+}
 
 // One CTA copies 16 tokens of one head. The shared transpose feeds aligned
 // fragment stores after the native cache write.

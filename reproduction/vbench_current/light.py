@@ -59,8 +59,8 @@ def module_file(name,path):
     return module
 
 
-def build(chunks, *, window=None):
-    a=types.SimpleNamespace(method="lightforcing",chunks=chunks)
+def build(chunks, *, window=None, method="lightforcing"):
+    a=types.SimpleNamespace(method=method,chunks=chunks)
     out=RUN
     inputs={"prompt_embeds":None}
     repos={'lightforcing':'LightForcing','forcingkv':'Forcing-KV','dasa':'DASA'}
@@ -82,7 +82,8 @@ def build(chunks, *, window=None):
     config.independent_first_frame=False;config.context_noise=0;config.num_frame_per_block=3
     config.height=512;config.width=768;config.num_frames=min(480,a.chunks*12-3)
     config.output_folder=str(out);config.num_output_frames=a.chunks*3
-    config.model_kwargs.local_attn_size=15 if a.method=='dasa' else (window if window is not None else config.model_kwargs.get('local_attn_size',21))
+    config.model_kwargs.local_attn_size=window if window is not None else config.model_kwargs.get('local_attn_size',21)
+    if a.method=='dasa':config.model_kwargs.sink_size=1
     config.model_kwargs.timestep_shift=5.
     if a.method=='dense':config.model_kwargs.sink_size=0
     if a.method=='forcingkv':
@@ -105,6 +106,7 @@ def build(chunks, *, window=None):
     kwargs=OmegaConf.to_container(config.model_kwargs)
     if a.method=='forcingkv':kwargs['method']='forcingkv'
     print(json.dumps({'phase':'loading','method':a.method,'config':OmegaConf.to_container(config)}),flush=True)
+    if a.method=='dasa':os.chdir(ROOT)
     generator=WanDiffusionWrapper(**kwargs,is_causal=True)
     checkpoint=ROOT/'checkpoints/self_forcing_dmd.pt'
     state=torch.load(checkpoint,map_location='cpu',weights_only=False)

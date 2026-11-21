@@ -135,14 +135,14 @@ class VideoRuntime(StreamingRuntime):
             heads=self.pset_schedule.get((l,step));correct=layer_enabled and heads is not None
             if heads is not None and heads.numel()==12:heads=None
         return correct,heads
-    def set_cuda_fixed15(self, enabled, direct_commit=True):
+    def set_cuda_fixed15(self, enabled, direct_commit=True, variable=False):
         import torch
-        supported = (enabled and self.first_frame_fixed15 and self.tile_batch == 72
+        supported = (enabled and (variable or self.first_frame_fixed15) and self.tile_batch == 72
                      and self.config.history_pages == 360
                      and torch.cuda.get_device_capability(self.counters.device) == (8, 0))
         if supported and getattr(self, 'packed_attention', None) is None:
             from .fixed15_attention import PackedAttention
-            self.packed_attention = PackedAttention()
+            self.packed_attention = PackedAttention(variable=variable)
         elif not supported:
             self.packed_attention = None
         writer=self.packed_attention.commit if supported and direct_commit else None
@@ -181,9 +181,9 @@ class VideoRuntime(StreamingRuntime):
                 and key_window.dtype==value_window.dtype==x.dtype==torch.bfloat16)
         packed_k=False
         packed=getattr(self,'packed_attention',None)
-        if cached and packed is not None and self.sparse and p>72 and self.engine.current['step']!=4:
+        if cached and packed is not None and self.sparse and p>72 and (self.engine.current['step']!=4 or getattr(self, 'sparse_clean', False)):
             from .rms_mean import project_cached as native_project
-            packed_k=(project_cached is native_project and self.first_frame_fixed15 and self.legacy_attention
+            packed_k=(project_cached is native_project and self.legacy_attention
                       and packed.accepts_packed_key())
         if packed_k:
             q,k,v=project_cached(module,x,grid_sizes,freqs,start//1536,key_window,value_window,packed.cache(store)[0][p])
@@ -206,7 +206,8 @@ class VideoRuntime(StreamingRuntime):
             value_window.copy_(v)
         kh=cache['k'][:,:end];vh=cache['v'][:,:end];step=self.engine.current['step'];correct,heads=self.correction_scope(l,step)
         layer_enabled=self.full_pset and (self.pset_layers is None or l in self.pset_layers)
-        if not self.sparse or step==4 or p<=72:
+        early_dense = p<=72 and p//72 not in getattr(self,'sparse_start_chunks',())
+        if not self.sparse or (step==4 and not getattr(self, 'sparse_clean', False)) or early_dense:
             with self.timings.stage('attention'):out=self.engine.dense(q,kh,vh)
         else:
             with self.timings.stage('summary_and_encoding'):
@@ -288,7 +289,7 @@ class VideoRuntime(StreamingRuntime):
                 with self.timings.stage('attention'):
                     if self.legacy_attention:
                         from .legacy_components import attention
-                        if getattr(self, 'packed_attention', None) is not None and self.first_frame_fixed15:
+                        if getattr(self, 'packed_attention', None) is not None:
                             args=(store,qq,kh,vh,s,model.basis,ids,self.workspace)
                             mixed=packed(*args,packed_k=True) if packed_k else packed(*args)
                         else:
@@ -321,6 +322,9 @@ class VideoRuntime(StreamingRuntime):
                     assert nmse<2e-5 and err<=.05 and riskerr<5e-5,(key,nmse,err,riskerr)
                     self.validation.append(dict(key=key,attention_nmse=nmse,attention_max_abs=err,risk_relative_max=riskerr));self.checked.add(key)
             out=result
+            probe=getattr(self,'sparse_output_probe',None)
+            if probe is not None:
+                out=probe(l,step,q,kh,vh,out)
         if step==4:
             with self.timings.stage('clean_commit'):
                 if self.clean_group_batch:

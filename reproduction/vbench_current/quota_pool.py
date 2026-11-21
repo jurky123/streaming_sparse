@@ -18,6 +18,19 @@ def stratified_pool(risk, mask, own):
 
 
 def pool(risk, mask, own):
+    if risk.shape[-1]==72:
+        page=torch.arange(72,device=risk.device)
+        movable=mask & (page>=24) & (page!=own[...,None])
+        # Use distinct exact anchor pages as inactive removals and distinct
+        # omitted pages as inactive additions. Only actual current swaps are legal.
+        order=risk.masked_fill(~movable,torch.inf).argsort(dim=-1,stable=True)
+        anchors=((page>=24)|(page==own[...,None])).int().argsort(dim=-1,stable=True)
+        slot=torch.arange(16,device=risk.device).expand(*risk.shape[:2],16)
+        used=movable.sum(-1,keepdim=True).clamp_max(8)
+        remove=torch.where(slot<used,order[...,:16],anchors.gather(-1,(slot-used).clamp_min(0)))
+        add=risk.masked_fill(mask,-torch.inf).argsort(dim=-1,descending=True,stable=True)[...,:32]
+        legal=(slot<used)[...,None] & (torch.arange(32,device=risk.device)<16)
+        return remove,add,legal
     remove, add, legal = stratified_pool(risk, mask, own)
     # Anchor pages are selected and individually distinct. They fill missing
     # removal slots for aggregation only, and are excluded by the original legal mask.

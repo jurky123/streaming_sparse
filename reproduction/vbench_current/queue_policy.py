@@ -24,8 +24,12 @@ def attach(rt,engine,index):
     bg.current_slots=torch.zeros(12,device='cuda',dtype=torch.long)
     def get(*args,**kwargs):
         c,l,step=[engine.current[k] for k in ('chunk','layer','step')]
-        bg.n=int(totals[c-2,step,l-1,0])
-        bg.current_slots.copy_(slots[c-2,step,l-1])
+        if c<2:
+            bg.n=(4,12)[c]
+            bg.current_slots.fill_((4,7)[c])
+        else:
+            bg.n=int(totals[c-2,step,l-1,0])
+            bg.current_slots.copy_(slots[c-2,step,l-1])
         return mod.BatchGraphs.get(bg,*args,**kwargs)
     bg.get=get
     bg.compute=torch.compile(mod.BatchGraphs.compute.__get__(bg,type(bg)),fullgraph=True,dynamic=False,options={'triton.cudagraphs':False})
@@ -35,7 +39,7 @@ def attach(rt,engine,index):
         ids,mask,risk,stats=replay(e,q,own)
         key=(mask.size(-1),bg.n,e['full_pset'])
         if key not in seen:
-            assert mask[...,:24].all() and (mask[...,-72:].sum(-1)==bg.current_slots[:,None]).all()
+            assert mask[...,:24].all() and (mask[...,-72:].sum(-1)==(bg.current_slots[:,None]+(24 if mask.size(-1)==72 else 0))).all()
             assert (ids[...,0]==own).all() and mask.gather(-1,ids.long()).all() and (ids.sort().values.diff()>0).all()
             assert ids.shape[-1]==24+bg.n
             seen.add(key)

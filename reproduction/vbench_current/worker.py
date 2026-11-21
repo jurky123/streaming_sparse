@@ -10,7 +10,7 @@ torch.set_num_threads(3);torch.backends.cuda.matmul.allow_tf32=False;torch.backe
 @torch.no_grad()
 def main():
     # Both lengths fit the native three-latent block, then crop decoded RGB at 16 fps.
-    vae=None if method=='intersection' else native_vae()
+    vae=None if method in ('intersection','intersection_fast') else native_vae()
     if method=='lightforcing':
         from light import build
         pipe=None
@@ -21,7 +21,7 @@ def main():
         from local_experiments.video_runtime_v1.deployment import configure,make_runtime,load_weights
         from local_experiments.broad_common import Engine
         from local_experiments.rollout_suite import generate_chunk
-        conditional=method=='intersection'
+        conditional=method in ('intersection','intersection_fast')
         cfg=config('base' if method=='dense' else method,local_assets=REPO)
         if method=='dense':cfg.mode='dense_native'
         configure(cfg);engine=Engine();engine.wrapper.requires_grad_(False)
